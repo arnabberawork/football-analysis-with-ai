@@ -9,10 +9,10 @@ Agent for a bounded number of retries.
 
 from __future__ import annotations
 
-from football_rag.agents._llm import call_structured, get_client
+from football_rag.agents._llm import DEFAULT_MODEL, call_structured, get_client
 from football_rag.agents.state import EvaluationResult
 
-MODEL = "gemini-flash-latest"
+MODEL = DEFAULT_MODEL
 
 SYSTEM_PROMPT = (
     "You are a strict reviewer for football match summaries. Judge whether the "

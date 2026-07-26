@@ -43,6 +43,28 @@ from football_rag.schema import Chunk, Event
 DEFAULT_TOP_N = 10
 
 
+def _with_match_filter(where: dict | None, match_id: str) -> dict:
+    """Always constrains retrieval to the current match, regardless of what
+    (if anything) the LLM-derived query filter contains. `to_where_filter()`
+    only ever reflects entities the LLM extracted from the query text - a
+    query like "summarize the match" has no match name in it to extract, so
+    match scoping can never be made to depend on that extraction.
+
+    Confirmed live: without this, running the evaluation harness (which
+    ingests every match's chunks into one shared vector store collection)
+    produced a "summarize the match" response for the 2022 World Cup Final
+    that narrated England and Croatia's tactics, because the unfiltered
+    dense query returned zero chunks from the actual match and ten chunks
+    from five unrelated matches instead.
+    """
+    match_clause = {"match_id": match_id}
+    if where is None:
+        return match_clause
+    if "$and" in where:
+        return {"$and": where["$and"] + [match_clause]}
+    return {"$and": [where, match_clause]}
+
+
 def build_agentic_graph(
     vector_store: ChunkVectorStore,
     chunks: list[Chunk],
@@ -84,10 +106,14 @@ def build_agentic_graph(
 
     def retriever_node(state: AgentState) -> dict:
         structured = state["structured_query"]
-        ensure_salient = structured.intent == "match_summary" and not state.get("where_filter")
-        hits = retriever_agent.retrieve(
-            state["raw_query"], where=state.get("where_filter"), top_n=top_n, ensure_salient=ensure_salient
-        )
+        llm_where = state.get("where_filter")
+        # ensure_salient is keyed off the LLM-derived filter only (not the
+        # mandatory match filter below) - it means "the query itself is
+        # broad and unscoped", which is still true even though every query
+        # is now always match-scoped underneath.
+        ensure_salient = structured.intent == "match_summary" and not llm_where
+        where = _with_match_filter(llm_where, state["match_id"])
+        hits = retriever_agent.retrieve(state["raw_query"], where=where, top_n=top_n, ensure_salient=ensure_salient)
         return {"retrieved_chunks": hits}
 
     def context_aggregator_node(state: AgentState) -> dict:

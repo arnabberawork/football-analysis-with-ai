@@ -10,10 +10,10 @@ straight from retrieved chunks with no intermediate analysis step.
 
 from __future__ import annotations
 
-from football_rag.agents._llm import call_structured, get_client
+from football_rag.agents._llm import DEFAULT_MODEL, call_structured, get_client
 from football_rag.agents.state import ReasoningInsight
 
-MODEL = "gemini-flash-latest"
+MODEL = DEFAULT_MODEL
 
 SYSTEM_PROMPT = (
     "You are a football tactics analyst. Analyse the provided match evidence "

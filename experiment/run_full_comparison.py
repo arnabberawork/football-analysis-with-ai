@@ -22,7 +22,9 @@ Usage:
 
 from __future__ import annotations
 
+import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -62,18 +64,41 @@ FIELDNAMES = KEY_COLUMNS + [
 ]
 
 
-def _metrics_row(match_id: int, query: str, system: str, reference_summary: str, retrieved_ids: list[str], relevant_ids: set[str], response_text: str) -> dict:
+def _metrics_row(
+    match_id: int,
+    query: str,
+    system: str,
+    reference_summary: str,
+    retrieved_ids: list[str],
+    relevant_ids: set[str],
+    response_text: str,
+    retrieval_not_applicable: bool = False,
+) -> dict:
     rouge = rouge_scores(response_text, reference_summary)
+    # StatsAgent-routed ("statistic" intent) responses bypass retrieval
+    # entirely by design (agents/graph.py's stats_node returns
+    # retrieved_chunks=[]) - scoring that as Precision/Recall = 0.0 would
+    # unfairly penalise the agentic system for doing exactly what it's
+    # supposed to do (answer with an exact deterministic count instead of
+    # sampling top-N chunks). Recorded as "N/A" and excluded from
+    # retrieval-metric aggregation in make_tables.py instead.
+    if retrieval_not_applicable:
+        precision_5 = recall_5 = precision_10 = recall_10 = "N/A"
+    else:
+        precision_5 = precision_at_k(retrieved_ids, relevant_ids, 5)
+        recall_5 = recall_at_k(retrieved_ids, relevant_ids, 5)
+        precision_10 = precision_at_k(retrieved_ids, relevant_ids, 10)
+        recall_10 = recall_at_k(retrieved_ids, relevant_ids, 10)
     return {
         "match_id": str(match_id),
         "query": query,
         "system": system,
         "reference_summary": reference_summary,
         "response_text": response_text,
-        "precision_at_5": precision_at_k(retrieved_ids, relevant_ids, 5),
-        "recall_at_5": recall_at_k(retrieved_ids, relevant_ids, 5),
-        "precision_at_10": precision_at_k(retrieved_ids, relevant_ids, 10),
-        "recall_at_10": recall_at_k(retrieved_ids, relevant_ids, 10),
+        "precision_at_5": precision_5,
+        "recall_at_5": recall_5,
+        "precision_at_10": precision_10,
+        "recall_at_10": recall_10,
         "rouge1": rouge["rouge1"],
         "rouge2": rouge["rouge2"],
         "rougeL": rouge["rougeL"],
@@ -119,7 +144,19 @@ def run_main_sweep() -> None:
             if key_agentic not in done:
                 result = run_agentic_pipeline(str(lq.match_id), lq.query, store, chunks_by_match[lq.match_id], events_by_match[lq.match_id])
                 retrieved_ids = [c["chunk_id"] for c in result["retrieved_chunks"]]
-                writer.write(_metrics_row(lq.match_id, lq.query, "agentic", lq.reference_summary, retrieved_ids, relevant_ids, result["response_text"]))
+                is_statistic = result["structured_query"].intent == "statistic"
+                writer.write(
+                    _metrics_row(
+                        lq.match_id,
+                        lq.query,
+                        "agentic",
+                        lq.reference_summary,
+                        retrieved_ids,
+                        relevant_ids,
+                        result["response_text"],
+                        retrieval_not_applicable=is_statistic,
+                    )
+                )
                 done.add(key_agentic)
                 completed_this_run += 1
                 print(f"  [agentic] match={lq.match_id} query={lq.query!r} done ({len(done)}/{total})")
@@ -163,9 +200,32 @@ def run_bertscore_pass() -> None:
     print(f"Mean F1 for this batch: {sum(per_example_f1) / len(per_example_f1):.3f}; per-row scores written to {CSV_PATH}")
 
 
+def save_snapshot() -> None:
+    """Copies the current (possibly still-partial) main_comparison.csv into
+    its own permanent, timestamped folder every time this script is run.
+
+    The resumable checkpoint file (CSV_PATH) has to stay a single,
+    continuously-appended file across many days of quota-limited runs -
+    that's what load_done_keys()/CheckpointWriter above resume from, and it
+    would be pointless to reset it per run. But that's an implementation
+    detail, not something the user should have to dig through: every
+    invocation of this script should leave behind its own permanent record
+    of "what results existed as of this run", never silently overwritten by
+    a later run and never deleted except by the user themselves.
+    """
+    if not CSV_PATH.exists():
+        return
+
+    snapshot_dir = RESULTS_DIR / f"main_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(CSV_PATH, snapshot_dir / CSV_PATH.name)
+    print(f"Snapshot saved: {snapshot_dir / CSV_PATH.name}")
+
+
 def main() -> None:
     run_main_sweep()
     run_bertscore_pass()
+    save_snapshot()
 
 
 if __name__ == "__main__":

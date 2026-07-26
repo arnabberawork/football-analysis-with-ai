@@ -21,7 +21,9 @@ Usage:
 
 from __future__ import annotations
 
+import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -112,6 +114,26 @@ def main() -> None:
         print(f"\nAll {total} rows done.")
     else:
         print(f"\n{len(done)}/{total} done so far - re-run to continue.")
+
+    save_snapshot()
+
+
+def save_snapshot() -> None:
+    """Copies the current (possibly still-partial) ablation.csv into its own
+    permanent, timestamped folder every time this script is run - same
+    rationale as run_full_comparison.py::save_snapshot(): CSV_PATH itself
+    has to stay one continuously-appended file for the resumable
+    load_done_keys()/CheckpointWriter logic above to work across multiple
+    quota-limited days, but every invocation should still leave behind its
+    own permanent, never-overwritten record of "what existed as of this
+    run"."""
+    if not CSV_PATH.exists():
+        return
+
+    snapshot_dir = RESULTS_DIR / f"ablation_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(CSV_PATH, snapshot_dir / CSV_PATH.name)
+    print(f"Snapshot saved: {snapshot_dir / CSV_PATH.name}")
 
 
 if __name__ == "__main__":

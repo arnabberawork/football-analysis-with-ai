@@ -9,11 +9,9 @@ from __future__ import annotations
 
 from google import genai
 
-from football_rag.agents._llm import get_client
+from football_rag.agents._llm import DEFAULT_MODEL, get_client
 from football_rag.generation.prompts import SYSTEM_PROMPT, build_user_prompt
 from football_rag.retrieval.vector_store import ChunkVectorStore
-
-DEFAULT_MODEL = "gemini-flash-latest"
 
 
 class NaiveRAGGenerator:

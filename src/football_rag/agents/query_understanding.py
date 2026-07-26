@@ -9,10 +9,10 @@ representation instead of free text.
 
 from __future__ import annotations
 
-from football_rag.agents._llm import call_structured, get_client
+from football_rag.agents._llm import DEFAULT_MODEL_LITE, call_structured, get_client
 from football_rag.agents.state import StructuredQuery
 
-MODEL = "gemini-flash-lite-latest"
+MODEL = DEFAULT_MODEL_LITE
 
 SYSTEM_PROMPT = (
     "You are a query analysis assistant for a football match analytics system. "

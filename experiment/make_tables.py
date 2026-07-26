@@ -38,11 +38,26 @@ def main() -> None:
     comparison_csv = RESULTS_DIR / "main_comparison.csv"
     if comparison_csv.exists():
         df = pd.read_csv(comparison_csv, keep_default_na=False)
-        df["bertscore_f1"] = pd.to_numeric(df["bertscore_f1"], errors="coerce")
+        # precision_at_k/recall_at_k are "N/A" (a string) for StatsAgent-routed
+        # rows, which bypass retrieval by design (see run_full_comparison.py).
+        # pd.to_numeric(..., errors="coerce") turns those into NaN, which
+        # .mean() then correctly skips per-row - if left as "N/A" strings,
+        # pandas would treat the whole column as non-numeric and silently
+        # drop it entirely from every system's average, not just those rows.
+        numeric_cols = ["precision_at_5", "recall_at_5", "precision_at_10", "recall_at_10", "bertscore_f1"]
+        for col in numeric_cols:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
         metric_cols = ["precision_at_5", "recall_at_5", "precision_at_10", "recall_at_10", "rouge1", "rouge2", "rougeL", "bleu", "bertscore_f1"]
         summary = df.groupby("system")[metric_cols].mean(numeric_only=True).round(3)
         summary["n_queries"] = df.groupby("system").size()
-        sections.append("## Naive vs Agentic - retrieval + generation metrics (stages 9/10/13)\n\n" + _to_markdown(summary.reset_index()))
+        n_statistic = (df["precision_at_5"].isna() & (df["system"] == "agentic")).sum()
+        sections.append(
+            "## Naive vs Agentic - retrieval + generation metrics (stages 9/10/13)\n\n"
+            + _to_markdown(summary.reset_index())
+            + f"\n\n_Note: retrieval metrics (P@K/R@K) are averaged only over rows where retrieval actually ran - "
+            f"{n_statistic} agentic row(s) routed to StatsAgent (exact counts, no retrieval by design) are excluded "
+            f"from the retrieval-metric average but still included in generation-metric averages and n_queries._"
+        )
     else:
         sections.append("## Naive vs Agentic\n\n_Not yet available - run `experiment/run_full_comparison.py`._")
 

@@ -13,11 +13,11 @@ from typing import Optional
 
 from google import genai
 
-from football_rag.agents._llm import get_client
+from football_rag.agents._llm import DEFAULT_MODEL, get_client
 from football_rag.agents.state import ReasoningInsight
 from football_rag.generation.prompts import SYSTEM_PROMPT, build_agentic_user_prompt
 
-MODEL = "gemini-flash-latest"
+MODEL = DEFAULT_MODEL
 
 
 class GeneratorAgent:

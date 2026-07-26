@@ -41,13 +41,26 @@ def _verb_phrase(event_type: str) -> str:
     return VERB_PHRASES.get(event_type, f"recorded a {event_type.lower()}")
 
 
+SHOOTOUT_PERIOD = 5
+"""StatsBomb period convention: 1/2 = first/second half, 3/4 = extra-time
+halves, 5 = the penalty shootout. Shootout kicks are encoded as ordinary
+Shot events (outcome="Goal" included) indistinguishable by event_type from
+an in-match goal - confirmed live this caused a naive-RAG answer to count a
+120th-minute shootout penalty as one of a player's three "goals in the
+match", silently dropping a real in-match goal in its place because nothing
+in the chunk text flagged the shootout kick as different. Every event-level
+sentence for a period-5 event is now tagged "(Penalty Shootout)" so this
+can't happen regardless of which chunk ends up in an evidence prompt."""
+
+
 def event_to_sentence(event: Event) -> str:
     """Render a single Event as one fixed-template natural-language sentence."""
     time_str = f"{event.minute}'" + (f"{event.second:02d}" if event.second else "")
     location_str = f" at ({event.x:.1f}, {event.y:.1f})" if event.x is not None and event.y is not None else ""
     player = event.player_name or "Unknown player"
+    phase_tag = " (Penalty Shootout)" if event.period == SHOOTOUT_PERIOD else ""
 
-    parts = [f"{time_str} [{event.event_type}] {event.team_name} - {player} {_verb_phrase(event.event_type)}{location_str}"]
+    parts = [f"{time_str} [{event.event_type}]{phase_tag} {event.team_name} - {player} {_verb_phrase(event.event_type)}{location_str}"]
 
     if event.detail:
         parts.append(event.detail)
