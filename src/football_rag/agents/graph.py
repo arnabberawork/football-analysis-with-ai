@@ -1,7 +1,11 @@
-"""LangGraph wiring for the 6-agent pipeline (proposal §6.2.3, §6.3):
+"""LangGraph wiring for the 6-agent pipeline (proposal §6.2.3, §6.3), plus
+one deliberate addition beyond the original design - see `stats_node`
+below:
 
-    query_understanding -> retriever -> context_aggregator -> (reasoning)
-        -> generator -> (evaluator) -[conditional]-> generator | END
+    query_understanding -[conditional]-> retriever -> context_aggregator
+        -> (reasoning) -> generator -> (evaluator) -[conditional]->
+        generator | END
+                        \\-[conditional, intent=="statistic"]-> stats_node -> END
 
 The Evaluator Agent is optional (§6.3.6); when disabled, `generator` routes
 straight to END. When enabled and it rejects the response, its feedback is
@@ -11,6 +15,14 @@ individually toggleable (`enable_reasoning`/`enable_hybrid`/
 `enable_reranker`) - all four flags together are what
 `scripts/run_ablation.py` flips one at a time for the ablation study
 (proposal §6.11.6).
+
+`stats_node` is a fifth branch, not in the proposal's original 6-agent
+design: counting/aggregate questions ("how many shots did Messi take") are
+routed straight to `agents/stats.py::StatsAgent` - a deterministic
+computation over the full event list, no LLM call - since RAG retrieval
+structurally cannot answer these reliably (it samples top-N chunks, never
+"all" of anything). This bypasses retriever/aggregator/reasoning/generator/
+evaluator entirely for that one intent.
 """
 
 from __future__ import annotations
@@ -24,8 +36,9 @@ from football_rag.agents.query_understanding import QueryUnderstandingAgent, to_
 from football_rag.agents.reasoning import ReasoningAgent
 from football_rag.agents.retriever import RetrieverAgent
 from football_rag.agents.state import AgentState
+from football_rag.agents.stats import StatsAgent
 from football_rag.retrieval.vector_store import ChunkVectorStore
-from football_rag.schema import Chunk
+from football_rag.schema import Chunk, Event
 
 DEFAULT_TOP_N = 10
 
@@ -33,6 +46,7 @@ DEFAULT_TOP_N = 10
 def build_agentic_graph(
     vector_store: ChunkVectorStore,
     chunks: list[Chunk],
+    events: list[Event],
     enable_evaluator: bool = True,
     enable_reasoning: bool = True,
     enable_hybrid: bool = True,
@@ -50,13 +64,30 @@ def build_agentic_graph(
     reasoning_agent = ReasoningAgent() if enable_reasoning else None
     generator_agent = GeneratorAgent()
     evaluator_agent = EvaluatorAgent() if enable_evaluator else None
+    stats_agent = StatsAgent()
 
     def query_understanding_node(state: AgentState) -> dict:
         structured = query_agent.understand(state["raw_query"])
         return {"structured_query": structured, "where_filter": to_where_filter(structured)}
 
+    def route_after_query_understanding(state: AgentState) -> str:
+        return "stats" if state["structured_query"].intent == "statistic" else "retrieve"
+
+    def stats_node(state: AgentState) -> dict:
+        response_text = stats_agent.answer(state["raw_query"], state["structured_query"], state["events"])
+        return {
+            "response_text": response_text,
+            "retrieved_chunks": [],
+            "aggregated_context": [],
+            "reasoning_insights": [],
+        }
+
     def retriever_node(state: AgentState) -> dict:
-        hits = retriever_agent.retrieve(state["raw_query"], where=state.get("where_filter"), top_n=top_n)
+        structured = state["structured_query"]
+        ensure_salient = structured.intent == "match_summary" and not state.get("where_filter")
+        hits = retriever_agent.retrieve(
+            state["raw_query"], where=state.get("where_filter"), top_n=top_n, ensure_salient=ensure_salient
+        )
         return {"retrieved_chunks": hits}
 
     def context_aggregator_node(state: AgentState) -> dict:
@@ -86,12 +117,16 @@ def build_agentic_graph(
 
     graph = StateGraph(AgentState)
     graph.add_node("query_understanding", query_understanding_node)
+    graph.add_node("stats_node", stats_node)
     graph.add_node("retriever", retriever_node)
     graph.add_node("context_aggregator", context_aggregator_node)
     graph.add_node("generator", generator_node)
 
     graph.add_edge(START, "query_understanding")
-    graph.add_edge("query_understanding", "retriever")
+    graph.add_conditional_edges(
+        "query_understanding", route_after_query_understanding, {"stats": "stats_node", "retrieve": "retriever"}
+    )
+    graph.add_edge("stats_node", END)
     graph.add_edge("retriever", "context_aggregator")
 
     if enable_reasoning:
@@ -116,6 +151,7 @@ def run_agentic_pipeline(
     query: str,
     vector_store: ChunkVectorStore,
     chunks: list[Chunk],
+    events: list[Event],
     enable_evaluator: bool = True,
     enable_reasoning: bool = True,
     enable_hybrid: bool = True,
@@ -130,6 +166,7 @@ def run_agentic_pipeline(
     app = build_agentic_graph(
         vector_store,
         chunks,
+        events,
         enable_evaluator=enable_evaluator,
         enable_reasoning=enable_reasoning,
         enable_hybrid=enable_hybrid,
@@ -137,5 +174,5 @@ def run_agentic_pipeline(
         max_retries=max_retries,
         top_n=top_n,
     )
-    initial_state: AgentState = {"match_id": match_id, "raw_query": query, "retry_count": 0}
+    initial_state: AgentState = {"match_id": match_id, "raw_query": query, "events": events, "retry_count": 0}
     return app.invoke(initial_state)

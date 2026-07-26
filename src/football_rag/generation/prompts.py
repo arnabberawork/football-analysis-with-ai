@@ -43,7 +43,7 @@ def build_agentic_user_prompt(user_query: str, evidence: list[dict], insights: l
     Generator Agent, not the naive baseline.
     """
     evidence_lines = "\n".join(f"[{item['chunk_id']}] {item['text']}" for item in evidence)
-    insight_lines = "\n".join(f"- {item.insight} (evidence: {', '.join(item.supporting_chunk_ids)})" for item in insights)
+    insight_lines = "\n".join(f"- {item.insight} (evidence: {', '.join(item.supporting_chunk_ids or [])})" for item in insights)
     return (
         f"User request: {user_query}\n\n"
         f"Contextual Evidence:\n{evidence_lines}\n\n"

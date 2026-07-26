@@ -46,7 +46,7 @@ class ChunkMetadata(BaseModel):
     period: int
     event_type: Optional[str] = None
     possession_id: Optional[str] = None
-    chunk_level: str = Field(description="One of: event, time_window, sequence")
+    chunk_level: str = Field(description="One of: event, time_window, sequence, lineup")
 
 
 class Chunk(BaseModel):

@@ -18,10 +18,10 @@ from football_rag.agents.formatting import format_pipeline_result
 from football_rag.agents.graph import run_agentic_pipeline
 from football_rag.api.schemas import PipelineRunRequest, PipelineRunResponse
 from football_rag.chunking import build_hierarchical_chunks
-from football_rag.ingestion.statsbomb import fetch_competitions, fetch_matches, load_match_events
+from football_rag.ingestion.statsbomb import fetch_competitions, fetch_matches, fetch_raw_events, parse_events
 from football_rag.output_writer import write_output
 from football_rag.retrieval.vector_store import ChunkVectorStore
-from football_rag.schema import Chunk
+from football_rag.schema import Chunk, Event
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
@@ -33,6 +33,7 @@ app = FastAPI(title="Football Agentic RAG API")
 # one embed-and-ingest per distinct match_id.
 _vector_store: ChunkVectorStore | None = None
 _chunks_cache: dict[int, list[Chunk]] = {}
+_events_cache: dict[int, list[Event]] = {}
 
 
 def get_vector_store() -> ChunkVectorStore:
@@ -42,13 +43,18 @@ def get_vector_store() -> ChunkVectorStore:
     return _vector_store
 
 
-def get_or_ingest_chunks(match_id: int) -> list[Chunk]:
+def get_or_ingest_chunks(match_id: int) -> tuple[list[Chunk], list[Event]]:
+    """Returns (chunks, events) - events are needed by StatsAgent (via
+    `run_agentic_pipeline`), which reads the full event list directly
+    rather than a retrieved chunk sample."""
     if match_id not in _chunks_cache:
-        events = load_match_events(match_id, cache_dir=CACHE_DIR)
-        chunks = build_hierarchical_chunks(events)
+        raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
+        events = parse_events(raw_events, match_id)
+        chunks = build_hierarchical_chunks(events, raw_events=raw_events)
         get_vector_store().ingest(chunks)
         _chunks_cache[match_id] = chunks
-    return _chunks_cache[match_id]
+        _events_cache[match_id] = events
+    return _chunks_cache[match_id], _events_cache[match_id]
 
 
 @app.get("/health")
@@ -69,12 +75,13 @@ def matches(competition_id: int, season_id: int) -> list[dict]:
 @app.post("/pipeline/run", response_model=PipelineRunResponse)
 def run_pipeline(request: PipelineRunRequest) -> PipelineRunResponse:
     try:
-        chunks = get_or_ingest_chunks(request.match_id)
+        chunks, events = get_or_ingest_chunks(request.match_id)
         result = run_agentic_pipeline(
             str(request.match_id),
             request.query,
             get_vector_store(),
             chunks,
+            events,
             enable_evaluator=request.enable_evaluator,
             max_retries=request.max_retries,
             top_n=request.top_n,

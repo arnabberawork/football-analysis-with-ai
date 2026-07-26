@@ -17,7 +17,7 @@ from pathlib import Path
 from football_rag.agents.formatting import format_pipeline_result
 from football_rag.agents.graph import run_agentic_pipeline
 from football_rag.chunking import build_hierarchical_chunks
-from football_rag.ingestion.statsbomb import load_match_events
+from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
 from football_rag.output_writer import tee_to_file
 from football_rag.retrieval.vector_store import ChunkVectorStore
 
@@ -34,11 +34,12 @@ def main() -> None:
 
     with tee_to_file(f"run_agentic_pipeline_{match_id}") as output_path:
         print(f"Loading events for match {match_id}...")
-        events = load_match_events(match_id, cache_dir=CACHE_DIR)
+        raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
+        events = parse_events(raw_events, match_id)
         print(f"  {len(events)} events parsed")
 
-        chunks = build_hierarchical_chunks(events)
-        print(f"  {len(chunks)} chunks generated (event + time-window + sequence tiers)")
+        chunks = build_hierarchical_chunks(events, raw_events=raw_events)
+        print(f"  {len(chunks)} chunks generated (event + time-window + sequence + lineup tiers)")
 
         print("Ingesting chunks into vector store...")
         store = ChunkVectorStore(persist_dir=CHROMA_DIR)
@@ -46,7 +47,7 @@ def main() -> None:
         print(f"  vector store now holds {store.count()} chunks")
 
         print()
-        result = run_agentic_pipeline(str(match_id), query, store, chunks)
+        result = run_agentic_pipeline(str(match_id), query, store, chunks, events)
 
         print(format_pipeline_result(str(match_id), query, result))
 

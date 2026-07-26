@@ -9,15 +9,23 @@ from __future__ import annotations
 
 import re
 
+from nltk.stem import PorterStemmer
 from rank_bm25 import BM25Okapi
 
 from football_rag.schema import Chunk
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
+_stemmer = PorterStemmer()
 
 
 def _tokenize(text: str) -> list[str]:
-    return _TOKEN_RE.findall(text.lower())
+    """Lowercase, tokenize, and stem (e.g. "penalties"/"penalty" -> "penalti")
+    so BM25's exact-token matching doesn't miss an otherwise-perfect keyword
+    match on singular/plural or other morphological variants - confirmed
+    live to matter: "penalties" in a query completely missed chunks
+    containing "Penalty" before this, despite them being the exact right
+    answer (see TESTING.md)."""
+    return [_stemmer.stem(tok) for tok in _TOKEN_RE.findall(text.lower())]
 
 
 class BM25Index:

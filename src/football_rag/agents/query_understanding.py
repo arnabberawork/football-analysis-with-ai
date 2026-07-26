@@ -16,7 +16,26 @@ MODEL = "gemini-flash-lite-latest"
 
 SYSTEM_PROMPT = (
     "You are a query analysis assistant for a football match analytics system. "
-    "Extract the user's intent and any named entities from their request."
+    "Extract the user's intent and any named entities from their request. "
+    'Use intent="statistic" for any counting/aggregate question (e.g. "how many '
+    'shots did Messi take", "how many yellow cards were shown", "how many fouls '
+    'did each team commit") - these are answered by exact computation over every '
+    "matching event, not by retrieving example passages, so they must be routed "
+    'differently from a narrative question. When intent="statistic" and the '
+    "question names a specific result (a goal, a card, a save, etc.), set "
+    '"outcome" to that result (e.g. "Goal", "Yellow Card", "Saved") so the count '
+    "can be scoped precisely.\n\n"
+    "event_types MUST only use these exact StatsBomb event type strings - never "
+    "invent a type that isn't in this list, even if it seems like an obvious name:\n"
+    "Pass, Shot, Dribble, Duel, Dribbled Past, Interception, Ball Recovery, "
+    "Clearance, Block, Shield, Foul Committed, Foul Won, Bad Behaviour, "
+    "Substitution, Player On, Player Off, Offside, Injury Stoppage.\n"
+    'There is no "Card" event type. Cards are recorded as the outcome of a '
+    '"Foul Committed" event (a card given for a foul) or a "Bad Behaviour" event '
+    "(a card not tied to a foul, e.g. dissent, time-wasting). A question about "
+    'cards (yellow or red) must set event_types=["Foul Committed", "Bad Behaviour"] '
+    'and outcome to the card name (e.g. "Yellow Card", "Red Card"). Goals are the '
+    'outcome of a "Shot" event (outcome="Goal"), not a separate event type.'
 )
 
 

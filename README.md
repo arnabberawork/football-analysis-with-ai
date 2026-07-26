@@ -13,10 +13,17 @@ Two pipelines, plus an evaluation harness comparing them:
   benchmark the agentic pipeline is compared against.
 - **6-agent Agentic RAG pipeline** — Query Understanding → Retriever →
   Context Aggregator → Reasoning → Generator → Evaluator, with hybrid
-  (dense + BM25 + cross-encoder re-rank) retrieval.
+  (dense + BM25 + cross-encoder re-rank) retrieval. A `StatsAgent` sits
+  alongside the six, routed to directly for counting/aggregate questions
+  ("how many yellow cards", "how many shots did Messi take") that plain
+  retrieval can't answer reliably — see `CLAUDE.md` for why.
 
 Both are Gemini-backed (free tier) and retrieve from the same hierarchical
-knowledge base (event-level, time-window, and possession-sequence chunks).
+knowledge base (event-level, time-window, possession-sequence, and
+lineup/formation chunks) — designed so you can ask broad summary
+questions, entity/timeframe-scoped questions ("what did Mbappé do in the
+second half"), exact counts, and lineup/formation questions all against the
+same match.
 
 ## Setup
 

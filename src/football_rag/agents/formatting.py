@@ -18,7 +18,11 @@ def format_pipeline_result(match_id: str, query: str, result: dict) -> str:
     lines.append("2. Retriever (fused dense + BM25 hits, re-ranked):")
     for hit in result["retrieved_chunks"]:
         score = hit.get("rerank_score", hit.get("fusion_score"))
-        lines.append(f"   [{hit['chunk_id']}] ({score:.4f}) {hit['text']}")
+        # ensure_salient-forced hits (agents/retriever.py::_force_salient) carry
+        # no score at all - they bypassed ranking entirely, so there's nothing
+        # numeric to show.
+        score_str = f"{score:.4f}" if score is not None else "forced"
+        lines.append(f"   [{hit['chunk_id']}] ({score_str}) {hit['text']}")
 
     lines.append("")
     lines.append(f"3. Context Aggregator ({len(result['aggregated_context'])} deduplicated chunks kept)")
@@ -26,7 +30,7 @@ def format_pipeline_result(match_id: str, query: str, result: dict) -> str:
     lines.append("")
     lines.append("4. Reasoning insights:")
     for insight in result.get("reasoning_insights", []):
-        lines.append(f"   - {insight.insight} (evidence: {', '.join(insight.supporting_chunk_ids)})")
+        lines.append(f"   - {insight.insight} (evidence: {', '.join(insight.supporting_chunk_ids or [])})")
 
     lines.append("")
     lines.append("5. Generated response:")

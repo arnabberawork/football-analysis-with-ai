@@ -312,6 +312,10 @@ Neither is built yet — this is exactly the kind of finding Phase 6
 "Refinement" (§8.1) is for, once the evaluation harness below produces
 numbers to act on.
 
+**Update: fixed in §13 below.** The metadata heuristic described as
+missing above is now built — `RetrieverAgent.retrieve(..., ensure_salient=True)`,
+wired automatically for exactly this kind of broad, unscoped summary query.
+
 **A second, more serious bug was found and fixed via this same broad
 query**, running it through the actual naive baseline (`scripts/run_vertical_slice.py`):
 the response came back completely empty, no traceback. Root cause: the
@@ -416,6 +420,286 @@ the repo root, if you launched from somewhere else); a `KeyError`/
 already been through `PipelineRunResponse` serialization instead of the
 raw `run_agentic_pipeline()` output — the API calls it *before*
 constructing the response model specifically to avoid this).
+
+## 12. Penalty retrieval investigation (data completeness + reranker limitation)
+
+Triggered by inspecting a specific raw StatsBomb event by ID
+(`657afc07-537a-44cc-9411-cb0a713b0a63`, a `Goal Keeper`/"Penalty Conceded"
+event for match 3869685) and asking why penalty context wasn't showing up
+in generated summaries. Found three distinct, separately-verified issues:
+
+**Bug 1 (fixed): the word "Penalty" was silently dropped from chunk text.**
+The `Goal Keeper` event itself is correctly filtered as low-signal
+(`LOW_SIGNAL_EVENT_TYPES`) - that's intentional, not the bug. Its
+`related_events` link led to the actual penalty *shot* (Mbappé's 79th
+minute penalty goal), which is **not** filtered - but
+`ingestion/statsbomb.py::_describe_event()` only read `shot.technique`
+("Normal"/"Volley"/etc.) and `shot.body_part`, never `shot.type` (the field
+that actually distinguishes Penalty/Free Kick/Corner/Open Play). Confirmed
+before the fix: the chunk read `"...took a shot...; Normal, Right Foot; xG
+0.78; outcome: Goal."` - the word "penalty" appeared nowhere. **Fixed**:
+`_describe_event()` now includes `shot.type` in `detail` (excluding "Open
+Play", which is the vast majority and adds no signal). Verified live: all
+11 penalty-type shots in this match (2 in-game penalties + the shootout
+kicks, which StatsBomb also tags `shot.type=Penalty`) now correctly say
+"Penalty" in their chunk text.
+
+**Bug 2 (fixed): BM25 had no stemming, so plural/singular queries missed
+otherwise-exact keyword matches.** Even after Bug 1's fix, querying
+`bm25_index.py` directly with *"What penalties were awarded and scored in
+the match?"* (plural) returned zero penalty chunks in the top 10 - generic
+Duel/Interception chunks outranked them. The same query with "penalty"
+singular returned the penalty chunks at the very top (scores 5.28-5.85).
+Root cause: `_tokenize()` did exact `[a-z0-9]+` tokenization with no
+stemming, so `"penalties"` (query) and `"penalty"` (chunk text) were
+completely different, non-matching tokens to BM25. **Fixed**: `_tokenize()`
+now runs every token through `nltk`'s `PorterStemmer` (works standalone, no
+corpus download needed - added `nltk` as an explicit direct dependency
+since it was previously only pulled in transitively via `rouge-score`).
+Verified live: the plural query now returns the identical top result as
+the singular query.
+
+**Finding 3 (not fixed - a real limitation, flagged for the ablation
+study): the cross-encoder reranker itself demotes correct penalty chunks.**
+With both bugs fixed, the pre-rerank RRF-fused pool for the plural penalty
+query already has penalty chunks at roughly half of its top 10 positions -
+hybrid retrieval alone does reasonably well. But after
+`retrieval/reranker.py`'s cross-encoder re-scores that same pool, **zero**
+penalty chunks survive into the final top 6 - generic "Foul Won" chunks
+end up on top instead. `cross-encoder/ms-marco-MiniLM-L-6-v2` is trained on
+general web/Q&A relevance (MS MARCO), not football-specific text, and
+doesn't reliably recognize that a penalty shot is what "penalties...scored"
+is asking about. This is exactly the kind of gap the ablation study
+(`scripts/run_ablation.py`, `no_reranker` config) exists to quantify - not
+something patched ad hoc here.
+
+**Reproduce this investigation** (all quota-free, no Gemini calls):
+
+```bash
+uv run python -c "
+from pathlib import Path
+from football_rag.ingestion.statsbomb import load_match_events
+from football_rag.chunking import build_hierarchical_chunks
+from football_rag.retrieval.vector_store import ChunkVectorStore
+from football_rag.retrieval.bm25_index import BM25Index
+from football_rag.agents.retriever import RetrieverAgent
+
+events = load_match_events(3869685, cache_dir=Path('data/statsbomb_cache'))
+chunks = build_hierarchical_chunks(events)
+store = ChunkVectorStore(persist_dir=Path('data/chroma'))
+store.ingest(chunks)
+
+query = 'What penalties were awarded and scored in the match?'
+print('--- BM25 alone (should surface penalty chunks near the top) ---')
+bm25 = BM25Index(chunks)
+for cid, score in bm25.query(query, top_n=5):
+    text = next(c.text for c in chunks if c.chunk_id == cid)
+    print(f'  ({score:.3f}) {text[:90]}')
+
+print()
+print('--- Full hybrid + rerank (penalty chunks currently do NOT survive) ---')
+for h in RetrieverAgent(store, chunks).retrieve(query, top_n=5):
+    score = h.get('rerank_score', h.get('fusion_score'))
+    print(f\"  ({score:.3f}) {h['text'][:90]}\")
+"
+```
+
+**Expect:** the BM25-alone section shows penalty chunks at the top with
+scores ~5.2-5.9; the full hybrid+rerank section still shows generic
+Foul/Duel chunks on top (Finding 3, unresolved). If BM25 alone *also*
+misses the penalty chunks, Bug 2's stemming fix has regressed - check
+`bm25_index.py::_tokenize()` still stems via `PorterStemmer`.
+
+## 13. "Ask anything" gap analysis: StatsAgent, lineups, ensure_salient, Duel/Block fixes
+
+Triggered by the goal to let a user "ask anything about the game or the
+match" rather than just narrow demo queries. Auditing the pipeline against
+that bar (starting from the concrete observation that `StructuredQuery.intent`
+was extracted by Query Understanding but never read anywhere downstream —
+confirmed via a full-codebase grep, zero hits outside its own definition)
+found five gaps. Four are fixed here; two (multi-turn conversational memory,
+spatial/GIS queries over x/y coordinates) are explicitly out of scope for
+this pass, along with cross-match/historical analytics (this system is
+single-match by design per the proposal) and real SoccerNet/report
+integration (already deferred in `evaluation/dataset.py`).
+
+**Gap 1+2 (fixed): counting/aggregate questions had no answer path at all.**
+"How many yellow cards", "how many shots did Messi take" are structurally
+the wrong shape for RAG retrieval — it samples a top-N, it can never
+reliably enumerate "all X". **Fixed** by wiring `StructuredQuery.intent`
+(finally) into a new `intent="statistic"` value, extracted by
+`QueryUnderstandingAgent` for counting-style questions, with a new `outcome`
+field (e.g. "Goal", "Yellow Card") for scoping. `graph.py` adds a
+conditional edge routing `intent=="statistic"` straight to a new
+`agents/stats.py::StatsAgent` → END, bypassing retriever/aggregator/
+reasoning/generator/evaluator entirely. `StatsAgent` makes no LLM call — it
+filters the full `list[Event]` (not a retrieved sample) by whatever
+`StructuredQuery` fields are set, and returns a deterministic count +
+team/player breakdown + evidence list. This is **a deliberate addition
+beyond the proposal's original 6-agent design**.
+
+**A real bug found live while verifying this**: the first end-to-end test
+of "How many yellow cards were shown in the match?" returned *"No matching
+events found"* even though this match has 8 real yellow cards. Cause:
+`QueryUnderstandingAgent`'s prompt never told the model what StatsBomb
+`event_type` strings actually exist, so it extracted a plausible-but-fake
+`event_types=["Card"]` — there is no `"Card"` event type in StatsBomb data;
+cards are the `outcome` of a `Foul Committed` or `Bad Behaviour` event.
+**Fixed**: `SYSTEM_PROMPT` now enumerates the real event type vocabulary
+explicitly and calls out the card/`Foul Committed`/`Bad Behaviour` mapping
+by name. Verified live after the fix: the same query now extracts
+`event_types=['Foul Committed', 'Bad Behaviour'], outcome='Yellow Card'`
+and `StatsAgent` returns exactly 8 matches (Argentina 5, France 3),
+matching this match's raw data exactly.
+
+**Gap 3 (fixed): broad summary queries still missed goals/cards/subs.**
+Flagged as an open, unfixed problem back in §9 above — chunking and
+re-ranking improvements helped queries with a topical anchor ("Messi",
+"goals") but did nothing for the default, anchor-free "Summarize the match
+and provide key tactical insights." query. **Fixed**:
+`RetrieverAgent.retrieve()` gained `ensure_salient: bool = False`. When
+true, chunks for Goal-outcome shots, Own Goals, Red/Yellow Cards, and
+Substitutions are force-included (capped at half of `top_n`) regardless of
+similarity/BM25/rerank score, with the rest filled normally.
+`graph.py`'s `retriever_node` sets it exactly when `intent=="match_summary"`
+and no metadata filter is active — i.e. a genuinely broad, unscoped
+request, not a query that's already anchored to an entity. Verified live,
+offline (no LLM call, just `RetrieverAgent` directly): without
+`ensure_salient`, the top 8 hits for the default broad query were 100%
+generic Duel/Pass chunks (seq-163, seq-125, seq-46, seq-171, seq-76, tw-19,
+seq-123, seq-13) with zero goals anywhere. With `ensure_salient=True`, the
+first four hits became Messi's 22' penalty goal (`ev-318`), Di María's 35'
+shot (`ev-491`), and Mbappé's 79'/80' shots (`ev-1202`, `ev-1226`) — the
+four real goals of the match, in the right order — with the remaining four
+slots still filled by the normal hybrid-ranked pool.
+
+**Gap 4 (fixed): lineups/formations were structurally unanswerable.**
+"What formation did Argentina play", "who started for France" had zero
+underlying data — `Starting XI` events are filtered out of `Event` entirely
+by `LOW_SIGNAL_EVENT_TYPES` (they carry no per-event tactical detail in the
+existing sentence template), and `fetch_lineups()` existed but was never
+called anywhere. **Fixed**: new `chunking/lineup_chunker.py::chunk_lineups()`
+reads the `Starting XI` events directly from the pre-filter `raw_events`
+list (no new HTTP call — `raw_events` is already fetched at every ingestion
+call site) and produces one chunk per team with formation + all 11 starting
+players (position, jersey number). New `chunk_level="lineup"`, a fourth
+chunking tier. `build_hierarchical_chunks()` gained an optional
+`raw_events` param to wire this in; the three CLI/API call sites were
+updated from the bundled `load_match_events()` to its two constituent calls
+(`fetch_raw_events()` + `parse_events()`) so `raw_events` stays available
+alongside `events`. Verified live, offline: exactly 2 lineup chunks
+generated for match 3869685 — "Argentina started in a 4-3-3 formation: ..."
+and "France started in a 4-2-3-1 formation: ...", both matching the real,
+publicly known formations from that final.
+
+**Gap 5 (fixed): two common event types were silently losing sub-fields.**
+Same class of bug as the earlier `shot.type` fix (§ above/§12) — auditing
+which kept event types extract zero detail beyond their generic name found
+`Duel` (98 occurrences in this match) and `Block` (50 occurrences).
+**Fixed**: `_describe_event()` now also reads `duel.type.name`
+("Tackle"/"Aerial Lost") into `detail`, and `block.deflection`/
+`block.offensive` (booleans) into `detail` as "deflected"/"offensive"
+flags. Verified live: a sample Duel now has `detail="Aerial Lost"`, a
+sample Block now has `detail="deflected"`.
+
+**Reproduce the offline checks** (no Gemini calls):
+
+```bash
+uv run python -c "
+from pathlib import Path
+from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
+from football_rag.chunking import build_hierarchical_chunks
+from football_rag.chunking.lineup_chunker import chunk_lineups
+from football_rag.retrieval.vector_store import ChunkVectorStore
+from football_rag.agents.retriever import RetrieverAgent
+from football_rag.agents.stats import StatsAgent
+from football_rag.agents.state import StructuredQuery
+
+raw_events = fetch_raw_events(3869685, cache_dir=Path('data/statsbomb_cache'))
+events = parse_events(raw_events, 3869685)
+
+# Gap 5: Duel/Block detail
+duel = next(e for e in events if e.event_type == 'Duel' and e.detail)
+block = next(e for e in events if e.event_type == 'Block' and e.detail)
+print('Duel detail:', duel.detail, '| Block detail:', block.detail)
+
+# Gap 4: lineups
+lineups = chunk_lineups(3869685, raw_events)
+print(len(lineups), 'lineup chunks')
+for c in lineups:
+    print(' ', c.text[:70])
+
+# Gap 1+2: StatsAgent, bypassing the LLM entirely
+cards_query = StructuredQuery(intent='statistic', event_types=['Foul Committed', 'Bad Behaviour'], outcome='Yellow Card')
+print(StatsAgent().answer('how many yellow cards', cards_query, events).splitlines()[0])
+
+# Gap 3: ensure_salient
+chunks = build_hierarchical_chunks(events, raw_events=raw_events)
+store = ChunkVectorStore(persist_dir=Path('data/chroma'))
+store.ingest(chunks)
+retriever = RetrieverAgent(store, chunks)
+query = 'Summarize the match and provide key tactical insights.'
+without = retriever.retrieve(query, top_n=8, ensure_salient=False)
+with_ = retriever.retrieve(query, top_n=8, ensure_salient=True)
+print('goals without ensure_salient:', sum(1 for h in without if 'outcome: Goal' in h['text']))
+print('goals with ensure_salient:', sum(1 for h in with_ if 'outcome: Goal' in h['text']))
+"
+```
+
+**Expect:** `Duel detail: Aerial Lost` (or "Tackle" depending on which
+sample is found first) and `Block detail: deflected` (or "offensive"); `2
+lineup chunks` each starting with "<Team> started in a <formation>
+formation:"; `8 matching event(s) found.` for the cards query; `goals
+without ensure_salient: 0` and `goals with ensure_salient:` a positive
+number (at least 1, typically more within the forced-salient budget).
+
+**One live end-to-end check** (uses Query Understanding's Gemini quota,
+one call): `uv run python scripts/run_agentic_pipeline.py 3869685 "How
+many yellow cards were shown in the match?"` — confirms the graph's
+conditional routing and `format_pipeline_result()` correctly render the
+stats-only response shape (empty retrieved-chunks/aggregated-context/
+reasoning-insights sections) without breaking, and that the extracted
+`event_types` match real StatsBomb vocabulary rather than an invented one.
+
+**Two more crash bugs found via a live run of the broad summary query
+(only surfaced once `ensure_salient` actually fires — user-reported after
+seeing the naive baseline's "Not enough information." output on the same
+query and asking whether it was broken):**
+
+**Bug A: `TypeError: 'NoneType' object is not iterable` in
+`build_agentic_user_prompt()`.** Gemini's structured-output API treats a
+Pydantic field with a Python default (`supporting_chunk_ids: list[str] =
+Field(default_factory=list)`) as nullable, and returned an explicit `null`
+for it on at least one `ReasoningInsight` — which bypasses the
+`default_factory` via the SDK's own parsing path, so downstream code saw
+`None` instead of `[]`. **Fixed**: `ReasoningAgent.reason()` now normalizes
+any `None` back to `[]` right after the Gemini call (the single point where
+this should be caught, same pattern as the existing `response.text or ""`
+fix); `prompts.py::build_agentic_user_prompt()` and
+`formatting.py::format_pipeline_result()` also guard with `or []` as
+defense-in-depth.
+
+**Bug B: `TypeError: unsupported format string passed to NoneType.__format__`
+in `format_pipeline_result()`** (and the equivalent `KeyError` in
+`scripts/app.py`'s Streamlit retriever table). `RetrieverAgent._force_salient()`
+builds forced hit dicts with only `chunk_id`/`text`/`metadata` — no
+`rerank_score` or `fusion_score` key at all, since these chunks bypass
+ranking entirely by design. Both renderers assumed every hit has a score.
+**Fixed**: both now display `"forced"` in place of a numeric score when
+neither key is present.
+
+**Reproduce (live, uses ~4 Gemini calls — query understanding, reasoning,
+generator, evaluator):**
+
+```bash
+uv run python scripts/run_agentic_pipeline.py 3869685 "Summarize the match and provide key tactical insights."
+```
+
+**Expect:** section 2 shows five `(forced)` entries at the top — Messi's
+22'/108' goals, Di María's 35' goal, and Mbappé's 79'/80' goals — followed
+by the normal similarity-ranked pool; section 5 is a complete, accurate
+summary covering all five goals with correct minutes/scorers; section 6
+(Evaluator) passes. No traceback.
 
 ## Troubleshooting
 

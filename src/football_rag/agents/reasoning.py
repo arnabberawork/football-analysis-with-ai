@@ -35,7 +35,7 @@ class ReasoningAgent:
             f"Evidence:\n{evidence_lines}\n\n"
             "Identify the key tactical patterns and trends supported by this evidence."
         )
-        return call_structured(
+        insights = call_structured(
             self._client,
             self.model,
             SYSTEM_PROMPT,
@@ -43,3 +43,11 @@ class ReasoningAgent:
             response_schema=list[ReasoningInsight],
             max_tokens=2048,
         )
+        # Gemini's structured output treats fields with a Python default (like
+        # supporting_chunk_ids's default_factory=list) as nullable and can emit
+        # an explicit null, which bypasses pydantic's default via the SDK's
+        # parsing path - normalize here so nothing downstream sees None.
+        for insight in insights:
+            if insight.supporting_chunk_ids is None:
+                insight.supporting_chunk_ids = []
+        return insights

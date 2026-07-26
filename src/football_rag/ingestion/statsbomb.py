@@ -102,10 +102,17 @@ def _describe_event(raw: dict) -> tuple[Optional[str], Optional[str]]:
     elif event_type == "Shot":
         s = raw.get("shot", {})
         outcome = s.get("outcome", {}).get("name")
+        # shot.type (Penalty/Free Kick/Corner/Open Play) is a different
+        # field from shot.technique (Normal/Volley/Half Volley/...) - both
+        # were being read as "technique" before, which silently dropped the
+        # fact that a shot was a penalty. "Open Play" is the vast majority
+        # of shots and adds no information, so it's excluded; the other
+        # values are exactly the tactically salient ones worth surfacing.
+        shot_type = s.get("type", {}).get("name")
         technique = s.get("technique", {}).get("name")
         body_part = s.get("body_part", {}).get("name")
         xg = s.get("statsbomb_xg")
-        parts = [p for p in (technique, body_part) if p]
+        parts = [p for p in (shot_type, technique, body_part) if p and p != "Open Play"]
         detail = ", ".join(parts) if parts else None
         if xg is not None:
             detail = f"{detail}; xG {xg:.2f}" if detail else f"xG {xg:.2f}"
@@ -115,7 +122,12 @@ def _describe_event(raw: dict) -> tuple[Optional[str], Optional[str]]:
     elif event_type == "Dribble":
         outcome = raw.get("dribble", {}).get("outcome", {}).get("name")
     elif event_type == "Duel":
-        outcome = raw.get("duel", {}).get("outcome", {}).get("name")
+        d = raw.get("duel", {})
+        outcome = d.get("outcome", {}).get("name")
+        # duel.type (Tackle / Aerial Lost) was previously dropped entirely -
+        # same class of bug as shot.type: a Duel's outcome alone doesn't
+        # say whether it was a ground tackle or an aerial challenge.
+        detail = d.get("type", {}).get("name")
     elif event_type == "Interception":
         outcome = raw.get("interception", {}).get("outcome", {}).get("name")
     elif event_type == "Substitution":
@@ -123,6 +135,10 @@ def _describe_event(raw: dict) -> tuple[Optional[str], Optional[str]]:
         detail = f"replaced by {replacement}" if replacement else None
     elif event_type == "Bad Behaviour":
         outcome = raw.get("bad_behaviour", {}).get("card", {}).get("name")
+    elif event_type == "Block":
+        b = raw.get("block", {})
+        flags = [name for name, present in (("deflected", b.get("deflection")), ("offensive", b.get("offensive"))) if present]
+        detail = ", ".join(flags) if flags else None
 
     return detail, outcome
 

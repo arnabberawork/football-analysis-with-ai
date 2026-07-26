@@ -116,7 +116,18 @@ def main() -> None:
     with st.expander("2. Retriever — fused dense + BM25 hits", expanded=True):
         hits = result["retrieved_chunks"]
         st.dataframe(
-            [{"chunk_id": h["chunk_id"], "fusion_score": round(h["fusion_score"], 4), "text": h["text"]} for h in hits],
+            [
+                {
+                    "chunk_id": h["chunk_id"],
+                    # ensure_salient-forced hits (agents/retriever.py::_force_salient)
+                    # carry no score at all - they bypassed ranking entirely.
+                    "score": round(h["rerank_score"], 4) if "rerank_score" in h else (
+                        round(h["fusion_score"], 4) if "fusion_score" in h else "forced"
+                    ),
+                    "text": h["text"],
+                }
+                for h in hits
+            ],
             use_container_width=True,
         )
 
@@ -125,7 +136,7 @@ def main() -> None:
 
     with st.expander("4. Reasoning insights", expanded=True):
         for insight in result["reasoning_insights"]:
-            st.markdown(f"- {insight['insight']}  \n  _evidence: {', '.join(insight['supporting_chunk_ids'])}_")
+            st.markdown(f"- {insight['insight']}  \n  _evidence: {', '.join(insight.get('supporting_chunk_ids') or [])}_")
 
     st.subheader("5. Generated response")
     st.markdown(result["response_text"])
