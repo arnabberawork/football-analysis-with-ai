@@ -47,9 +47,28 @@ class ChunkVectorStore:
             metadata={"hnsw:space": "cosine"},
         )
 
-    def ingest(self, chunks: list[Chunk], batch_size: int = 256) -> None:
+    def ingest(self, chunks: list[Chunk], batch_size: int = 256, skip_existing: bool = False) -> None:
         """Embed and upsert chunks. Upsert (not add) so re-running ingestion
-        on the same match is idempotent instead of creating duplicates."""
+        on the same match is idempotent instead of creating duplicates.
+
+        skip_existing=True skips re-embedding any chunk_id already present in
+        the collection - confirmed live (experiment/run_full_comparison.py)
+        that always re-embedding the full corpus on every process restart
+        can eat almost an entire background task's runtime before any
+        retrieval/generation work happens at all. Defaults to False (always
+        re-embed) because it's the only way to pick up a chunk_id's *text*
+        changing (e.g. a chunking-logic fix) - Chroma has no way to detect
+        that short of comparing content, so a stale skip would silently keep
+        old text forever. Callers who know their chunking logic is stable
+        and just want speed (the experiment/ scripts) opt in explicitly.
+        """
+        if skip_existing and chunks:
+            all_ids = [c.chunk_id for c in chunks]
+            existing_ids: set[str] = set()
+            for start in range(0, len(all_ids), batch_size):
+                existing_ids.update(self._collection.get(ids=all_ids[start : start + batch_size])["ids"])
+            chunks = [c for c in chunks if c.chunk_id not in existing_ids]
+
         for start in range(0, len(chunks), batch_size):
             batch = chunks[start : start + batch_size]
             embeddings = self.embedder.encode_documents([c.text for c in batch])

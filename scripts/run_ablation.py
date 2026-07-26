@@ -58,7 +58,7 @@ def main() -> None:
                 relevant_ids = resolve_relevant_chunk_ids(labeled_query.relevance_criteria, chunks)
                 print(f"\nQuery: {labeled_query.query!r}")
                 for config_name, config in CONFIGS.items():
-                    result = run_agentic_pipeline(str(match_id), labeled_query.query, store, chunks, **config)
+                    result = run_agentic_pipeline(str(match_id), labeled_query.query, store, chunks, events, **config)
                     retrieved_ids = [c["chunk_id"] for c in result["retrieved_chunks"]]
                     p_at_k = precision_at_k(retrieved_ids, relevant_ids, TOP_K)
                     rouge = rouge_scores(result["response_text"], labeled_query.reference_summary)

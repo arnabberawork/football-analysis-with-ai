@@ -38,3 +38,14 @@ def bertscore(candidates: list[str], references: list[str]) -> dict[str, float]:
         "recall": recall.mean().item(),
         "f1": f1.mean().item(),
     }
+
+
+def bertscore_per_example(candidates: list[str], references: list[str]) -> list[float]:
+    """Per-example F1 (not averaged) - for attaching a BERTScore to each
+    row of a results table, e.g. `experiment/run_full_comparison.py`.
+    Computed as a single batched call (not one call per example), same
+    lazy-import as `bertscore()`."""
+    from bert_score import score as bert_score_fn
+
+    _precision, _recall, f1 = bert_score_fn(candidates, references, lang="en")
+    return f1.tolist()

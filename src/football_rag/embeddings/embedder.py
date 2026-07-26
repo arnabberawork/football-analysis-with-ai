@@ -30,6 +30,9 @@ else:
     _SENTENCE_TRANSFORMERS_IMPORT_ERROR = None
 
 DEFAULT_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+E5_MODEL_NAME = "intfloat/e5-small-v2"  # small variant - confirmed live that e5-base-v2 was too slow on CPU-only
+# hardware to embed even a representative subset of the corpus in reasonable time; e5-small-v2 is a closer
+# parameter-count match to MiniLM anyway (~33M vs ~22M) for a fairer comparison.
 
 
 class Embedder:
@@ -41,13 +44,22 @@ class Embedder:
             ) from _SENTENCE_TRANSFORMERS_IMPORT_ERROR
 
         self.model_name = model_name
+        # E5 models are trained with "query: "/"passage: " prefixes baked
+        # into their objective - omitting them doesn't error, it just
+        # silently degrades retrieval quality, so this is load-bearing for
+        # a fair MiniLM-vs-E5 comparison (experiment/compare_embeddings.py).
+        self._is_e5 = "e5" in model_name.lower()
         self._model = SentenceTransformer(model_name)
 
     def encode_documents(self, texts: list[str]) -> list[list[float]]:
+        if self._is_e5:
+            texts = [f"passage: {t}" for t in texts]
         embeddings = self._model.encode(texts, convert_to_numpy=True, show_progress_bar=len(texts) > 200)
         return embeddings.tolist()
 
     def encode_query(self, text: str) -> list[float]:
+        if self._is_e5:
+            text = f"query: {text}"
         return self._model.encode(text, convert_to_numpy=True).tolist()
 
 
@@ -55,3 +67,10 @@ class Embedder:
 def get_default_embedder() -> Embedder:
     """Process-wide cached embedder so repeated calls don't reload the model."""
     return Embedder()
+
+
+@lru_cache(maxsize=1)
+def get_e5_embedder() -> Embedder:
+    """Process-wide cached E5 embedder, parallel to `get_default_embedder()` -
+    used by `experiment/compare_embeddings.py` to compare against MiniLM."""
+    return Embedder(E5_MODEL_NAME)

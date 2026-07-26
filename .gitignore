@@ -6,3 +6,5 @@ outputs/
 .env
 .ruff_cache/
 *.egg-info/
+experiment/results/
+docs/*

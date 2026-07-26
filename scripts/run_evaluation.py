@@ -49,7 +49,7 @@ def main() -> None:
                 print(f"\nQuery: {labeled_query.query!r} ({len(relevant_ids)} relevant chunks resolved)")
 
                 naive_result = naive_generator.generate(labeled_query.query, where={"match_id": str(match_id)})
-                agentic_result = run_agentic_pipeline(str(match_id), labeled_query.query, store, chunks)
+                agentic_result = run_agentic_pipeline(str(match_id), labeled_query.query, store, chunks, events)
 
                 for name, retrieved_chunks, response_text in [
                     ("naive", naive_result["retrieved_chunks"], naive_result["response_text"]),
