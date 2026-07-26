@@ -41,8 +41,20 @@ class ReasoningAgent:
             SYSTEM_PROMPT,
             user_prompt,
             response_schema=list[ReasoningInsight],
-            max_tokens=2048,
+            max_tokens=4096,
         )
+        # response.parsed can be None outright (not just individual fields)
+        # if the model exhausts its output budget on internal reasoning
+        # before finishing valid JSON - confirmed live under
+        # GEMINI_MODEL=gemini-3.5-flash, which crashed this loop with
+        # TypeError: 'NoneType' object is not iterable. An empty insight
+        # list is already a supported state elsewhere (enable_reasoning=False
+        # skips this node entirely and generator_node reads
+        # state.get("reasoning_insights", [])), so falling back to [] here
+        # degrades gracefully to "no analytical insights this run" instead
+        # of crashing the whole pipeline over one under-budgeted call.
+        if insights is None:
+            return []
         # Gemini's structured output treats fields with a Python default (like
         # supporting_chunk_ids's default_factory=list) as nullable and can emit
         # an explicit null, which bypasses pydantic's default via the SDK's
