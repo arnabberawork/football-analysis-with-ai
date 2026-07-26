@@ -24,8 +24,35 @@ count is always exact regardless, only the itemized detail list is capped
 (same reasoning as chunking's MAX_EVENTS_PER_CHUNK - an unbounded listing
 isn't useful and just bloats the response)."""
 
+SHOOTOUT_PERIOD = 5
+_OWN_GOAL_EVENT_TYPES = {"Own Goal Against", "Own Goal For"}
 
-def _matches(event: Event, structured: StructuredQuery) -> bool:
+
+def _is_goal_count_query(structured: StructuredQuery) -> bool:
+    """True for statistic queries counting goals "scored in the match" (e.g.
+    "how many goals did each team score") - these must exclude the penalty
+    shootout (StatsBomb period 5). Confirmed live: a shootout penalty is
+    encoded as an ordinary Shot/outcome="Goal" event indistinguishable from
+    a regulation-time goal, so without this exclusion StatsAgent counted
+    Argentina 7-5 France for the 2022 WC Final instead of the real 3-3,
+    silently including six shootout kicks in "goals scored in the match".
+    Mirrors the same period > 4 exclusion already applied when building
+    evaluation reference data
+    (experiment/build_query_dataset.py::_goal_moments()). Only kicks in when
+    the user hasn't already explicitly scoped the query to one period
+    themselves - if they ask about period 5 specifically, that's the
+    shootout and should not be filtered back out.
+    """
+    if structured.period is not None:
+        return False
+    outcome_is_goal = structured.outcome is not None and "goal" in structured.outcome.lower()
+    event_types = set(structured.event_types or [])
+    return outcome_is_goal or bool(event_types & _OWN_GOAL_EVENT_TYPES)
+
+
+def _matches(event: Event, structured: StructuredQuery, exclude_shootout: bool) -> bool:
+    if exclude_shootout and event.period == SHOOTOUT_PERIOD:
+        return False
     if structured.teams and not any(t.lower() in event.team_name.lower() for t in structured.teams):
         return False
     if structured.players:
@@ -47,7 +74,8 @@ def _matches(event: Event, structured: StructuredQuery) -> bool:
 
 class StatsAgent:
     def answer(self, query: str, structured: StructuredQuery, events: list[Event]) -> str:
-        matches = [e for e in events if _matches(e, structured)]
+        exclude_shootout = _is_goal_count_query(structured)
+        matches = [e for e in events if _matches(e, structured, exclude_shootout)]
         if not matches:
             return f'No matching events found for "{query}".'
 

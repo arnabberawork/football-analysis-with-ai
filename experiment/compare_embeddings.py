@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import sys
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
@@ -49,7 +50,11 @@ from football_rag.retrieval.vector_store import ChunkVectorStore
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
-RESULTS_DIR = Path(__file__).resolve().parent / "results"
+# Each run gets its own timestamped subfolder rather than overwriting the
+# previous run's CSV, so results from different dataset/code revisions
+# (e.g. before/after a relevance-criteria fix) stay side by side for
+# comparison instead of one silently clobbering the other.
+RESULTS_DIR = Path(__file__).resolve().parent / "results" / f"compare_embeddings_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 TOP_KS = [5, 10]
 
 EMBEDDERS = {

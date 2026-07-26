@@ -154,7 +154,11 @@ def run_bertscore_pass() -> None:
     candidates = df.loc[missing, "response_text"].tolist()
     references = df.loc[missing, "reference_summary"].tolist()
     per_example_f1 = bertscore_per_example(candidates, references)
-    df.loc[missing, "bertscore_f1"] = per_example_f1
+    # pandas' default (pyarrow-backed) string dtype for a column read via
+    # keep_default_na=False rejects raw floats on assignment - stringify
+    # here since the value round-trips through CSV as text anyway, and
+    # make_tables.py already does pd.to_numeric() when reading it back.
+    df.loc[missing, "bertscore_f1"] = [str(f) for f in per_example_f1]
     df.to_csv(CSV_PATH, index=False)
     print(f"Mean F1 for this batch: {sum(per_example_f1) / len(per_example_f1):.3f}; per-row scores written to {CSV_PATH}")
 
