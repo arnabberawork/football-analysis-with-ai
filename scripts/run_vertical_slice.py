@@ -15,7 +15,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from football_rag.chunking.event_chunker import chunk_events
+from football_rag.chunking import build_hierarchical_chunks
 from football_rag.generation.generator import NaiveRAGGenerator
 from football_rag.ingestion.statsbomb import load_match_events
 from football_rag.retrieval.vector_store import ChunkVectorStore
@@ -35,8 +35,8 @@ def main() -> None:
     events = load_match_events(match_id, cache_dir=CACHE_DIR)
     print(f"  {len(events)} events parsed")
 
-    chunks = chunk_events(events)
-    print(f"  {len(chunks)} event-level chunks generated")
+    chunks = build_hierarchical_chunks(events)
+    print(f"  {len(chunks)} chunks generated (event + time-window + sequence tiers)")
 
     print("Ingesting chunks into vector store...")
     store = ChunkVectorStore(persist_dir=CHROMA_DIR)

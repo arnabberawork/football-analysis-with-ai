@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 from football_rag.agents.graph import run_agentic_pipeline
-from football_rag.chunking.event_chunker import chunk_events
+from football_rag.chunking import build_hierarchical_chunks
 from football_rag.ingestion.statsbomb import load_match_events
 from football_rag.retrieval.vector_store import ChunkVectorStore
 
@@ -34,8 +34,8 @@ def main() -> None:
     events = load_match_events(match_id, cache_dir=CACHE_DIR)
     print(f"  {len(events)} events parsed")
 
-    chunks = chunk_events(events)
-    print(f"  {len(chunks)} event-level chunks generated")
+    chunks = build_hierarchical_chunks(events)
+    print(f"  {len(chunks)} chunks generated (event + time-window + sequence tiers)")
 
     print("Ingesting chunks into vector store...")
     store = ChunkVectorStore(persist_dir=CHROMA_DIR)
@@ -49,9 +49,10 @@ def main() -> None:
     print(f"   {result['structured_query']!r}")
     print(f"   where filter: {result.get('where_filter')}")
 
-    print("\n2. Retriever (fused dense + BM25 hits):")
+    print("\n2. Retriever (fused dense + BM25 hits, re-ranked):")
     for hit in result["retrieved_chunks"]:
-        print(f"   [{hit['chunk_id']}] ({hit['fusion_score']:.4f}) {hit['text']}")
+        score = hit.get("rerank_score", hit.get("fusion_score"))
+        print(f"   [{hit['chunk_id']}] ({score:.4f}) {hit['text']}")
 
     print(f"\n3. Context Aggregator ({len(result['aggregated_context'])} deduplicated chunks kept)")
 

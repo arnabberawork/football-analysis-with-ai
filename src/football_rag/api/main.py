@@ -16,7 +16,7 @@ from google.genai import errors as genai_errors
 
 from football_rag.agents.graph import run_agentic_pipeline
 from football_rag.api.schemas import PipelineRunRequest, PipelineRunResponse
-from football_rag.chunking.event_chunker import chunk_events
+from football_rag.chunking import build_hierarchical_chunks
 from football_rag.ingestion.statsbomb import fetch_competitions, fetch_matches, load_match_events
 from football_rag.retrieval.vector_store import ChunkVectorStore
 from football_rag.schema import Chunk
@@ -43,7 +43,7 @@ def get_vector_store() -> ChunkVectorStore:
 def get_or_ingest_chunks(match_id: int) -> list[Chunk]:
     if match_id not in _chunks_cache:
         events = load_match_events(match_id, cache_dir=CACHE_DIR)
-        chunks = chunk_events(events)
+        chunks = build_hierarchical_chunks(events)
         get_vector_store().ingest(chunks)
         _chunks_cache[match_id] = chunks
     return _chunks_cache[match_id]

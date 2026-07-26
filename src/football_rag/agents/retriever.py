@@ -3,7 +3,10 @@
 Hybrid retrieval: dense semantic search (via `ChunkVectorStore`) combined
 with BM25 keyword search (via `BM25Index`), both restricted by the same
 metadata `where` filter, fused with Reciprocal Rank Fusion since cosine
-distance and BM25 scores are not on comparable scales.
+distance and BM25 scores are not on comparable scales. The fused pool is
+then optionally re-ranked by a local cross-encoder (`retrieval/reranker.py`).
+`enable_hybrid`/`enable_reranker` exist so the ablation study
+(`scripts/run_ablation.py`) can toggle each independently.
 """
 
 from __future__ import annotations
@@ -11,6 +14,7 @@ from __future__ import annotations
 import unicodedata
 
 from football_rag.retrieval.bm25_index import BM25Index
+from football_rag.retrieval.reranker import get_default_reranker
 from football_rag.retrieval.vector_store import ChunkVectorStore
 from football_rag.schema import Chunk, ChunkMetadata
 
@@ -51,11 +55,20 @@ def _matches_where(metadata: ChunkMetadata, where: dict) -> bool:
 
 
 class RetrieverAgent:
-    def __init__(self, vector_store: ChunkVectorStore, chunks: list[Chunk]):
+    def __init__(
+        self,
+        vector_store: ChunkVectorStore,
+        chunks: list[Chunk],
+        enable_hybrid: bool = True,
+        enable_reranker: bool = True,
+    ):
         self.vector_store = vector_store
         self._chunks = chunks
         self._chunks_by_id = {c.chunk_id: c for c in chunks}
         self._bm25 = BM25Index(chunks)
+        self.enable_hybrid = enable_hybrid
+        self.enable_reranker = enable_reranker
+        self._reranker = get_default_reranker() if enable_reranker else None
 
     def retrieve(
         self,
@@ -66,13 +79,18 @@ class RetrieverAgent:
     ) -> list[dict]:
         dense_hits = self.vector_store.query(query, top_n=fusion_pool, where=where)
 
-        bm25_index = self._bm25
-        if where is not None:
-            candidates = [c for c in self._chunks if _matches_where(c.metadata, where)]
-            bm25_index = BM25Index(candidates)
-        bm25_hits = bm25_index.query(query, top_n=fusion_pool)
+        bm25_hits: list[tuple[str, float]] = []
+        if self.enable_hybrid:
+            bm25_index = self._bm25
+            if where is not None:
+                candidates = [c for c in self._chunks if _matches_where(c.metadata, where)]
+                bm25_index = BM25Index(candidates)
+            bm25_hits = bm25_index.query(query, top_n=fusion_pool)
 
-        return self._fuse(dense_hits, bm25_hits)[:top_n]
+        fused = self._fuse(dense_hits, bm25_hits)
+        if self._reranker is not None:
+            return self._reranker.rerank(query, fused[:fusion_pool], top_n)
+        return fused[:top_n]
 
     def _fuse(self, dense_hits: list[dict], bm25_hits: list[tuple[str, float]]) -> list[dict]:
         scores: dict[str, float] = {}

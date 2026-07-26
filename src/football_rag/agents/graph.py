@@ -1,11 +1,16 @@
 """LangGraph wiring for the 6-agent pipeline (proposal §6.2.3, §6.3):
 
-    query_understanding -> retriever -> context_aggregator -> reasoning
+    query_understanding -> retriever -> context_aggregator -> (reasoning)
         -> generator -> (evaluator) -[conditional]-> generator | END
 
 The Evaluator Agent is optional (§6.3.6); when disabled, `generator` routes
 straight to END. When enabled and it rejects the response, its feedback is
 looped back into `generator` for up to `max_retries` additional attempts.
+The Reasoning Agent, hybrid retrieval, and re-ranking are also each
+individually toggleable (`enable_reasoning`/`enable_hybrid`/
+`enable_reranker`) - all four flags together are what
+`scripts/run_ablation.py` flips one at a time for the ablation study
+(proposal §6.11.6).
 """
 
 from __future__ import annotations
@@ -29,6 +34,9 @@ def build_agentic_graph(
     vector_store: ChunkVectorStore,
     chunks: list[Chunk],
     enable_evaluator: bool = True,
+    enable_reasoning: bool = True,
+    enable_hybrid: bool = True,
+    enable_reranker: bool = True,
     max_retries: int = 1,
     top_n: int = DEFAULT_TOP_N,
 ):
@@ -37,9 +45,9 @@ def build_agentic_graph(
     at most one client per pipeline run rather than one per node invocation.
     """
     query_agent = QueryUnderstandingAgent()
-    retriever_agent = RetrieverAgent(vector_store, chunks)
+    retriever_agent = RetrieverAgent(vector_store, chunks, enable_hybrid=enable_hybrid, enable_reranker=enable_reranker)
     aggregator_agent = ContextAggregatorAgent()
-    reasoning_agent = ReasoningAgent()
+    reasoning_agent = ReasoningAgent() if enable_reasoning else None
     generator_agent = GeneratorAgent()
     evaluator_agent = EvaluatorAgent() if enable_evaluator else None
 
@@ -62,7 +70,7 @@ def build_agentic_graph(
         evaluation = state.get("evaluation")
         feedback = evaluation.feedback if evaluation is not None and not evaluation.passed else None
         response_text = generator_agent.generate(
-            state["raw_query"], state["aggregated_context"], state["reasoning_insights"], feedback=feedback
+            state["raw_query"], state["aggregated_context"], state.get("reasoning_insights", []), feedback=feedback
         )
         return {"response_text": response_text}
 
@@ -80,14 +88,18 @@ def build_agentic_graph(
     graph.add_node("query_understanding", query_understanding_node)
     graph.add_node("retriever", retriever_node)
     graph.add_node("context_aggregator", context_aggregator_node)
-    graph.add_node("reasoning", reasoning_node)
     graph.add_node("generator", generator_node)
 
     graph.add_edge(START, "query_understanding")
     graph.add_edge("query_understanding", "retriever")
     graph.add_edge("retriever", "context_aggregator")
-    graph.add_edge("context_aggregator", "reasoning")
-    graph.add_edge("reasoning", "generator")
+
+    if enable_reasoning:
+        graph.add_node("reasoning", reasoning_node)
+        graph.add_edge("context_aggregator", "reasoning")
+        graph.add_edge("reasoning", "generator")
+    else:
+        graph.add_edge("context_aggregator", "generator")
 
     if enable_evaluator:
         graph.add_node("evaluator", evaluator_node)
@@ -105,6 +117,9 @@ def run_agentic_pipeline(
     vector_store: ChunkVectorStore,
     chunks: list[Chunk],
     enable_evaluator: bool = True,
+    enable_reasoning: bool = True,
+    enable_hybrid: bool = True,
+    enable_reranker: bool = True,
     max_retries: int = 1,
     top_n: int = DEFAULT_TOP_N,
 ) -> dict:
@@ -113,7 +128,14 @@ def run_agentic_pipeline(
     insights, response_text, and the evaluator's verdict if enabled).
     """
     app = build_agentic_graph(
-        vector_store, chunks, enable_evaluator=enable_evaluator, max_retries=max_retries, top_n=top_n
+        vector_store,
+        chunks,
+        enable_evaluator=enable_evaluator,
+        enable_reasoning=enable_reasoning,
+        enable_hybrid=enable_hybrid,
+        enable_reranker=enable_reranker,
+        max_retries=max_retries,
+        top_n=top_n,
     )
     initial_state: AgentState = {"match_id": match_id, "raw_query": query, "retry_count": 0}
     return app.invoke(initial_state)
