@@ -15,6 +15,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+from _output_writer import tee_to_file
+
 from football_rag.chunking import build_hierarchical_chunks
 from football_rag.generation.generator import NaiveRAGGenerator
 from football_rag.ingestion.statsbomb import load_match_events
@@ -31,28 +33,31 @@ def main() -> None:
     match_id = int(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_MATCH_ID
     query = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_QUERY
 
-    print(f"Loading events for match {match_id}...")
-    events = load_match_events(match_id, cache_dir=CACHE_DIR)
-    print(f"  {len(events)} events parsed")
+    with tee_to_file(f"run_vertical_slice_{match_id}") as output_path:
+        print(f"Loading events for match {match_id}...")
+        events = load_match_events(match_id, cache_dir=CACHE_DIR)
+        print(f"  {len(events)} events parsed")
 
-    chunks = build_hierarchical_chunks(events)
-    print(f"  {len(chunks)} chunks generated (event + time-window + sequence tiers)")
+        chunks = build_hierarchical_chunks(events)
+        print(f"  {len(chunks)} chunks generated (event + time-window + sequence tiers)")
 
-    print("Ingesting chunks into vector store...")
-    store = ChunkVectorStore(persist_dir=CHROMA_DIR)
-    store.ingest(chunks)
-    print(f"  vector store now holds {store.count()} chunks")
+        print("Ingesting chunks into vector store...")
+        store = ChunkVectorStore(persist_dir=CHROMA_DIR)
+        store.ingest(chunks)
+        print(f"  vector store now holds {store.count()} chunks")
 
-    print(f"\nQuery: {query}\n")
-    generator = NaiveRAGGenerator(vector_store=store)
-    result = generator.generate(query, where={"match_id": str(match_id)})
+        print(f"\nQuery: {query}\n")
+        generator = NaiveRAGGenerator(vector_store=store)
+        result = generator.generate(query, where={"match_id": str(match_id)})
 
-    print("Retrieved evidence:")
-    for chunk in result["retrieved_chunks"]:
-        print(f"  [{chunk['chunk_id']}] ({chunk['distance']:.3f}) {chunk['text']}")
+        print("Retrieved evidence:")
+        for chunk in result["retrieved_chunks"]:
+            print(f"  [{chunk['chunk_id']}] ({chunk['distance']:.3f}) {chunk['text']}")
 
-    print("\nGenerated response:\n")
-    print(result["response_text"])
+        print("\nGenerated response:\n")
+        print(result["response_text"])
+
+    print(f"\nOutput saved to {output_path}")
 
 
 if __name__ == "__main__":
