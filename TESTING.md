@@ -65,6 +65,13 @@ afterwards should be much faster (cache hits + idempotent Chroma upsert).
 a `429`/quota error from the Gemini call (see Troubleshooting), or an empty/
 garbled response.
 
+Also check `outputs/run_vertical_slice_<match_id>_<timestamp>.txt` — every
+run saves its full printed output there too (not just the console), via
+`football_rag.output_writer`. Useful for diffing two runs, and the saved
+file has correctly-encoded accented characters even where the console
+itself shows mojibake. Every script and every API call gets this treatment
+now (see §11) — this isn't special-cased to the baseline.
+
 ## 3. Full 6-agent pipeline
 
 More expensive — up to 4 Gemini calls per run (Query Understanding,
@@ -362,6 +369,53 @@ the script.
 should read `state.get("reasoning_insights", [])`, not index directly);
 metrics that don't change at all between configs likely means a config
 dict typo (e.g. `no_hybrid` not actually reaching `RetrieverAgent`).
+
+## 11. Output saving (every script + every API call)
+
+Every one of the four CLI scripts (`run_vertical_slice.py`,
+`run_agentic_pipeline.py`, `run_evaluation.py`, `run_ablation.py`) and
+every `POST /pipeline/run` API call now saves its output to
+`outputs/<prefix>_<timestamp>.txt`, via `football_rag.output_writer`:
+
+- CLI scripts use `tee_to_file(prefix)`, a context manager that redirects
+  `sys.stdout` to both the console and the file for the duration of
+  `main()` — printed as usual, saved as a side effect. Not safe for
+  concurrent use (it swaps process-global `sys.stdout`), but CLI scripts
+  are single-shot, so that's fine.
+- The API uses `write_output(prefix, text)` instead — a plain write of a
+  complete string, safe under concurrent requests since it never touches
+  global state. It's called after `run_agentic_pipeline()` returns, with
+  the text rendered by `agents/formatting.py::format_pipeline_result()` —
+  the same function that produces `run_agentic_pipeline.py`'s console
+  output, so the two never drift apart. The saved path comes back in the
+  JSON response as `output_file`, and `scripts/app.py` shows it as a
+  caption under "Match: ..." after a successful run.
+
+**Test it:**
+
+```bash
+uv run python scripts/run_vertical_slice.py
+ls outputs/   # should show a new run_vertical_slice_<match_id>_<timestamp>.txt
+```
+
+```bash
+curl -X POST http://localhost:8000/pipeline/run \
+  -H "Content-Type: application/json" \
+  -d '{"match_id": 3869685, "query": "What did Mbappe do in the second half?"}' \
+  | python -c "import json,sys; print(json.load(sys.stdin)['output_file'])"
+# prints something like outputs\api_pipeline_run_3869685_20260726_092601_423593.txt -
+# confirm that file exists and its content matches the API response.
+```
+
+**Fail signs:** no new file appears in `outputs/` — check the script/API
+process actually has write access to the working directory it was launched
+from (`outputs/` is created relative to the current working directory, not
+the repo root, if you launched from somewhere else); a `KeyError`/
+`AttributeError` inside `format_pipeline_result()` most likely means
+`result` is missing a key it expects (e.g. called with a dict that's
+already been through `PipelineRunResponse` serialization instead of the
+raw `run_agentic_pipeline()` output — the API calls it *before*
+constructing the response model specifically to avoid this).
 
 ## Troubleshooting
 

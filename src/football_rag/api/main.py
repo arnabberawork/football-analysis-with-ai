@@ -14,10 +14,12 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from google.genai import errors as genai_errors
 
+from football_rag.agents.formatting import format_pipeline_result
 from football_rag.agents.graph import run_agentic_pipeline
 from football_rag.api.schemas import PipelineRunRequest, PipelineRunResponse
 from football_rag.chunking import build_hierarchical_chunks
 from football_rag.ingestion.statsbomb import fetch_competitions, fetch_matches, load_match_events
+from football_rag.output_writer import write_output
 from football_rag.retrieval.vector_store import ChunkVectorStore
 from football_rag.schema import Chunk
 
@@ -85,4 +87,10 @@ def run_pipeline(request: PipelineRunRequest) -> PipelineRunResponse:
         # expected/frequent on the free tier, not bugs.
         raise HTTPException(status_code=e.code or 502, detail=e.message) from e
 
-    return PipelineRunResponse(**result)
+    # Every call gets its own saved record, same as the CLI scripts -
+    # write_output() (unlike tee_to_file()) doesn't touch global state, so
+    # it's safe under concurrent requests.
+    output_text = format_pipeline_result(str(request.match_id), request.query, result)
+    output_path = write_output(f"api_pipeline_run_{request.match_id}", output_text)
+
+    return PipelineRunResponse(**result, output_file=str(output_path))

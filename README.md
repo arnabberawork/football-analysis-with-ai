@@ -69,6 +69,9 @@ uv run python scripts/run_evaluation.py
 uv run python scripts/run_ablation.py   # quota-heavy — best after a quota reset
 ```
 
+Every run above (including each API call) saves its full output to
+`outputs/<prefix>_<timestamp>.txt` for later comparison.
+
 ## Testing
 
 No automated test suite yet — see `TESTING.md` for the full manual test

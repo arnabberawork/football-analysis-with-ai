@@ -32,3 +32,6 @@ class PipelineRunResponse(BaseModel):
     response_text: str
     evaluation: Optional[EvaluationResult] = None
     retry_count: int
+    output_file: str
+    """Path (on the machine running the API) where this run's formatted
+    output was saved, via `output_writer.write_output()`."""

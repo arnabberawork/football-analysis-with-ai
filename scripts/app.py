@@ -106,6 +106,8 @@ def main() -> None:
 
     st.subheader(f"Match: {st.session_state['result_match_label']}")
     st.write(f"Query: {st.session_state['result_query']}")
+    if result.get("output_file"):
+        st.caption(f"Saved to {result['output_file']} (on the machine running the API)")
 
     with st.expander("1. Query Understanding", expanded=True):
         st.json(result["structured_query"])

@@ -23,6 +23,7 @@ from football_rag.evaluation.dataset import STARTER_DATASET, LabeledQuery, resol
 from football_rag.evaluation.generation_metrics import rouge_scores
 from football_rag.evaluation.retrieval_metrics import precision_at_k
 from football_rag.ingestion.statsbomb import load_match_events
+from football_rag.output_writer import tee_to_file
 from football_rag.retrieval.vector_store import ChunkVectorStore
 
 CACHE_DIR = Path("data/statsbomb_cache")
@@ -41,26 +42,29 @@ CONFIGS: dict[str, dict] = {
 
 
 def main() -> None:
-    store = ChunkVectorStore(persist_dir=CHROMA_DIR)
+    with tee_to_file("run_ablation") as output_path:
+        store = ChunkVectorStore(persist_dir=CHROMA_DIR)
 
-    by_match: dict[int, list[LabeledQuery]] = defaultdict(list)
-    for labeled_query in STARTER_DATASET:
-        by_match[labeled_query.match_id].append(labeled_query)
+        by_match: dict[int, list[LabeledQuery]] = defaultdict(list)
+        for labeled_query in STARTER_DATASET:
+            by_match[labeled_query.match_id].append(labeled_query)
 
-    for match_id, labeled_queries in by_match.items():
-        events = load_match_events(match_id, cache_dir=CACHE_DIR)
-        chunks = build_hierarchical_chunks(events)
-        store.ingest(chunks)
+        for match_id, labeled_queries in by_match.items():
+            events = load_match_events(match_id, cache_dir=CACHE_DIR)
+            chunks = build_hierarchical_chunks(events)
+            store.ingest(chunks)
 
-        for labeled_query in labeled_queries:
-            relevant_ids = resolve_relevant_chunk_ids(labeled_query.relevance_criteria, chunks)
-            print(f"\nQuery: {labeled_query.query!r}")
-            for config_name, config in CONFIGS.items():
-                result = run_agentic_pipeline(str(match_id), labeled_query.query, store, chunks, **config)
-                retrieved_ids = [c["chunk_id"] for c in result["retrieved_chunks"]]
-                p_at_k = precision_at_k(retrieved_ids, relevant_ids, TOP_K)
-                rouge = rouge_scores(result["response_text"], labeled_query.reference_summary)
-                print(f"  [{config_name:12s}] P@{TOP_K}={p_at_k:.2f} rougeL={rouge['rougeL']:.2f}")
+            for labeled_query in labeled_queries:
+                relevant_ids = resolve_relevant_chunk_ids(labeled_query.relevance_criteria, chunks)
+                print(f"\nQuery: {labeled_query.query!r}")
+                for config_name, config in CONFIGS.items():
+                    result = run_agentic_pipeline(str(match_id), labeled_query.query, store, chunks, **config)
+                    retrieved_ids = [c["chunk_id"] for c in result["retrieved_chunks"]]
+                    p_at_k = precision_at_k(retrieved_ids, relevant_ids, TOP_K)
+                    rouge = rouge_scores(result["response_text"], labeled_query.reference_summary)
+                    print(f"  [{config_name:12s}] P@{TOP_K}={p_at_k:.2f} rougeL={rouge['rougeL']:.2f}")
+
+    print(f"\nOutput saved to {output_path}")
 
 
 if __name__ == "__main__":

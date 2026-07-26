@@ -15,11 +15,10 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from _output_writer import tee_to_file
-
 from football_rag.chunking import build_hierarchical_chunks
 from football_rag.generation.generator import NaiveRAGGenerator
 from football_rag.ingestion.statsbomb import load_match_events
+from football_rag.output_writer import tee_to_file
 from football_rag.retrieval.vector_store import ChunkVectorStore
 
 CACHE_DIR = Path("data/statsbomb_cache")
