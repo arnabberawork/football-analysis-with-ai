@@ -42,4 +42,12 @@ class EvaluatorAgent:
             SYSTEM_PROMPT,
             user_prompt,
             response_schema=EvaluationResult,
+            # Confirmed live with GEMINI_MODEL=gemini-3.5-flash: the default
+            # 1024-token budget let the model exhaust its output on internal
+            # reasoning before finishing the JSON, so response.parsed came
+            # back None and crashed graph.py's route_after_evaluator on
+            # evaluation.passed. ReasoningAgent hit the identical failure
+            # mode earlier and was already bumped to 2048 for this reason -
+            # same fix here.
+            max_tokens=2048,
         )

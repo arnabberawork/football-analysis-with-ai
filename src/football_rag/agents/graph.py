@@ -137,7 +137,15 @@ def build_agentic_graph(
 
     def route_after_evaluator(state: AgentState) -> str:
         evaluation = state["evaluation"]
-        if evaluation.passed or state.get("retry_count", 0) > max_retries:
+        # Confirmed live: call_structured() can return None instead of a
+        # parsed EvaluationResult if the model exhausts its output budget
+        # before finishing valid JSON (crashed here with
+        # AttributeError: 'NoneType' object has no attribute 'passed' under
+        # GEMINI_MODEL=gemini-3.5-flash). There's no usable feedback to
+        # retry with in that case, and retrying blind risks looping without
+        # ever getting a verdict, so treat a missing evaluation as an
+        # unscored pass-through rather than crashing or looping.
+        if evaluation is None or evaluation.passed or state.get("retry_count", 0) > max_retries:
             return "end"
         return "retry"
 
