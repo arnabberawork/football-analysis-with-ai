@@ -39,6 +39,6 @@ class GeneratorAgent:
         response = self._client.models.generate_content(
             model=self.model,
             contents=user_prompt,
-            config=genai.types.GenerateContentConfig(system_instruction=SYSTEM_PROMPT, max_output_tokens=2048),
+            config=genai.types.GenerateContentConfig(system_instruction=SYSTEM_PROMPT, max_output_tokens=4096),
         )
-        return response.text
+        return response.text or ""

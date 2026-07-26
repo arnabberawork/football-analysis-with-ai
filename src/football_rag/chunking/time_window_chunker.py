@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from football_rag.chunking.event_chunker import event_to_sentence
+from football_rag.chunking.event_chunker import render_events
 from football_rag.schema import Chunk, ChunkMetadata, Event
 
 DEFAULT_WINDOW_MINUTES = 5
@@ -32,7 +32,7 @@ def chunk_time_windows(events: list[Event], window_minutes: int = DEFAULT_WINDOW
         window_events = windows[(period, window_start)]
         match_id = window_events[0].match_id
         window_end = window_start + window_minutes - 1
-        text = f"{window_start}'-{window_end}': " + " ".join(event_to_sentence(e) for e in window_events)
+        text = f"{window_start}'-{window_end}': " + render_events(window_events)
         metadata = ChunkMetadata(
             match_id=match_id,
             minute_start=window_start,

@@ -7,7 +7,7 @@ StatsBomb event data. Implements the design in
 architecture writeup (module-by-module, mapped to the proposal's numbered
 sections).
 
-Two pipelines, four ways to run them:
+Two pipelines, plus an evaluation harness comparing them:
 
 - **Naive RAG baseline** — dense-only retrieve, single-pass generate. The
   benchmark the agentic pipeline is compared against.
@@ -72,7 +72,7 @@ uv run python scripts/run_ablation.py   # quota-heavy — best after a quota res
 ## Testing
 
 No automated test suite yet — see `TESTING.md` for the full manual test
-plan (all four entry points, expected output, and troubleshooting for
+plan (every entry point above, expected output, and troubleshooting for
 known issues like Gemini free-tier rate limits).
 
 ## More detail

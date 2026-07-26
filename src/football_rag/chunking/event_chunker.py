@@ -57,6 +57,29 @@ def event_to_sentence(event: Event) -> str:
     return "; ".join(parts) + "."
 
 
+MAX_EVENTS_PER_CHUNK = 12
+"""Cap on events rendered into a single multi-event chunk (time-window,
+sequence). A busy passing sequence or a dense 5-minute window can contain
+dozens of raw events - left unbounded, a chunk can balloon past 10,000
+characters, bloating the evidence prompt and risking the generator hitting
+its output token budget (`finish_reason=MAX_TOKENS`) with little or no
+visible text, since some Gemini models spend part of that budget on
+internal reasoning before their visible answer. See TESTING.md."""
+
+
+def render_events(events: list[Event], max_events: int = MAX_EVENTS_PER_CHUNK) -> str:
+    """Render a list of events as joined sentences, capped to
+    `max_events` with a note about any events omitted. Shared by
+    `time_window_chunker.py` and `sequence_chunker.py` so both tiers get
+    the same size bound."""
+    rendered = [event_to_sentence(e) for e in events[:max_events]]
+    text = " ".join(rendered)
+    remaining = len(events) - max_events
+    if remaining > 0:
+        text += f" (+{remaining} more events omitted for brevity)"
+    return text
+
+
 def chunk_events(events: list[Event]) -> list[Chunk]:
     """Convert a list of parsed events into event-level chunks.
 

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from football_rag.chunking.event_chunker import event_to_sentence
+from football_rag.chunking.event_chunker import render_events
 from football_rag.schema import Chunk, ChunkMetadata, Event
 
 
@@ -32,7 +32,7 @@ def chunk_sequences(events: list[Event]) -> list[Chunk]:
         seq_events = sequences[possession_id]
         first, last = seq_events[0], seq_events[-1]
         team_names = {e.team_name for e in seq_events}
-        text = " ".join(event_to_sentence(e) for e in seq_events)
+        text = render_events(seq_events)
         metadata = ChunkMetadata(
             match_id=first.match_id,
             team_name=first.team_name if len(team_names) == 1 else None,

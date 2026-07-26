@@ -49,12 +49,14 @@ uv run python scripts/run_vertical_slice.py
 
 First run will be slow (~1-2 min): downloads the StatsBomb match JSON,
 caches it to `data/statsbomb_cache/`, downloads the `all-MiniLM-L6-v2`
-embedding model, embeds ~1500+ event chunks into `data/chroma/`. Re-running
+embedding model, embeds ~3500+ chunks (event + time-window + sequence
+tiers, via `build_hierarchical_chunks()`) into `data/chroma/`. Re-running
 afterwards should be much faster (cache hits + idempotent Chroma upsert).
 
 **Expect:**
-- `N events parsed`, `N event-level chunks generated`, `vector store now
-  holds N chunks` (chunk count should match after any re-run).
+- `N events parsed`, `N chunks generated (event + time-window + sequence
+  tiers)`, `vector store now holds N chunks` (chunk count should match
+  after any re-run).
 - A "Retrieved evidence" list of `[chunk_id] (distance) text` lines.
 - A "Generated response" section: a coherent ~150-200 word match summary
   mentioning specific minutes/players, grounded in the retrieved evidence.
@@ -78,8 +80,11 @@ Walk through each numbered section in the output and check it's sane:
 1. **Query Understanding** — `StructuredQuery(intent=..., teams=[], ...)`
    printed with a real `where filter` (likely `None` for the default broad
    "summarize the match" query, since it names no team/player/event type).
-2. **Retriever** — a list of `[chunk_id] (fusion_score) text` lines, ranked
-   by descending fusion_score.
+2. **Retriever** — a list of `[chunk_id] (score) text` lines (re-ranked by
+   the cross-encoder by default, so the score printed is `rerank_score`,
+   falling back to `fusion_score` only if re-ranking is disabled), ranked
+   highest-first. `chunk_id` prefixes tell you which tier each hit came
+   from (`-ev-` event, `-tw-` time-window, `-seq-` sequence).
 3. **Context Aggregator** — a chunk count that's `<=` the retriever's count
    (it only drops near-duplicates, so equal is fine too).
 4. **Reasoning insights** — several `- <tactical pattern> (evidence:
@@ -132,12 +137,12 @@ verdict), but you can raise the odds and confirm the mechanism works:
 uv run python -c "
 from pathlib import Path
 from football_rag.agents.graph import run_agentic_pipeline
-from football_rag.chunking.event_chunker import chunk_events
+from football_rag.chunking import build_hierarchical_chunks
 from football_rag.ingestion.statsbomb import load_match_events
 from football_rag.retrieval.vector_store import ChunkVectorStore
 
 events = load_match_events(3869685, cache_dir=Path('data/statsbomb_cache'))
-chunks = chunk_events(events)
+chunks = build_hierarchical_chunks(events)
 store = ChunkVectorStore(persist_dir=Path('data/chroma'))
 store.ingest(chunks)
 
@@ -300,6 +305,27 @@ Neither is built yet — this is exactly the kind of finding Phase 6
 "Refinement" (§8.1) is for, once the evaluation harness below produces
 numbers to act on.
 
+**A second, more serious bug was found and fixed via this same broad
+query**, running it through the actual naive baseline (`scripts/run_vertical_slice.py`):
+the response came back completely empty, no traceback. Root cause: the
+time-window/sequence chunks initially had no size cap - a busy 5-minute
+window or long possession chain can contain 60+ events, and a few such
+chunks in the top-10 evidence bloated the prompt to ~31,000 characters
+(~7,750 tokens). Combined with a 2048-token output cap, and this model
+family spending part of that budget on internal reasoning before its
+visible answer, Gemini returned `finish_reason=MAX_TOKENS` with an empty
+`response.text`. **Fixed**: `chunking/event_chunker.py::render_events()`
+now caps every time-window/sequence chunk at `MAX_EVENTS_PER_CHUNK` (12
+events, dropped the max chunk size from 12,148 to 1,718 characters in this
+match), and `max_output_tokens` was bumped 2048 → 4096 in both
+`NaiveRAGGenerator` and `GeneratorAgent` as defense-in-depth. Confirmed
+live afterward: a full, well-structured summary generates for the exact
+same query on the exact same match with no truncation.
+
+If you still see an empty response after this fix, check
+`response.candidates[0].finish_reason` directly (see the Troubleshooting
+entry below) rather than assuming it's the same root cause.
+
 ## 10. Evaluation harness
 
 **Baseline comparison** (§6.11.5) — retrieval + generation metrics for
@@ -377,6 +403,15 @@ dict typo (e.g. `no_hybrid` not actually reaching `RetrieverAgent`).
 - **`ZeroDivisionError` in `rank_bm25`** — fixed: `BM25Index` used to crash
   when a metadata filter narrowed the BM25 candidate corpus to zero chunks
   (`BM25Okapi` divides by corpus size). It now returns no hits instead.
+- **Empty `response_text`, no traceback** — fixed (see §9): was caused by
+  oversized time-window/sequence chunks blowing up the evidence prompt
+  enough to hit `finish_reason=MAX_TOKENS` before any visible text.
+  `render_events()` now caps chunk size and `max_output_tokens` was
+  doubled to 4096. If it recurs, diagnose with:
+  `response = client.models.generate_content(...); print(response.candidates[0].finish_reason)`
+  - `MAX_TOKENS` means the output budget is still too tight for the prompt
+  (bump `max_output_tokens` further, or reduce `top_n`/evidence size);
+  other `finish_reason` values (e.g. `SAFETY`) point elsewhere entirely.
 - **Slow first run** — expected (StatsBomb fetch + embedding model
   download + embedding ~3500+ chunks across all three tiers on CPU, plus a
   one-time `cross-encoder/ms-marco-MiniLM-L-6-v2` download the first time
