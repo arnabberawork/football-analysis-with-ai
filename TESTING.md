@@ -196,7 +196,9 @@ ingestion + embedding, same cost as §2/§3's first run); repeat the same
 **Fail signs:** connection refused (server isn't running, or crashed on
 startup — check the terminal for a traceback); `500` with a `GEMINI_API_KEY
 is not set` detail (the key needs to be set where `run_api.py` runs, not
-where Streamlit runs — they can be different terminals/environments).
+where Streamlit runs — they can be different terminals/environments); `429`
+with a `RESOURCE_EXHAUSTED`/quota-exceeded detail (see Troubleshooting —
+this is a clean, expected error response now, not a bug).
 
 ## 8. Streamlit UI
 
@@ -253,8 +255,23 @@ crashed — check §7 first).
   working directory tree.
 - **`429` / rate-limit error from Gemini** — free tier has per-minute and
   per-day request caps (current numbers: https://ai.google.dev/gemini-api/docs/rate-limits).
-  The agentic pipeline makes up to 4 calls/run; wait a minute and retry, or
-  test with `enable_evaluator=False` to cut one call.
+  Confirmed live: the free tier's `GenerateRequestsPerDayPerProjectPerModel`
+  quota is only 20 requests/day for the current default model - easy to
+  exhaust with a single testing session across all four entry points, since
+  the agentic pipeline alone makes up to 4 calls/run. The error message
+  itself includes a `retryDelay`, but that hint is unreliable for a
+  per-day quota; if retrying immediately doesn't help, it means the day's
+  quota is actually gone, not that a few seconds will fix it. Through the
+  API this now surfaces as a clean `429` with the real Gemini message in
+  `detail` (via `api/main.py`'s `except genai_errors.APIError` handler,
+  converted to a `RuntimeError` by `_api_client._raise_for_status`, then
+  shown as `st.error` in the UI) rather than an opaque `500 Internal Server
+  Error` - if you see the latter instead, the running API process is out of
+  date (see "No `--reload`" above) and needs restarting to pick up the fix.
+  Workarounds: wait for the daily reset, use `enable_evaluator=False` to
+  cut one call per run, or switch to a different free model in the agent
+  model constants (`agents/query_understanding.py`, `reasoning.py`,
+  `generator.py`, `evaluator.py`, `generation/generator.py`).
 - **Schema/validation error on `response.parsed`** — means Gemini's
   structured-output mode failed to fill a `StructuredQuery` /
   `ReasoningInsight` / `EvaluationResult` field. Print `response.text`
