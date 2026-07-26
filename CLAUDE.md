@@ -92,15 +92,20 @@ Pipeline stages live under `src/football_rag/`, each corresponding to a proposal
 
 **`scripts/app.py`** is the Streamlit UI — a competition/season/match browser (finally exercising `ingestion/statsbomb.py`'s previously-unused `fetch_competitions()`/`fetch_matches()`, now via the API above) and a stage-by-stage view of all six agents' output. It has **no direct `football_rag` pipeline imports** — every piece of data comes from `scripts/_api_client.py`, a small `requests`-based HTTP client hitting the FastAPI service (base URL from `FOOTBALL_RAG_API_URL`, default `http://localhost:8000`). `scripts/app.py` still uses `st.cache_data` for the competitions/matches lookups (cheap, per-session), but ingestion caching itself now lives entirely in the API process, not in Streamlit.
 
+**`evaluation/`** (§6.11) is the evaluation harness, run via `scripts/run_evaluation.py` (naive-vs-agentic baseline comparison) and `scripts/run_ablation.py` (§6.11.6 ablation study):
+   - `retrieval_metrics.py` — `precision_at_k()`/`recall_at_k()`, plain functions over `(retrieved_ids, relevant_ids, k)`.
+   - `generation_metrics.py` — `rouge_scores()`/`bleu_score()` always available (lightweight); `bertscore()` lazy-imports `bert_score` since its model is a ~1GB+ download that shouldn't be paid on every harness run per §6.13's resource-efficiency goal.
+   - `dataset.py` — **an illustrative starter dataset, not a rigorous benchmark** (see its module docstring). Real SoccerNet integration and human-written match reports (§6.4.2, §7.1) aren't pulled in — SoccerNet needs separate dataset access this project doesn't have, and scraping published reports raises copyright concerns. Instead: `STARTER_DATASET`, ~5 hand-written queries against the WC Final with `RelevanceCriterion`s matched against chunk **text** (robust across all three chunking tiers, unlike hardcoded chunk_ids) via `resolve_relevant_chunk_ids()`, and originally-written reference summaries (from the public factual record, not copied from any article).
+
 ### Data flow
 
 Shared ingestion (both pipelines):
 
 ```
 StatsBomb open-data JSON (HTTP, cached to data/statsbomb_cache/)
-  -> parse_events()        -> list[Event]
-  -> chunk_events()        -> list[Chunk]              (event-level only)
-  -> ChunkVectorStore.ingest()  -> Chroma collection at data/chroma/
+  -> parse_events()               -> list[Event]
+  -> build_hierarchical_chunks()  -> list[Chunk]  (event + time-window + sequence tiers)
+  -> ChunkVectorStore.ingest()    -> Chroma collection at data/chroma/
 ```
 
 Naive baseline (`scripts/run_vertical_slice.py`):
@@ -115,7 +120,8 @@ Agentic pipeline (`scripts/run_agentic_pipeline.py`, `agents.graph.run_agentic_p
 
 ```
   -> QueryUnderstandingAgent -> StructuredQuery + where filter (gemini-flash-lite-latest)
-  -> RetrieverAgent          -> dense (Chroma) + BM25 hits fused via Reciprocal Rank Fusion
+  -> RetrieverAgent          -> dense (Chroma) + BM25 hits fused via Reciprocal Rank Fusion,
+                                 then re-ranked by a local cross-encoder (Reranker)
   -> ContextAggregatorAgent  -> deduplicated evidence list (rule-based, no LLM)
   -> ReasoningAgent          -> list[ReasoningInsight] (gemini-flash-latest, structured output)
   -> GeneratorAgent          -> response_text (gemini-flash-latest, build_agentic_user_prompt)
@@ -127,4 +133,4 @@ Agentic pipeline (`scripts/run_agentic_pipeline.py`, `agents.graph.run_agentic_p
 
 ### Planned next phases (not yet implemented)
 
-Per the proposal's methodology, still to build: time-window and possession-sequence chunking tiers (§6.6); cross-encoder/LLM re-ranking as an optional retrieval refinement step (§6.8); and the full evaluation harness (P@K/R@K, ROUGE/BLEU/BERTScore, human evaluation, ablation study, §6.11) for benchmarking the agentic pipeline against `NaiveRAGGenerator`.
+Hierarchical chunking, re-ranking, and the evaluation harness (P@K/R@K, ROUGE/BLEU/BERTScore, baseline comparison, ablation study — §6.11) are now built (`chunking/`, `retrieval/reranker.py`, `evaluation/`, `scripts/run_evaluation.py`, `scripts/run_ablation.py`). Still to build, per the proposal's methodology: real SoccerNet integration and human-written match report ingestion (§6.4.2, §7.1) — `evaluation/dataset.py`'s `STARTER_DATASET` is an illustrative stand-in, not this; human evaluation (§6.11.4); and Phase 6 "Refinement" (§8.1), which depends on having real numbers from the harness above to act on.

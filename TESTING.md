@@ -1,12 +1,14 @@
 # Testing guide: Gemini-backed RAG pipelines
 
-Manual test plan for the four entry points in this repo, all Gemini-backed:
-the naive baseline (`scripts/run_vertical_slice.py`), the 6-agent pipeline
-CLI (`scripts/run_agentic_pipeline.py`), a FastAPI service over the same
-agentic pipeline (`scripts/run_api.py`, `src/football_rag/api/main.py`), and
-a Streamlit UI (`scripts/app.py`) that talks to that API over HTTP rather
-than importing pipeline code itself. There's no automated test suite yet,
-so this is a run-it-and-read-the-output checklist.
+Manual test plan for the four runnable entry points in this repo, all
+Gemini-backed: the naive baseline (`scripts/run_vertical_slice.py`), the
+6-agent pipeline CLI (`scripts/run_agentic_pipeline.py`), a FastAPI service
+over the same agentic pipeline (`scripts/run_api.py`,
+`src/football_rag/api/main.py`), and a Streamlit UI (`scripts/app.py`) that
+talks to that API over HTTP rather than importing pipeline code itself -
+plus the evaluation harness (`scripts/run_evaluation.py`,
+`scripts/run_ablation.py`). There's no automated test suite yet, so this is
+a run-it-and-read-the-output checklist.
 
 ## 0. Prerequisites
 
@@ -112,14 +114,14 @@ pulls in unrelated players, the entity extraction or the `to_where_filter`
 mapping needs a look (`src/football_rag/agents/query_understanding.py`).
 
 Also worth noting from testing: broad, unspecific queries (e.g. the default
-"Summarize the match and provide key tactical insights") can retrieve
-low-signal events (Duels, Blocks) instead of goals/shots on this corpus,
-since nothing in the query text discriminates high-importance events —
-both the naive baseline and the agentic pipeline may correctly respond "Not
-enough information" rather than hallucinate a summary. That's the grounding
-constraint in `generation/prompts.py`'s `TASK_INSTRUCTIONS` working as
-intended, not a bug — entity/timeframe-specific queries like the one above
-retrieve much more useful evidence.
+"Summarize the match and provide key tactical insights") can still retrieve
+low-signal events instead of goals/shots even with hierarchical chunking
+and re-ranking (§9 below has the detailed finding and why) — both the
+naive baseline and the agentic pipeline may correctly respond "Not enough
+information" rather than hallucinate a summary in that case. That's the
+grounding constraint in `generation/prompts.py`'s `TASK_INSTRUCTIONS`
+working as intended, not a bug — entity/timeframe/topic-specific queries
+like the one above retrieve much more useful evidence, as confirmed live.
 
 ## 5. Exercise the Evaluator retry loop
 
@@ -248,6 +250,93 @@ session (not just "the server started"):
 skeleton or an in-page error naming the API URL (API isn't running, or
 crashed — check §7 first).
 
+## 9. Hierarchical chunking + re-ranking (quota-free)
+
+Both new chunking tiers and the cross-encoder re-ranker can be verified
+without spending any Gemini quota, since none of this touches the LLM:
+
+```bash
+uv run python -c "
+from pathlib import Path
+from football_rag.ingestion.statsbomb import load_match_events
+from football_rag.chunking import build_hierarchical_chunks
+from football_rag.retrieval.vector_store import ChunkVectorStore
+from football_rag.agents.retriever import RetrieverAgent
+
+events = load_match_events(3869685, cache_dir=Path('data/statsbomb_cache'))
+chunks = build_hierarchical_chunks(events)
+print(len(chunks), 'total chunks (was 1842 event-only before this feature)')
+
+store = ChunkVectorStore(persist_dir=Path('data/chroma'))
+store.ingest(chunks)
+
+retriever = RetrieverAgent(store, chunks)
+for hit in retriever.retrieve('What goals were scored in the match?', top_n=5):
+    print(hit['metadata']['chunk_level'], round(hit['rerank_score'], 3), hit['text'][:90])
+"
+```
+
+**Expect:** ~3480 total chunks (1842 event + ~200 time-window + ~1440
+sequence, roughly — exact counts vary only with StatsBomb data, not code).
+For a goal-related query, the top hit should be one of Messi's/Mbappe's
+shot chunks with a `rerank_score` clearly higher (less negative) than the
+rest — confirmed live: `0.882` for Messi's decisive shot vs. `-3.7` for the
+next-best candidate, a large, confident gap.
+
+**Important honest caveat, found during this exact test:** this fix works
+well for queries with *some* topical anchor (player names, "goals", a
+timeframe). It does **not** fully fix the original *broad* default query
+("Summarize the match and provide key tactical insights.") in isolation —
+re-run the same snippet with that query instead and the top hits are still
+generic Pass/Duel chunks, just with weak, closely-clustered rerank scores
+(around -9.1 to -9.8) rather than one standout. That's because an abstract
+instructional query has no semantic or keyword anchor into literal
+event-description text — no amount of chunking/re-ranking fixes that on
+its own. Closing that gap needs either query expansion/rewriting (having
+Query Understanding infer that "summarize + tactical insights" implicitly
+means "surface goals/cards/momentum shifts") or a metadata heuristic that
+always includes high-salience event types regardless of similarity score.
+Neither is built yet — this is exactly the kind of finding Phase 6
+"Refinement" (§8.1) is for, once the evaluation harness below produces
+numbers to act on.
+
+## 10. Evaluation harness
+
+**Baseline comparison** (§6.11.5) — retrieval + generation metrics for
+naive vs. agentic, side by side, over `evaluation/dataset.py`'s
+`STARTER_DATASET` (5 hand-written queries against the WC Final - see that
+file's docstring for what this dataset is and isn't):
+
+```bash
+uv run python scripts/run_evaluation.py
+```
+
+**Expect:** for each query, a `[naive]` and `[agentic]` line with
+`P@5`/`R@5`/`rougeL`/`bleu`. Don't expect either side to score high on
+every metric — the reference summaries are short and specific, while
+generated responses are longer and more free-form, so ROUGE/BLEU absolute
+values will look low even for a "good" response; what matters is the
+naive-vs-agentic *comparison*, not the absolute numbers.
+
+**Ablation study** (§6.11.6) — same query set through `full`, `no_hybrid`,
+`no_reranker`, `no_reasoning`, `no_evaluator` configurations:
+
+```bash
+uv run python scripts/run_ablation.py
+```
+
+**Quota cost:** this is the most expensive thing in this repo to run - 5
+configs × 5 queries × up to 4 Gemini calls each. If you hit a `429`, that's
+the free tier's 20-requests/day/model cap (see Troubleshooting) - wait for
+the daily reset or run a subset of `CONFIGS`/`STARTER_DATASET` by editing
+the script.
+
+**Fail signs:** a `KeyError` on `reasoning_insights` would mean the
+`no_reasoning` config path is broken (`generator_node` in `agents/graph.py`
+should read `state.get("reasoning_insights", [])`, not index directly);
+metrics that don't change at all between configs likely means a config
+dict typo (e.g. `no_hybrid` not actually reaching `RetrieverAgent`).
+
 ## Troubleshooting
 
 - **`RuntimeError: GEMINI_API_KEY is not set`** — `.env` missing or not at
@@ -289,8 +378,14 @@ crashed — check §7 first).
   when a metadata filter narrowed the BM25 candidate corpus to zero chunks
   (`BM25Okapi` divides by corpus size). It now returns no hits instead.
 - **Slow first run** — expected (StatsBomb fetch + embedding model
-  download + embedding ~1500+ chunks on CPU). Subsequent runs reuse
+  download + embedding ~3500+ chunks across all three tiers on CPU, plus a
+  one-time `cross-encoder/ms-marco-MiniLM-L-6-v2` download the first time
+  anything calls `RetrieverAgent`). Subsequent runs reuse
   `data/statsbomb_cache/` and `data/chroma/`.
+- **`bert_score` triggers a huge download** — expected only if you actually
+  call `evaluation/generation_metrics.py::bertscore()` (not used by
+  `run_evaluation.py`/`run_ablation.py` by default); its default model is
+  ~1GB+. `rouge_scores()`/`bleu_score()` never trigger this.
 - **Different match** — pass any StatsBomb open-data match id, e.g.
   `uv run python scripts/run_agentic_pipeline.py <match_id> "your query"`.
 - **Streamlit terminal spam like `ModuleNotFoundError: No module named

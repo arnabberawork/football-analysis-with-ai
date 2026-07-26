@@ -13,9 +13,10 @@ Two pipelines, four ways to run them:
   benchmark the agentic pipeline is compared against.
 - **6-agent Agentic RAG pipeline** — Query Understanding → Retriever →
   Context Aggregator → Reasoning → Generator → Evaluator, with hybrid
-  (dense + BM25) retrieval.
+  (dense + BM25 + cross-encoder re-rank) retrieval.
 
-Both are Gemini-backed (free tier).
+Both are Gemini-backed (free tier) and retrieve from the same hierarchical
+knowledge base (event-level, time-window, and possession-sequence chunks).
 
 ## Setup
 
@@ -58,6 +59,15 @@ uv run streamlit run scripts/app.py     # terminal 2 — UI, http://localhost:85
 
 Both default to `match_id` 3869685 (2022 FIFA World Cup Final, Argentina vs
 France) and a "summarize the match" query if you don't pass your own.
+
+**Evaluation harness** — naive-vs-agentic baseline comparison (P@5/R@5,
+ROUGE-L, BLEU) and an ablation study, both over a small illustrative
+starter query set (see `TESTING.md` for what that dataset is and isn't):
+
+```bash
+uv run python scripts/run_evaluation.py
+uv run python scripts/run_ablation.py   # quota-heavy — best after a quota reset
+```
 
 ## Testing
 
