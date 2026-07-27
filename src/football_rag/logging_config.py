@@ -2,11 +2,12 @@
 (`experiment/*.py`, `scripts/*.py`, `api/main.py`) instead of ad hoc
 `print()` statements.
 
-`print()`-to-a-file (`output_writer.py::tee_to_file()`) only captures raw
-text with no timestamp, level, or source module - fine for "save this
-pipeline's final answer to a file" but not for "let me tell what stage a
-long-running experiment is at, or filter out DEBUG noise, while it's
-running." `setup_logging()` configures the standard library's `logging`
+Plain `print()`-to-a-file only captures raw text with no timestamp, level,
+or source module - fine for "save this pipeline's final answer to a file"
+(still done separately via `output_writer.py::write_output()`) but not for
+"tell me what stage a long-running experiment is at, or filter out DEBUG
+noise, while it's running." `setup_logging()` configures the standard
+library's `logging`
 module instead: every line gets a timestamp and level, console output stays
 at INFO by default (readable while watching a run live), and everything
 including DEBUG goes to a timestamped file under `logs/` for later
@@ -23,6 +24,13 @@ from pathlib import Path
 LOG_DIR = Path("logs")
 _LOG_FORMAT = "%(asctime)s [%(levelname)-8s] %(name)s: %(message)s"
 _DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
+
+# Third-party libraries that log at INFO by default and are pure noise for
+# this project's purposes (confirmed live: httpx alone logs a HEAD request
+# line for every single file HuggingFace Hub resolves when loading a model,
+# completely burying the actually useful progress messages). Quieted to
+# WARNING so only their genuine problems surface, not routine traffic.
+_NOISY_LOGGERS = ["httpx", "httpcore", "urllib3", "filelock", "sentence_transformers", "chromadb", "google_genai"]
 
 
 def setup_logging(run_name: str, console_level: int = logging.INFO) -> Path:
@@ -57,5 +65,8 @@ def setup_logging(run_name: str, console_level: int = logging.INFO) -> Path:
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
     root.addHandler(file_handler)
+
+    for name in _NOISY_LOGGERS:
+        logging.getLogger(name).setLevel(logging.WARNING)
 
     return log_path

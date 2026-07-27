@@ -14,13 +14,16 @@ Usage:
 
 from __future__ import annotations
 
+import logging
 import shutil
 from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
 
-from football_rag.output_writer import tee_to_file
+from football_rag.logging_config import setup_logging
+
+logger = logging.getLogger(__name__)
 
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 OUTPUT_PATH = RESULTS_DIR / "thesis_tables.md"
@@ -37,9 +40,10 @@ def _to_markdown(df: pd.DataFrame) -> str:
 
 
 def main() -> None:
-    with tee_to_file("make_tables") as log_path:
-        _run()
-    print(f"\nLog saved to {log_path}")
+    log_path = setup_logging("make_tables")
+    logger.info("Logging to %s", log_path)
+    _run()
+    logger.info("Log saved to %s", log_path)
 
 
 def _run() -> None:
@@ -103,8 +107,8 @@ def _run() -> None:
 
     content = "# Thesis results tables\n\n" + "\n\n".join(sections) + "\n"
     OUTPUT_PATH.write_text(content, encoding="utf-8")
-    print(content)
-    print(f"\nSaved: {OUTPUT_PATH}")
+    logger.info("\n%s", content)
+    logger.info("Saved: %s", OUTPUT_PATH)
 
     # Every run gets its own permanent, timestamped copy for auditing - same
     # convention as run_full_comparison.py/run_full_ablation.py's
@@ -115,7 +119,7 @@ def _run() -> None:
     snapshot_dir = RESULTS_DIR / f"thesis_tables_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     snapshot_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(OUTPUT_PATH, snapshot_dir / OUTPUT_PATH.name)
-    print(f"Snapshot saved: {snapshot_dir / OUTPUT_PATH.name}")
+    logger.info("Snapshot saved: %s", snapshot_dir / OUTPUT_PATH.name)
 
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@ Run via `uv run python scripts/run_api.py`.
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -19,9 +20,17 @@ from football_rag.agents.graph import run_agentic_pipeline
 from football_rag.api.schemas import PipelineRunRequest, PipelineRunResponse
 from football_rag.chunking import build_hierarchical_chunks
 from football_rag.ingestion.statsbomb import fetch_competitions, fetch_matches, fetch_raw_events, parse_events
+from football_rag.logging_config import setup_logging
 from football_rag.output_writer import write_output
 from football_rag.retrieval.vector_store import ChunkVectorStore
 from football_rag.schema import Chunk, Event
+
+# Configured once at import time (this module is loaded once per server
+# process by uvicorn, unlike the CLI scripts' one-shot main()) - every
+# request handled by this process logs into the same file.
+log_path = setup_logging("api")
+logger = logging.getLogger(__name__)
+logger.info("API logging to %s", log_path)
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
@@ -48,12 +57,14 @@ def get_or_ingest_chunks(match_id: int) -> tuple[list[Chunk], list[Event]]:
     `run_agentic_pipeline`), which reads the full event list directly
     rather than a retrieved chunk sample."""
     if match_id not in _chunks_cache:
+        logger.info("Ingesting match %s for the first time this process...", match_id)
         raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
         events = parse_events(raw_events, match_id)
         chunks = build_hierarchical_chunks(events, raw_events=raw_events)
         get_vector_store().ingest(chunks)
         _chunks_cache[match_id] = chunks
         _events_cache[match_id] = events
+        logger.info("Match %s ingested: %d chunks", match_id, len(chunks))
     return _chunks_cache[match_id], _events_cache[match_id]
 
 
@@ -74,6 +85,7 @@ def matches(competition_id: int, season_id: int) -> list[dict]:
 
 @app.post("/pipeline/run", response_model=PipelineRunResponse)
 def run_pipeline(request: PipelineRunRequest) -> PipelineRunResponse:
+    logger.info("POST /pipeline/run match=%s query=%r", request.match_id, request.query)
     try:
         chunks, events = get_or_ingest_chunks(request.match_id)
         result = run_agentic_pipeline(
@@ -87,17 +99,20 @@ def run_pipeline(request: PipelineRunRequest) -> PipelineRunResponse:
             top_n=request.top_n,
         )
     except RuntimeError as e:
+        logger.exception("Pipeline run failed (RuntimeError): match=%s query=%r", request.match_id, request.query)
         raise HTTPException(status_code=500, detail=str(e)) from e
     except genai_errors.APIError as e:
         # Surfaces Gemini-side errors (rate limits, quota exhaustion, etc.)
         # as a real HTTP response instead of an opaque 500 - these are
         # expected/frequent on the free tier, not bugs.
+        logger.warning("Gemini API error (code=%s) for match=%s query=%r: %s", e.code, request.match_id, request.query, e.message)
         raise HTTPException(status_code=e.code or 502, detail=e.message) from e
 
     # Every call gets its own saved record, same as the CLI scripts -
-    # write_output() (unlike tee_to_file()) doesn't touch global state, so
-    # it's safe under concurrent requests.
+    # write_output() doesn't touch global state (unlike stdout redirection),
+    # so it's safe under concurrent requests.
     output_text = format_pipeline_result(str(request.match_id), request.query, result)
     output_path = write_output(f"api_pipeline_run_{request.match_id}", output_text)
+    logger.info("Pipeline run complete: match=%s output_file=%s", request.match_id, output_path)
 
     return PipelineRunResponse(**result, output_file=str(output_path))

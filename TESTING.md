@@ -374,32 +374,57 @@ should read `state.get("reasoning_insights", [])`, not index directly);
 metrics that don't change at all between configs likely means a config
 dict typo (e.g. `no_hybrid` not actually reaching `RetrieverAgent`).
 
-## 11. Output saving (every script + every API call)
+## 11. Output saving and execution logging (every script + every API call)
 
-Every one of the four CLI scripts (`run_vertical_slice.py`,
-`run_agentic_pipeline.py`, `run_evaluation.py`, `run_ablation.py`) and
-every `POST /pipeline/run` API call now saves its output to
-`outputs/<prefix>_<timestamp>.txt`, via `football_rag.output_writer`:
+Updated after a live complaint that there was no way to check a
+long-running `experiment/` script's progress independently while it was
+running — the original `tee_to_file()` design (below, now removed) only
+mirrored `print()` output verbatim, with no timestamp/level/module info
+and no visibility into third-party library activity. Two concerns are now
+handled separately rather than conflated into one mechanism:
 
-- CLI scripts use `tee_to_file(prefix)`, a context manager that redirects
-  `sys.stdout` to both the console and the file for the duration of
-  `main()` — printed as usual, saved as a side effect. Not safe for
-  concurrent use (it swaps process-global `sys.stdout`), but CLI scripts
-  are single-shot, so that's fine.
-- The API uses `write_output(prefix, text)` instead — a plain write of a
-  complete string, safe under concurrent requests since it never touches
-  global state. It's called after `run_agentic_pipeline()` returns, with
+- **The final, human-readable deliverable** (`run_vertical_slice.py`,
+  `run_agentic_pipeline.py`, and every `POST /pipeline/run` API call) is
+  saved to `outputs/<prefix>_<timestamp>.txt` via
+  `football_rag.output_writer::write_output(prefix, text)` — a plain write
+  of a complete string, safe under concurrent requests since it never
+  touches global state. Called after `run_agentic_pipeline()` returns, with
   the text rendered by `agents/formatting.py::format_pipeline_result()` —
-  the same function that produces `run_agentic_pipeline.py`'s console
-  output, so the two never drift apart. The saved path comes back in the
-  JSON response as `output_file`, and `scripts/app.py` shows it as a
-  caption under "Match: ..." after a successful run.
+  the same function used by both the CLI script and the API, so the two
+  never drift apart. The saved path comes back in the API's JSON response
+  as `output_file`, and `scripts/app.py` shows it as a caption under
+  "Match: ..." after a successful run.
+- **Execution progress** (every `experiment/*.py` script, every
+  `scripts/run_*.py` script, and the API process) is now real, leveled
+  logging via `football_rag.logging_config::setup_logging(name)` — a
+  console handler at INFO and a file handler at DEBUG writing to
+  `logs/<name>_<timestamp>.log`. Any module just does
+  `logging.getLogger(__name__)` and inherits this configuration
+  automatically. Known-noisy third-party loggers (`httpx`,
+  `sentence_transformers`, `chromadb`, etc.) are quieted to WARNING -
+  confirmed live that without this, `httpx` alone logs a line for every
+  single HTTP HEAD request HuggingFace Hub makes while resolving a model,
+  completely burying the project's own progress messages once the root
+  logger has handlers attached.
+
+`run_evaluation.py` and `run_ablation.py` (the small starter-scale
+evaluation/ablation scripts) only ever printed metrics, not a generated
+deliverable - they now log via `setup_logging()` and have no `outputs/`
+file at all, unlike `run_vertical_slice.py`/`run_agentic_pipeline.py` which
+still produce one.
+
+The old `tee_to_file(prefix)` (a context manager that redirected
+`sys.stdout` to both the console and a file for the duration of `main()`)
+has been removed from `output_writer.py` - confirmed via a full-codebase
+grep that nothing called it anymore once every CLI script had a real
+logger.
 
 **Test it:**
 
 ```bash
 uv run python scripts/run_vertical_slice.py
-ls outputs/   # should show a new run_vertical_slice_<match_id>_<timestamp>.txt
+ls outputs/   # should show a new run_vertical_slice_<match_id>_<timestamp>.txt (the deliverable)
+ls logs/      # should show a new run_vertical_slice_<match_id>_<timestamp>.log (the execution trace)
 ```
 
 ```bash
@@ -408,18 +433,22 @@ curl -X POST http://localhost:8000/pipeline/run \
   -d '{"match_id": 3869685, "query": "What did Mbappe do in the second half?"}' \
   | python -c "import json,sys; print(json.load(sys.stdin)['output_file'])"
 # prints something like outputs\api_pipeline_run_3869685_20260726_092601_423593.txt -
-# confirm that file exists and its content matches the API response.
+# confirm that file exists and its content matches the API response. The
+# API process's own logs/api_<timestamp>.log should show a
+# "POST /pipeline/run match=... query=..." line for the same request.
 ```
 
-**Fail signs:** no new file appears in `outputs/` — check the script/API
-process actually has write access to the working directory it was launched
-from (`outputs/` is created relative to the current working directory, not
-the repo root, if you launched from somewhere else); a `KeyError`/
-`AttributeError` inside `format_pipeline_result()` most likely means
-`result` is missing a key it expects (e.g. called with a dict that's
-already been through `PipelineRunResponse` serialization instead of the
-raw `run_agentic_pipeline()` output — the API calls it *before*
-constructing the response model specifically to avoid this).
+**Fail signs:** no new file appears in `outputs/` or `logs/` — check the
+script/API process actually has write access to the working directory it
+was launched from (both directories are created relative to the current
+working directory, not the repo root, if you launched from somewhere
+else); a `KeyError`/`AttributeError` inside `format_pipeline_result()` most
+likely means `result` is missing a key it expects (e.g. called with a dict
+that's already been through `PipelineRunResponse` serialization instead of
+the raw `run_agentic_pipeline()` output — the API calls it *before*
+constructing the response model specifically to avoid this); a flood of
+third-party HTTP/model-loading noise in the console or log file means a
+new noisy logger needs adding to `logging_config.py::_NOISY_LOGGERS`.
 
 ## 12. Penalty retrieval investigation (data completeness + reranker limitation)
 

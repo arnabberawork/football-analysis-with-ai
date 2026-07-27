@@ -15,6 +15,7 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
+import httpx
 from google.genai import errors as genai_errors
 
 
@@ -59,3 +60,18 @@ def is_quota_error(exc: Exception) -> bool:
     not a bug to crash on. See `api/main.py` for the same check used to
     turn this into a clean HTTP response instead of an opaque 500."""
     return isinstance(exc, genai_errors.APIError) and exc.code == 429
+
+
+def is_transient_network_error(exc: Exception) -> bool:
+    """True if `exc` is a network/transport-level failure (dropped
+    connection, timeout, etc.) rather than a real bug. Confirmed live: an
+    ablation run crashed with `httpx.RemoteProtocolError: Server
+    disconnected without sending a response` after a ~12-minute gap between
+    rows - almost certainly the machine went idle/sleep and the
+    long-held HTTP connection was dropped by the time it woke up. This is
+    exactly as recoverable as a quota 429 (just re-run to resume from the
+    checkpoint), so it's handled the same way rather than crashing with a
+    full traceback. `httpx.TransportError` is the right base class here -
+    it covers RemoteProtocolError, ConnectError, ReadTimeout, ConnectTimeout,
+    and PoolTimeout, all of which are transient by nature."""
+    return isinstance(exc, httpx.TransportError)

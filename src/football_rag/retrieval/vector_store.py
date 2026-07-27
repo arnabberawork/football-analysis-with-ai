@@ -13,6 +13,7 @@ swappable, per §6.7's discussion of SBERT vs. E5 vs. API embeddings.
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Optional
 
@@ -21,6 +22,8 @@ from chromadb.api.models.Collection import Collection
 
 from football_rag.embeddings.embedder import Embedder, get_default_embedder
 from football_rag.schema import Chunk, ChunkMetadata
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_PERSIST_DIR = Path("data/chroma")
 DEFAULT_COLLECTION_NAME = "football_chunks"
@@ -67,9 +70,17 @@ class ChunkVectorStore:
             existing_ids: set[str] = set()
             for start in range(0, len(all_ids), batch_size):
                 existing_ids.update(self._collection.get(ids=all_ids[start : start + batch_size])["ids"])
+            before = len(chunks)
             chunks = [c for c in chunks if c.chunk_id not in existing_ids]
+            logger.debug("skip_existing: %d/%d chunks already embedded, %d remaining", before - len(chunks), before, len(chunks))
 
-        for start in range(0, len(chunks), batch_size):
+        if not chunks:
+            logger.debug("ingest(): nothing to embed")
+            return
+
+        total_batches = (len(chunks) + batch_size - 1) // batch_size
+        logger.info("Embedding %d chunks in %d batch(es)...", len(chunks), total_batches)
+        for batch_num, start in enumerate(range(0, len(chunks), batch_size), start=1):
             batch = chunks[start : start + batch_size]
             embeddings = self.embedder.encode_documents([c.text for c in batch])
             self._collection.upsert(
@@ -78,6 +89,7 @@ class ChunkVectorStore:
                 documents=[c.text for c in batch],
                 metadatas=[_metadata_to_chroma_dict(c.metadata) for c in batch],
             )
+            logger.debug("  batch %d/%d embedded and upserted (%d chunks)", batch_num, total_batches, len(batch))
 
     def count(self) -> int:
         return self._collection.count()

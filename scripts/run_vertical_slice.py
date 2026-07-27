@@ -12,14 +12,18 @@ in later phases.
 
 from __future__ import annotations
 
+import logging
 import sys
 from pathlib import Path
 
 from football_rag.chunking import build_hierarchical_chunks
 from football_rag.generation.generator import NaiveRAGGenerator
 from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
-from football_rag.output_writer import tee_to_file
+from football_rag.logging_config import setup_logging
+from football_rag.output_writer import write_output
 from football_rag.retrieval.vector_store import ChunkVectorStore
+
+logger = logging.getLogger(__name__)
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
@@ -32,32 +36,41 @@ def main() -> None:
     match_id = int(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_MATCH_ID
     query = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_QUERY
 
-    with tee_to_file(f"run_vertical_slice_{match_id}") as output_path:
-        print(f"Loading events for match {match_id}...")
-        raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
-        events = parse_events(raw_events, match_id)
-        print(f"  {len(events)} events parsed")
+    log_path = setup_logging(f"run_vertical_slice_{match_id}")
+    logger.info("Logging to %s", log_path)
 
-        chunks = build_hierarchical_chunks(events, raw_events=raw_events)
-        print(f"  {len(chunks)} chunks generated (event + time-window + sequence + lineup tiers)")
+    logger.info("Loading events for match %s...", match_id)
+    raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
+    events = parse_events(raw_events, match_id)
+    logger.info("  %d events parsed", len(events))
 
-        print("Ingesting chunks into vector store...")
-        store = ChunkVectorStore(persist_dir=CHROMA_DIR)
-        store.ingest(chunks)
-        print(f"  vector store now holds {store.count()} chunks")
+    chunks = build_hierarchical_chunks(events, raw_events=raw_events)
+    logger.info("  %d chunks generated (event + time-window + sequence + lineup tiers)", len(chunks))
 
-        print(f"\nQuery: {query}\n")
-        generator = NaiveRAGGenerator(vector_store=store)
-        result = generator.generate(query, where={"match_id": str(match_id)})
+    logger.info("Ingesting chunks into vector store...")
+    store = ChunkVectorStore(persist_dir=CHROMA_DIR)
+    store.ingest(chunks)
+    logger.info("  vector store now holds %d chunks", store.count())
 
-        print("Retrieved evidence:")
-        for chunk in result["retrieved_chunks"]:
-            print(f"  [{chunk['chunk_id']}] ({chunk['distance']:.3f}) {chunk['text']}")
+    logger.info("Query: %s", query)
+    generator = NaiveRAGGenerator(vector_store=store)
+    result = generator.generate(query, where={"match_id": str(match_id)})
+    logger.info("Response generated (%d chars)", len(result["response_text"]))
 
-        print("\nGenerated response:\n")
-        print(result["response_text"])
+    # The clean, final deliverable (evidence + generated summary) is saved
+    # separately from the execution log via write_output() - not routed
+    # through the logging formatter, so it stays a plain, readable text file
+    # under outputs/ (correctly UTF-8 encoded even when the Windows console
+    # itself mangles accented characters on screen), matching every other
+    # script's saved-output convention.
+    lines = [f"Query: {query}", "", "Retrieved evidence:"]
+    for chunk in result["retrieved_chunks"]:
+        lines.append(f"  [{chunk['chunk_id']}] ({chunk['distance']:.3f}) {chunk['text']}")
+    lines += ["", "Generated response:", "", result["response_text"]]
+    output_path = write_output(f"run_vertical_slice_{match_id}", "\n".join(lines))
 
-    print(f"\nOutput saved to {output_path}")
+    logger.info("Output saved to %s", output_path)
+    logger.info("Log saved to %s", log_path)
 
 
 if __name__ == "__main__":

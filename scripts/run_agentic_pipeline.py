@@ -11,6 +11,7 @@ the naive RAG baseline, per CLAUDE.md, and is unaffected by this one).
 
 from __future__ import annotations
 
+import logging
 import sys
 from pathlib import Path
 
@@ -18,8 +19,11 @@ from football_rag.agents.formatting import format_pipeline_result
 from football_rag.agents.graph import run_agentic_pipeline
 from football_rag.chunking import build_hierarchical_chunks
 from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
-from football_rag.output_writer import tee_to_file
+from football_rag.logging_config import setup_logging
+from football_rag.output_writer import write_output
 from football_rag.retrieval.vector_store import ChunkVectorStore
+
+logger = logging.getLogger(__name__)
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
@@ -32,26 +36,30 @@ def main() -> None:
     match_id = int(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_MATCH_ID
     query = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_QUERY
 
-    with tee_to_file(f"run_agentic_pipeline_{match_id}") as output_path:
-        print(f"Loading events for match {match_id}...")
-        raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
-        events = parse_events(raw_events, match_id)
-        print(f"  {len(events)} events parsed")
+    log_path = setup_logging(f"run_agentic_pipeline_{match_id}")
+    logger.info("Logging to %s", log_path)
 
-        chunks = build_hierarchical_chunks(events, raw_events=raw_events)
-        print(f"  {len(chunks)} chunks generated (event + time-window + sequence + lineup tiers)")
+    logger.info("Loading events for match %s...", match_id)
+    raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
+    events = parse_events(raw_events, match_id)
+    logger.info("  %d events parsed", len(events))
 
-        print("Ingesting chunks into vector store...")
-        store = ChunkVectorStore(persist_dir=CHROMA_DIR)
-        store.ingest(chunks)
-        print(f"  vector store now holds {store.count()} chunks")
+    chunks = build_hierarchical_chunks(events, raw_events=raw_events)
+    logger.info("  %d chunks generated (event + time-window + sequence + lineup tiers)", len(chunks))
 
-        print()
-        result = run_agentic_pipeline(str(match_id), query, store, chunks, events)
+    logger.info("Ingesting chunks into vector store...")
+    store = ChunkVectorStore(persist_dir=CHROMA_DIR)
+    store.ingest(chunks)
+    logger.info("  vector store now holds %d chunks", store.count())
 
-        print(format_pipeline_result(str(match_id), query, result))
+    result = run_agentic_pipeline(str(match_id), query, store, chunks, events)
+    output_text = format_pipeline_result(str(match_id), query, result)
 
-    print(f"\nOutput saved to {output_path}")
+    # Clean, final deliverable saved separately from the execution log - see
+    # run_vertical_slice.py's identical rationale.
+    output_path = write_output(f"run_agentic_pipeline_{match_id}", output_text)
+    logger.info("Output saved to %s", output_path)
+    logger.info("Log saved to %s", log_path)
 
 
 if __name__ == "__main__":

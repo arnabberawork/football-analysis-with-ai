@@ -29,7 +29,7 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _checkpoint import CheckpointWriter, is_quota_error, load_done_keys  # noqa: E402
+from _checkpoint import CheckpointWriter, is_quota_error, is_transient_network_error, load_done_keys  # noqa: E402
 from matches import FROZEN_MATCHES  # noqa: E402
 from query_dataset import EXPERIMENT_DATASET  # noqa: E402
 
@@ -170,8 +170,11 @@ def run_main_sweep() -> None:
         if is_quota_error(e):
             logger.warning("Gemini quota hit for today - %d/%d done, %d completed this run.", len(done), total, completed_this_run)
             logger.warning("Re-run this script tomorrow (or once quota resets) to continue.")
+        elif is_transient_network_error(e):
+            logger.warning("Transient network error (%s) - %d/%d done, %d completed this run.", type(e).__name__, len(done), total, completed_this_run)
+            logger.warning("Re-run this script to continue - nothing lost, this is recoverable.")
         else:
-            logger.exception("Unexpected error during main sweep (not a quota error) - %d/%d done", len(done), total)
+            logger.exception("Unexpected error during main sweep (not quota/network) - %d/%d done", len(done), total)
             raise
     finally:
         writer.close()

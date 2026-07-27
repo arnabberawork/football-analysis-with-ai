@@ -30,6 +30,7 @@ Usage:
 
 from __future__ import annotations
 
+import logging
 import shutil
 import sys
 from collections import defaultdict
@@ -47,8 +48,10 @@ from football_rag.embeddings.embedder import get_default_embedder, get_e5_embedd
 from football_rag.evaluation.dataset import resolve_relevant_chunk_ids
 from football_rag.evaluation.retrieval_metrics import precision_at_k, recall_at_k
 from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
-from football_rag.output_writer import tee_to_file
+from football_rag.logging_config import setup_logging
 from football_rag.retrieval.vector_store import ChunkVectorStore
+
+logger = logging.getLogger(__name__)
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
@@ -71,58 +74,60 @@ EMBEDDERS = {
 
 
 def main() -> None:
-    with tee_to_file("compare_embeddings") as log_path:
-        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    log_path = setup_logging("compare_embeddings")
+    logger.info("Logging to %s", log_path)
 
-        chunks_by_match: dict[int, list] = {}
-        all_chunks = []
-        for match_id in REPRESENTATIVE_SUBSET_MATCH_IDS:
-            raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
-            events = parse_events(raw_events, match_id)
-            chunks = build_hierarchical_chunks(events, raw_events=raw_events)
-            chunks_by_match[match_id] = chunks
-            all_chunks.extend(chunks)
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-        subset_queries = [lq for lq in EXPERIMENT_DATASET if lq.match_id in REPRESENTATIVE_SUBSET_MATCH_IDS]
-        print(f"{len(all_chunks)} chunks across {len(REPRESENTATIVE_SUBSET_MATCH_IDS)} matches, {len(subset_queries)} queries")
+    chunks_by_match: dict[int, list] = {}
+    all_chunks = []
+    for match_id in REPRESENTATIVE_SUBSET_MATCH_IDS:
+        raw_events = fetch_raw_events(match_id, cache_dir=CACHE_DIR)
+        events = parse_events(raw_events, match_id)
+        chunks = build_hierarchical_chunks(events, raw_events=raw_events)
+        chunks_by_match[match_id] = chunks
+        all_chunks.extend(chunks)
 
-        rows = []
-        for embedder_name, (collection_name, get_embedder) in EMBEDDERS.items():
-            print(f"\n=== {embedder_name} ===")
-            store = ChunkVectorStore(persist_dir=CHROMA_DIR, collection_name=collection_name, embedder=get_embedder())
-            store.ingest(all_chunks, skip_existing=True)
-            print(f"  ingested {store.count()} chunks")
+    subset_queries = [lq for lq in EXPERIMENT_DATASET if lq.match_id in REPRESENTATIVE_SUBSET_MATCH_IDS]
+    logger.info("%d chunks across %d matches, %d queries", len(all_chunks), len(REPRESENTATIVE_SUBSET_MATCH_IDS), len(subset_queries))
 
-            scores_by_k: dict[int, dict[str, list[float]]] = {k: defaultdict(list) for k in TOP_KS}
-            for lq in subset_queries:
-                relevant_ids = resolve_relevant_chunk_ids(lq.relevance_criteria, chunks_by_match[lq.match_id])
-                if not relevant_ids:
-                    continue
-                hits = store.query(lq.query, top_n=max(TOP_KS), where={"match_id": str(lq.match_id)})
-                retrieved_ids = [h["chunk_id"] for h in hits]
-                for k in TOP_KS:
-                    scores_by_k[k]["precision"].append(precision_at_k(retrieved_ids, relevant_ids, k))
-                    scores_by_k[k]["recall"].append(recall_at_k(retrieved_ids, relevant_ids, k))
+    rows = []
+    for embedder_name, (collection_name, get_embedder) in EMBEDDERS.items():
+        logger.info("=== %s ===", embedder_name)
+        store = ChunkVectorStore(persist_dir=CHROMA_DIR, collection_name=collection_name, embedder=get_embedder())
+        store.ingest(all_chunks, skip_existing=True)
+        logger.info("  ingested %d chunks", store.count())
 
+        scores_by_k: dict[int, dict[str, list[float]]] = {k: defaultdict(list) for k in TOP_KS}
+        for lq in subset_queries:
+            relevant_ids = resolve_relevant_chunk_ids(lq.relevance_criteria, chunks_by_match[lq.match_id])
+            if not relevant_ids:
+                continue
+            hits = store.query(lq.query, top_n=max(TOP_KS), where={"match_id": str(lq.match_id)})
+            retrieved_ids = [h["chunk_id"] for h in hits]
             for k in TOP_KS:
-                mean_p = sum(scores_by_k[k]["precision"]) / len(scores_by_k[k]["precision"])
-                mean_r = sum(scores_by_k[k]["recall"]) / len(scores_by_k[k]["recall"])
-                print(f"  P@{k}={mean_p:.3f}  R@{k}={mean_r:.3f}  (n={len(scores_by_k[k]['precision'])} queries)")
-                rows.append({"embedder": embedder_name, "k": k, "mean_precision": mean_p, "mean_recall": mean_r, "n_queries": len(scores_by_k[k]["precision"])})
+                scores_by_k[k]["precision"].append(precision_at_k(retrieved_ids, relevant_ids, k))
+                scores_by_k[k]["recall"].append(recall_at_k(retrieved_ids, relevant_ids, k))
 
-        df = pd.DataFrame(rows)
-        df.to_csv(OUTPUT_PATH, index=False)
-        print(f"\nSaved: {OUTPUT_PATH}")
+        for k in TOP_KS:
+            mean_p = sum(scores_by_k[k]["precision"]) / len(scores_by_k[k]["precision"])
+            mean_r = sum(scores_by_k[k]["recall"]) / len(scores_by_k[k]["recall"])
+            logger.info("  P@%d=%.3f  R@%d=%.3f  (n=%d queries)", k, mean_p, k, mean_r, len(scores_by_k[k]["precision"]))
+            rows.append({"embedder": embedder_name, "k": k, "mean_precision": mean_p, "mean_recall": mean_r, "n_queries": len(scores_by_k[k]["precision"])})
 
-        # Permanent, timestamped copy for auditing - same convention as
-        # run_full_comparison.py/run_full_ablation.py/make_tables.py/
-        # error_analysis.py's save_snapshot(). OUTPUT_PATH stays the single
-        # "latest" file make_tables.py reads.
-        snapshot_dir = RESULTS_DIR / f"compare_embeddings_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        snapshot_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(OUTPUT_PATH, snapshot_dir / OUTPUT_PATH.name)
-        print(f"Snapshot saved: {snapshot_dir / OUTPUT_PATH.name}")
-    print(f"\nLog saved to {log_path}")
+    df = pd.DataFrame(rows)
+    df.to_csv(OUTPUT_PATH, index=False)
+    logger.info("Saved: %s", OUTPUT_PATH)
+
+    # Permanent, timestamped copy for auditing - same convention as
+    # run_full_comparison.py/run_full_ablation.py/make_tables.py/
+    # error_analysis.py's save_snapshot(). OUTPUT_PATH stays the single
+    # "latest" file make_tables.py reads.
+    snapshot_dir = RESULTS_DIR / f"compare_embeddings_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(OUTPUT_PATH, snapshot_dir / OUTPUT_PATH.name)
+    logger.info("Snapshot saved: %s", snapshot_dir / OUTPUT_PATH.name)
+    logger.info("Log saved to %s", log_path)
 
 
 if __name__ == "__main__":

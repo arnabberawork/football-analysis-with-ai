@@ -39,7 +39,9 @@ GEMINI_API_KEY=your-key-here
 ```
 
 `.env` is gitignored — never put a real key in `.env.example`, that file
-*is* committed.
+*is* committed. The Gemini model tier is also configurable there
+(`GEMINI_MODEL`, `GEMINI_MODEL_LITE` — see `.env.example` for what each
+controls and their defaults) rather than hardcoded per file.
 
 ## Running it
 
@@ -76,8 +78,16 @@ uv run python scripts/run_evaluation.py
 uv run python scripts/run_ablation.py   # quota-heavy — best after a quota reset
 ```
 
-Every run above (including each API call) saves its full output to
-`outputs/<prefix>_<timestamp>.txt` for later comparison.
+For the full research-scale version of this harness (18 matches, ~61
+queries, resumable multi-day sweeps) see `experiment/README.md` for how to
+run it and **`experiments.md`** for what's actually been run so far and
+what it found.
+
+Every script above (including each API call) saves its final generated
+output to `outputs/<prefix>_<timestamp>.txt` for later comparison, and its
+execution progress to a leveled, timestamped log under
+`logs/<prefix>_<timestamp>.log` (see `TESTING.md` §11 for the split between
+the two).
 
 ## Testing
 

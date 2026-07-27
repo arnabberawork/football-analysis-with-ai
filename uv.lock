@@ -835,6 +835,7 @@ dependencies = [
     { name = "chromadb" },
     { name = "fastapi" },
     { name = "google-genai" },
+    { name = "krippendorff" },
     { name = "langgraph" },
     { name = "nltk" },
     { name = "pandas" },
@@ -855,6 +856,7 @@ requires-dist = [
     { name = "chromadb", specifier = ">=1.5.9" },
     { name = "fastapi", specifier = ">=0.140.0" },
     { name = "google-genai", specifier = ">=2.14.0" },
+    { name = "krippendorff", specifier = ">=0.8.2" },
     { name = "langgraph", specifier = ">=1.2.9" },
     { name = "nltk", specifier = ">=3.10.0" },
     { name = "pandas", specifier = ">=3.0.5" },
@@ -1380,6 +1382,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/0f/41/c5f71f9f00aabcc71fee8b7475e3f64747282580c2fe748961ba29b18385/kiwisolver-1.5.0-graalpy312-graalpy250_312_native-macosx_11_0_arm64.whl", hash = "sha256:f6764a4ccab3078db14a632420930f6186058750df066b8ea2a7106df91d3203", size = 138036 },
     { url = "https://files.pythonhosted.org/packages/fa/06/7399a607f434119c6e1fdc8ec89a8d51ccccadf3341dee4ead6bd14caaf5/kiwisolver-1.5.0-graalpy312-graalpy250_312_native-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:c31c13da98624f957b0fb1b5bae5383b2333c2c3f6793d9825dd5ce79b525cb7", size = 194295 },
     { url = "https://files.pythonhosted.org/packages/b5/91/53255615acd2a1eaca307ede3c90eb550bae9c94581f8c00081b6b1c8f44/kiwisolver-1.5.0-graalpy312-graalpy250_312_native-win_amd64.whl", hash = "sha256:1f1489f769582498610e015a8ef2d36f28f505ab3096d0e16b4858a9ec214f57", size = 75987 },
+]
+
+[[package]]
+name = "krippendorff"
+version = "0.8.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fd/1c/839234d9b9ca3c2c1f9445bb7f3022662face6cc6f9e3f915d8b7654dea7/krippendorff-0.8.2.tar.gz", hash = "sha256:f975bf4b5d93439d3264c4fc85a45d014aca9f5f9fca17f18fa2f3c89ee158ca", size = 18229 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/01/4f/597b65bc88a031ee68b459fec05f8b40a60c3c3f6d5cde5b1403d965d199/krippendorff-0.8.2-py3-none-any.whl", hash = "sha256:1922ff73f7caa5faab6237a1abcb4f3e6ab605e3f7d39acd7998176873b8cd57", size = 18616 },
 ]
 
 [[package]]

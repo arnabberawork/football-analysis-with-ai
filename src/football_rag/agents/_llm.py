@@ -6,12 +6,15 @@ same client setup and structured-output parsing.
 
 from __future__ import annotations
 
+import logging
 import os
 
 from dotenv import load_dotenv
 from google import genai
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
 """Model used by ReasoningAgent, GeneratorAgent, EvaluatorAgent, and
@@ -55,6 +58,8 @@ def call_structured(
     `response_schema`, forcing schema-conformant JSON output, and return the
     already-validated parsed instance - no manual JSON parsing required.
     """
+    schema_name = getattr(response_schema, "__name__", str(response_schema))
+    logger.debug("Calling %s (schema=%s, max_tokens=%d, prompt_len=%d)", model, schema_name, max_tokens, len(user_prompt))
     response = client.models.generate_content(
         model=model,
         contents=user_prompt,
@@ -65,4 +70,13 @@ def call_structured(
             max_output_tokens=max_tokens,
         ),
     )
+    if response.parsed is None:
+        # Confirmed live: this happens when the model exhausts max_tokens on
+        # internal reasoning before finishing valid JSON (see
+        # agents/evaluator.py and agents/reasoning.py, which both had to add
+        # fallback handling for exactly this). Logged here too since it's
+        # otherwise silent - the caller just gets None back.
+        logger.warning("%s returned no parsed result for schema=%s (likely truncated by max_tokens=%d)", model, schema_name, max_tokens)
+    else:
+        logger.debug("%s returned a parsed %s", model, schema_name)
     return response.parsed

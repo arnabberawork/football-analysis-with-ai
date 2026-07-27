@@ -27,6 +27,8 @@ evaluator entirely for that one intent.
 
 from __future__ import annotations
 
+import logging
+
 from langgraph.graph import END, START, StateGraph
 
 from football_rag.agents.context_aggregator import ContextAggregatorAgent
@@ -39,6 +41,8 @@ from football_rag.agents.state import AgentState
 from football_rag.agents.stats import StatsAgent
 from football_rag.retrieval.vector_store import ChunkVectorStore
 from football_rag.schema import Chunk, Event
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_TOP_N = 10
 
@@ -89,13 +93,16 @@ def build_agentic_graph(
     stats_agent = StatsAgent()
 
     def query_understanding_node(state: AgentState) -> dict:
+        logger.debug("[query_understanding] match=%s query=%r", state["match_id"], state["raw_query"])
         structured = query_agent.understand(state["raw_query"])
+        logger.debug("[query_understanding] intent=%s", structured.intent)
         return {"structured_query": structured, "where_filter": to_where_filter(structured)}
 
     def route_after_query_understanding(state: AgentState) -> str:
         return "stats" if state["structured_query"].intent == "statistic" else "retrieve"
 
     def stats_node(state: AgentState) -> dict:
+        logger.debug("[stats_node] match=%s query=%r (no LLM call)", state["match_id"], state["raw_query"])
         response_text = stats_agent.answer(state["raw_query"], state["structured_query"], state["events"])
         return {
             "response_text": response_text,
@@ -113,19 +120,26 @@ def build_agentic_graph(
         # is now always match-scoped underneath.
         ensure_salient = structured.intent == "match_summary" and not llm_where
         where = _with_match_filter(llm_where, state["match_id"])
+        logger.debug("[retriever] where=%s ensure_salient=%s", where, ensure_salient)
         hits = retriever_agent.retrieve(state["raw_query"], where=where, top_n=top_n, ensure_salient=ensure_salient)
+        logger.debug("[retriever] %d chunks retrieved", len(hits))
         return {"retrieved_chunks": hits}
 
     def context_aggregator_node(state: AgentState) -> dict:
-        return {"aggregated_context": aggregator_agent.aggregate(state["retrieved_chunks"])}
+        aggregated = aggregator_agent.aggregate(state["retrieved_chunks"])
+        logger.debug("[context_aggregator] %d chunks -> %d after dedup", len(state["retrieved_chunks"]), len(aggregated))
+        return {"aggregated_context": aggregated}
 
     def reasoning_node(state: AgentState) -> dict:
+        logger.debug("[reasoning] analysing %d evidence chunks", len(state["aggregated_context"]))
         insights = reasoning_agent.reason(state["raw_query"], state["aggregated_context"])
+        logger.debug("[reasoning] %d insights produced", len(insights))
         return {"reasoning_insights": insights}
 
     def generator_node(state: AgentState) -> dict:
         evaluation = state.get("evaluation")
         feedback = evaluation.feedback if evaluation is not None and not evaluation.passed else None
+        logger.debug("[generator] retry=%s feedback=%s", state.get("retry_count", 0), bool(feedback))
         response_text = generator_agent.generate(
             state["raw_query"], state["aggregated_context"], state.get("reasoning_insights", []), feedback=feedback
         )
@@ -133,6 +147,7 @@ def build_agentic_graph(
 
     def evaluator_node(state: AgentState) -> dict:
         evaluation = evaluator_agent.evaluate(state["raw_query"], state["response_text"], state["aggregated_context"])
+        logger.debug("[evaluator] passed=%s", evaluation.passed if evaluation is not None else None)
         return {"evaluation": evaluation, "retry_count": state.get("retry_count", 0) + 1}
 
     def route_after_evaluator(state: AgentState) -> str:
@@ -197,6 +212,7 @@ def run_agentic_pipeline(
     final state (structured_query, retrieved/aggregated evidence, reasoning
     insights, response_text, and the evaluator's verdict if enabled).
     """
+    logger.info("Running agentic pipeline: match=%s query=%r", match_id, query)
     app = build_agentic_graph(
         vector_store,
         chunks,
