@@ -22,6 +22,7 @@ Usage:
 
 from __future__ import annotations
 
+import logging
 import shutil
 import sys
 from datetime import datetime
@@ -41,8 +42,10 @@ from football_rag.evaluation.generation_metrics import bertscore_per_example, bl
 from football_rag.evaluation.retrieval_metrics import precision_at_k, recall_at_k
 from football_rag.generation.generator import NaiveRAGGenerator
 from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
-from football_rag.output_writer import tee_to_file
+from football_rag.logging_config import setup_logging
 from football_rag.retrieval.vector_store import ChunkVectorStore
+
+logger = logging.getLogger(__name__)
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
@@ -135,14 +138,16 @@ def run_main_sweep() -> None:
             key_agentic = (str(lq.match_id), lq.query, "agentic")
 
             if key_naive not in done:
+                logger.debug("Calling naive generator: match=%s query=%r", lq.match_id, lq.query)
                 result = naive_generator.generate(lq.query, where={"match_id": str(lq.match_id)})
                 retrieved_ids = [c["chunk_id"] for c in result["retrieved_chunks"]]
                 writer.write(_metrics_row(lq.match_id, lq.query, "naive", lq.reference_summary, retrieved_ids, relevant_ids, result["response_text"]))
                 done.add(key_naive)
                 completed_this_run += 1
-                print(f"  [naive]   match={lq.match_id} query={lq.query!r} done ({len(done)}/{total})")
+                logger.info("[naive]   match=%s query=%r done (%d/%d)", lq.match_id, lq.query, len(done), total)
 
             if key_agentic not in done:
+                logger.debug("Calling agentic pipeline: match=%s query=%r", lq.match_id, lq.query)
                 result = run_agentic_pipeline(str(lq.match_id), lq.query, store, chunks_by_match[lq.match_id], events_by_match[lq.match_id])
                 retrieved_ids = [c["chunk_id"] for c in result["retrieved_chunks"]]
                 is_statistic = result["structured_query"].intent == "statistic"
@@ -160,20 +165,21 @@ def run_main_sweep() -> None:
                 )
                 done.add(key_agentic)
                 completed_this_run += 1
-                print(f"  [agentic] match={lq.match_id} query={lq.query!r} done ({len(done)}/{total})")
+                logger.info("[agentic] match=%s query=%r done (%d/%d)", lq.match_id, lq.query, len(done), total)
     except Exception as e:
         if is_quota_error(e):
-            print(f"\nGemini quota hit for today - {len(done)}/{total} done, {completed_this_run} completed this run.")
-            print("Re-run this script tomorrow (or once quota resets) to continue.")
+            logger.warning("Gemini quota hit for today - %d/%d done, %d completed this run.", len(done), total, completed_this_run)
+            logger.warning("Re-run this script tomorrow (or once quota resets) to continue.")
         else:
+            logger.exception("Unexpected error during main sweep (not a quota error) - %d/%d done", len(done), total)
             raise
     finally:
         writer.close()
 
     if len(done) >= total:
-        print(f"\nAll {total} rows done.")
+        logger.info("All %d rows done.", total)
     else:
-        print(f"\n{len(done)}/{total} done so far - re-run to continue.")
+        logger.info("%d/%d done so far - re-run to continue.", len(done), total)
 
 
 def run_bertscore_pass() -> None:
@@ -185,10 +191,10 @@ def run_bertscore_pass() -> None:
     df = pd.read_csv(CSV_PATH, keep_default_na=False)
     missing = df["bertscore_f1"] == ""
     if not missing.any():
-        print("BERTScore already computed for every row.")
+        logger.info("BERTScore already computed for every row.")
         return
 
-    print(f"Computing BERTScore for {missing.sum()} row(s)...")
+    logger.info("Computing BERTScore for %d row(s)...", missing.sum())
     candidates = df.loc[missing, "response_text"].tolist()
     references = df.loc[missing, "reference_summary"].tolist()
     per_example_f1 = bertscore_per_example(candidates, references)
@@ -198,7 +204,7 @@ def run_bertscore_pass() -> None:
     # make_tables.py already does pd.to_numeric() when reading it back.
     df.loc[missing, "bertscore_f1"] = [str(f) for f in per_example_f1]
     df.to_csv(CSV_PATH, index=False)
-    print(f"Mean F1 for this batch: {sum(per_example_f1) / len(per_example_f1):.3f}; per-row scores written to {CSV_PATH}")
+    logger.info("Mean F1 for this batch: %.3f; per-row scores written to %s", sum(per_example_f1) / len(per_example_f1), CSV_PATH)
 
 
 def save_snapshot() -> None:
@@ -220,15 +226,16 @@ def save_snapshot() -> None:
     snapshot_dir = RESULTS_DIR / f"main_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     snapshot_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(CSV_PATH, snapshot_dir / CSV_PATH.name)
-    print(f"Snapshot saved: {snapshot_dir / CSV_PATH.name}")
+    logger.info("Snapshot saved: %s", snapshot_dir / CSV_PATH.name)
 
 
 def main() -> None:
-    with tee_to_file("run_full_comparison") as log_path:
-        run_main_sweep()
-        run_bertscore_pass()
-        save_snapshot()
-    print(f"\nLog saved to {log_path}")
+    log_path = setup_logging("run_full_comparison")
+    logger.info("Logging to %s", log_path)
+    run_main_sweep()
+    run_bertscore_pass()
+    save_snapshot()
+    logger.info("Log saved to %s", log_path)
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 data/
 outputs/
+logs/
 .env
 .ruff_cache/
 *.egg-info/

@@ -21,6 +21,7 @@ Usage:
 
 from __future__ import annotations
 
+import logging
 import shutil
 import sys
 from datetime import datetime
@@ -37,8 +38,10 @@ from football_rag.evaluation.dataset import resolve_relevant_chunk_ids
 from football_rag.evaluation.generation_metrics import rouge_scores
 from football_rag.evaluation.retrieval_metrics import precision_at_k
 from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
-from football_rag.output_writer import tee_to_file
+from football_rag.logging_config import setup_logging
 from football_rag.retrieval.vector_store import ChunkVectorStore
+
+logger = logging.getLogger(__name__)
 
 CACHE_DIR = Path("data/statsbomb_cache")
 CHROMA_DIR = Path("data/chroma")
