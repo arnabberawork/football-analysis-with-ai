@@ -41,6 +41,7 @@ from football_rag.evaluation.generation_metrics import bertscore_per_example, bl
 from football_rag.evaluation.retrieval_metrics import precision_at_k, recall_at_k
 from football_rag.generation.generator import NaiveRAGGenerator
 from football_rag.ingestion.statsbomb import fetch_raw_events, parse_events
+from football_rag.output_writer import tee_to_file
 from football_rag.retrieval.vector_store import ChunkVectorStore
 
 CACHE_DIR = Path("data/statsbomb_cache")
@@ -223,9 +224,11 @@ def save_snapshot() -> None:
 
 
 def main() -> None:
-    run_main_sweep()
-    run_bertscore_pass()
-    save_snapshot()
+    with tee_to_file("run_full_comparison") as log_path:
+        run_main_sweep()
+        run_bertscore_pass()
+        save_snapshot()
+    print(f"\nLog saved to {log_path}")
 
 
 if __name__ == "__main__":

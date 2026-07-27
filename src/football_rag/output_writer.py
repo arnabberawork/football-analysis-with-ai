@@ -52,7 +52,11 @@ def tee_to_file(prefix: str):
     since it swaps out the process-global `sys.stdout`. Yields the path."""
     path = _timestamped_path(prefix)
     original_stdout = sys.stdout
-    with open(path, "w", encoding="utf-8") as f:
+    # Line-buffered (not the default block-buffering for a regular file) so
+    # a long-running script's log file can actually be tailed for live
+    # progress instead of only catching up once the buffer fills or the
+    # process exits.
+    with open(path, "w", encoding="utf-8", buffering=1) as f:
         sys.stdout = _Tee(original_stdout, f)
         try:
             yield path

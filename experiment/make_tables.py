@@ -14,9 +14,13 @@ Usage:
 
 from __future__ import annotations
 
+import shutil
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
+
+from football_rag.output_writer import tee_to_file
 
 RESULTS_DIR = Path(__file__).resolve().parent / "results"
 OUTPUT_PATH = RESULTS_DIR / "thesis_tables.md"
@@ -33,6 +37,12 @@ def _to_markdown(df: pd.DataFrame) -> str:
 
 
 def main() -> None:
+    with tee_to_file("make_tables") as log_path:
+        _run()
+    print(f"\nLog saved to {log_path}")
+
+
+def _run() -> None:
     sections: list[str] = []
 
     comparison_csv = RESULTS_DIR / "main_comparison.csv"
@@ -95,6 +105,17 @@ def main() -> None:
     OUTPUT_PATH.write_text(content, encoding="utf-8")
     print(content)
     print(f"\nSaved: {OUTPUT_PATH}")
+
+    # Every run gets its own permanent, timestamped copy for auditing - same
+    # convention as run_full_comparison.py/run_full_ablation.py's
+    # save_snapshot(). OUTPUT_PATH itself stays a single, overwritten
+    # "latest" file (useful to open without hunting for the newest folder),
+    # but re-running this after collecting more data should never silently
+    # erase what an earlier run's tables looked like.
+    snapshot_dir = RESULTS_DIR / f"thesis_tables_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    snapshot_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(OUTPUT_PATH, snapshot_dir / OUTPUT_PATH.name)
+    print(f"Snapshot saved: {snapshot_dir / OUTPUT_PATH.name}")
 
 
 if __name__ == "__main__":
