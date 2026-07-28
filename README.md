@@ -116,13 +116,13 @@ uv run python scripts/run_ablation.py     # 5 configs, each with one component d
 
 The `experiment/` directory holds the full research-scale version of this
 harness — 18 matches, ~120 queries, resumable multi-day sweeps to stay
-inside Gemini's free-tier daily quota. See `experiments.md` for what's
+inside Gemini's free-tier daily quota. See `EXPERIMENTS.md` for what's
 actually been found so far, including headline numbers such as:
 
 | Comparison | Result |
 |---|---|
-| Naive vs. agentic (122 query pairs) | see `experiments.md` §2–3 for retrieval and generation quality deltas |
-| Embedding model (MiniLM vs. E5-small) | MiniLM: P@5 0.467 / R@5 0.294 — edges out E5 on every metric, though narrowly |
+| Naive vs. agentic (122 query pairs) | see `EXPERIMENTS.md` §2–3 for retrieval and generation quality deltas |
+| Embedding model (MiniLM vs. E5-small) | effectively tied — MiniLM P@5 0.440 / R@5 0.283 vs. E5 P@5 0.440 / R@5 0.273 |
 | Ablation (75 rows, 5 configs) | isolates the contribution of hybrid retrieval, re-ranking, reasoning, and the evaluator loop |
 | Human evaluation | 3 raters × 20 blinded pairs, with inter-rater agreement analysis |
 
