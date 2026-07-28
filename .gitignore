@@ -8,4 +8,4 @@ logs/
 .ruff_cache/
 *.egg-info/
 experiment/results/
-docs/*
+docs/
