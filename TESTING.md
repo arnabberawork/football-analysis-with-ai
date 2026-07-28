@@ -7,8 +7,13 @@ over the same agentic pipeline (`scripts/run_api.py`,
 `src/football_rag/api/main.py`), and a Streamlit UI (`scripts/app.py`) that
 talks to that API over HTTP rather than importing pipeline code itself -
 plus the evaluation harness (`scripts/run_evaluation.py`,
-`scripts/run_ablation.py`). There's no automated test suite yet, so this is
-a run-it-and-read-the-output checklist.
+`scripts/run_ablation.py`). An automated unit test suite (`tests/`, see §1)
+now covers the pure-logic modules (schema, chunking helpers, StatsAgent,
+BM25, retrieval/generation metrics, context dedup) with no network or
+Gemini calls - but the four Gemini-backed entry points and the
+Chroma/embedding-model-backed retrieval path have no automated coverage,
+so the rest of this document is still a run-it-and-read-the-output
+checklist for those.
 
 ## 0. Prerequisites
 
@@ -38,6 +43,36 @@ print('imports OK')
 ```
 
 Expect: `imports OK`, no traceback.
+
+**Automated unit tests** — the same "no network, no Gemini quota" property,
+but as a real `unittest` suite under `tests/` instead of a one-off snippet:
+
+```bash
+uv run python -m unittest discover -s tests
+```
+
+Expect: `OK` and a passing count (35 tests as of this writing; ~60-120s,
+almost all of it one-time import cost for `rouge_score`/`sacrebleu`/
+`sentence-transformers`, not the tests themselves). Covers, by file:
+
+| File | What it covers |
+|---|---|
+| `test_imports.py` | module import smoke test + `HF_API_KEY` → `HF_TOKEN`/`HF_API_TOKEN` env aliasing |
+| `test_schema.py` | `Event`/`Chunk`/`ChunkMetadata` field defaults and required-field validation |
+| `test_retrieval_metrics.py` | `precision_at_k`/`recall_at_k` edge cases (empty lists, `k` larger/smaller than input, no relevant ids) |
+| `test_generation_metrics.py` | `rouge_scores`/`bleu_score` sanity (identical text scores high, unrelated text scores low) - `bertscore()` deliberately not covered here since it lazy-downloads a ~1GB model |
+| `test_context_aggregator.py` | near-duplicate chunk dedup, including the `similarity_threshold` boundary |
+| `test_stats_agent.py` | `StatsAgent` counting/filtering logic, including the penalty-shootout (period 5) exclusion for goal-counting queries and its "count stays exact, detail list is capped" behavior |
+| `test_bm25_index.py` | empty-corpus handling (no `ZeroDivisionError`), stemming (plural query matches singular chunk text), `top_n` truncation |
+
+Not yet covered by this suite (still manual, via the sections below):
+`ChunkVectorStore`/`Embedder`/`Reranker` (each loads a real model or opens a
+real Chroma collection), the chunking tier builders themselves
+(`chunk_events`/`chunk_time_windows`/`chunk_sequences`/`chunk_lineups`),
+`RetrieverAgent`'s hybrid fusion/`ensure_salient` logic, `query_understanding.py`'s
+`to_where_filter`, `output_writer.write_output`, and every Gemini-backed
+agent (`QueryUnderstandingAgent`, `ReasoningAgent`, `GeneratorAgent`,
+`EvaluatorAgent`, `NaiveRAGGenerator`) plus the FastAPI/Streamlit layers.
 
 ## 2. Naive baseline (single Gemini call)
 
