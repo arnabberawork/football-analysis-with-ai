@@ -1,0 +1,58 @@
+match_id,query,system,reference_summary,response_text,precision_at_5,recall_at_5,precision_at_10,recall_at_10,rouge1,rouge2,rougeL,bleu,bertscore_f1
+3869685,Summarize the match and provide key tactical insights.,naive,"Argentina drew with France 3-3 in the Final (2022-12-18), with the match going to a penalty shootout. Goal-scorers: Lionel Andrés Messi Cuccittini (22'24), Ángel Fabián Di María Hernández (35'22), Kylian Mbappé Lottin (79'24), Kylian Mbappé Lottin (80'59), Lionel Andrés Messi Cuccittini (107'58), Kylian Mbappé Lottin (117'05). Cards shown: Enzo Fernandez (Argentina, Yellow Card), Adrien Rabiot (France, Yellow Card), Marcus Thuram (France, Yellow Card), Olivier Giroud (France, Yellow Card), Marcos Javier Acuña (Argentina, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Damián Emiliano Martínez (Argentina, Yellow Card).",Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,8.267212954010955e-16,0.777860701084137
+3869685,Summarize the match and provide key tactical insights.,agentic,"Argentina drew with France 3-3 in the Final (2022-12-18), with the match going to a penalty shootout. Goal-scorers: Lionel Andrés Messi Cuccittini (22'24), Ángel Fabián Di María Hernández (35'22), Kylian Mbappé Lottin (79'24), Kylian Mbappé Lottin (80'59), Lionel Andrés Messi Cuccittini (107'58), Kylian Mbappé Lottin (117'05). Cards shown: Enzo Fernandez (Argentina, Yellow Card), Adrien Rabiot (France, Yellow Card), Marcus Thuram (France, Yellow Card), Olivier Giroud (France, Yellow Card), Marcos Javier Acuña (Argentina, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Damián Emiliano Martínez (Argentina, Yellow Card).","### Match Summary
+The match action featuring Argentina and France was defined by a dramatic, high-scoring contest. Argentina established an early commanding lead through a 23rd-minute penalty converted by Lionel Messi (22'24) and a 36th-minute strike from Ángel Di María (35'22). France mounted a rapid late-game resurgence late in the second half as Kylian Mbappé scored twice in quick succession—converting a penalty at 79'24 and striking a volley at 80'59 to level the score. Argentina regained their lead in extra time when Messi scored a half volley at 107'58.
+
+In surrounding match action, England demonstrated structured build-up play by utilizing striker Harry Kane in a dropping role to connect central midfielders Declan Rice and Jude Bellingham with wide outlets Bukayo Saka and Raheem Sterling. Meanwhile, Croatia highlighted strong defensive transitions, leveraging Joško Gvardiol to win back possession and immediately initiate controlled central passing combinations through Luka Modrić, Marcelo Brozović, and Mateo Kovačić.
+
+---
+
+### Key Moments with Timestamps
+* **22'24** – **Goal (Argentina):** Lionel Messi converts a penalty (Left Foot, xG 0.78).
+* **35'22** – **Goal (Argentina):** Ángel Di María scores inside the box (Left Foot, xG 0.30).
+* **79'24** – **Goal (France):** Kylian Mbappé converts a penalty (Right Foot, xG 0.78).
+* **80'59** – **Goal (France):** Kylian Mbappé scores a rapid equalizer via a volley (Right Foot, xG 0.10).
+* **107'58** – **Goal (Argentina):** Lionel Messi scores in extra time with a half volley (Right Foot, xG 0.49).
+
+---
+
+### Key Tactical Insights
+* **Argentina vs. France Dynamics:** Argentina gained control early through high-value chances finished by Messi and Di María, sustaining extra-time pressure to retake the lead. France relied on a sudden, explosive late second-half comeback spearheaded entirely by Kylian Mbappé.
+* **England's Deep Target Buildup:** England repeatedly dropped Harry Kane deeper into central spaces. This allowed him to serve as a linking hub between central midfielders (Declan Rice, Jude Bellingham) and wide attacking options (Bukayo Saka, Raheem Sterling).
+* **Croatia's Defensive Turnover Transitions:** Croatia structured their central play around successful tackles and ball recoveries from Joško Gvardiol, using those moments to instantly trigger possession-oriented central passing sequences via Luka Modrić, Marcelo Brozović, and Mateo Kovačić.",1.0,0.1923076923076923,0.5,0.1923076923076923,0.1942148760330578,0.0539419087136929,0.1239669421487603,1.280987275310932,0.7945465445518494
+3869685,How many goals did each team score in this match?,naive,Argentina scored 3 goal(s) and France scored 3 goal(s).,Not enough information.,0.2,0.0384615384615384,0.3,0.1153846153846153,0.0,0.0,0.0,0.7952776003571096,0.8484996557235718
+3869685,How many yellow or red cards were shown in the match?,naive,"8 card(s) were shown: 5 for Argentina, 3 for France.",Not enough information.,1.0,0.0505050505050505,1.0,0.101010101010101,0.0,0.0,0.0,0.7952776003571096,0.8603666424751282
+3869685,How many yellow or red cards were shown in the match?,agentic,"8 card(s) were shown: 5 for Argentina, 3 for France.","8 matching event(s) found.
+
+By team: Argentina: 5, France: 3
+By player: Enzo Fernandez: 1, Adrien Rabiot: 1, Marcus Thuram: 1, Olivier Giroud: 1, Marcos Javier Acuña: 1, Leandro Daniel Paredes: 1, Gonzalo Ariel Montiel: 1, Damián Emiliano Martínez: 1
+
+Details:
+  51'21 Argentina - Enzo Fernandez [Foul Committed] Yellow Card
+  54'12 France - Adrien Rabiot [Foul Committed] Yellow Card
+  86'24 France - Marcus Thuram [Foul Committed] Yellow Card
+  94'35 France - Olivier Giroud [Bad Behaviour] Yellow Card
+  97'33 Argentina - Marcos Javier Acuña [Foul Committed] Yellow Card
+  113'27 Argentina - Leandro Daniel Paredes [Foul Committed] Yellow Card
+  115'39 Argentina - Gonzalo Ariel Montiel [Foul Committed] Yellow Card
+  124'57 Argentina - Damián Emiliano Martínez [Bad Behaviour] Yellow Card",0.0,0.0,0.0,0.0,0.1037037037037037,0.0,0.074074074074074,1.2878572497219145,0.8164151906967163
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,naive,"Kylian Mbappé Lottin scored 3 goals for France: a goal in the 79'24 minute, a goal in the 80'59 minute, a goal in the 117'05 minute.","### Match Summary
+During the match, Kylian Mbappé Lottin featured prominently for France, recording key actions across regulation time and extra time. His primary offensive contributions came from penalty scenarios, scoring three goals—all taken with his right foot and yielding an expected goals (xG) value of 0.78 each. His first goal arrived at 79'24 from coordinates (108.0, 40.0). In extra time, Mbappé converted his second goal at 117'05 from the exact same location (108.0, 40.0), followed by a third goal at 120'13 from location (108.1, 40.1). In addition to his scoring, Mbappé was active in possession and defensive work. He registered an early ball recovery at 4'19 at coordinates (37.5, 45.1). He also completed three dribbles throughout the match: two in rapid succession at 49'03 at (56.7, 3.1) and 49'07 at (79.4, 11.9), and another at 95'10 at (113.9, 21.5). Overall, his performance was defined by penalty conversion late in key periods and ball progression across different phases.
+
+---
+
+### Key Moments
+* **4'19:** Ball recovery at (37.5, 45.1)
+* **49'03:** Completed",1.0,0.5555555555555556,0.6,0.6666666666666666,0.1973094170403587,0.0452488687782805,0.1255605381165919,1.053543152008825,0.844511866569519
+3869685,How many goals did each team score in this match?,agentic,Argentina scored 3 goal(s) and France scored 3 goal(s).,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal",0.0,0.0,0.0,0.0,0.1134751773049645,0.0,0.0851063829787234,1.0478714246717302,0.8081015348434448

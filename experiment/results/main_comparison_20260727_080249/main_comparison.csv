@@ -1,0 +1,1357 @@
+match_id,query,system,reference_summary,response_text,precision_at_5,recall_at_5,precision_at_10,recall_at_10,rouge1,rouge2,rougeL,bleu,bertscore_f1
+3869685,Summarize the match and provide key tactical insights.,naive,"Argentina drew with France 3-3 in the Final (2022-12-18), with the match going to a penalty shootout. Goal-scorers: Lionel Andrés Messi Cuccittini (22'24), Ángel Fabián Di María Hernández (35'22), Kylian Mbappé Lottin (79'24), Kylian Mbappé Lottin (80'59), Lionel Andrés Messi Cuccittini (107'58), Kylian Mbappé Lottin (117'05). Cards shown: Enzo Fernandez (Argentina, Yellow Card), Adrien Rabiot (France, Yellow Card), Marcus Thuram (France, Yellow Card), Olivier Giroud (France, Yellow Card), Marcos Javier Acuña (Argentina, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Damián Emiliano Martínez (Argentina, Yellow Card).","### Match Summary
+
+This highly contested football match between Argentina and France featured intense physical duels, structured possession, and key defensive interventions from both sides. France repeatedly looked to transition through vertical play, utilizing long aerial passes from Hugo Lloris and Theo Bernard François Hernández targeting Olivier Giroud to initiate attacks. France's midfield, led by Adrien Rabiot and Aurélien Djani Tchouaméni, sustained possession and distributed the ball across the backline to stretch Argentina's defense.
+
+Argentina responded with organized defensive play, highlighted by recoveries and clearances from Cristian Gabriel Romero, Nicolás Hernán Otamendi, and Nicolás Alejandro Tagliafico. In the first half, Argentina disrupted France’s build-up play, while looking to transition quickly. As the match progressed, Argentina created dangerous offensive sequences, such as a fluid team move in the 71st minute involving Alexis Mac Allister and Lionel Andrés Messi Cuccittini that resulted in an Enzo Fernandez shot saved by France. The later stages of the match saw France increasing pressure, utilizing substitutes like Marcus Thuram, Randal Kolo Muani, and Eduardo Camavinga, but Argentina's defensive line remained resilient, blocking crosses and clearing loose balls to hold off late French attacks.
+
+---
+
+### Key Moments with Timestamps
+
+* **11'04 – 11'17**: France attempts a fast-paced attacking sequence starting with Hugo Lloris's high pass to Olivier Giroud. After quick aerial combinations involving Adrien Rabiot and Antoine Griezmann, Cristian Gabriel Romero makes a crucial block for Argentina.
+* **30'25 – 30'31**: Theo Bernard François Hernández and Aurélien Djani Tchouaméni repeatedly find Olivier Giroud in the air, though Giroud's low lay-offs to Kylian Mbappé are ultimately cut out.
+* **70'58 – 71'31**: Following a successful tackle by Nicolás Alejandro Tagliafico, Argentina launches a fluid, multi-pass counter-attack. Alexis Mac Allister, Marcos Javier Acuña, and Lionel Andrés Messi Cuccittini combine to set up Enzo Fernandez, whose shot is saved.
+* **83'34 – 83'40**: Randal Kolo Muani wins a vital tackle, allowing Adrien Rabiot and Marcus Thuram to quickly recover possession and pressure Argentina deep in their half.
+* **89'40 – 90'10**: France mounts a sustained late-game attack with quick ground distributions involving Eduardo Camavinga, Adrien Rabiot, Kylian Mbappé, Kingsley Coman, and Jules Koundé.
+
+---
+
+### Key Tactical Insights
+
+* **Target-Man Aerial Outlets**: France consistently relied on high passes to Olivier Giroud (fed by Lloris, Hernández, and Tchouaméni) to bypass Argentina’s initial line of pressure and attempt quick lay-offs to Kylian Mbappé.
+* **Argentina's Rapid Transition Channels**: When defending deeper, Argentina utilized direct vertical transitions. They immediately looked to pass through Alexis Mac Allister, who acted as a progressive ball carrier (such as his dribble and pass sequence in the 71st minute) to connect with Lionel Messi and Enzo Fernandez.
+* **Possession Recycling**: France utilized central midfielders Adrien Rabiot and Aurélien Djani Tchouaméni alongside center-backs Dayotchanculle Upamecano and Raphaël Varane to patiently recycle play from left to right, seeking to open up passing lanes to wide outlets like Jules Koundé and Kingsley Coman.",0.0,0.0,0.0,0.0,0.1639871382636656,0.0677419354838709,0.1093247588424437,2.452808437769535,0.8047376275062561
+3869685,Summarize the match and provide key tactical insights.,agentic,"Argentina drew with France 3-3 in the Final (2022-12-18), with the match going to a penalty shootout. Goal-scorers: Lionel Andrés Messi Cuccittini (22'24), Ángel Fabián Di María Hernández (35'22), Kylian Mbappé Lottin (79'24), Kylian Mbappé Lottin (80'59), Lionel Andrés Messi Cuccittini (107'58), Kylian Mbappé Lottin (117'05). Cards shown: Enzo Fernandez (Argentina, Yellow Card), Adrien Rabiot (France, Yellow Card), Marcus Thuram (France, Yellow Card), Olivier Giroud (France, Yellow Card), Marcos Javier Acuña (Argentina, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Damián Emiliano Martínez (Argentina, Yellow Card).","### Match Summary
+
+Argentina established an early lead through structured build-up play and clinical execution. Lionel Messi opened the scoring with a penalty in the 23rd minute, followed by Ángel Di María converting a clinical shot in the 36th minute after cohesive passing. Throughout much of the game, Argentina maintained strong defensive stability in mid-to-low blocks, quickly recovering possession to disrupt France's attacking transitions. 
+
+However, France adjusted their tactics in the second half and extra time, executing high-tempo circulation through their backline and leveraging physical duels by substitutes. This tactical shift bore fruit late in the second half when Kylian Mbappé sparked a rapid comeback. Mbappé scored a penalty in the 80th minute and followed it up just over a minute later with a brilliant, low-probability technical volley to level the score. In extra time, the drama continued as Messi proved decisive once again, scoring from close range in the 108th minute with a half-volley to put Argentina back ahead.
+
+---
+
+### Key Moments
+
+*   **22'24""** – **Goal (Argentina):** Lionel Messi scores a penalty with his left foot (xG 0.78).
+*   **35'22""** – **Goal (Argentina):** Ángel Di María scores with a left-footed shot (xG 0.30) following a structured team build-up.
+*   **79'24""** – **Goal (France):** Kylian Mbappé converts a penalty with his right foot (xG 0.78).
+*   **80'59""** – **Goal (France):** Kylian Mbappé scores a rapid equalizer with a right-footed volley (xG 0.10).
+*   **107'58""** – **Goal (Argentina):** Lionel Messi scores a critical close-range half-volley in extra time (xG 0.49).
+
+---
+
+### Tactical Insights
+
+*   **Structured Possession and Block Defense:** Argentina's initial dominance was fueled by fluid passing sequences (involving Molina, Mac Allister, Fernandez, Álvarez, and De Paul) combined with defensive resilience. Argentina stayed compact in mid-to-low blocks, securing quick ball recoveries (such as Tagliafico and Mac Allister recovering possession) to stifle France's transitions.
+*   **France's Build-up and Physical Adjustments:** France altered their approach in the second half and extra time. They initiated high-tempo passing sequences through their backline (utilizing Varane, Upamecano, and Tchouaméni) and relied on substitute players like Randal Kolo Muani and Marcus Thuram winning physical duels to sustain offensive pressure in Argentina's half.
+*   **Clinical Individual Execution:** Despite tactical structures, individual brilliance defined the scoreline. Mbappé capitalized on a low-probability technical volley (0.10 xG) to rapidly level the match, while Messi's positioning allowed him to net a decisive, close-range half-volley in extra time.",1.0,0.19230769230769232,0.5,0.19230769230769232,0.1901140684410646,0.0534351145038168,0.1140684410646387,0.6825676005758118,0.7873388528823853
+3869685,How many goals did each team score in this match?,naive,Argentina scored 3 goal(s) and France scored 3 goal(s).,Not enough information.,0.4,0.07692307692307693,0.4,0.15384615384615385,0.0,0.0,0.0,0.7952776003571096,0.8484996557235718
+3869685,How many goals did each team score in this match?,agentic,Argentina scored 3 goal(s) and France scored 3 goal(s).,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal",N/A,N/A,N/A,N/A,0.1134751773049645,0.0,0.0851063829787234,1.0478714246717302,0.8081015944480896
+3869685,How many yellow or red cards were shown in the match?,naive,"8 card(s) were shown: 5 for Argentina, 3 for France.","Based on the provided evidence, there were **8 cards** shown in the match (all of which were yellow cards). 
+
+Here is the breakdown of the cards shown:
+1. **Enzo Fernandez** (Argentina) - 51'21 (Yellow Card)
+2. **Adrien Rabiot** (France) - 54'12 (Yellow Card)
+3. **Marcus Thuram** (France) - 86'24 (Yellow Card)
+4. **Olivier Giroud** (France) - 94'35 (Yellow Card)
+5. **Marcos Javier Acuña** (Argentina) - 97'33 (Yellow Card)
+6. **Leandro Daniel Paredes** (Argentina) - 113'27 (Yellow Card)
+7. **Gonzalo Ariel Montiel** (Argentina) - 115'39 (Yellow Card)
+8. **Damián Emiliano Martínez** (Argentina) - 124'57 (Yellow Card)",1.0,0.2777777777777778,1.0,0.5555555555555556,0.146788990825688,0.0186915887850467,0.128440366972477,0.6342146909213475,0.8079290390014648
+3869685,How many yellow or red cards were shown in the match?,agentic,"8 card(s) were shown: 5 for Argentina, 3 for France.","50 matching event(s) found.
+
+By team: Argentina: 30, France: 20
+By player: Julián Álvarez: 8, Enzo Fernandez: 4, Adrien Rabiot: 3, Cristian Gabriel Romero: 3, Randal Kolo Muani: 3, Nicolás Alejandro Tagliafico: 3, Aurélien Djani Tchouaméni: 2, Rodrigo Javier De Paul: 2, Lionel Andrés Messi Cuccittini: 2, Olivier Giroud: 2, Theo Bernard François Hernández: 2, Jules Koundé: 2, Nicolás Hernán Otamendi: 2, Marcus Thuram: 2, Marcos Javier Acuña: 2, Gonzalo Ariel Montiel: 2, Dayotchanculle Upamecano: 1, Ousmane Dembélé: 1, Kylian Mbappé Lottin: 1, Eduardo Camavinga: 1, Leandro Daniel Paredes: 1, Damián Emiliano Martínez: 1
+
+Details:
+  0'19 France - Adrien Rabiot [Foul Committed]
+  0'49 France - Aurélien Djani Tchouaméni [Foul Committed]
+  1'36 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  3'13 France - Dayotchanculle Upamecano [Foul Committed]
+  5'44 Argentina - Lionel Andrés Messi Cuccittini [Foul Committed]
+  6'42 Argentina - Julián Álvarez [Foul Committed]
+  8'41 Argentina - Cristian Gabriel Romero [Foul Committed]
+  12'05 Argentina - Julián Álvarez [Foul Committed]
+  18'11 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  19'03 France - Olivier Giroud [Foul Committed]
+  20'53 France - Ousmane Dembélé [Foul Committed]
+  25'32 Argentina - Cristian Gabriel Romero [Foul Committed]
+  26'52 France - Theo Bernard François Hernández [Foul Committed]
+  37'09 Argentina - Julián Álvarez [Foul Committed]
+  37'51 France - Jules Koundé [Foul Committed]
+  40'11 France - Jules Koundé [Foul Committed]
+  41'12 France - Randal Kolo Muani [Foul Committed]
+  41'39 France - Randal Kolo Muani [Foul Committed]
+  44'08 Argentina - Julián Álvarez [Foul Committed]
+  46'34 France - Theo Bernard François Hernández [Foul Committed]
+  ... and 30 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0405405405405405,0.0,0.0337837837837837,0.5002217171371279,0.7754021883010864
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,naive,"Kylian Mbappé Lottin scored 3 goals for France: a goal in the 79'24 minute, a goal in the 80'59 minute, a goal in the 117'05 minute.","Based on the provided evidence, Kylian Mbappé Lottin scored two goals during the match:
+
+1. **First Goal (79'24):** A penalty shot taken with his right foot from coordinates (108.0, 40.0). The shot had an expected goals (xG) rating of 0.78.
+2. **Second Goal (117'05):** Another penalty shot taken with his right foot from coordinates (108.0, 40.0), also with an expected goals (xG) rating of 0.78.",0.8,0.4444444444444444,0.4,0.4444444444444444,0.3137254901960784,0.1,0.2549019607843137,3.112074923496609,0.85841304063797
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,agentic,"Kylian Mbappé Lottin scored 3 goals for France: a goal in the 79'24 minute, a goal in the 80'59 minute, a goal in the 117'05 minute.","Based on the provided evidence, Kylian Mbappé Lottin scored three goals in the match (including one during the penalty shootout), all with his right foot:
+
+*   **First Goal (79'24):** A penalty kick taken from coordinates (108.0, 40.0) with an expected goals (xG) value of 0.78.
+*   **Second Goal (80'59):** A volley from coordinates (104.8, 30.1) with an expected goals (xG) value of 0.10.
+*   **Third Goal (120'13 - Penalty Shootout):** A penalty kick taken from coordinates (108.1, 40.1) with an expected goals (xG) value of 0.78.",0.8,0.4444444444444444,0.5714285714285714,0.4444444444444444,0.3089430894308942,0.1157024793388429,0.2439024390243902,2.575779148747207,0.8481490612030029
+3869519,Summarize the match and provide key tactical insights.,naive,"Argentina beat Croatia 3-0 in the Semi-finals (2022-12-13). Goal-scorers: Lionel Andrés Messi Cuccittini (33'27), Julián Álvarez (38'26), Julián Álvarez (68'46). Cards shown: Dominik Livaković (Croatia, Yellow Card), Mateo Kovačić (Croatia, Yellow Card), Cristian Gabriel Romero (Argentina, Yellow Card), Nicolás Hernán Otamendi (Argentina, Yellow Card).","### Match Summary
+The match featured structured possession phases and intense midfield battles between Argentina and Croatia. Croatia relied on patient, short passing sequences through Luka Modrić, Marcelo Brozović, and Josip Juranović to transition the ball into the attacking third. However, they struggled to create high-quality chances against a disciplined Argentine defense. Argentina focused on tactical build-ups from the back, utilizing players like Nicolás Otamendi, Enzo Fernandez, and Alexis Mac Allister. 
+
+The definitive breakthrough came in the 38th minute when Julián Álvarez intercepted the ball, capitalized on a defensive error by Croatia's Borna Sosa, and volleyed home the opening goal. Argentina continued to control key phases in the second half, relying on quick recoveries and high-pressing sequences from substitutes like Paulo Dybala. Croatia pushed forward late in stoppage time, shifting to a more direct attacking style. Although they managed to orchestrate a shooting opportunity for defender Dejan Lovren in the 94th minute, his effort went off-target, leaving Croatia unable to break down Argentina's defensive block.
+
+---
+
+### Key Moments
+*   **25'02"" – 25'29""**: Croatia's Joško Gvardiol loses a duel, but Mateo Kovačić recovers to launch an attack. Argentina quickly counters with an extensive ground-passing sequence involving Otamendi, Paredes, Mac Allister, De Paul, and Molina, which is eventually intercepted by Gvardiol.
+*   **38'15"" – 38'26"" [GOAL]**: Following a pass from Otamendi, Julián Álvarez recovers the ball. Croatian defender Borna Sosa commits a clearance error, allowing Álvarez to reclaim possession and score with a right-footed volley (xG 0.36).
+*   **40'00"" – 40'17""**: Luka Modrić wins a tackle and orchestrates a rapid 7-pass sequence with Juranović, Lovren, Brozović, Pašalić, and Kramarić before Rodrigo De Paul recovers the ball for Argentina.
+*   **62'07"" – 62'35""**: Argentina showcases physical and tactical dominance, starting with an Enzo Fernandez tackle and transitioning into a long 10-pass retention sequence to exhaust the Croatian defense.
+*   **75'42"" – 75'56""**: Substitute Paulo Dybala actively disrupts Croatia's defense, contesting multiple aerial duels, recording a successful tackle, and combining with Messi and Palacios.
+*   **94'28"" – 94'53""**: Ivan Perišić wins a late tackle, sparking Croatia's final attack. After a swift sequence of ground passes involving Gvardiol, Oršić, Majer, and Petković, Dejan Lovren takes a left-footed shot that goes off-target (xG 0.02).
+
+---
+
+### Tactical Insights
+*   **Exploiting Defensive Transitions:** Argentina’s opening goal was a direct result of aggressive pressing and capitalizing on defensive mistakes. Julián Álvarez’s high work rate allowed him to recover the ball twice in the final third, punishing Borna Sosa's failed clearance.
+*   **Midfield Possession vs. Directness:** Croatia's tactical setup heavily favored horizontal and backward passing to maintain possession in deep areas, frequently using Modrić and Brozović to recycle play. However, this often lacked the penetration needed to break Argentina's lines.
+*   **Defensive Resilience and Spatial Control:** Argentina excelled at limiting high-quality chances. When Croatia did get shots off—such as Dejan Lovren's late attempt in stoppage time—they were forced into extremely low-probability areas (evidenced by Lovren's 0.02 xG).
+*   **Impact of Defensive Disruption:** Argentina used tactical fouls, aerial duels, and targeted tackles (notably from Enzo Fernandez and Paulo Dybala) to break up Croatia's rhythm in transition, preventing them from sustaining pressure in the final third.",0.2,0.16666666666666666,0.1,0.16666666666666666,0.0912052117263843,0.0294117647058823,0.0618892508143322,0.5361445620048969,0.7935063242912292
+3869519,Summarize the match and provide key tactical insights.,agentic,"Argentina beat Croatia 3-0 in the Semi-finals (2022-12-13). Goal-scorers: Lionel Andrés Messi Cuccittini (33'27), Julián Álvarez (38'26), Julián Álvarez (68'46). Cards shown: Dominik Livaković (Croatia, Yellow Card), Mateo Kovačić (Croatia, Yellow Card), Cristian Gabriel Romero (Argentina, Yellow Card), Nicolás Hernán Otamendi (Argentina, Yellow Card).","### Match Summary
+
+Argentina secured a commanding victory against Croatia, establishing a crucial first-half lead within a rapid five-minute window. The breakthrough came in the 33rd minute when Lionel Messi converted a penalty following a foul by Croatia's goalkeeper, Dominik Livaković. This momentum was quickly capitalized on in the 38th minute when Julián Álvarez scored with a clinical right-footed volley. Throughout the match, Argentina employed a patient, structured deep build-up play involving central defenders and deep midfielders to safely progress the ball and bypass Croatia’s initial defensive pressure. During the second half, Argentina focused their progression on left-flank combinations, using sequential ground passes between Lisandro Martínez, Alexis Mac Allister, and Nicolás Tagliafico to transition the ball to the forward line. Late in the game, Argentina's defensive resilience shone as active duel-winning and crucial interventions by Lisandro Martínez, Enzo Fernandez, and Paulo Dybala neutralized Croatian attacks, allowing the team to quickly transition into offensive opportunities for Lionel Messi and Exequiel Palacios.
+
+### Key Moments
+
+*   **31'10** – Dominik Livaković (Croatia) commits a foul in the box, resulting in a yellow card.
+*   **31'31** – Mateo Kovačić (Croatia) is booked with a yellow card for bad behavior.
+*   **33'27** – **Goal!** Lionel Messi (Argentina) converts the penalty with a left-footed shot to make it 1-0.
+*   **38'26** – **Goal!** Julián Álvarez (Argentina) scores with a right-footed volley to make it 2-0.
+
+### Key Tactical Insights
+
+*   **Structured Deep Build-Up:** Argentina utilized patient, structured deep build-up play involving their central defenders (such as Nicolás Otamendi and Cristian Romero) and deep midfielders (including Leandro Paredes, Rodrigo De Paul, and Alexis Mac Allister) to safely progress the ball and bypass Croatia's initial defensive actions.
+*   **Left-Flank Combinations:** During the second half, Argentina heavily relied on left-flank combinations, executing sequential ground passes between Lisandro Martínez, Alexis Mac Allister, and Nicolás Tagliafico to transition the ball to the forward line.
+*   **Late-Game Defensive Interventions and Transition:** Late-game defensive interventions and active duel-winning by players like Lisandro Martínez, Enzo Fernandez, and Paulo Dybala allowed Argentina to quickly disrupt Croatian attacks and transition into offensive opportunities for Lionel Messi and Exequiel Palacios.",0.6,0.5,0.3,0.5,0.1712962962962963,0.0697674418604651,0.1203703703703703,2.064774479229946,0.8124774694442749
+3869519,How many goals did each team score in this match?,naive,Argentina scored 3 goal(s) and Croatia scored 0 goal(s).,"Based on the provided evidence, there is not enough information to determine the total number of goals scored by each team in the match, as the provided event logs are incomplete.",0.0,0.0,0.2,0.3333333333333333,0.0952380952380952,0.0,0.0952380952380952,1.2944532586971995,0.8493229150772095
+3869519,How many goals did each team score in this match?,agentic,Argentina scored 3 goal(s) and Croatia scored 0 goal(s).,"3 matching event(s) found.
+
+By team: Argentina: 3
+By player: Julián Álvarez: 2, Lionel Andrés Messi Cuccittini: 1
+
+Details:
+  33'27 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  38'26 Argentina - Julián Álvarez [Shot] Volley, Right Foot; xG 0.36; Goal
+  68'46 Argentina - Julián Álvarez [Shot] Normal, Right Foot; xG 0.33; Goal",N/A,N/A,N/A,N/A,0.1794871794871795,0.0,0.1282051282051282,1.8745208417490915,0.8194518685340881
+3869519,How many yellow or red cards were shown in the match?,naive,"4 card(s) were shown: 2 for Croatia, 2 for Argentina.","Based on the provided evidence, there were **4 yellow cards** and **0 red cards** shown in the match:
+
+1. **Dominik Livaković** (Croatia) – Yellow Card at 31'10
+2. **Mateo Kovačić** (Croatia) – Yellow Card at 31'31
+3. **Cristian Gabriel Romero** (Argentina) – Yellow Card at 67'31
+4. **Nicolás Hernán Otamendi** (Argentina) – Yellow Card at 70'56",1.0,0.625,0.5,0.625,0.2285714285714286,0.0,0.1714285714285714,0.6961345235234849,0.8191012740135193
+3869519,How many yellow or red cards were shown in the match?,agentic,"4 card(s) were shown: 2 for Croatia, 2 for Argentina.","4 matching event(s) found.
+
+By team: Argentina: 2, Croatia: 2
+By player: Dominik Livaković: 1, Mateo Kovačić: 1, Cristian Gabriel Romero: 1, Nicolás Hernán Otamendi: 1
+
+Details:
+  31'10 Croatia - Dominik Livaković [Foul Committed] Yellow Card
+  31'31 Croatia - Mateo Kovačić [Bad Behaviour] Yellow Card
+  67'31 Argentina - Cristian Gabriel Romero [Foul Committed] Yellow Card
+  70'56 Argentina - Nicolás Hernán Otamendi [Bad Behaviour] Yellow Card",N/A,N/A,N/A,N/A,0.1686746987951807,0.0246913580246913,0.144578313253012,2.277520925228524,0.8346501588821411
+3869519,Describe Julián Álvarez's goals in the match.,naive,"Julián Álvarez scored 2 goals for Argentina: a goal in the 38'26 minute, a goal in the 68'46 minute.","Based on the provided evidence, Julián Álvarez scored two goals in the match:
+
+*   **First Goal (38:26):** He scored using his right foot with a volley from coordinates (112.7, 37.4). The shot had an expected goals (xG) value of 0.36.
+*   **Second Goal (68:46):** He scored with a normal right-footed shot from coordinates (113.3, 45.4). The shot had an expected goals (xG) value of 0.33.",0.2,0.25,0.2,0.5,0.3368421052631579,0.1505376344086021,0.2736842105263158,2.1127205998634366,0.860808789730072
+3869519,Describe Julián Álvarez's goals in the match.,agentic,"Julián Álvarez scored 2 goals for Argentina: a goal in the 38'26 minute, a goal in the 68'46 minute.","Based on the provided evidence, Julián Álvarez scored one goal in the match:
+
+* **39th Minute (38'26):** Scored for Argentina with a right-footed volley from central inside the box (pitch coordinates 112.7, 37.4) with an expected goals (xG) value of 0.36.",1.0,0.5,1.0,0.5,0.4411764705882353,0.2121212121212121,0.3235294117647059,5.400826542867371,0.8733947277069092
+3869552,Summarize the match and provide key tactical insights.,naive,"France beat Morocco 2-0 in the Semi-finals (2022-12-14). Goal-scorers: Theo Bernard François Hernández (4'40), Randal Kolo Muani (78'49). Cards shown: Sofiane Boufal (Morocco, Yellow Card).",Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0004398556106861,0.7996285557746887
+3869552,Summarize the match and provide key tactical insights.,agentic,"France beat Morocco 2-0 in the Semi-finals (2022-12-14). Goal-scorers: Theo Bernard François Hernández (4'40), Randal Kolo Muani (78'49). Cards shown: Sofiane Boufal (Morocco, Yellow Card).","### Match Summary
+
+France secured victory over Morocco by demonstrating exceptional clinical efficiency at vital stages of the match. France opened the scoring early in the 5th minute via a left-footed half-volley from Theo Hernández. Morocco suffered major tactical disruptions to their defensive structure early in the game, forced into key defensive substitutions with Romain Saïss exiting in the 21st minute and Noussair Mazraoui being replaced at halftime. Despite these setbacks, Morocco maintained long spells of patient build-up play, circulating possession deep between central defenders Jawad El Yamiq and Achraf Dari and central midfielders Sofyan Amrabat and Azzedine Ounahi to establish control in the second half. Central midfield areas were defined by intense physical duels and defensive recoveries, with Aurélien Tchouaméni and Sofyan Amrabat frequently stepping up to break up transitional attacks. France eventually sealed the win late in the second half when Randal Kolo Muani scored from close range in the 79th minute.
+
+---
+
+### Key Moments
+
+* **4'40** – **Goal (France):** Theo Hernández scores with a left-footed half-volley (xG 0.10).
+* **20'36** – **Substitution (Morocco):** Romain Saïss is substituted off for Selim Amallah.
+* **26'14** – **Yellow Card (Morocco):** Sofiane Boufal receives a yellow card following a foul.
+* **45'00** – **Substitution (Morocco):** Noussair Mazraoui is replaced by Yahia Attiyat allah at halftime.
+* **70'57** – **Shot (France):** Marcus Thuram attempts a header from an Antoine Griezmann high pass, missing off target (xG 0.12).
+* **78'49** – **Goal (France):** Randal Kolo Muani scores a right-footed shot from close range (xG 0.85).
+
+---
+
+### Key Tactical Insights
+
+* **Clinical Efficiency:** France capitalized effectively at crucial moments, scoring early via Theo Hernández's low-probability half-volley (xG 0.10) and late through Randal Kolo Muani's high-probability finish (xG 0.85).
+* **Early Defensive Reorganization:** Morocco's defensive structure was severely disrupted early in the match due to forced substitutions of key defenders Romain Saïss (21') and Noussair Mazraoui (45').
+* **Deep Possession Circulation:** Morocco took control of possession through patient build-up play, continuously circulating the ball deep between central defenders (Jawad El Yamiq, Achraf Dari) and central midfielders (Sofyan Amrabat, Azzedine Ounahi).
+* **Midfield Battles & Transition Halts:** The central zones saw intense physical duels, with Aurélien Tchouaméni and Sofyan Amrabat regularly making crucial tackles and ball recoveries to halt opposition counter-attacks.",0.4,1.0,0.2,1.0,0.1132075471698113,0.0379146919431279,0.070754716981132,0.6718911973791146,0.7992919087409973
+3869552,How many goals did each team score in this match?,naive,France scored 2 goal(s) and Morocco scored 0 goal(s).,Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7952776003571096,0.8542385697364807
+3869552,How many goals did each team score in this match?,agentic,France scored 2 goal(s) and Morocco scored 0 goal(s).,"2 matching event(s) found.
+
+By team: France: 2
+By player: Theo Bernard François Hernández: 1, Randal Kolo Muani: 1
+
+Details:
+  4'40 France - Theo Bernard François Hernández [Shot] Half Volley, Left Foot; xG 0.10; Goal
+  78'49 France - Randal Kolo Muani [Shot] Normal, Right Foot; xG 0.85; Goal",N/A,N/A,N/A,N/A,0.1818181818181818,0.0,0.1515151515151515,2.318961973869278,0.8238105177879333
+3869552,How many yellow or red cards were shown in the match?,naive,1 card(s) were shown: 1 for Morocco.,"Based on the provided evidence, there was **1 yellow card** shown in the match (to Morocco's Sofiane Boufal at 26'14) and **0 red cards**.",0.4,1.0,0.2,1.0,0.2941176470588235,0.0,0.2352941176470588,1.6047299884724648,0.8361430168151855
+3869552,How many yellow or red cards were shown in the match?,agentic,1 card(s) were shown: 1 for Morocco.,"28 matching event(s) found.
+
+By team: France: 14, Morocco: 14
+By player: Kylian Mbappé Lottin: 5, Selim Amallah: 3, Sofyan Amrabat: 3, Yahia Attiyat allah: 3, Youssouf Fofana: 2, Sofiane Boufal: 2, Ibrahima Konaté: 2, Ousmane Dembélé: 2, Achraf Dari: 2, Jules Koundé: 2, Achraf Hakimi Mouh: 1, Marcus Thuram: 1
+
+Details:
+  13'54 France - Youssouf Fofana [Foul Committed]
+  19'48 France - Kylian Mbappé Lottin [Foul Committed]
+  22'47 Morocco - Sofiane Boufal [Foul Committed]
+  24'09 France - Ibrahima Konaté [Foul Committed]
+  25'17 France - Ousmane Dembélé [Foul Committed]
+  25'36 France - Ousmane Dembélé [Foul Committed]
+  26'14 Morocco - Sofiane Boufal [Foul Committed] Yellow Card
+  28'49 Morocco - Selim Amallah [Foul Committed]
+  31'53 France - Kylian Mbappé Lottin [Foul Committed]
+  32'15 Morocco - Achraf Dari [Foul Committed]
+  36'22 Morocco - Sofyan Amrabat [Foul Committed]
+  46'10 France - Jules Koundé [Foul Committed]
+  46'53 France - Youssouf Fofana [Foul Committed]
+  47'39 France - Kylian Mbappé Lottin [Foul Committed]
+  45'05 France - Kylian Mbappé Lottin [Foul Committed]
+  45'14 France - Jules Koundé [Foul Committed]
+  46'39 Morocco - Selim Amallah [Foul Committed]
+  60'33 Morocco - Yahia Attiyat allah [Foul Committed]
+  67'36 Morocco - Achraf Hakimi Mouh [Foul Committed]
+  68'59 Morocco - Yahia Attiyat allah [Foul Committed]
+  ... and 8 more (already included in the count above)",N/A,N/A,N/A,N/A,0.045045045045045,0.0,0.027027027027027,0.6496418465164986,0.774169385433197
+3869684,Summarize the match and provide key tactical insights.,naive,"Croatia beat Morocco 2-1 in the 3rd Place Final (2022-12-17). Goal-scorers: Joško Gvardiol (6'28), Achraf Dari (8'17), Mislav Oršić (41'43). Cards shown: Azzedine Ounahi (Morocco, Yellow Card), Selim Amallah (Morocco, Yellow Card).","### Match Summary
+
+The match featured sustained build-up play from Croatia against Morocco's structured defensive setup. In the opening minutes, Croatia initiated play from deep through Joško Gvardiol, Luka Modrić, Mateo Kovačić, and Josip Stanišić, frequently attempting aerial deliveries toward Marko Livaja that were routinely cleared by Moroccan defender Achraf Dari. Throughout the match, Croatia controlled progression through wide combinations involving Ivan Perišić, Lovro Majer, and Mislav Oršić. 
+
+Morocco aimed to bypass Croatia's central setup by playing high direct passes from goalkeeper Yassine Bounou and defender Yahia Attiyat Allah toward target striker Youssef En-Nesyri, with Sofyan Amrabat anchoring the midfield recoveries. In the second half, Croatia generated chances as Nikola Vlašić dribbled past Attiyat Allah and later fired a 70th-minute shot off target. Morocco pushed aggressively late in the game; in the 89th minute, Achraf Hakimi picked out En-Nesyri, whose headed shot was blocked by Bruno Petković. Moments later, Selim Amallah won a tackle that set up Hakim Ziyech for a left-footed attempt in the 90th minute, which flew off target.
+
+---
+
+### Key Moments
+
+* **0'07** – Achraf Dari makes an early clearance to halt a long pass aimed at Marko Livaja.
+* **27'57** – Youssef En-Nesyri commits a foul on Josip Stanišić following a period of Moroccan possession.
+* **50'35** – Achraf Dari cuts out a low pass inside the box from Lovro Majer with a clearance.
+* **56'12** – Jawad El Yamiq fouls Marko Livaja near the sideline following a turnover.
+* **61'16** – Nikola Vlašić successfully dribbles past Yahia Attiyat Allah on the wing.
+* **70'24** – Nikola Vlašić takes a right-footed shot off target (xG 0.04) after a high turnover recovery.
+* **89'48** – Youssef En-Nesyri's header (xG 0.06) from an Achraf Hakimi cross is blocked by Bruno Petković.
+* **90'04** – Hakim Ziyech shoots left-footed off target (xG 0.02) following a buildup from Azzedine Ounahi and Selim Amallah.
+
+---
+
+### Key Tactical Insights
+
+* **Croatia’s Patient Rearguard Build-Up**: Croatia continuously recycled possession through center-backs Joško Gvardiol and Josip Šutalo along with midfielders Luka Modrić and Mateo Kovačić, using short ground passes to shift Morocco's block before working the ball wide to Ivan Perišić and Mislav Oršić.
+* **Morocco’s Direct Vertical Outlets**: To counter Croatia's possession dominance, Morocco relied heavily on direct high passes from deeper areas—executed by Yassine Bounou and Yahia Attiyat Allah—targeting Youssef En-Nesyri in aerial duels to gain ground rapidly.
+* **Midfield Ball Recovery & Late Pressure**: Sofyan Amrabat and Selim Amallah provided vital defensive coverage for Morocco, breaking up plays in their own third and instantly initiating late wide attacks via Achraf Hakimi and Hakim Ziyech.",0.0,0.0,0.0,0.0,0.0766129032258064,0.0323886639676113,0.0725806451612903,0.6554606180858937,0.8065431714057922
+3869684,Summarize the match and provide key tactical insights.,agentic,"Croatia beat Morocco 2-1 in the 3rd Place Final (2022-12-17). Goal-scorers: Joško Gvardiol (6'28), Achraf Dari (8'17), Mislav Oršić (41'43). Cards shown: Azzedine Ounahi (Morocco, Yellow Card), Selim Amallah (Morocco, Yellow Card).","### Match Summary
+Croatia secured a victory over Morocco in an intense contest opened by rapid early exchanges. Croatia established control early through structured possession, circulating play between their backline and central midfielders. Their early initiative paid off in the 7th minute when Joško Gvardiol scored with a diving header. Morocco responded almost immediately, equalizing in the 9th minute through an Achraf Dari header. As the first half progressed, Croatia continued to construct patient attacks down the flanks, eventually regaining the lead shortly before half-time when Mislav Oršić scored with an extraordinary low-probability strike from a tight angle. 
+
+In the second half, Morocco attempted to build play from deep using their goalkeeper and central midfielders to draw Croatia’s defensive block forward. Croatia countered this shift by adopting a more direct approach, using long aerial distribution from goalkeeper Dominik Livaković to target man Bruno Petković to bypass Morocco's pressing scheme. Morocco struggled to break down Croatia's setup, with late frustration resulting in yellow cards for Azzedine Ounahi and Selim Amallah as Croatia held their lead.
+
+---
+
+### Key Moments
+* **6'28""** – **Goal (Croatia):** Joško Gvardiol scores a diving header (xG 0.12).
+* **8'17""** – **Goal (Morocco):** Achraf Dari equalizes with a header (xG 0.42).
+* **41'43""** – **Goal (Croatia):** Mislav Oršić scores with a right-footed shot from a low xG chance (xG 0.01).
+* **68'38""** – **Yellow Card (Morocco):** Azzedine Ounahi booked for bad behavior.
+* **83'42""** – **Yellow Card (Morocco):** Selim Amallah booked for bad behavior.
+
+---
+
+### Key Tactical Insights
+* **Early Patient Build-Up & Wide Overloads:** Croatia dominated early possession by circulating the ball through deep-lying midfielders like Luka Modrić and Mateo Kovačić, working combinations down the wings to breach Morocco's shape.
+* **Morocco's Deep Build-Up Scheme:** Morocco relied heavily on deep possession involving goalkeeper Yassine Bounou, central defender Badr Banoun, and midfielder Sofyan Amrabat to draw Croatia's defensive block out of position.
+* **Direct Target-Man Adjustment:** To bypass Morocco's second-half pressing structure, Croatia adjusted by having goalkeeper Dominik Livaković play direct, long high passes to Bruno Petković in the final third.
+* **High Efficiency in Low-XG Situations:** Mislav Oršić restored Croatia's lead late in the first half by converting a highly efficient strike from an extremely low probability angle (0.01 xG).",0.6,0.6,0.3,0.6,0.1495327102803738,0.0657276995305164,0.102803738317757,0.5889769762061285,0.8239782452583313
+3869684,How many goals did each team score in this match?,naive,Croatia scored 2 goal(s) and Morocco scored 1 goal(s).,Not enough information.,0.2,0.2,0.1,0.2,0.0,0.0,0.0,0.7952776003571096,0.8444455862045288
+3869684,How many goals did each team score in this match?,agentic,Croatia scored 2 goal(s) and Morocco scored 1 goal(s).,"3 matching event(s) found.
+
+By team: Croatia: 2, Morocco: 1
+By player: Joško Gvardiol: 1, Achraf Dari: 1, Mislav Oršić: 1
+
+Details:
+  6'28 Croatia - Joško Gvardiol [Shot] Diving Header, Head; xG 0.12; Goal
+  8'17 Morocco - Achraf Dari [Shot] Normal, Head; xG 0.42; Goal
+  41'43 Croatia - Mislav Oršić [Shot] Normal, Right Foot; xG 0.01; Goal",N/A,N/A,N/A,N/A,0.1842105263157895,0.0,0.131578947368421,1.9671773614505803,0.8277415037155151
+3869684,How many yellow or red cards were shown in the match?,naive,2 card(s) were shown: 2 for Morocco.,"Based on the provided evidence, a total of **2 yellow cards** (and 0 red cards) were shown in the match:
+
+1. **68'38** – Azzedine Ounahi (Morocco) received a **Yellow Card**.
+2. **83'42** – Selim Amallah (Morocco) received a **Yellow Card**.",0.8,1.0,0.4,1.0,0.2499999999999999,0.0434782608695652,0.2499999999999999,2.457118678686294,0.8263666033744812
+3869684,How many yellow or red cards were shown in the match?,agentic,2 card(s) were shown: 2 for Morocco.,"2 matching event(s) found.
+
+By team: Morocco: 2
+By player: Azzedine Ounahi: 1, Selim Amallah: 1
+
+Details:
+  68'38 Morocco - Azzedine Ounahi [Bad Behaviour] Yellow Card
+  83'42 Morocco - Selim Amallah [Bad Behaviour] Yellow Card",N/A,N/A,N/A,N/A,0.2272727272727273,0.0,0.1818181818181818,3.838566038544665,0.8365923166275024
+3869321,Summarize the match and provide key tactical insights.,naive,"Netherlands drew with Argentina 2-2 in the Quarter-finals (2022-12-09), with the match going to a penalty shootout. Goal-scorers: Nahuel Molina Lucero (34'04), Lionel Andrés Messi Cuccittini (72'39), Wout Weghorst (82'17), Wout Weghorst (100'32). Cards shown: Marcos Javier Acuña (Argentina, Yellow Card), Jurriën David Norman Timber (Netherlands, Yellow Card), Cristian Gabriel Romero (Argentina, Yellow Card), Wout Weghorst (Netherlands, Yellow Card), Memphis Depay (Netherlands, Yellow Card), Lisandro Martínez (Argentina, Yellow Card), Steven Berghuis (Netherlands, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Lionel Andrés Messi Cuccittini (Argentina, Yellow Card), Nicolás Hernán Otamendi (Argentina, Yellow Card), Steven Bergwijn (Netherlands, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Germán Alejandro Pezzella (Argentina, Yellow Card), Denzel Dumfries (Netherlands, Yellow Card), Noa Lang (Netherlands, Yellow Card).","### Match Narrative
+The match between Argentina and Netherlands featured intense physical battles and contrasting styles across regulation and extra time. Early play saw the Netherlands attempt wide build-ups through Denzel Dumfries, while Argentina gained middle-third control through Alexis Mac Allister, who drew repeated fouls. Argentina suffered a setback in the first half when Rodrigo Javier De Paul required an injury stoppage at 37'04 and was taken off at 37'35. 
+
+In the second half, physical intensity heightened, culminating in 75th-minute yellow cards for both Memphis Depay and Lisandro Martínez. Late in regulation, the Netherlands applied direct pressure using goalkeeper Andries Noppert to launch high balls toward Luuk de Jong, resulting in a 92nd-minute Steven Berghuis free kick that was blocked by Lautaro Martínez. During extra time, the Netherlands continued to target physical outlets like Wout Weghorst and Luuk de Jong with aerial passes, while Argentina focused on low ground combinations involving Leandro Daniel Paredes, Enzo Fernández, and Mac Allister. Late defensive interventions—such as Gonzalo Montiel’s 117th-minute block—kept the match deadlocked.
+
+---
+
+### Key Moments with Timestamps
+* **0'09 & 51'45**: Marten de Roon and Memphis Depay commit fouls on Alexis Mac Allister during midfield progressions.
+* **37'04 – 37'35**: Rodrigo Javier De Paul suffers an injury stoppage and leaves the pitch.
+* **75'06 – 75'08**: Memphis Depay and Lisandro Martínez receive yellow cards in quick succession.
+* **90'39 – 92'12**: Cody Gakpo wins a foul off Nicolás Otamendi; Steven Berghuis takes a free kick shot that is blocked by Lautaro Martínez.
+* **107'01**: A direct Netherlands attack from Andries Noppert to Wout Weghorst and Cody Gakpo ends in an offside pass to Luuk de Jong.
+* **116'56**: Gonzalo Ariel Montiel blocks Luuk de Jong's late box entry.
+
+---
+
+### Key Tactical Insights
+* **Target-Man Aerial Route**: The Netherlands relied heavily on goalkeeper Andries Noppert playing high passes directly to target players like Luuk de Jong and Wout Weghorst to bypass Argentina's midfield press and force aerial duels.
+* **Press Resistance via Midfield Fouls**: Alexis Mac Allister acted as Argentina's primary press relief, frequently drawing defensive fouls from Depay and De Roon in central areas to retain possession and reset play.
+* **Contrasting Buildup Styles**: Argentina prioritized short, multi-player ground-pass sequences through Enzo Fernández, Nahuel Molina Lucero, and Leandro Daniel Paredes, whereas the Netherlands relied on direct wide switches to Denzel Dumfries and set-piece opportunities around the box.",0.0,0.0,0.0,0.0,0.229090909090909,0.0693430656934306,0.1236363636363636,1.307049698011537,0.7899335026741028
+3869321,Summarize the match and provide key tactical insights.,agentic,"Netherlands drew with Argentina 2-2 in the Quarter-finals (2022-12-09), with the match going to a penalty shootout. Goal-scorers: Nahuel Molina Lucero (34'04), Lionel Andrés Messi Cuccittini (72'39), Wout Weghorst (82'17), Wout Weghorst (100'32). Cards shown: Marcos Javier Acuña (Argentina, Yellow Card), Jurriën David Norman Timber (Netherlands, Yellow Card), Cristian Gabriel Romero (Argentina, Yellow Card), Wout Weghorst (Netherlands, Yellow Card), Memphis Depay (Netherlands, Yellow Card), Lisandro Martínez (Argentina, Yellow Card), Steven Berghuis (Netherlands, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Lionel Andrés Messi Cuccittini (Argentina, Yellow Card), Nicolás Hernán Otamendi (Argentina, Yellow Card), Steven Bergwijn (Netherlands, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Germán Alejandro Pezzella (Argentina, Yellow Card), Denzel Dumfries (Netherlands, Yellow Card), Noa Lang (Netherlands, Yellow Card).","### Match Summary
+
+Argentina established an early two-goal advantage by effectively utilizing central-to-right progression and controlled transitional play. Nahuel Molina broke the deadlock in the 35th minute with a right-footed finish, and Lionel Messi extended the lead from the penalty spot in the 73rd minute. Throughout the first hour, Argentina managed the game's tempo through their midfield, with Alexis Mac Allister consistently winning fouls and recycling possession alongside Rodrigo De Paul and Molina on the right flank.
+
+The Netherlands countered late in the second half by altering their tactical setup to a direct, high-ball approach targeting tall physical forwards. The shift proved decisive: Wout Weghorst scored a header in the 83rd minute to cut the deficit, before dramatically equalizing deep into stoppage time at 100'32 with a left-footed strike. The match extended into extra time tied at 2-2 as both sides battled through late physical duels and defensive blocks.
+
+---
+
+### Key Moments
+
+* **34'04** – **Goal (Argentina):** Nahuel Molina Lucero scores with a right-footed shot from inside the box (xG 0.43).
+* **72'39** – **Goal (Argentina):** Lionel Andrés Messi Cuccittini converts a penalty with a left-footed strike (xG 0.78).
+* **82'17** – **Goal (Netherlands):** Wout Weghorst scores with a header (xG 0.05) to bring the score to 2-1.
+* **100'32** – **Goal (Netherlands):** Wout Weghorst scores a left-footed equalizer (xG 0.22) deep in stoppage time.
+
+---
+
+### Key Tactical Insights
+
+* **Argentina's Right-Flank Build-up:** Argentina controlled early transitional phases by progressing play through a central-to-right axis featuring Nahuel Molina, Rodrigo De Paul, and Alexis Mac Allister. Mac Allister repeatedly drew fouls in the midfield to break opposition pressure and sustain possession.
+* **Dutch Direct Aerial Pivot:** Trailing 2-0, the Netherlands shifted to a direct aerial strategy targeting physical forwards Wout Weghorst and Luuk de Jong. Luuk de Jong's aerial duel victories allowed the Dutch to bypass Argentina's midfield block, directly creating the opportunities for Weghorst's late brace.",1.0,0.20833333333333334,0.5,0.20833333333333334,0.2165605095541401,0.0767590618336887,0.1273885350318471,2.109017856192872,0.7930543422698975
+3869321,How many goals did each team score in this match?,naive,Netherlands scored 2 goal(s) and Argentina scored 2 goal(s).,Not enough information.,0.6,0.125,0.5,0.20833333333333334,0.0,0.0,0.0,0.7952776003571096,0.8494875431060791
+3869321,How many goals did each team score in this match?,agentic,Netherlands scored 2 goal(s) and Argentina scored 2 goal(s).,"4 matching event(s) found.
+
+By team: Argentina: 2, Netherlands: 2
+By player: Wout Weghorst: 2, Nahuel Molina Lucero: 1, Lionel Andrés Messi Cuccittini: 1
+
+Details:
+  34'04 Argentina - Nahuel Molina Lucero [Shot] Normal, Right Foot; xG 0.43; Goal
+  72'39 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  82'17 Netherlands - Wout Weghorst [Shot] Normal, Head; xG 0.05; Goal
+  100'32 Netherlands - Wout Weghorst [Shot] Normal, Left Foot; xG 0.22; Goal",N/A,N/A,N/A,N/A,0.1702127659574468,0.0,0.1276595744680851,1.522062375594936,0.819222629070282
+3869321,How many yellow or red cards were shown in the match?,naive,"15 card(s) were shown: 8 for Argentina, 7 for Netherlands.","Based on the provided evidence, a total of **10 yellow cards** (and 0 red cards) were shown during the match:
+
+1. **42'21** – Marcos Javier Acuña (Argentina) – Yellow Card
+2. **44'24** – Cristian Gabriel Romero (Argentina) – Yellow Card
+3. **75'06** – Memphis Depay (Netherlands) – Yellow Card
+4. **75'08** – Lisandro Martínez (Argentina) – Yellow Card
+5. **87'07** – Steven Berghuis (Netherlands) – Yellow Card
+6. **99'46** – Lionel Andrés Messi Cuccittini (Argentina) – Yellow Card
+7. **101'20** – Nicolás Hernán Otamendi (Argentina) – Yellow Card
+8. **102'39** – Steven Bergwijn (Netherlands) – Yellow Card
+9. **111'20** – Germán Alejandro Pezzella (Argentina) – Yellow Card
+10. **127'44** – Noa Lang (Netherlands) – Yellow Card",1.0,0.16666666666666666,1.0,0.3333333333333333,0.1300813008130081,0.0165289256198347,0.097560975609756,0.9460732488791808,0.7892051935195923
+3869321,How many yellow or red cards were shown in the match?,agentic,"15 card(s) were shown: 8 for Argentina, 7 for Netherlands.","71 matching event(s) found.
+
+By team: Argentina: 26, Netherlands: 45
+By player: Denzel Dumfries: 9, Jurriën David Norman Timber: 6, Cody Mathès Gakpo: 6, Nicolás Hernán Otamendi: 4, Wout Weghorst: 4, Lionel Andrés Messi Cuccittini: 4, Steven Berghuis: 4, Memphis Depay: 3, Leandro Daniel Paredes: 3, Marten de Roon: 2, Cristian Gabriel Romero: 2, Julián Álvarez: 2, Enzo Fernandez: 2, Virgil van Dijk: 2, Frenkie de Jong: 2, Rodrigo Javier De Paul: 2, Nathan Aké: 2, Germán Alejandro Pezzella: 2, Luuk de Jong: 2, Marcos Javier Acuña: 1, Teun Koopmeiners: 1, Lisandro Martínez: 1, Lautaro Javier Martínez: 1, Steven Bergwijn: 1, Nicolás Alejandro Tagliafico: 1, Gonzalo Ariel Montiel: 1, Noa Lang: 1
+
+Details:
+  0'09 Netherlands - Marten de Roon [Foul Committed]
+  5'01 Argentina - Nicolás Hernán Otamendi [Foul Committed]
+  11'49 Netherlands - Jurriën David Norman Timber [Foul Committed]
+  12'54 Argentina - Cristian Gabriel Romero [Foul Committed]
+  18'33 Netherlands - Denzel Dumfries [Foul Committed]
+  24'37 Netherlands - Denzel Dumfries [Foul Committed]
+  25'53 Netherlands - Jurriën David Norman Timber [Foul Committed]
+  25'56 Netherlands - Cody Mathès Gakpo [Foul Committed]
+  27'05 Netherlands - Cody Mathès Gakpo [Foul Committed]
+  39'26 Argentina - Julián Álvarez [Foul Committed]
+  39'44 Argentina - Enzo Fernandez [Foul Committed]
+  40'40 Netherlands - Virgil van Dijk [Foul Committed]
+  42'21 Argentina - Marcos Javier Acuña [Foul Committed] Yellow Card
+  42'32 Netherlands - Jurriën David Norman Timber [Bad Behaviour] Yellow Card
+  44'24 Argentina - Cristian Gabriel Romero [Foul Committed] Yellow Card
+  46'35 Argentina - Julián Álvarez [Foul Committed]
+  46'44 Netherlands - Wout Weghorst [Bad Behaviour] Yellow Card
+  47'56 Netherlands - Marten de Roon [Foul Committed]
+  45'43 Netherlands - Frenkie de Jong [Foul Committed]
+  48'14 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  ... and 51 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0249221183800623,0.0,0.0186915887850467,0.4263116817555649,0.7823807597160339
+3869321,Describe Wout Weghorst's goals in the match.,naive,"Wout Weghorst scored 2 goals for Netherlands: a goal in the 82'17 minute, a goal in the 100'32 minute.","Based on the provided evidence, Wout Weghorst scored three goals (including one in the penalty shootout):
+
+1. **First Goal (82'17""):** 
+   - **Type/Body Part:** Header (Normal, Head)
+   - **Location:** (108.7, 46.4)
+   - **xG:** 0.05
+
+2. **Second Goal (100'32""):** 
+   - **Type/Body Part:** Left-footed shot (Normal, Left Foot)
+   - **Location:** (111.8, 39.9)
+   - **xG:** 0.22
+   - **Build-up:** Came directly from a completed ground pass by Teun Koopmeiners at 100'31"".
+
+3. **Penalty Shootout Goal (124'59""):** 
+   - **Type/Body Part:** Right-footed penalty kick (Penalty, Normal, Right Foot)
+   - **Location:** (108.1, 40.1)
+   - **xG:** 0.78",1.0,0.7142857142857143,0.5,0.7142857142857143,0.2542372881355932,0.0862068965517241,0.1864406779661017,1.100632653453672,0.8176422119140625
+3869321,Describe Wout Weghorst's goals in the match.,agentic,"Wout Weghorst scored 2 goals for Netherlands: a goal in the 82'17 minute, a goal in the 100'32 minute.","Based on the provided evidence, Wout Weghorst scored three goals during the match (including the penalty shootout):
+
+1. **83rd Minute (82'17):** Scored a header from coordinates (108.7, 46.4) with an xG of 0.05.
+2. **101st Minute (100'32):** Scored a left-footed shot from coordinates (111.8, 39.9) with an xG of 0.22.
+3. **Penalty Shootout (124'59):** Converted a right-footed penalty shot from coordinates (108.1, 40.1) with an xG of 0.78.",1.0,0.42857142857142855,1.0,0.42857142857142855,0.2912621359223301,0.0792079207920792,0.1941747572815534,1.8163784243591687,0.864096462726593
+3869486,Summarize the match and provide key tactical insights.,naive,"Morocco beat Portugal 1-0 in the Quarter-finals (2022-12-10). Goal-scorers: Youssef En-Nesyri (41'36). Cards shown: Achraf Dari (Morocco, Yellow Card), Vitor Machado Ferreira (Portugal, Yellow Card), Walid Cheddira (Morocco, Yellow Card).","### Match Summary
+
+The match featured an intense contest between Morocco and Portugal, marked by Portugal's patient, deep build-up play and Morocco's quick transitions and defensive resilience. Early in the first half, Morocco threatened when Hakim Ziyech set up Youssef En-Nesyri for a header that went off target. Portugal dominated controlled possession through center-backs Kléper Laveran Lima Ferreira (Pepe) and Rúben Dias, circulating passes into midfield to Bernardo Silva and Otávio. However, Morocco maintained defensive shape, utilizing interceptions from Sofyan Amrabat and ball recoveries by Yahia Attiyat Allah to disrupt Portugal's momentum. As the match progressed into the second half, Morocco created dynamic chances via quick combinations involving Sofiane Boufal, Azzedine Ounahi, and Attiyat Allah, who fired a shot wide in the 47th minute. Portugal pushed forward with late tactical adjustments, introducing João Cancelo, Vitor Machado Ferreira, and Cristiano Ronaldo. Despite late pressure, including high crosses towards Fernandes and Ronaldo, Morocco’s defensive backline anchored by Attiyat Allah, Achraf Hakimi, and Badr Banoun effectively cleared incoming threats to secure their defensive composure right up to the final whistle.
+
+---
+
+### Key Moments
+
+* **5'56**: Hakim Ziyech plays a high pass into the penalty box to Youssef En-Nesyri, whose header goes off target (xG 0.12).
+* **46'58**: Yahia Attiyat Allah wins a tackle and combines with Sofiane Boufal and Azzedine Ounahi before taking a left-footed shot that flies off target (xG 0.08).
+* **50'03**: Sofiane Boufal dribbles past Bruno Fernandes on the left side to drive Morocco forward.
+* **75'30**: João Pedro Cavaco Cancelo attempts a high pass into the box for Cristiano Ronaldo, which is cleared out by Yahia Attiyat Allah.
+* **93'37**: Following a aerial push from Vitor Machado Ferreira and Bruno Fernandes, Badr Banoun makes a critical late clearance inside the box.
+
+---
+
+### Key Tactical Insights
+
+* **Moroccan Left-Flank Progression**: Morocco consistently created attacking opportunities down their left channel, combining Yahia Attiyat Allah, Sofiane Boufal, and Azzedine Ounahi to beat pressing lines via ground passes and dribbles.
+* **Portugal’s Central Circulation**: Portugal relied heavily on deep build-up involving goalkeeper Diogo Costa and center-backs Kléper Laveran Lima Ferreira (Pepe) and Rúben Dias to circulate possession into Bernardo Silva, Otávio, and José Diogo Dalot.
+* **Defensive Low-Block & Box Protection**: Morocco effectively neutralized late Portuguese direct plays, with Sofyan Amrabat breaking up central attacks while Attiyat Allah, Achraf Hakimi, and Badr Banoun contained high crosses directed toward Ronaldo and Fernandes.",0.0,0.0,0.0,0.0,0.079646017699115,0.0222222222222222,0.0619469026548672,0.9886966612612176,0.7959111928939819
+3869486,Summarize the match and provide key tactical insights.,agentic,"Morocco beat Portugal 1-0 in the Quarter-finals (2022-12-10). Goal-scorers: Youssef En-Nesyri (41'36). Cards shown: Achraf Dari (Morocco, Yellow Card), Vitor Machado Ferreira (Portugal, Yellow Card), Walid Cheddira (Morocco, Yellow Card).","### Match Narrative
+
+Morocco secured a victory over Portugal powered by a disciplined defensive setup and lethal aerial presence. Early in the match, Morocco established their attacking intent through the left side, where Yahia Attiyat Allah and Sofiane Boufal combined effectively to drive transitions and supply the box. Youssef En-Nesyri signaled Morocco's threat in the 6th minute with a head shot that went off target following a high pass from Hakim Ziyech.
+
+Portugal controlled long stretches of possession, remaining patient in deep build-up through defenders Rúben Dias and Pepe alongside midfielders Bernardo Silva and Bruno Fernandes as they attempted to break down Morocco's compact structure. However, Morocco broke the deadlock in the 42nd minute when En-Nesyri connected with a delivery to head home the game's decisive goal (xG 0.20).
+
+In the second half, Morocco continued to threaten on the break, including a 47th-minute shot by Attiyat Allah that went off target. Portugal introduced João Cancelo in the 51st minute to alter their wide dynamics, but Morocco held firm despite late bookings for Achraf Dari and Walid Cheddira to seal the win.
+
+---
+
+### Key Moments
+
+* **6' (5'56):** Morocco — Youssef En-Nesyri heads off target off a high pass from Hakim Ziyech (xG 0.12).
+* **42' (41'36):** Morocco — Youssef En-Nesyri scores a header goal (xG 0.20) to put Morocco ahead 1–0.
+* **47' (46'58):** Morocco — Yahia Attiyat Allah shoots left-footed off target (xG 0.08).
+* **51' (50'43):** Portugal — Substitution: João Cancelo replaces Raphaël Guerreiro.
+* **70' (69'40):** Morocco — Achraf Dari is shown a yellow card following a foul.
+* **87' (86'30):** Portugal — Vitor Machado Ferreira receives a yellow card.
+* **91' (90'51):** Morocco — Walid Cheddira receives a yellow card.
+
+---
+
+### Key Tactical Insights
+
+* **Morocco's Aerial Capitalization:** Morocco consistently targeted aerial deliveries into the box. Youssef En-Nesyri created an early threat in the 6th minute before converting a 42nd-minute header for the match-winner.
+* **Left-Flank Overloads & Transitions:** Morocco heavily funneled their build-up and counter-attacks down the left wing through Yahia Attiyat Allah and Sofiane Boufal to win duels and progress the ball into hazardous areas.
+* **Portugal's Deep Build-up Probe:** Portugal relied on lengthy, patient spells of possession originating deep with center-backs Rúben Dias and Pepe alongside Bernardo Silva and Bruno Fernandes in an attempt to pull Morocco out of their defensive block.",0.2,1.0,0.1,1.0,0.1357466063348416,0.0545454545454545,0.1040723981900452,0.9143845609341764,0.8101815581321716
+3869486,How many goals did each team score in this match?,naive,Morocco scored 1 goal(s) and Portugal scored 0 goal(s).,Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7952776003571096,0.841972827911377
+3869486,How many goals did each team score in this match?,agentic,Morocco scored 1 goal(s) and Portugal scored 0 goal(s).,"1 matching event(s) found.
+
+By team: Morocco: 1
+
+Details:
+  41'36 Morocco - Youssef En-Nesyri [Shot] Normal, Head; xG 0.20; Goal",N/A,N/A,N/A,N/A,0.2941176470588235,0.0,0.2352941176470588,5.134877429943371,0.8203766942024231
+3869486,How many yellow or red cards were shown in the match?,naive,"3 card(s) were shown: 2 for Morocco, 1 for Portugal.","Based on the provided evidence, a total of **4** yellow/red cards were shown in the match:
+
+1. **69'40**: **Yellow Card** – Achraf Dari (Morocco)
+2. **86'30**: **Yellow Card** – Vitor Machado Ferreira (Portugal)
+3. **90'51**: **Yellow Card** – Walid Cheddira (Morocco)
+4. **92'09**: **Second Yellow** – Walid Cheddira (Morocco)",0.8,0.4444444444444444,0.7,0.7777777777777778,0.2622950819672131,0.0338983050847457,0.1639344262295081,1.0693202864510198,0.8143131136894226
+3869486,How many yellow or red cards were shown in the match?,agentic,"3 card(s) were shown: 2 for Morocco, 1 for Portugal.","3 matching event(s) found.
+
+By team: Morocco: 2, Portugal: 1
+By player: Achraf Dari: 1, Vitor Machado Ferreira: 1, Walid Cheddira: 1
+
+Details:
+  69'40 Morocco - Achraf Dari [Foul Committed] Yellow Card
+  86'30 Portugal - Vitor Machado Ferreira [Foul Committed] Yellow Card
+  90'51 Morocco - Walid Cheddira [Foul Committed] Yellow Card",N/A,N/A,N/A,N/A,0.2222222222222222,0.0,0.1587301587301587,2.859147048437143,0.8359802961349487
+3869354,Summarize the match and provide key tactical insights.,naive,"France beat England 2-1 in the Quarter-finals (2022-12-10). Goal-scorers: Aurélien Djani Tchouaméni (16'22), Harry Kane (53'27), Olivier Giroud (77'10). Cards shown: Antoine Griezmann (France, Yellow Card), Ousmane Dembélé (France, Yellow Card), Theo Bernard François Hernández (France, Yellow Card), Harry Maguire (England, Yellow Card).",Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.1491604226891859e-07,0.7903342843055725
+3869354,Summarize the match and provide key tactical insights.,agentic,"France beat England 2-1 in the Quarter-finals (2022-12-10). Goal-scorers: Aurélien Djani Tchouaméni (16'22), Harry Kane (53'27), Olivier Giroud (77'10). Cards shown: Antoine Griezmann (France, Yellow Card), Ousmane Dembélé (France, Yellow Card), Theo Bernard François Hernández (France, Yellow Card), Harry Maguire (England, Yellow Card).","### Match Summary
+
+France secured a hard-fought victory over England in a tightly contested fixture characterized by contrasting styles of play. France took an early lead in the 17th minute when Aurélien Djani Tchouaméni struck a long-range right-footed shot into the net despite a low expected goal probability. As the first half drew to a close, France's aggressive defensive work rate in wide and central areas resulted in yellow cards for both Antoine Griezmann and Ousmane Dembélé following fouls committed in their defensive halves. England responded after halftime, establishing control through sustained possession and deep build-up passing sequences involving Harry Maguire, John Stones, Declan Rice, and Kyle Walker. Their pressure paid off in the 54th minute when Harry Kane converted a penalty to bring England level. However, France restored their lead in the 78th minute when Olivier Giroud met a cross with a clinical header to make it 2-1. Despite late England attempts to construct attacks through Raheem Sterling and Mason Mount, France held on to secure the win.
+
+---
+
+### Key Moments
+
+* **16'22** – **Goal (France)**: Aurélien Djani Tchouaméni scores with a right-footed shot from outside the box (xG 0.03).
+* **42'15** – **Yellow Card (France)**: Antoine Griezmann receives a yellow card for a foul.
+* **45'48** – **Yellow Card (France)**: Ousmane Dembélé receives a yellow card for a foul.
+* **53'27** – **Goal (England)**: Harry Kane scores from a penalty kick with his right foot (xG 0.78).
+* **77'10** – **Goal (France)**: Olivier Giroud scores with a header (xG 0.15).
+
+---
+
+### Key Tactical Insights
+
+* **Open-Play Efficiency vs. Set Pieces**: France displayed exceptional clinical efficiency in open play by converting low-probability chances into goals—first via Aurélien Tchouaméni's long-range strike (xG 0.03) and later through Olivier Giroud's header (xG 0.15). In contrast, England's main scoring breakthrough came via a high-probability set piece (Harry Kane's penalty, xG 0.78).
+* **England's Possession Structure & Circulation**: England consistently maintained possession and built play from the back using a core group of defenders and central midfielders (John Stones, Harry Maguire, Declan Rice, and Kyle Walker) to cycle the ball across the pitch and progress upfield.
+* **France's High-Intensity Defensive Press**: France relied on active wide pressing and ball recovery sequences led by Ousmane Dembélé and Aurélien Tchouaméni. However, the aggressive nature of tracking back in wide/advanced areas led to late first-half cautions for both Antoine Griezmann and Ousmane Dembélé.",0.6,0.5,0.3,0.5,0.1753653444676409,0.0838574423480083,0.1085594989561586,1.7355107789475408,0.8172479867935181
+3869354,How many goals did each team score in this match?,naive,England scored 1 goal(s) and France scored 2 goal(s).,Not enough information.,0.4,0.3333333333333333,0.2,0.3333333333333333,0.0,0.0,0.0,0.7952776003571096,0.8578906655311584
+3869354,How many goals did each team score in this match?,agentic,England scored 1 goal(s) and France scored 2 goal(s).,"3 matching event(s) found.
+
+By team: England: 1, France: 2
+By player: Aurélien Djani Tchouaméni: 1, Harry Kane: 1, Olivier Giroud: 1
+
+Details:
+  16'22 France - Aurélien Djani Tchouaméni [Shot] Normal, Right Foot; xG 0.03; Goal
+  53'27 England - Harry Kane [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  77'10 France - Olivier Giroud [Shot] Normal, Head; xG 0.15; Goal",N/A,N/A,N/A,N/A,0.1772151898734177,0.0,0.1265822784810126,1.8792447758205089,0.8321195840835571
+3869354,How many yellow or red cards were shown in the match?,naive,"4 card(s) were shown: 3 for France, 1 for England.","Based on the provided evidence, a total of **4 yellow cards** and **0 red cards** were shown in the match:
+
+1. **42'15** – **Antoine Griezmann** (France): Yellow Card
+2. **45'48** – **Ousmane Dembélé** (France): Yellow Card
+3. **79'43** – **Theo Bernard François Hernández** (France): Yellow Card
+4. **88'42** – **Harry Maguire** (England): Yellow Card",1.0,0.7142857142857143,0.7,1.0,0.2352941176470588,0.0303030303030303,0.2058823529411764,1.0015733693066158,0.8043984770774841
+3869354,How many yellow or red cards were shown in the match?,agentic,"4 card(s) were shown: 3 for France, 1 for England.","25 matching event(s) found.
+
+By team: England: 10, France: 15
+By player: Ousmane Dembélé: 3, Adrien Rabiot: 3, Antoine Griezmann: 3, Jordan Brian Henderson: 3, Bukayo Saka: 3, Aurélien Djani Tchouaméni: 2, Jude Bellingham: 2, Theo Bernard François Hernández: 2, Olivier Giroud: 1, Harry Maguire: 1, Mason Mount: 1, Kingsley Coman: 1
+
+Details:
+  4'23 France - Ousmane Dembélé [Foul Committed]
+  18'43 France - Adrien Rabiot [Foul Committed]
+  31'38 France - Adrien Rabiot [Foul Committed]
+  32'35 France - Antoine Griezmann [Foul Committed]
+  35'52 France - Antoine Griezmann [Foul Committed]
+  37'59 England - Jordan Brian Henderson [Foul Committed]
+  40'13 France - Ousmane Dembélé [Foul Committed]
+  42'15 France - Antoine Griezmann [Foul Committed] Yellow Card
+  45'48 France - Ousmane Dembélé [Foul Committed] Yellow Card
+  48'14 England - Bukayo Saka [Foul Committed]
+  48'44 England - Jordan Brian Henderson [Foul Committed]
+  51'28 France - Aurélien Djani Tchouaméni [Foul Committed]
+  62'01 France - Aurélien Djani Tchouaméni [Foul Committed]
+  63'21 England - Jordan Brian Henderson [Foul Committed]
+  64'38 England - Jude Bellingham [Foul Committed]
+  68'25 France - Theo Bernard François Hernández [Foul Committed]
+  71'04 England - Bukayo Saka [Foul Committed]
+  72'27 England - Bukayo Saka [Foul Committed]
+  79'43 France - Theo Bernard François Hernández [Foul Committed] Yellow Card
+  85'15 England - Jude Bellingham [Foul Committed]
+  ... and 5 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0571428571428571,0.0,0.0326530612244898,0.6705294548960127,0.7849971652030945
+3869420,Summarize the match and provide key tactical insights.,naive,"Croatia drew with Brazil 1-1 in the Quarter-finals (2022-12-09), with the match going to a penalty shootout. Goal-scorers: Neymar da Silva Santos Junior (105'35), Bruno Petković (116'02). Cards shown: Danilo Luiz da Silva (Brazil, Yellow Card), Marcelo Brozović (Croatia, Yellow Card), Carlos Henrique Casimiro (Brazil, Yellow Card), Marcos Aoás Corrêa (Brazil, Yellow Card), Bruno Petković (Croatia, Yellow Card).","### Match Summary
+In a tightly contested fixture between Brazil and Croatia, both sides displayed distinct strategic approaches across regulation and extra time. Croatia consistently built play through a composed midfield core featuring Luka Modrić, Marcelo Brozović, and Mateo Kovačić. They created an early opportunity in the 19th minute when Andrej Kramarić had a shot inside the box blocked by Lucas Paquetá. Brazil gradually generated scoring opportunities through flank progression and quick central exchanges; in the 67th minute, Éder Militão's right-footed strike was blocked by Joško Gvardiol following a wide attack. 
+
+The defining moment arrived at 105'35"" deep in extra time. Brazil unlocked Croatia's defensive block through a rapid sequence of ground passes between Neymar, Rodrygo, and Lucas Paquetá. Neymar received the return pass in the penalty area, dribbled past Croatian goalkeeper Dominik Livaković, and finished into the net to break the deadlock. Croatia pushed for a response in the remaining minutes of extra time using direct high passes, but Brazil held firm to manage the final minutes.
+
+---
+
+### Key Moments
+* **18'26""**: Andrej Kramarić (Croatia) takes a right-footed shot (xG 0.03), blocked inside the box by Lucas Paquetá.
+* **66'07""**: Éder Gabriel Militão (Brazil) attempts a right-footed shot (xG 0.04), blocked by Joško Gvardiol.
+* **105'35""**: **Goal!** Neymar da Silva Santos Junior (Brazil) scores a right-footed goal (xG 0.47) after dribbling past goalkeeper Dominik Livaković following combination play with Rodrygo and Lucas Paquetá.
+
+---
+
+### Key Tactical Insights
+* **Croatia’s Midfield Build-Up Structure**: Croatia prioritized controlled progression from deep, relying heavily on low ground-pass triangles between Brozović, Modrić, and Kovačić to bypass Brazil's initial press and shift play to the flanks (Josip Juranović and Borna Sosa).
+* **Central Quick Combination Play**: Brazil struggled to break down Croatia's backline with wide crosses, but found success through rapid, one-touch central combinations—exemplified by Neymar, Rodrygo, and Paquetá playing quick wall passes to penetrate the box directly.
+* **Box Protection & Shot Blocking**: Both teams demonstrated strong defensive discipline in the penalty area, with crucial blocks from Paquetá and Gvardiol denying clear visual sightlines on high-volume chances.",0.0,0.0,0.1,0.058823529411764705,0.1358313817330211,0.0329411764705882,0.0889929742388758,2.4329823278051728,0.7985593676567078
+3869420,Summarize the match and provide key tactical insights.,agentic,"Croatia drew with Brazil 1-1 in the Quarter-finals (2022-12-09), with the match going to a penalty shootout. Goal-scorers: Neymar da Silva Santos Junior (105'35), Bruno Petković (116'02). Cards shown: Danilo Luiz da Silva (Brazil, Yellow Card), Marcelo Brozović (Croatia, Yellow Card), Carlos Henrique Casimiro (Brazil, Yellow Card), Marcos Aoás Corrêa (Brazil, Yellow Card), Bruno Petković (Croatia, Yellow Card).","### Match Summary
+
+In an intensely contested match between Brazil and Croatia, the contest remained scoreless through regulation time. Throughout the earlier phases of play, Croatia relied heavily on fluid passing sequences among their midfield core of Luka Modrić, Marcelo Brozović, and Mateo Kovačić to manage build-up and maintain possession across both flanks, while Brazil looked for opportunistic moments to break through Croatia's defensive structure. 
+
+The deadlock was finally broken deep in extra time at 105'35, when Neymar orchestrated a quick central wall-pass combination with Rodrygo and Lucas Paquetá before dribbling past goalkeeper Dominik Livaković to score for Brazil. Refusing to concede, Croatia responded by pushing their lines higher and adopting a more direct passing approach into the attacking third. Their late tactical shift proved successful at 116'02, as Bruno Petković scored a dramatic equalizer to force a penalty shootout. During the shootout, Croatia secured conversions from Nikola Vlašić and Lovro Majer, while Carlos Henrique Casimiro converted his attempt for Brazil.
+
+---
+
+### Key Moments
+* **18'26**: Andrej Kramarić (Croatia) sees his shot blocked by Lucas Paquetá after a multi-pass buildup.
+* **105'35**: **Goal (Brazil)** – Neymar breaks the deadlock by completing a central combination with Rodrygo and Lucas Paquetá, dribbling past goalkeeper Dominik Livaković, and finishing with his right foot.
+* **116'02**: **Goal (Croatia)** – Bruno Petković scores with a left-footed shot to equalize late in extra time.
+* **120'03**: **Penalty Goal (Croatia)** – Nikola Vlašić converts during the penalty shootout.
+* **121'38**: **Penalty Goal (Croatia)** – Lovro Majer converts during the penalty shootout.
+* **122'17**: **Penalty Goal (Brazil)** – Carlos Henrique Casimiro converts during the penalty shootout.
+
+---
+
+### Key Tactical Insights
+* **Croatia’s Midfield Build-Up**: Croatia’s central trio of Luka Modrić, Marcelo Brozović, and Mateo Kovačić consistently managed build-up play and sustained possession through rapid ground pass combinations to bypass high pressure.
+* **Brazil’s Central Breakdown**: Brazil successfully bypassed Croatia's low-to-mid defensive block by relying on rapid central wall-pass combinations involving Neymar, Rodrygo, and Lucas Paquetá, unlocking space directly through the central channel.
+* **Croatia’s High-Line Reaction**: After falling behind in extra time, Croatia adjusted their tactical approach by advancing their defensive lines and playing direct forward passes, which directly led to the late equalizer by Bruno Petković.",1.0,0.29411764705882354,0.6,0.35294117647058826,0.1565995525727069,0.0404494382022471,0.1029082774049216,1.545019705576916,0.8091180920600891
+3869420,How many goals did each team score in this match?,naive,Croatia scored 1 goal(s) and Brazil scored 1 goal(s).,Not enough information.,0.6,0.17647058823529413,0.4,0.23529411764705882,0.0,0.0,0.0,0.7952776003571096,0.8413316607475281
+3869420,How many goals did each team score in this match?,agentic,Croatia scored 1 goal(s) and Brazil scored 1 goal(s).,"2 matching event(s) found.
+
+By team: Brazil: 1, Croatia: 1
+By player: Neymar da Silva Santos Junior: 1, Bruno Petković: 1
+
+Details:
+  105'35 Brazil - Neymar da Silva Santos Junior [Shot] Normal, Right Foot; xG 0.47; Goal
+  116'02 Croatia - Bruno Petković [Shot] Normal, Left Foot; xG 0.10; Goal",N/A,N/A,N/A,N/A,0.2222222222222222,0.0,0.126984126984127,2.385821801221133,0.8270245790481567
+3869420,How many yellow or red cards were shown in the match?,naive,"5 card(s) were shown: 3 for Brazil, 2 for Croatia.","Based on the provided evidence, a total of **5 yellow cards** and **0 red cards** were shown in the match:
+
+1. **24'06** – **Danilo Luiz da Silva** (Brazil) received a Yellow Card.
+2. **30'14** – **Marcelo Brozović** (Croatia) received a Yellow Card.
+3. **67'21** – **Carlos Henrique Casimiro** (Brazil) received a Yellow Card.
+4. **76'16** – **Marcos Aoás Corrêa** (Brazil) received a Yellow Card.
+5. **116'19** – **Bruno Petković** (Croatia) received a Yellow Card.",1.0,0.45454545454545453,0.8,0.7272727272727273,0.2068965517241379,0.0235294117647058,0.160919540229885,0.7766427959130702,0.8122423887252808
+3869420,How many yellow or red cards were shown in the match?,agentic,"5 card(s) were shown: 3 for Brazil, 2 for Croatia.","5 matching event(s) found.
+
+By team: Brazil: 3, Croatia: 2
+By player: Danilo Luiz da Silva: 1, Marcelo Brozović: 1, Carlos Henrique Casimiro: 1, Marcos Aoás Corrêa: 1, Bruno Petković: 1
+
+Details:
+  24'06 Brazil - Danilo Luiz da Silva [Foul Committed] Yellow Card
+  30'14 Croatia - Marcelo Brozović [Foul Committed] Yellow Card
+  67'21 Brazil - Carlos Henrique Casimiro [Foul Committed] Yellow Card
+  76'16 Brazil - Marcos Aoás Corrêa [Foul Committed] Yellow Card
+  116'19 Croatia - Bruno Petković [Bad Behaviour] Yellow Card",N/A,N/A,N/A,N/A,0.1443298969072165,0.0,0.1030927835051546,1.857651775472536,0.8313396573066711
+3869117,Summarize the match and provide key tactical insights.,naive,"Netherlands beat United States 3-1 in the Round of 16 (2022-12-03). Goal-scorers: Memphis Depay (9'31), Daley Blind (45'36), Haji Wright (75'20), Denzel Dumfries (80'28). Cards shown: Teun Koopmeiners (Netherlands, Yellow Card), Frenkie de Jong (Netherlands, Yellow Card).",Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.7975893468005017e-06,0.7955469489097595
+3869117,Summarize the match and provide key tactical insights.,agentic,"Netherlands beat United States 3-1 in the Round of 16 (2022-12-03). Goal-scorers: Memphis Depay (9'31), Daley Blind (45'36), Haji Wright (75'20), Denzel Dumfries (80'28). Cards shown: Teun Koopmeiners (Netherlands, Yellow Card), Frenkie de Jong (Netherlands, Yellow Card).","### Match Summary
+
+The Netherlands secured a 3-1 victory over the United States through clinical finishing, effective wing-back play, and sharp vertical transitions. Memphis Depay gave the Dutch an early lead in the 10th minute (9'31) with a right-footed strike. Right before the break at 45'36, Daley Blind doubled the Netherlands' advantage with another right-footed finish.
+
+The United States pressed back in the second half, using wide combinations to break through the Dutch defense. Their persistence resulted in a goal by Haji Wright in the 76th minute (75'20) to narrow the deficit to 2-1. However, the Netherlands quickly answered back in the 81st minute (80'28) when Daley Blind served a high pass across to opposite wing-back Denzel Dumfries, who volleyed home with his left foot to restore the two-goal margin and seal the win. Throughout the contest, the Netherlands neutralized the U.S. pressing trap by initiating rapid counter-attacks through central hubs Frenkie de Jong, Memphis Depay, and Cody Gakpo after defensive recoveries.
+
+---
+
+### Key Moments
+
+*   **10' (9'31)** – **Goal (Netherlands):** Memphis Depay scores with a right-footed shot (xG 0.16).
+*   **46' (45'36)** – **Goal (Netherlands):** Daley Blind doubles the lead with a right-footed shot (xG 0.25).
+*   **60' (59'24)** – **Yellow Card (Netherlands):** Teun Koopmeiners is booked for a foul.
+*   **76' (75'20)** – **Goal (United States):** Haji Wright pulls one back with a right-footed shot (xG 0.36).
+*   **81' (80'28)** – **Goal (Netherlands):** Denzel Dumfries scores a left-footed volley following a high pass from Daley Blind (xG 0.24).
+
+---
+
+### Key Tactical Insights
+
+*   **Effective Wing-Back Synergy:** The Netherlands exploited wide areas expertly, culminating in left wing-back Daley Blind assisting right wing-back Denzel Dumfries for the decisive third goal.
+*   **U.S. Wide Overloads:** The United States relied heavily on fullbacks Sergino Dest and Antonee Robinson linking up with Giovanni Reyna in wide positions to overload and breach the Dutch defensive block, eventually generating Haji Wright's goal.
+*   **Rapid Vertical Transitions:** The Dutch consistently bypassed the American press after ball recoveries by launching quick vertical progressions through Frenkie de Jong, Memphis Depay, and Cody Gakpo.",0.8,0.5,0.4,0.5,0.1679012345679012,0.0744416873449131,0.1135802469135802,1.815730103545036,0.8188214898109436
+3869117,How many goals did each team score in this match?,naive,Netherlands scored 3 goal(s) and United States scored 1 goal(s).,Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.6193628179172647,0.8485604524612427
+3869117,How many goals did each team score in this match?,agentic,Netherlands scored 3 goal(s) and United States scored 1 goal(s).,"4 matching event(s) found.
+
+By team: Netherlands: 3, United States: 1
+By player: Memphis Depay: 1, Daley Blind: 1, Haji Wright: 1, Denzel Dumfries: 1
+
+Details:
+  9'31 Netherlands - Memphis Depay [Shot] Normal, Right Foot; xG 0.16; Goal
+  45'36 Netherlands - Daley Blind [Shot] Normal, Right Foot; xG 0.25; Goal
+  75'20 United States - Haji Wright [Shot] Normal, Right Foot; xG 0.36; Goal
+  80'28 Netherlands - Denzel Dumfries [Shot] Volley, Left Foot; xG 0.24; Goal",N/A,N/A,N/A,N/A,0.1739130434782609,0.0222222222222222,0.1304347826086956,1.7347759631470052,0.8236920833587646
+3869117,How many yellow or red cards were shown in the match?,naive,2 card(s) were shown: 2 for Netherlands.,"Based on the provided evidence, **2 yellow cards** (and 0 red cards) were shown in the match:
+
+1. **59'24** – Yellow Card: Teun Koopmeiners (Netherlands)
+2. **86'34** – Yellow Card: Frenkie de Jong (Netherlands)
+
+*(Note: This count reflects all cards documented in the provided evidence, which omits some match events).*",0.6,0.75,0.3,0.75,0.2068965517241379,0.0357142857142857,0.2068965517241379,2.178895753106483,0.8328162431716919
+3869117,How many yellow or red cards were shown in the match?,agentic,2 card(s) were shown: 2 for Netherlands.,"2 matching event(s) found.
+
+By team: Netherlands: 2
+By player: Teun Koopmeiners: 1, Frenkie de Jong: 1
+
+Details:
+  59'24 Netherlands - Teun Koopmeiners [Foul Committed] Yellow Card
+  86'34 Netherlands - Frenkie de Jong [Foul Committed] Yellow Card",N/A,N/A,N/A,N/A,0.217391304347826,0.0,0.1739130434782608,3.686467508351105,0.8315689563751221
+3869118,Summarize the match and provide key tactical insights.,naive,"England beat Senegal 3-0 in the Round of 16 (2022-12-04). Goal-scorers: Jordan Brian Henderson (38'), Harry Kane (47'17), Bukayo Saka (56'43). Cards shown: Kalidou Koulibaly (Senegal, Yellow Card).","### Match Narrative
+
+In this match between England and Senegal, England established control through structured build-up play from the back. Central defenders John Stones and Harry Maguire, alongside fullbacks Luke Shaw and Kyle Walker, consistently circulated possession with goalkeeper Jordan Pickford to break Senegal's structure. Midfielders Declan Rice, Jordan Henderson, and Jude Bellingham worked to link the defense to the attack, while striker Harry Kane dropped deep to feed wingers Philip Foden and Bukayo Saka.
+
+Senegal relied on defensive interventions led by Kalidou Koulibaly and tried to construct attacks through Ismaïla Sarr, Pape Gueye, Youssouf Sabaly, and Nampalys Mendy. While Senegal managed limited long-range efforts, England generated the match's primary scoring opportunities. Late in the first half, Kane missed a dangerous opening. However, England capitalized in the second half when Philip Foden recovered a loose ball in the attacking third, dribbled past Sabaly, and setup Bukayo Saka for a left-footed finish to put England ahead.
+
+---
+
+### Key Moments
+
+- **40'39**: Harry Kane (England) receives a ground pass from Bukayo Saka and takes a right-footed shot inside the penalty area that goes off target (xG 0.18).
+- **49'10**: Following a clearance by Declan Rice, Pape Matar Sarr (Senegal) takes a left-footed half-volley from distance that goes off target (xG 0.02).
+- **56'43**: **GOAL (England)** — Philip Foden recovers the ball high up the pitch, dribbles past Youssouf Sabaly, and delivers a ground pass to Bukayo Saka, who finishes with his left foot into the net (xG 0.22).
+
+---
+
+### Key Tactical Insights
+
+- **Patient Back-Line Build-Up:** England systematically circulated possession across their defensive line (Stones, Maguire, Walker, Shaw, Pickford) to draw out Senegal's block before playing forward into midfield.
+- **Striker Dropping into Link-Play:** Harry Kane routinely dropped deeper into midfield to receive long and short passes, acting as a distributor to wide players Bukayo Saka and Philip Foden.
+- **High Recovery Transition:** England's primary breakthrough came directly from high press and ball recovery; Philip Foden regained possession high up the left flank, immediately exploiting the unbalanced defense to setup Saka's goal.",0.2,0.16666666666666666,0.1,0.16666666666666666,0.0883116883116883,0.0261096605744125,0.0623376623376623,0.8409590555370929,0.8010284900665283
+3869118,Summarize the match and provide key tactical insights.,agentic,"England beat Senegal 3-0 in the Round of 16 (2022-12-04). Goal-scorers: Jordan Brian Henderson (38'), Harry Kane (47'17), Bukayo Saka (56'43). Cards shown: Kalidou Koulibaly (Senegal, Yellow Card).","### Match Summary
+England secured a decisive victory against Senegal through high clinical efficiency in front of goal and disciplined tactical execution. The English side controlled the tempo of the match by utilizing structured deep build-up play involving goalkeeper Jordan Pickford and central defenders John Stones and Harry Maguire. England broke the deadlock in the 38th minute when Jordan Henderson converted a left-footed shot. Harry Kane doubled the lead late in the first half (47'17) with a right-footed finish. 
+
+Early in the second half, Bukayo Saka extended England's lead to 3–0 at 56'43 with a left-footed strike. Senegal attempted to alter the game's dynamic with halftime adjustments, bringing on Pape Gueye for Pathé Ismaël Ciss, but struggled to generate high-quality central scoring opportunities. Senegal's attacks were largely contained, forcing low-efficiency attempts from long range following wide crosses. England comfortably managed possession and closed out the match cleanly.
+
+---
+
+### Key Moments
+- **38'** – **Goal (England):** Jordan Henderson scores with a left-footed shot (xG 0.13).
+- **45'** – **Substitution (Senegal):** Pape Gueye replaces Pathé Ismaël Ciss.
+- **47'17** – **Goal (England):** Harry Kane scores with a right-footed shot (xG 0.21).
+- **56'43** – **Goal (England):** Bukayo Saka scores with a left-footed shot (xG 0.22).
+- **75'08** – **Yellow Card (Senegal):** Kalidou Koulibaly is cautioned for committing a foul.
+
+---
+
+### Key Tactical Insights
+- **Clinical Finishing in Attacking Phases:** England showed maximum efficiency in front of goal, capitalizing on their created chances through Jordan Henderson, Harry Kane, and Bukayo Saka.
+- **Structured Deep Build-Up:** England controlled match rhythm and possession by building play from the back using goalkeeper Jordan Pickford alongside central defenders John Stones and Harry Maguire.
+- **Vertical Midfield Transitions:** England effectively penetrated Senegal's defensive lines by using quick vertical passing combinations through Jude Bellingham and Jordan Henderson to rapidly supply Harry Kane and Bukayo Saka in advanced areas.
+- **Senegal's Central Inefficiency:** Senegal struggled to break through England's central block, often resulting in low-efficiency long-range shots following wide crosses.",0.6,0.5,0.3,0.5,0.1276595744680851,0.0427807486631016,0.101063829787234,1.188921714696765,0.8106607794761658
+3869118,How many goals did each team score in this match?,naive,England scored 3 goal(s) and Senegal scored 0 goal(s).,Not enough information.,0.2,0.16666666666666666,0.2,0.3333333333333333,0.0,0.0,0.0,0.7952776003571096,0.8530848026275635
+3869118,How many goals did each team score in this match?,agentic,England scored 3 goal(s) and Senegal scored 0 goal(s).,"3 matching event(s) found.
+
+By team: England: 3
+By player: Jordan Brian Henderson: 1, Harry Kane: 1, Bukayo Saka: 1
+
+Details:
+  38' England - Jordan Brian Henderson [Shot] Normal, Left Foot; xG 0.13; Goal
+  47'17 England - Harry Kane [Shot] Normal, Right Foot; xG 0.21; Goal
+  56'43 England - Bukayo Saka [Shot] Normal, Left Foot; xG 0.22; Goal",N/A,N/A,N/A,N/A,0.1666666666666666,0.0,0.1388888888888888,1.8523332552009824,0.8260747790336609
+3869118,How many yellow or red cards were shown in the match?,naive,1 card(s) were shown: 1 for Senegal.,Not enough information.,0.4,1.0,0.2,1.0,0.0,0.0,0.0,2.1617886496312457,0.8591454029083252
+3869118,How many yellow or red cards were shown in the match?,agentic,1 card(s) were shown: 1 for Senegal.,"1 matching event(s) found.
+
+By team: Senegal: 1
+
+Details:
+  75'08 Senegal - Kalidou Koulibaly [Foul Committed] Yellow Card",N/A,N/A,N/A,N/A,0.3703703703703703,0.0,0.2962962962962963,7.305891545072536,0.8279272317886353
+3869151,Summarize the match and provide key tactical insights.,naive,"Argentina beat Australia 2-1 in the Round of 16 (2022-12-03). Goal-scorers: Lionel Andrés Messi Cuccittini (34'35), Julián Álvarez (56'41), Enzo Fernandez (own goal, credited to Australia) (76'11). Cards shown: Jackson Irvine (Australia, Yellow Card), Miloš Degenek (Australia, Yellow Card).","### Match Summary
+
+The match sequences detail a competitive encounter between Australia and Argentina. Australia consistently attempted to build play from deep through goalkeeper Mathew Ryan, defenders Kye Rowles, Miloš Degenek, and Harry Souttar, alongside central midfielder Aaron Mooy. When moving into advanced areas, Australia relied heavily on direct high passes targeting Harry Souttar on set pieces and late in the match, alongside forward options such as Mathew Leckie, Mitchell Duke, Jamie MacLaren, and Garang Kuol. 
+
+Argentina effectively contained Australia's direct threats through vital blocks and clearances from Cristian Romero, Nicolás Otamendi, Nicolás Tagliafico, and Enzo Fernández. Offensively and off the ball, Argentina aimed to disrupt Australia’s deep build-up—highlighted by Julián Álvarez blocking a distribution attempt—while orchestrating possession through central combinations involving Rodrigo De Paul, Enzo Fernández, and Lionel Messi. The match featured several physical duels and stoppages, including injury breaks for Nahuel Molina Lucero, Mathew Ryan, and Cristian Romero.
+
+---
+
+### Key Moments with Timestamps
+
+* **28'07 – 28'11:** Riley McGree plays a high pass to Harry Souttar, whose header inside the box is blocked by Cristian Romero before Enzo Fernández and Rodrigo De Paul clear the ball.
+* **45'02:** Julián Álvarez blocks a low pass attempted by Harry Souttar inside Australia's defensive zone.
+* **75'40:** Injury stoppages are recorded for both Argentina defender Nahuel Molina Lucero and Australia goalkeeper Mathew Ryan.
+* **81'31 – 81'37:** Lisandro Martínez, Rodrigo De Paul, and Enzo Fernández complete a sequence of passes to locate Lionel Messi in space.
+* **82'48 – 82'54:** Aziz Behich plays a high pass to Garang Kuol, winning an aerial duel against Cristian Romero, which results in an injury stoppage for Romero.
+* **88'57 – 89'05:** Fran Karačić plays a long high pass to Harry Souttar, who wins an aerial duel over Nicolás Tagliafico to set up Jamie MacLaren before committing a foul on goalkeeper Damián Emiliano Martínez.
+
+---
+
+### Key Tactical Insights
+
+* **Australia’s Direct Target Strategy:** Australia relied heavily on playing direct high passes from goalkeeper Mathew Ryan and defender Fran Karačić into aerial targets—notably centre-back Harry Souttar pushed forward late in the game, alongside Jamie MacLaren and Garang Kuol—to force duals inside Argentina's defensive half.
+* **Australia Deep Build-Up Patterns:** Australia systematically attempted short, low build-up passes between Mathew Ryan, Kye Rowles, Jackson Irvine, and Aaron Mooy to retain possession and invite pressure before circulating wide to full-backs Aziz Behich and Fran Karačić.
+* **Argentina’s Central Defensive & Midfield Structure:** Argentina successfully managed central threats through primary blocks by Cristian Romero and aerial clearances from Nicolás Otamendi, Enzo Fernández, and Nicolás Tagliafico. When regaining possession, Argentina quickly transitioned through short ground passes connecting Rodrigo De Paul, Enzo Fernández, and Lionel Messi.",0.0,0.0,0.0,0.0,0.0809248554913294,0.0193423597678916,0.0539499036608863,0.5598684188115719,0.7885431051254272
+3869151,Summarize the match and provide key tactical insights.,agentic,"Argentina beat Australia 2-1 in the Round of 16 (2022-12-03). Goal-scorers: Lionel Andrés Messi Cuccittini (34'35), Julián Álvarez (56'41), Enzo Fernandez (own goal, credited to Australia) (76'11). Cards shown: Jackson Irvine (Australia, Yellow Card), Miloš Degenek (Australia, Yellow Card).","### Match Summary
+
+Argentina established a 2-0 lead over Australia through clinical finishing in front of goal. Lionel Messi broke the deadlock in the 35th minute with a left-footed shot, followed by Julián Álvarez doubling the lead in the 57th minute with a right-footed effort. Australia attempted to establish rhythm by building attacks systematically from the back through goalkeeper Mathew Ryan, defenders Kye Rowles and Fran Karačić, and midfielder Aaron Mooy. Australia found a way back into the match in the 77th minute when Argentina midfielder Enzo Fernández conceded an own goal. Following the goal, Australia adapted their strategy for the closing stages by shifting to a direct, route-one approach, repeatedly targeting tall defender Harry Souttar with high passes inside Argentina's penalty box. Despite late pressure and aerial duels during stoppage time, Argentina secured the victory through key clearances from Nicolás Otamendi and fouls drawn in deep positions by goalkeeper Damián Emiliano Martínez.
+
+---
+
+### Key Moments
+
+* **14'11** – Jackson Irvine (Australia) is shown a yellow card for committing a foul.
+* **34'35** – **Goal (Argentina):** Lionel Messi scores with a left-footed shot (0.07 xG).
+* **56'41** – **Goal (Argentina):** Julián Álvarez scores with a right-footed shot (0.28 xG).
+* **76'11** – **Own Goal (Australia):** Enzo Fernández accidentally concedes an own goal into Argentina's net.
+
+---
+
+### Key Tactical Insights
+
+* **Clinical Finishing:** Argentina effectively took control of the match by capitalizing on their scoring opportunities via Lionel Messi and Julián Álvarez.
+* **Australia's Patient Build-Up Play:** Throughout the middle phase of the match, Australia systematically built out from the defensive third using short, structured ground passes between Mathew Ryan, Kye Rowles, Fran Karačić, and Aaron Mooy.
+* **Late Direct Aerial Shift:** In the final ten minutes and stoppage time, Australia shifted away from short build-up play to an aggressive route-one direct tactic, sending high passes into the box targeting defender Harry Souttar to create second-ball opportunities for Jamie MacLaren.
+* **Argentina's Defensive Management:** Argentina countered Australia's late physical pressure through defensive clearances from Nicolás Otamendi and Enzo Fernández, combined with crucial ball recoveries and foul-winning by goalkeeper Damián Emiliano Martínez to reset play.",0.4,0.5,0.2,0.5,0.1469194312796208,0.0476190476190476,0.0995260663507109,1.277913044605484,0.8005123138427734
+3869151,How many goals did each team score in this match?,naive,Argentina scored 2 goal(s) and Australia scored 1 goal(s).,Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7952776003571096,0.8470955491065979
+3869151,How many goals did each team score in this match?,agentic,Argentina scored 2 goal(s) and Australia scored 1 goal(s).,"2 matching event(s) found.
+
+By team: Argentina: 2
+By player: Lionel Andrés Messi Cuccittini: 1, Julián Álvarez: 1
+
+Details:
+  34'35 Argentina - Lionel Andrés Messi Cuccittini [Shot] Normal, Left Foot; xG 0.07; Goal
+  56'41 Argentina - Julián Álvarez [Shot] Normal, Right Foot; xG 0.28; Goal",N/A,N/A,N/A,N/A,0.2222222222222222,0.0,0.1587301587301587,2.5222031055715526,0.8245164752006531
+3869151,How many yellow or red cards were shown in the match?,naive,2 card(s) were shown: 2 for Australia.,"Based on the provided evidence, **2 yellow cards** (and 0 red cards) were shown in the match:
+
+1. **14'11** – Jackson Irvine (Australia) received a **Yellow Card**.
+2. **37'20** – Miloš Degenek (Australia) received a **Yellow Card**.",0.4,0.6666666666666666,0.2,0.6666666666666666,0.2666666666666666,0.0465116279069767,0.2666666666666666,2.566353288953699,0.8353733420372009
+3869151,How many yellow or red cards were shown in the match?,agentic,2 card(s) were shown: 2 for Australia.,"27 matching event(s) found.
+
+By team: Argentina: 9, Australia: 18
+By player: Keanu Baccus: 5, Marcos Javier Acuña: 3, Mitchell Thomas Duke: 2, Julián Álvarez: 2, Aaron Mooy: 2, Jackson Irvine: 2, Mathew Leckie: 2, Aziz Eraltay Behich: 1, Miloš Degenek: 1, Riley McGree: 1, Cristian Gabriel Romero: 1, Nicolás Hernán Otamendi: 1, Lautaro Javier Martínez: 1, Enzo Fernandez: 1, Fran Karačić: 1, Harry Souttar: 1
+
+Details:
+  4'36 Australia - Mitchell Thomas Duke [Foul Committed]
+  6'38 Australia - Keanu Baccus [Foul Committed]
+  8'45 Australia - Keanu Baccus [Foul Committed]
+  9'44 Argentina - Julián Álvarez [Foul Committed]
+  10'39 Australia - Aaron Mooy [Foul Committed]
+  13'47 Australia - Keanu Baccus [Foul Committed]
+  14'11 Australia - Jackson Irvine [Foul Committed] Yellow Card
+  28'29 Australia - Mathew Leckie [Foul Committed]
+  30'45 Argentina - Marcos Javier Acuña [Foul Committed]
+  33'27 Australia - Aziz Eraltay Behich [Foul Committed]
+  36'31 Australia - Keanu Baccus [Foul Committed]
+  37'20 Australia - Miloš Degenek [Foul Committed] Yellow Card
+  38'18 Argentina - Marcos Javier Acuña [Foul Committed]
+  46'26 Australia - Mitchell Thomas Duke [Foul Committed]
+  51'14 Australia - Keanu Baccus [Foul Committed]
+  53'34 Australia - Riley McGree [Foul Committed]
+  54'11 Argentina - Julián Álvarez [Foul Committed]
+  59'38 Australia - Mathew Leckie [Foul Committed]
+  61'28 Argentina - Cristian Gabriel Romero [Foul Committed]
+  66'31 Argentina - Nicolás Hernán Otamendi [Foul Committed]
+  ... and 7 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0403225806451612,0.0,0.0241935483870967,0.5975029556065146,0.7767962217330933
+3869152,Summarize the match and provide key tactical insights.,naive,"France beat Poland 3-1 in the Round of 16 (2022-12-04). Goal-scorers: Olivier Giroud (43'28), Kylian Mbappé Lottin (73'56), Kylian Mbappé Lottin (90'05), Robert Lewandowski (98'36). Cards shown: Aurélien Djani Tchouaméni (France, Yellow Card), Bartosz Bereszyński (Poland, Yellow Card), Matty Cash (Poland, Yellow Card).",Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.4755511905845428e-07,0.7902243733406067
+3869152,Summarize the match and provide key tactical insights.,agentic,"France beat Poland 3-1 in the Round of 16 (2022-12-04). Goal-scorers: Olivier Giroud (43'28), Kylian Mbappé Lottin (73'56), Kylian Mbappé Lottin (90'05), Robert Lewandowski (98'36). Cards shown: Aurélien Djani Tchouaméni (France, Yellow Card), Bartosz Bereszyński (Poland, Yellow Card), Matty Cash (Poland, Yellow Card).","### Match Summary
+
+France secured a victory over Poland driven by clinical finishing in open play and strong territorial control. Early on, Poland attempted to build patiently from the back, utilizing central midfielders Piotr Zieliński and Grzegorz Krychowiak to progress play into advanced central areas toward striker Robert Lewandowski. However, France gradually controlled the match by establishing sustained possession in Poland's half, relying heavily on fluid passing combinations down the right flank featuring Ousmane Dembélé, Jules Koundé, and Antoine Griezmann. 
+
+After Olivier Giroud sent a half-volley wide in the 36th minute, France broke the deadlock late in the first half when Giroud converted a left-footed shot at 43'28. France maintained their advantage in the second half, doubling their lead at 73'56 through a right-footed strike by Kylian Mbappé. Poland managed to pull a goal back deep into stoppage time when Robert Lewandowski successfully converted a penalty at 98'36, but France's open-play efficiency proved decisive.
+
+---
+
+### Key Moments
+
+- **30'55** – **Yellow Card (France):** Aurélien Djani Tchouaméni receives a yellow card following a foul.
+- **35'31** – **Missed Chance (France):** Olivier Giroud recovers a cleared ball but sends his left-footed half-volley wide.
+- **43'28** – **Goal (France):** Olivier Giroud scores with a left-footed shot (xG 0.29).
+- **73'56** – **Goal (France):** Kylian Mbappé scores with a right-footed strike (xG 0.09).
+- **98'36** – **Goal (Poland):** Robert Lewandowski converts a penalty with his right foot (xG 0.78).
+
+---
+
+### Key Tactical Insights
+
+- **Clinical Open-Play Finishing:** France showcased high efficiency in open-play scenarios, generating decisive goals through Olivier Giroud and Kylian Mbappé.
+- **Right-Flank Overloads & Territorial Control:** France consistently controlled the opposition half by orchestrating multi-player passing sequences down the right wing, leveraging Dembélé, Koundé, and Griezmann.
+- **Central Build-Up Structure:** Poland focused their initial construction through deep central progressions, using Zieliński and Krychowiak to connect back-line passes directly to Lewandowski in the final third.",0.8,0.4,0.4,0.4,0.1671018276762402,0.0734908136482939,0.1357702349869451,1.0267556711228825,0.8131699562072754
+3869152,How many goals did each team score in this match?,naive,France scored 3 goal(s) and Poland scored 1 goal(s).,Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7952776003571096,0.8565341830253601
+3869152,How many goals did each team score in this match?,agentic,France scored 3 goal(s) and Poland scored 1 goal(s).,"4 matching event(s) found.
+
+By team: France: 3, Poland: 1
+By player: Kylian Mbappé Lottin: 2, Olivier Giroud: 1, Robert Lewandowski: 1
+
+Details:
+  43'28 France - Olivier Giroud [Shot] Normal, Left Foot; xG 0.29; Goal
+  73'56 France - Kylian Mbappé Lottin [Shot] Normal, Right Foot; xG 0.09; Goal
+  90'05 France - Kylian Mbappé Lottin [Shot] Normal, Right Foot; xG 0.04; Goal
+  98'36 Poland - Robert Lewandowski [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal",N/A,N/A,N/A,N/A,0.1555555555555555,0.0,0.1111111111111111,1.550121777549756,0.8299505114555359
+3869152,How many yellow or red cards were shown in the match?,naive,"3 card(s) were shown: 1 for France, 2 for Poland.","Based on the provided evidence, a total of **3 yellow cards** (and **0 red cards**) were shown in the match:
+
+1. **30'55** – Aurélien Djani Tchouaméni (France) – **Yellow Card**
+2. **46'14** – Bartosz Bereszyński (Poland) – **Yellow Card**
+3. **87'44** – Matty Cash (Poland) – **Yellow Card**",1.0,0.8333333333333334,0.5,0.8333333333333334,0.2711864406779661,0.0350877192982456,0.2711864406779661,2.251279708122696,0.8100135922431946
+3869152,How many yellow or red cards were shown in the match?,agentic,"3 card(s) were shown: 1 for France, 2 for Poland.","3 matching event(s) found.
+
+By team: France: 1, Poland: 2
+By player: Aurélien Djani Tchouaméni: 1, Bartosz Bereszyński: 1, Matty Cash: 1
+
+Details:
+  30'55 France - Aurélien Djani Tchouaméni [Foul Committed] Yellow Card
+  46'14 Poland - Bartosz Bereszyński [Foul Committed] Yellow Card
+  87'44 Poland - Matty Cash [Foul Committed] Yellow Card",N/A,N/A,N/A,N/A,0.2028985507246376,0.0,0.144927536231884,2.859147048437143,0.8315922021865845
+3869152,Describe Kylian Mbappé Lottin's goals in the match.,naive,"Kylian Mbappé Lottin scored 2 goals for France: a goal in the 73'56 minute, a goal in the 90'05 minute.","Based on the provided evidence, Kylian Mbappé Lottin scored one goal in the match:
+
+* **90'05**: He scored a goal with a normal, right-footed shot from coordinates (106.2, 25.2), which had an expected goals (xG) value of 0.04.",0.2,0.16666666666666666,0.1,0.16666666666666666,0.46875,0.2258064516129032,0.28125,8.000981634386346,0.8667883276939392
+3869152,Describe Kylian Mbappé Lottin's goals in the match.,agentic,"Kylian Mbappé Lottin scored 2 goals for France: a goal in the 73'56 minute, a goal in the 90'05 minute.","Based on the provided evidence, Kylian Mbappé Lottin scored **one goal** in the match:
+
+* **91st Minute (90'05):** Scored with a right-footed shot (normal type) from coordinates (106.2, 25.2), which had an expected goals value (xG) of 0.04.",0.4,0.3333333333333333,0.4,0.3333333333333333,0.4374999999999999,0.1935483870967742,0.3124999999999999,5.5619614937003305,0.863594651222229
+3869219,Summarize the match and provide key tactical insights.,naive,"Japan drew with Croatia 1-1 in the Round of 16 (2022-12-05), with the match going to a penalty shootout. Goal-scorers: Daizen Maeda (42'54), Ivan Perišić (54'54). Cards shown: Mateo Kovačić (Croatia, Yellow Card), Borna Barišić (Croatia, Yellow Card).","### Match Summary
+
+The match between Croatia and Japan featured a tightly contested tactical battle defined by methodical midfield build-up and direct attacking transitions. Early on, Croatia established controlled possession, initiating plays from defenders Dejan Lovren and Joško Gvardiol through their central midfield trio of Luka Modrić, Marcelo Brozović, and Mateo Kovačić to feed full-backs like Josip Juranović. Japan threatened through quick, central combinations involving Wataru Endo, Hidemasa Morita, and Daichi Kamada, highlighted by Kamada’s 40th-minute shot after beating Brozović off the dribble. 
+
+Throughout the second half, Croatia repeatedly attempted high direct entries to target forwards like Bruno Petković and Ivan Perišić, prompting vital clearances from Japanese central defenders Maya Yoshida and Takehiro Tomiyasu. Japan looked to exploit wide spaces through Junya Ito and late substitute Kaoru Mitoma, who set up Takuma Asano in stoppage time. Physical intensity escalated late in the match, resulting in crucial tackles by Gvardiol and a yellow card for Kovačić in the 89th minute as both backlines successfully neutralized late pressure.
+
+---
+
+### Key Moments
+
+* **40'07**: Daichi Kamada dribbles past Marcelo Brozović and takes a right-footed shot inside the box that goes wayward (xG 0.09).
+* **56'08**: Joško Gvardiol completes a critical defensive clearance following a Japanese aerial delivery into Croatia's penalty area.
+* **89'30**: Mateo Kovačić is issued a yellow card after committing a tactical foul on Junya Ito during a Japanese transition.
+* **93'09–93'10**: Kaoru Mitoma plays a ground pass to Takuma Asano in the attacking third, prompting an immediate clearance by Borna Barišić.
+
+---
+
+### Key Tactical Insights
+
+* **Croatia's Midfield Build-up & High Direct Deliveries**: Croatia relied heavily on Modrić, Brozović, and Kovačić to recycle possession and distribute wide to Juranović and Barišić. To bypass Japan's mid-block, they frequently deployed high passes toward central forwards (Bruno Petković, Ante Budimir) to contest aerial duels around the box.
+* **Japan's Central Combinations & Transition Speed**: Japan bypassed Croatia's initial pressure through rapid ground passing between central midfielders Wataru Endo and Hidemasa Morita to find Daichi Kamada between the lines, quickly releasing wide players like Junya Ito and Kaoru Mitoma to drive at the defense.
+* **Box Protection & Defensive Resiliency**: Both teams relied on disciplined defensive positioning to cancel out key attacks, with Japan’s center-backs (Yoshida and Tomiyasu) prioritizing aerial clearances against long balls, while Croatia’s Gvardiol provided key recoveries and tackles during late counter-attacks.",0.0,0.0,0.0,0.0,0.1137855579868709,0.0439560439560439,0.0787746170678337,0.7280000545844395,0.806837797164917
+3869219,Summarize the match and provide key tactical insights.,agentic,"Japan drew with Croatia 1-1 in the Round of 16 (2022-12-05), with the match going to a penalty shootout. Goal-scorers: Daizen Maeda (42'54), Ivan Perišić (54'54). Cards shown: Mateo Kovačić (Croatia, Yellow Card), Borna Barišić (Croatia, Yellow Card).","### Match Narrative
+
+The match between Japan and Croatia was a tightly contested encounter that extended past regulation time and into a penalty shootout. Japan took the lead late in the first half when Daizen Maeda capitalized on an opportunity, scoring with a left-footed half volley in the 43rd minute. Croatia responded shortly after the second-half restart, leveling the score in the 55th minute via a header from Ivan Perišić. 
+
+Croatia dictated much of the match's tempo through controlled midfield possession, using short ground combinations to advance play to their full-backs while also attempting high direct passes into the penalty area. Japan maintained a resilient defensive shape, repeatedly absorbing pressure and relying on their backline and defensive midfielders to clear incoming service and contest aerial duels. With the scores level after 90 minutes and extra time, the match proceeded to a penalty shootout, where both Croatia's Nikola Vlašić and Japan's Takuma Asano converted their respective spot-kicks.
+
+---
+
+### Key Moments
+
+* **42'54** – **Goal (Japan):** Daizen Maeda scores with a left-footed half volley inside the box (xG 0.46) to give Japan a 1–0 lead.
+* **54'54** – **Goal (Croatia):** Ivan Perišić equalizes for Croatia with a header (xG 0.03) to make it 1–1.
+* **89'30** – **Yellow Card (Croatia):** Mateo Kovačić commits a foul on Junya Ito and receives a card.
+* **120'43** – **Penalty Shootout Goal (Croatia):** Nikola Vlašić converts his penalty kick.
+* **122'33** – **Penalty Shootout Goal (Japan):** Takuma Asano converts his penalty kick.
+
+---
+
+### Tactical Insights
+
+* **High Direct Service vs. Low Block Clearances:** Croatia frequently targeted forward Bruno Petković with direct high entries into the box. This tactic forced a high volume of aerial duels and defensive clearances from Japan’s defensive players, notably Maya Yoshida, Wataru Endo, and Yuto Nagatomo.
+* **Midfield Progression to Wide Overlaps:** Croatia controlled possession by using quick ground passing combinations through their central midfield unit of Luka Modrić, Marcelo Brozović, and Mateo Kovačić to stretch Japan's defense and progress play wide to full-backs Josip Juranović and Borna Barišić.
+* **Compact Defensive Structure:** Japan focused on remaining compact in their own half, prioritizing ball recoveries and blocks near their penalty area to disrupt Croatian central combinations and cross attempts.",1.0,0.4166666666666667,0.5,0.4166666666666667,0.1694117647058823,0.0898345153664302,0.1317647058823529,1.6364351311073575,0.820098340511322
+3869219,How many goals did each team score in this match?,naive,Japan scored 1 goal(s) and Croatia scored 1 goal(s).,Not enough information.,0.8,0.3333333333333333,0.5,0.4166666666666667,0.0,0.0,0.0,0.7952776003571096,0.8525665998458862
+3869219,How many goals did each team score in this match?,agentic,Japan scored 1 goal(s) and Croatia scored 1 goal(s).,"2 matching event(s) found.
+
+By team: Croatia: 1, Japan: 1
+By player: Daizen Maeda: 1, Ivan Perišić: 1
+
+Details:
+  42'54 Japan - Daizen Maeda [Shot] Half Volley, Left Foot; xG 0.46; Goal
+  54'54 Croatia - Ivan Perišić [Shot] Normal, Head; xG 0.03; Goal",N/A,N/A,N/A,N/A,0.2372881355932203,0.0,0.1694915254237288,2.607822588815792,0.8389624357223511
+3869219,How many yellow or red cards were shown in the match?,naive,2 card(s) were shown: 2 for Croatia.,"Based on the provided evidence, a total of **2 yellow cards** (and 0 red cards) were shown in the match:
+
+1. **Mateo Kovačić** (Croatia) – Yellow Card at 89'30
+2. **Borna Barišić** (Croatia) – Yellow Card at 115'26",0.6,0.6,0.4,0.8,0.2499999999999999,0.0434782608695652,0.2499999999999999,2.9613115434220054,0.8348932862281799
+3869219,How many yellow or red cards were shown in the match?,agentic,2 card(s) were shown: 2 for Croatia.,"2 matching event(s) found.
+
+By team: Croatia: 2
+By player: Mateo Kovačić: 1, Borna Barišić: 1
+
+Details:
+  89'30 Croatia - Mateo Kovačić [Foul Committed] Yellow Card
+  115'26 Croatia - Borna Barišić [Foul Committed] Yellow Card",N/A,N/A,N/A,N/A,0.2083333333333333,0.0,0.1666666666666666,3.838566038544665,0.8321929574012756
+3869220,Summarize the match and provide key tactical insights.,naive,"Morocco drew with Spain 0-0 in the Round of 16 (2022-12-06), with the match going to a penalty shootout. Neither side scored in regulation or extra time. Cards shown: Aymeric Laporte (Spain, Yellow Card), Romain Saïss (Morocco, Yellow Card).","### Match Narrative
+The match between Morocco and Spain was a tightly contested affair that extended into extra time. Early in the first half (23'), Sofiane Boufal dispossessed Sergio Busquets before both Boufal and Dani Olmo required injury stoppages. Spain maintained possession through deep build-up play involving Aymeric Laporte and Rodrigo Hernández Cascante (Rodri), linking with Pedro González López (Pedri), Ferrán Torres, and Marcos Llorente. Morocco stayed compact, relying on successful tackles from Achraf Hakimi Mouh and Romain Saïss, alongside direct passes from goalkeeper Yassine Bounou toward Youssef En-Nesyri. Midfield transitions were driven by Sofyan Amrabat and Azzedine Ounahi, who drew fouls from Pablo Martín Páez Gavira (Gavi) and launched counter-attacks. In the second half, Morocco created a key opening in the 85th minute when Hakimi and Abdessamad Ezzalzouli set up Walid Cheddira for a right-footed half-volley (xG 0.12, saved off target). As Spain sought late breakthroughs in extra time via Álvaro Morata and Nicholas Williams, crucial ball recoveries by Amrabat enabled Morocco to initiate late passing sequences through Abdelhamid Sabiri, Ezzalzouli, and Cheddira.
+
+---
+
+### Key Moments
+* **23'23 – 23'35:** Sofiane Boufal wins a tackle against Sergio Busquets; both Boufal and Dani Olmo require injury stoppages.
+* **35'07:** Gavi commits a foul on Azzedine Ounahi in midfield following a ball progression.
+* **55'25 – 55'35:** Achraf Hakimi executes a successful tackle, leading to a transition pass from Sofyan Amrabat to Youssef En-Nesyri, who is flagged offside.
+* **85'01 – 85'05:** Hakimi plays a high pass to Abdessamad Ezzalzouli, who feeds Walid Cheddira for a right-footed half-volley shot (xG 0.12, saved off target).
+* **86'39 – 86'48:** Romain Saïss wins a tackle deep in defense to kickstart a break through Sabiri and Yahia Attiyat Allah, which is blocked by Nicholas Williams.
+* **116'04 – 116'09:** Amrabat makes a ball recovery in midfield and combines with Sabiri, Ezzalzouli, and Cheddira in extra time.
+
+---
+
+### Key Tactical Insights
+* **Spain's Positional Build-Up:** Spain relied heavily on center-backs Aymeric Laporte and Rodri circulating the ball from deep to link with Busquets, Pedri, Llorente, and wide options Ferrán Torres and Nicholas Williams.
+* **Morocco's Defensive Discipline & Direct Transition:** Morocco deployed a low-to-mid block, winning duels through Hakimi, Boufal, and Saïss. When regaining the ball, they bypassed Spain's press via direct distribution from Bounou or rapid central transitions led by Sofyan Amrabat and Azzedine Ounahi to release wingers Ezzalzouli and forwards En-Nesyri and Cheddira.",0.0,0.0,0.0,0.0,0.1075268817204301,0.0302375809935205,0.064516129032258,0.7063993345166042,0.7934521436691284
+3869220,Summarize the match and provide key tactical insights.,agentic,"Morocco drew with Spain 0-0 in the Round of 16 (2022-12-06), with the match going to a penalty shootout. Neither side scored in regulation or extra time. Cards shown: Aymeric Laporte (Spain, Yellow Card), Romain Saïss (Morocco, Yellow Card).","### Match Summary
+
+Morocco secured victory over Spain in a tightly contested match that was ultimately decided in a penalty shootout. Throughout regulation time, Spain dominated possession through controlled build-up play involving Aymeric Laporte, Rodrigo Hernández Cascante, Sergio Busquets, and Pedro González López. Despite holding long sequences of the ball, Spain struggled to turn possession into clear openings, with Marco Asensio firing off-target in the 26th minute. 
+
+Morocco absorbed sustained pressure through deep defensive organization, anchoring their backline with critical interventions and tackles from defender Romain Saïss. Offensively, Morocco utilized a direct build-up scheme featuring long service from goalkeeper Yassine Bounou toward Youssef En-Nesyri, alongside late counter-attacks, including a saved effort from Walid Cheddira in the 86th minute. 
+
+After remaining deadlocked through open play, Morocco sealed the victory during the penalty shootout by successfully converting three spot-kicks through Abdelhamid Sabiri, Hakim Ziyech, and Achraf Hakimi Mouh.
+
+---
+
+### Key Moments
+
+- **25'57**: Marco Asensio (Spain) attempts a left-footed half-volley from the left side of the box, which goes off-target.
+- **75'53**: Aymeric Laporte (Spain) is shown a yellow card for committing a foul.
+- **85'05**: Walid Cheddira (Morocco) takes a right-footed half-volley following a setup by Abdessamad Ezzalzouli, but his attempt is saved off-target.
+- **89'05**: Romain Saïss (Morocco) receives a yellow card following a foul.
+- **120'07**: Abdelhamid Sabiri (Morocco) converts his penalty attempt in the shootout.
+- **121'51**: Hakim Ziyech (Morocco) converts his penalty attempt in the shootout.
+- **125'36**: Achraf Hakimi Mouh (Morocco) converts his penalty attempt to complete Morocco's successful shootout sequence.
+
+---
+
+### Key Tactical Insights
+
+- **Spain's Structured Possession Dominance**: Spain focused on controlling play from the back, relying on continuous passing sequences between center-backs (Laporte, Rodrigo) and central midfielders (Busquets, Pedri) to try to break down Morocco's defensive blocks.
+- **Morocco's Direct Build-Up Strategy**: Morocco consistently avoided risky short build-ups against Spain's press, opting for direct high long passes from goalkeeper Yassine Bounou targeted toward striker Youssef En-Nesyri to initiate quick attacking sequences.
+- **Moroccan Low Block and Central Resilience**: Morocco displayed high defensive discipline in deep areas, relying on timely tackles, duels, and blocks from central defenders like Romain Saïss to negate Spain's box entries and launch rapid transitions.",0.6,0.375,0.3,0.375,0.1348837209302325,0.0467289719626168,0.0976744186046511,2.268864699256989,0.8134822845458984
+3869220,How many goals did each team score in this match?,naive,Morocco scored 0 goal(s) and Spain scored 0 goal(s).,Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7952776003571096,0.8421238660812378
+3869220,How many goals did each team score in this match?,agentic,Morocco scored 0 goal(s) and Spain scored 0 goal(s).,"No matching events found for ""How many goals did each team score in this match?"".",N/A,N/A,N/A,N/A,0.1538461538461538,0.0,0.1538461538461538,2.0244462660665508,0.8435884118080139
+3869220,How many yellow or red cards were shown in the match?,naive,"2 card(s) were shown: 1 for Spain, 1 for Morocco.","Based on the provided evidence, **2 yellow cards** (and 0 red cards) were shown in the match:
+
+1. **75'53** – Aymeric Laporte (Spain)
+2. **89'05** – Romain Saïss (Morocco)",0.6,1.0,0.3,1.0,0.3414634146341463,0.0512820512820512,0.3414634146341463,4.072645524948934,0.8428633213043213
+3869220,How many yellow or red cards were shown in the match?,agentic,"2 card(s) were shown: 1 for Spain, 1 for Morocco.","33 matching event(s) found.
+
+By team: Morocco: 19, Spain: 14
+By player: Hakim Ziyech: 4, Pablo Martín Páez Gavira: 4, Romain Saïss: 3, Achraf Hakimi Mouh: 3, Rodrigo Hernández Cascante: 2, Jordi Alba Ramos: 2, Daniel Olmo Carvajal: 2, Azzedine Ounahi: 2, Marcos Llorente Moreno: 1, Selim Amallah: 1, Pedro González López: 1, Sofiane Boufal: 1, Noussair Mazraoui: 1, Nayef Aguerd: 1, Aymeric Laporte: 1, Álvaro Borja Morata Martín: 1, Yahia Attiyat allah: 1, Abdessamad Ezzalzouli: 1, Walid Cheddira: 1
+
+Details:
+  0'15 Morocco - Hakim Ziyech [Foul Committed]
+  8'05 Spain - Pablo Martín Páez Gavira [Foul Committed]
+  9'48 Spain - Marcos Llorente Moreno [Foul Committed]
+  12'23 Spain - Rodrigo Hernández Cascante [Foul Committed]
+  12'43 Spain - Pablo Martín Páez Gavira [Foul Committed]
+  18'32 Spain - Jordi Alba Ramos [Foul Committed]
+  19'06 Morocco - Selim Amallah [Foul Committed]
+  20'11 Spain - Daniel Olmo Carvajal [Foul Committed]
+  26'41 Morocco - Romain Saïss [Foul Committed]
+  28'34 Spain - Pedro González López [Foul Committed]
+  31'02 Spain - Rodrigo Hernández Cascante [Foul Committed]
+  35'07 Spain - Pablo Martín Páez Gavira [Foul Committed]
+  37'46 Morocco - Sofiane Boufal [Foul Committed]
+  40'49 Spain - Pablo Martín Páez Gavira [Foul Committed]
+  46'26 Morocco - Noussair Mazraoui [Foul Committed]
+  48'49 Morocco - Hakim Ziyech [Foul Committed]
+  50'57 Morocco - Achraf Hakimi Mouh [Foul Committed]
+  51'43 Spain - Daniel Olmo Carvajal [Foul Committed]
+  53'02 Morocco - Achraf Hakimi Mouh [Foul Committed]
+  57'45 Morocco - Hakim Ziyech [Foul Committed]
+  ... and 13 more (already included in the count above)",N/A,N/A,N/A,N/A,0.043010752688172,0.0,0.028673835125448,0.5971722136692138,0.7761664390563965
+3869253,Summarize the match and provide key tactical insights.,naive,"Brazil beat South Korea 4-1 in the Round of 16 (2022-12-05). Goal-scorers: Vinícius José Paixão de Oliveira Júnior (6'41), Neymar da Silva Santos Junior (12'18), Richarlison de Andrade (28'13), Lucas Tolentino Coelho de Lima (35'45), Seung-Ho Paik (75'47). Cards shown: Woo-Young Jung (South Korea, Yellow Card).","### Match Narrative
+
+In this match context between Brazil and South Korea, Brazil demonstrated controlled possession and fluid passing sequences building from the back through goalkeeper Alisson Becker, defenders Thiago Silva, Marquinhos, Danilo, and Éder Militão, as well as midfielders Casemiro, Lucas Paquetá, and Neymar. Up front, Brazil frequently searched for avenues down the flanks through Vinícius Júnior and Raphinha, alongside central involvement from Richarlison. Later in the match, substitute goalkeeper Weverton and attacker Gabriel Martinelli were also featured in Brazil's setup.
+
+South Korea relied on deep build-up from goalkeeper Seung-Gyu Kim and center-backs Min Jae Kim and Young-Gwon Kim, combined with defensive actions from Moon-Hwan Kim, In-Beom Hwang, Jae-Sung Lee, and Seung-Ho Paik. Offensively, South Korea attempted to release attackers Heung-Min Son, Gue-Sung Cho, and Hee-Chan Hwang through direct aerial balls and quick ground combinations, though several high passes were intercepted or cleared by Brazil's defensive line or cut out mid-build-up. While both sides launched late attacks—including shot attempts by Raphinha and Dani Alves that went off target—Brazil held consistent control over possession progression while South Korea repeatedly turned to clearances and quick counter-looking transitions.
+
+---
+
+### Key Moments with Timestamps
+
+* **14'05 – 14'25:** Brazil maintained a long, low-tempo circulation sequence deep in their own half involving Danilo, Neymar, Vinícius Júnior, Thiago Silva, Alisson, Marquinhos, Casemiro, and Éder Militão.
+* **27'37 – 28'03:** South Korea's defense came under continuous pressure, with center-back Min Jae Kim making multiple clearances following aerial duals and crosses from Neymar, Raphinha, and Vinícius Júnior.
+* **30'01 – 30'19:** Lucas Paquetá won a tackle in midfield to start a swift attack through Richarlison, Raphinha, and Vinícius Júnior, culminating in a left-footed shot by Raphinha (xG 0.03) that went off target.
+* **38'57 – 39'36:** Brazil executed build-up play through Alisson, Thiago Silva, Danilo, and Marquinhos, leading to a ball recovery by Vinícius Júnior, who dribbled past Jae-Sung Lee along the wing.
+* **45'42 – 46'05:** South Korea pushed forward as goalkeeper Seung-Gyu Kim played a long high pass to Heung-Min Son, who combined with Jae-Sung Lee in the attacking third.
+* **65'02 – 65'33:** Daniel Alves linked up with Raphinha and Richarlison before South Korea countered through Seung-Ho Paik, Jun-Ho Son, Jae-Sung Lee, Gue-Sung Cho, Min Jae Kim, and Hee-Chan Hwang, ending in a Thiago Silva interception.
+* **90'25:** Substitute goalkeeper Weverton played a long high pass toward Richarlison, which was cleared out by Min Jae Kim.
+* **92'29 – 92'41:** Gabriel Martinelli released Richarlison on the wing; after Moon-Hwan Kim made a tackle, Daniel Alves recovered the loose ball and took a right-footed shot (xG 0.03) off target.
+
+---
+
+### Key Tactical Insights
+
+* **Brazil’s Deep Possession Base:** Brazil repeatedly recycled the ball through Alisson (and later Weverton), Marquinhos, and Thiago Silva to pull South Korea's pressing line forward before executing ground passes into Casemiro, Lucas Paquetá, or full-backs Danilo and Éder Militão.
+* **Direct Flank Exploitation:** Brazil focused on isolating their wingers—Vinícius Júnior, Raphinha, and later Gabriel Martinelli—in wide areas to drive past defenders or combine with Richarlison in the box.
+* **South Korea’s Low Block & Direct Outlet:** South Korea absorbed pressure via low clearances from Min Jae Kim and Young-Gwon Kim, frequently seeking fast vertical transitions using high passes toward Heung-Min Son and Gue-Sung Cho to bypass Brazil's midfield press.",0.0,0.0,0.0,0.0,0.0725075528700906,0.0212121212121212,0.0574018126888217,0.485381582261528,0.8017939329147339
+3869253,Summarize the match and provide key tactical insights.,agentic,"Brazil beat South Korea 4-1 in the Round of 16 (2022-12-05). Goal-scorers: Vinícius José Paixão de Oliveira Júnior (6'41), Neymar da Silva Santos Junior (12'18), Richarlison de Andrade (28'13), Lucas Tolentino Coelho de Lima (35'45), Seung-Ho Paik (75'47). Cards shown: Woo-Young Jung (South Korea, Yellow Card).","### Match Summary
+
+Brazil delivered a dominant performance against South Korea, establishing complete control early in the first half. The scoring began in the 7th minute when Vinícius Júnior converted a right-footed shot. Brazil expanded their lead in the 13th minute through a Neymar penalty. Richarlison added a third goal in the 29th minute with a left-footed strike, followed quickly by Lucas Paquetá scoring a fourth in the 36th minute with a right-footed volley.
+
+Brazil's game plan relied on patient build-up play from their deep defensive block, using goalkeeper Alisson and central defenders Thiago Silva and Marquinhos to recycle possession and break pressing lines. Recovering the ball in central areas allowed Brazil to launch swift vertical counter-attacks and construct quick combinations inside the opposition box.
+
+South Korea found it difficult to break down Brazil's defense for most of the contest but secured a consolation goal in the 76th minute when Seung-Ho Paik scored a long-range half-volley. Brazil comfortably managed the remaining time, utilizing late substitutes like goalkeeper Weverton to seal a decisive result.
+
+---
+
+### Key Moments
+
+* **6'41** – **Goal (Brazil)**: Vinícius Júnior scores with a right-footed shot (xG 0.13).
+* **12'18** – **Goal (Brazil)**: Neymar converts a penalty with a right-footed shot (xG 0.78).
+* **28'13** – **Goal (Brazil)**: Richarlison finishes with a left-footed shot (xG 0.54).
+* **35'45** – **Goal (Brazil)**: Lucas Paquetá scores a right-footed volley (xG 0.09).
+* **75'47** – **Goal (South Korea)**: Seung-Ho Paik hits a left-footed half-volley into the net (xG 0.02).
+
+---
+
+### Key Tactical Insights
+
+* **First-Half Attacking Efficiency**: Brazil demonstrated lethal finishing early on, capitalizing on high- and low-xG opportunities to score four goals within the opening 36 minutes through Vinícius Júnior, Neymar, Richarlison, and Lucas Paquetá.
+* **Patient Deep Build-Up Play**: Brazil systematically built play out from deep areas using goalkeeper Alisson Becker and central defenders Thiago Silva and Marquinhos to draw out the opponent and break pressing lines.
+* **Central Ball Recoveries and Rapid Transitions**: Central duel wins and ball recoveries (e.g., by Lucas Paquetá and Richarlison) enabled Brazil to launch rapid vertical counter-attacks and combine quickly inside the penalty area.
+* **Low-xG Opposition Scoring**: South Korea's single goal was restricted to a long-range half-volley from Seung-Ho Paik carrying a low expected goal value (0.02 xG).",1.0,0.45454545454545453,0.5,0.45454545454545453,0.1295896328293736,0.0520607375271149,0.0950323974082073,0.9631533548634698,0.7997183799743652
+3869253,How many goals did each team score in this match?,naive,Brazil scored 4 goal(s) and South Korea scored 1 goal(s).,"Based on the provided evidence, there is not enough information to determine the total number of goals scored by each team in the match, as only a small selection of match events is provided.",0.4,0.18181818181818182,0.2,0.18181818181818182,0.0869565217391304,0.0,0.0869565217391304,1.184949136625139,0.8501309156417847
+3869253,How many goals did each team score in this match?,agentic,Brazil scored 4 goal(s) and South Korea scored 1 goal(s).,"5 matching event(s) found.
+
+By team: Brazil: 4, South Korea: 1
+By player: Vinícius José Paixão de Oliveira Júnior: 1, Neymar da Silva Santos Junior: 1, Richarlison de Andrade: 1, Lucas Tolentino Coelho de Lima: 1, Seung-Ho Paik: 1
+
+Details:
+  6'41 Brazil - Vinícius José Paixão de Oliveira Júnior [Shot] Normal, Right Foot; xG 0.13; Goal
+  12'18 Brazil - Neymar da Silva Santos Junior [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  28'13 Brazil - Richarlison de Andrade [Shot] Normal, Left Foot; xG 0.54; Goal
+  35'45 Brazil - Lucas Tolentino Coelho de Lima [Shot] Volley, Right Foot; xG 0.09; Goal
+  75'47 South Korea - Seung-Ho Paik [Shot] Half Volley, Left Foot; xG 0.02; Goal",N/A,N/A,N/A,N/A,0.1142857142857142,0.0144927536231884,0.0857142857142857,1.2170651494363007,0.8190223574638367
+3869253,How many yellow or red cards were shown in the match?,naive,1 card(s) were shown: 1 for South Korea.,"Based on the provided evidence, **1 yellow card** was shown in the match (to South Korea's Woo-Young Jung at 43'31). No red cards were shown in the provided logs.",0.4,1.0,0.2,1.0,0.3414634146341463,0.1025641025641025,0.2439024390243902,2.7410126102418366,0.8560048341751099
+3869253,How many yellow or red cards were shown in the match?,agentic,1 card(s) were shown: 1 for South Korea.,"1 matching event(s) found.
+
+By team: South Korea: 1
+
+Details:
+  43'31 South Korea - Woo-Young Jung [Foul Committed] Yellow Card",N/A,N/A,N/A,N/A,0.3870967741935484,0.0689655172413793,0.3225806451612903,7.496263447644965,0.846450924873352
+3869254,Summarize the match and provide key tactical insights.,naive,"Portugal beat Switzerland 6-1 in the Round of 16 (2022-12-06). Goal-scorers: Gonçalo Matias Ramos (16'43), Kléper Laveran Lima Ferreira (32'35), Gonçalo Matias Ramos (50'05), Raphaël Adelino José Guerreiro (54'55), Manuel Obafemi Akanji (57'05), Gonçalo Matias Ramos (66'12), Rafael Alexandre Conceição Leão (91'12). Cards shown: Fabian Lukas Schär (Switzerland, Yellow Card), Eray Ervin Cömert (Switzerland, Yellow Card).","### Match Summary
+
+Switzerland and Portugal contested a tactical match characterized by patient build-up play and structured defensive organization. Early in the first half, Switzerland established long passing sequences starting from goalkeeper Yann Sommer through defenders Manuel Akanji and Fabian Schär, finding central midfielders Granit Xhaka and Djibril Sow. Portugal resisted with structured defensive interventions, including clearances from Gonçalo Ramos and Rúben Dias, while building through Pepe, Diogo Costa, and João Félix. Switzerland threatened in the 23rd minute when Ruben Vargas had a shot blocked inside the box by Diogo Dalot. In the second half, Switzerland controlled extended periods of possession through backline exchanges involving substitute Eray Cömert and Akanji. Their main attacking avenue developed on the right flank through Edimilson Fernandes and Xherdan Shaqiri, resulting in a wayward shot by Shaqiri in the 66th minute. Later in the 81st minute, Shaqiri set up Xhaka for a header that went off target. Both sides made late tactical adjustments, with Noah Okafor replacing Vargas for Switzerland and Rúben Neves replacing Bernardo Silva for Portugal.
+
+---
+
+### Key Moments
+
+* **5'34"":** Gonçalo Ramos clears the ball in Portugal's box following an aerial duel with Fabian Schär.
+* **22'38"":** Diogo Dalot blocks a shot/pass attempt from Ruben Vargas following a multi-pass Swiss build-up.
+* **40'39"" - 40'46"":** João Félix recovers the ball and plays Bruno Fernandes into an attacking position, but his high pass goes out of play.
+* **65'21"":** Xherdan Shaqiri shoots left-footed from inside the box (wayward, 0.01 xG) after a sequence of short passes with Edimilson Fernandes.
+* **65'43"":** Switzerland substitution — Ruben Vargas is replaced by Noah Okafor.
+* **80'12"":** Granit Xhaka headers a high pass from Xherdan Shaqiri off target (0.08 xG).
+* **80'39"":** Portugal substitution — Bernardo Silva is replaced by Rúben Neves.
+
+---
+
+### Tactical Insights
+
+* **Swiss Deep Build-Up:** Switzerland consistently initiated possession deep in their own half, using goalkeeper Yann Sommer alongside center-backs Manuel Akanji and Eray Cömert to break the initial press and supply central midfielders Granit Xhaka, Remo Freuler, and Djibril Sow.
+* **Right-Flank Overloads:** A primary tactical focal point for Switzerland was the right side, where Edimilson Fernandes and Xherdan Shaqiri repeatedly exchanged ground passes to stretch Portugal's left side (Raphaël Guerreiro).
+* **Defensive Resilience & Blocking:** Portugal relied on timely low-block interventions, highlighted by key defensive clearances from Rúben Dias and Gonçalo Ramos, as well as a critical block by Diogo Dalot to deny Ruben Vargas inside the",0.0,0.0,0.0,0.0,0.1235059760956175,0.028,0.0717131474103585,0.3879544350177207,0.7863067388534546
+3869254,Summarize the match and provide key tactical insights.,agentic,"Portugal beat Switzerland 6-1 in the Round of 16 (2022-12-06). Goal-scorers: Gonçalo Matias Ramos (16'43), Kléper Laveran Lima Ferreira (32'35), Gonçalo Matias Ramos (50'05), Raphaël Adelino José Guerreiro (54'55), Manuel Obafemi Akanji (57'05), Gonçalo Matias Ramos (66'12), Rafael Alexandre Conceição Leão (91'12). Cards shown: Fabian Lukas Schär (Switzerland, Yellow Card), Eray Ervin Cömert (Switzerland, Yellow Card).","### Match Summary
+
+Portugal controlled key stretches of the match through structured possession build-up from deep positions, connecting through goalkeeper Diogo Costa, centre-backs, and wide options like Raphaël Guerreiro and João Félix. Their clinical finishing allowed them to construct a commanding lead early on. Gonçalo Matias Ramos opened the scoring in the 17th minute with a left-footed strike, followed by a header from Pepe (Kléper Laveran Lima Ferreira) in the 33rd minute. Portugal further extended their advantage early in the second half when Raphaël Guerreiro converted a left-footed shot in the 55th minute. Switzerland attempted to construct attacking progression through wide flank combinations involving Xherdan Shaqiri, Ruben Vargas, and Ricardo Rodríguez. This persistence paid off in the 58th minute when Manuel Akanji capitalized on a high-value opportunity to score a right-footed volley. Despite late efforts and aerial duels contested by Granit Xhaka, Switzerland were unable to overcome Portugal's defensive structure and superior finishing efficiency throughout the remainder of the contest.
+
+### Key Moments
+
+- **17' (16'43"")** – **Goal (Portugal):** Gonçalo Matias Ramos scores with a left-footed shot (xG: 0.10).
+- **33' (32'35"")** – **Goal (Portugal):** Pepe (Kléper Laveran Lima Ferreira) scores with a header (xG: 0.13).
+- **55' (54'55"")** – **Goal (Portugal):** Raphaël Guerreiro scores with a left-footed shot (xG: 0.36).
+- **58' (57'05"")** – **Goal (Switzerland):** Manuel Akanji scores with a right-footed volley (xG: 0.67).
+
+### Key Tactical Insights
+
+- **Offensive Efficiency:** Portugal demonstrated exceptional finishing execution, capitalizing on chances across different phases of play through Gonçalo Ramos, Pepe, and Raphaël Guerreiro.
+- **Deep Build-Up Control:** Portugal systematically built play out from the back utilizing goalkeeper Diogo Costa and their central defenders to establish possession control, frequently progressing play through Guerreiro and João Félix along the left channel.
+- **Wide Flank Progression:** Switzerland focused their attack around wide combinations involving Xherdan Shaqiri, Ruben Vargas, and Ricardo Rodríguez, eventually yielding high-value set-piece/rebound opportunities like Manuel Akanji's goal.",1.0,0.3333333333333333,0.5,0.3333333333333333,0.1870503597122302,0.0819277108433735,0.1247002398081534,1.8244072984312736,0.8014907240867615
+3869254,How many goals did each team score in this match?,naive,Portugal scored 6 goal(s) and Switzerland scored 1 goal(s).,"Based on the provided evidence, there is not enough information to determine the total number of goals scored by each team in the match (only one goal by Portugal's Gonçalo Matias Ramos at 66'12 is shown in the snippets provided). 
+
+**Not enough information.**",0.2,0.06666666666666667,0.1,0.06666666666666667,0.1754385964912281,0.0,0.1403508771929824,1.7611044047748272,0.8466967344284058
+3869254,How many goals did each team score in this match?,agentic,Portugal scored 6 goal(s) and Switzerland scored 1 goal(s).,"7 matching event(s) found.
+
+By team: Portugal: 6, Switzerland: 1
+By player: Gonçalo Matias Ramos: 3, Kléper Laveran Lima Ferreira: 1, Raphaël Adelino José Guerreiro: 1, Manuel Obafemi Akanji: 1, Rafael Alexandre Conceição Leão: 1
+
+Details:
+  16'43 Portugal - Gonçalo Matias Ramos [Shot] Normal, Left Foot; xG 0.10; Goal
+  32'35 Portugal - Kléper Laveran Lima Ferreira [Shot] Normal, Head; xG 0.13; Goal
+  50'05 Portugal - Gonçalo Matias Ramos [Shot] Normal, Left Foot; xG 0.51; Goal
+  54'55 Portugal - Raphaël Adelino José Guerreiro [Shot] Normal, Left Foot; xG 0.36; Goal
+  57'05 Switzerland - Manuel Obafemi Akanji [Shot] Volley, Right Foot; xG 0.67; Goal
+  66'12 Portugal - Gonçalo Matias Ramos [Shot] Lob, Right Foot; xG 0.47; Goal
+  91'12 Portugal - Rafael Alexandre Conceição Leão [Shot] Normal, Right Foot; xG 0.01; Goal",N/A,N/A,N/A,N/A,0.0875,0.0,0.0625,0.9266252009801108,0.8098623156547546
+3869254,How many yellow or red cards were shown in the match?,naive,2 card(s) were shown: 2 for Switzerland.,"Based on the provided evidence, a total of **2 yellow cards** (and **0 red cards**) were shown in the match:
+
+1. **Fabian Lukas Schär** (Switzerland) – Yellow Card at 42'03
+2. **Eray Ervin Cömert** (Switzerland) – Yellow Card at 58'28",0.8,1.0,0.4,1.0,0.24,0.0416666666666666,0.24,2.6857536427907847,0.8233286142349243
+3869254,How many yellow or red cards were shown in the match?,agentic,2 card(s) were shown: 2 for Switzerland.,"29 matching event(s) found.
+
+By team: Portugal: 14, Switzerland: 15
+By player: Eray Ervin Cömert: 4, Remo Freuler: 3, Otávio Edmilson da Silva Monteiro: 3, William Silva de Carvalho: 3, Kléper Laveran Lima Ferreira: 2, Rúben Santos Gato Alves Dias: 2, Manuel Obafemi Akanji: 2, Raphaël Adelino José Guerreiro: 2, Djibril Sow: 1, Bruno Miguel Borges Fernandes: 1, Fabian Lukas Schär: 1, Breel-Donald Embolo: 1, Xherdan Shaqiri: 1, Denis Lemi Zakaria Lako Lado: 1, Noah Okafor: 1, Ricardo Jorge Luz Horta: 1
+
+Details:
+  5'36 Switzerland - Djibril Sow [Foul Committed]
+  7'54 Portugal - Kléper Laveran Lima Ferreira [Foul Committed]
+  11'05 Portugal - Bruno Miguel Borges Fernandes [Foul Committed]
+  19'18 Switzerland - Remo Freuler [Foul Committed]
+  22'46 Portugal - Kléper Laveran Lima Ferreira [Foul Committed]
+  28'19 Portugal - Rúben Santos Gato Alves Dias [Foul Committed]
+  34'43 Switzerland - Manuel Obafemi Akanji [Foul Committed]
+  38'31 Portugal - Rúben Santos Gato Alves Dias [Foul Committed]
+  38'57 Switzerland - Remo Freuler [Foul Committed]
+  40'06 Portugal - Otávio Edmilson da Silva Monteiro [Foul Committed]
+  42'03 Switzerland - Fabian Lukas Schär [Foul Committed] Yellow Card
+  46'37 Switzerland - Remo Freuler [Foul Committed]
+  49'17 Portugal - William Silva de Carvalho [Foul Committed]
+  54'19 Switzerland - Breel-Donald Embolo [Foul Committed]
+  54'48 Switzerland - Manuel Obafemi Akanji [Foul Committed]
+  58'28 Switzerland - Eray Ervin Cömert [Foul Committed] Yellow Card
+  62'26 Switzerland - Xherdan Shaqiri [Foul Committed]
+  64'10 Portugal - Otávio Edmilson da Silva Monteiro [Foul Committed]
+  64'45 Portugal - William Silva de Carvalho [Foul Committed]
+  67'59 Switzerland - Denis Lemi Zakaria Lako Lado [Foul Committed]
+  ... and 9 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0344827586206896,0.0,0.0206896551724137,0.5325376942678146,0.7696832418441772
+3869254,Describe Gonçalo Matias Ramos's goals in the match.,naive,"Gonçalo Matias Ramos scored 3 goals for Portugal: a goal in the 16'43 minute, a goal in the 50'05 minute, a goal in the 66'12 minute.","Based on the provided evidence, Gonçalo Matias Ramos scored three goals in the match:
+
+1. **16'43** – A normal, left-footed shot from coordinates (111.3, 27.5) with an xG of 0.10.
+2. **50'05** – A normal, left-footed shot from coordinates (115.8, 44.4) with an xG of 0.51.
+3. **66'12** – A right-footed lob shot from coordinates (112.6, 45.8) with an xG of 0.47.",0.4,0.2,0.3,0.3,0.3619047619047619,0.174757281553398,0.3047619047619048,3.676324368788301,0.8577966690063477
+3869254,Describe Gonçalo Matias Ramos's goals in the match.,agentic,"Gonçalo Matias Ramos scored 3 goals for Portugal: a goal in the 16'43 minute, a goal in the 50'05 minute, a goal in the 66'12 minute.","Based on the provided evidence, Gonçalo Matias Ramos scored two goals for Portugal during the match:
+
+1. **First Goal (17th minute / 16'43):** Ramos opened Portugal's scoring with a normal, left-footed finish from inside the box at coordinates (111.3, 27.5). The shot had an expected goals (xG) value of 0.10.
+2. **Second Goal (67th minute / 66'12):** Ramos scored his second goal with a right-footed lob from coordinates (112.6, 45.8). This high-probability chance carried an xG value of 0.47.",0.6,0.3,0.5,0.3,0.3833333333333333,0.135593220338983,0.2666666666666666,3.883031908850761,0.8644382953643799
+3857271,Summarize the match and provide key tactical insights.,naive,"England beat Iran 6-2 in the Group Stage (2022-11-21). Goal-scorers: Jude Bellingham (34'09), Bukayo Saka (42'46), Raheem Sterling (45'17), Bukayo Saka (61'26), Mehdi Taremi (64'33), Marcus Rashford (70'51), Jack Grealish (89'01), Mehdi Taremi (102'30). Cards shown: Alireza Jahanbakhsh (Iran, Yellow Card), Morteza Pouraliganji (Iran, Yellow Card).",Not enough information.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,9.432883171508076e-09,0.7857988476753235
+3857271,Summarize the match and provide key tactical insights.,agentic,"England beat Iran 6-2 in the Group Stage (2022-11-21). Goal-scorers: Jude Bellingham (34'09), Bukayo Saka (42'46), Raheem Sterling (45'17), Bukayo Saka (61'26), Mehdi Taremi (64'33), Marcus Rashford (70'51), Jack Grealish (89'01), Mehdi Taremi (102'30). Cards shown: Alireza Jahanbakhsh (Iran, Yellow Card), Morteza Pouraliganji (Iran, Yellow Card).","### Match Summary
+
+England displayed high clinical efficiency against Iran, building a commanding lead through sharp finishing. The scoring opened in the 35th minute when Jude Bellingham headed home a goal for England. Bukayo Saka doubled England's lead in the 43rd minute with a left-footed half-volley, followed quickly by Raheem Sterling striking a right-footed volley in the 46th minute to extend the lead to 3-0 before halftime. Earlier in the half, Harry Maguire had also struck the post with a header from a Kieran Trippier set-piece pass.
+
+England continued their offensive momentum into the second half, with Saka scoring his second goal of the match in the 62nd minute via a left-footed strike. Iran found a response shortly after in the 65th minute when striker Mehdi Taremi converted a right-footed shot to get Iran on the scoresheet. England maintained strong control across the pitch, while Iran relied primarily on direct counter-attacking transitions aimed at Taremi to generate chances.
+
+---
+
+### Key Moments
+
+* **31'47** – **England**: Harry Maguire strikes the post with a header following a high pass from Kieran Trippier.
+* **34'09** – **England (Goal)**: Jude Bellingham opens the scoring with a header into the net (0.08 xG).
+* **42'46** – **England (Goal)**: Bukayo Saka doubles the lead with a left-footed half-volley (0.06 xG).
+* **45'17** – **England (Goal)**: Raheem Sterling scores via a right-footed volley (0.19 xG).
+* **61'26** – **England (Goal)**: Bukayo Saka scores his second goal of the game with a left-footed shot (0.08 xG).
+* **64'33** – **Iran (Goal)**: Mehdi Taremi scores Iran's first goal with a right-footed shot (0.07 xG).
+
+---
+
+### Key Tactical Insights
+
+* **Clinical Goal-Scoring Efficiency**: England produced four goals from Jude Bellingham, Bukayo Saka (2), and Raheem Sterling despite moderate-to-low individual xG values (ranging between 0.06 and 0.19 xG).
+* **Trippier to Maguire Aerial Target Routine**: England relied on Kieran Trippier's high pass deliveries targeted at Harry Maguire as a main aerial strategy in set-piece and deep offensive scenarios.
+* **Saka’s Complete Wing Play**: Bukayo Saka served as a pivotal player on the right flank, combining active defensive interventions (tackles and blocks) with lethal left-footed finishing.
+* **Iran’s Direct Transitions to Taremi**: Iran focused their primary attacking plan on fast, direct high passes to forward Mehdi Taremi, who served as their central point for link-up play and shot generation.",1.0,0.35714285714285715,0.5,0.35714285714285715,0.1295896328293736,0.0520607375271149,0.0863930885529157,1.3909635524455128,0.800643265247345
+3857271,How many goals did each team score in this match?,naive,England scored 6 goal(s) and Iran scored 2 goal(s).,Not enough information.,0.2,0.07142857142857142,0.2,0.14285714285714285,0.0,0.0,0.0,0.7952776003571096,0.8604177236557007
+3857271,How many goals did each team score in this match?,agentic,England scored 6 goal(s) and Iran scored 2 goal(s).,"8 matching event(s) found.
+
+By team: England: 6, Iran: 2
+By player: Bukayo Saka: 2, Mehdi Taremi: 2, Jude Bellingham: 1, Raheem Sterling: 1, Marcus Rashford: 1, Jack Grealish: 1
+
+Details:
+  34'09 England - Jude Bellingham [Shot] Normal, Head; xG 0.08; Goal
+  42'46 England - Bukayo Saka [Shot] Half Volley, Left Foot; xG 0.06; Goal
+  45'17 England - Raheem Sterling [Shot] Volley, Right Foot; xG 0.19; Goal
+  61'26 England - Bukayo Saka [Shot] Normal, Left Foot; xG 0.08; Goal
+  64'33 Iran - Mehdi Taremi [Shot] Normal, Right Foot; xG 0.07; Goal
+  70'51 England - Marcus Rashford [Shot] Normal, Left Foot; xG 0.41; Goal
+  89'01 England - Jack Grealish [Shot] Normal, Right Foot; xG 0.63; Goal
+  102'30 Iran - Mehdi Taremi [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal",N/A,N/A,N/A,N/A,0.0945945945945945,0.0,0.0675675675675675,0.89221348210917,0.8185216188430786
+3857271,How many yellow or red cards were shown in the match?,naive,2 card(s) were shown: 2 for Iran.,"Based on the provided evidence, a total of **2 yellow cards** (and 0 red cards) were shown in the match:
+
+1. **Alireza Jahanbakhsh** (Iran) – 24'19 (Yellow Card)
+2. **Morteza Pouraliganji** (Iran) – 47'47 (Yellow Card)",0.8,1.0,0.4,1.0,0.2727272727272727,0.0476190476190476,0.2727272727272727,2.863382924283848,0.8272312879562378
+3857271,How many yellow or red cards were shown in the match?,agentic,2 card(s) were shown: 2 for Iran.,"30 matching event(s) found.
+
+By team: England: 9, Iran: 21
+By player: Morteza Pouraliganji: 4, Ahmad Nourollahi: 3, Sadegh Moharrami: 3, Mehdi Taremi: 2, Alireza Jahanbakhsh: 2, Ali Karimi: 2, Bukayo Saka: 2, Roozbeh Cheshmi: 2, Mason Mount: 2, John Stones: 2, Jude Bellingham: 1, Seyed Majid Hosseini: 1, Milad Mohammadi: 1, Ehsan Hajsafi: 1, Marcus Rashford: 1, Phil Foden: 1
+
+Details:
+  6'41 Iran - Mehdi Taremi [Foul Committed]
+  20'39 England - Jude Bellingham [Foul Committed]
+  22'40 Iran - Ahmad Nourollahi [Foul Committed]
+  24'19 Iran - Alireza Jahanbakhsh [Foul Committed] Yellow Card
+  24'55 Iran - Ali Karimi [Foul Committed]
+  26'07 England - Bukayo Saka [Foul Committed]
+  27'42 Iran - Seyed Majid Hosseini [Foul Committed]
+  37'29 Iran - Roozbeh Cheshmi [Foul Committed]
+  39'56 England - Bukayo Saka [Foul Committed]
+  45'09 Iran - Roozbeh Cheshmi [Foul Committed]
+  46'47 Iran - Ali Karimi [Foul Committed]
+  56'33 Iran - Morteza Pouraliganji [Foul Committed]
+  57'13 Iran - Ahmad Nourollahi [Foul Committed]
+  58'31 Iran - Sadegh Moharrami [Foul Committed]
+  58'57 Iran - Alireza Jahanbakhsh [Foul Committed]
+  45'49 England - Mason Mount [Foul Committed]
+  47'43 Iran - Morteza Pouraliganji [Foul Committed]
+  47'47 Iran - Morteza Pouraliganji [Foul Committed] Yellow Card
+  56'14 England - Mason Mount [Foul Committed]
+  58'17 Iran - Mehdi Taremi [Foul Committed]
+  ... and 10 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0444444444444444,0.0,0.0266666666666666,0.6193752414264252,0.78047114610672
+3857271,Describe Bukayo Saka's goals in the match.,naive,"Bukayo Saka scored 2 goals for England: a goal in the 42'46 minute, a goal in the 61'26 minute.","Bukayo Saka scored two goals during the match:
+
+* **First Goal (42'46""):** A left-footed half volley shot taken at coordinates (104.1, 38.5) with an xG of 0.06.
+* **Second Goal (61'26""):** A normal left-footed shot taken at coordinates (105.3, 46.3) with an xG of 0.08.",0.4,0.4,0.2,0.4,0.3513513513513513,0.1111111111111111,0.2972972972972972,2.596374221137064,0.8758821487426758
+3857271,Describe Bukayo Saka's goals in the match.,agentic,"Bukayo Saka scored 2 goals for England: a goal in the 42'46 minute, a goal in the 61'26 minute.","Bukayo Saka scored two goals in the match:
+
+* **First Goal (43rd minute / 42'46):** Saka scored with a left-footed half-volley from inside the right side of the penalty area (coordinates 104.1, 38.5), registering an xG value of 0.06.
+* **Second Goal (62nd minute / 61'26):** Saka scored his second goal with a left-footed shot from inside the central-right zone of the penalty box (coordinates 105.3, 46.3), registering an xG value of 0.08.",0.6666666666666666,0.4,0.6666666666666666,0.4,0.3333333333333333,0.12,0.2352941176470588,2.3288251523852384,0.8706136345863342
+3857291,Summarize the match and provide key tactical insights.,naive,"Spain beat Costa Rica 7-0 in the Group Stage (2022-11-23). Goal-scorers: Daniel Olmo Carvajal (10'52), Marco Asensio Willemsen (20'32), Ferrán Torres García (30'09), Ferrán Torres García (53'41), Pablo Martín Páez Gavira (73'59), Carlos Soler Barragán (89'11), Álvaro Borja Morata Martín (91'57). Cards shown: Francisco Javier Calvo Quesada (Costa Rica, Yellow Card), Joel Nathaniel Campbell Samuels (Costa Rica, Yellow Card).","### Match Summary
+
+The match showcased Spain dominating possession and patient build-up play, circulating the ball extensively through their defensive line and midfield. Players like Aymeric Laporte, Jordi Alba Ramos, Daniel Olmo Carvajal, and Sergio Busquets i Burgos were heavily involved in long passing sequences across both halves, searching for openings against a deep Costa Rica setup. Costa Rica attempted to disrupt Spain through defensive clearances by Celso Borges Mora, Joel Nathaniel Campbell Samuels, and Keysher Fuller Spence, as well as aerial challenges from Anthony Daniel Contreras Enríquez. While Spain created several moves down the left flank featuring Jordi Alba, Olmo, and later Alejandro Balde Martínez and Nicholas Williams Arthuer—who successfully dribbled past Francisco Javier Calvo Quesada in the 79th minute—their final passes to Álvaro Borja Morata Martín were frequently cut off. Costa Rica managed rare counter-attacking attempts late in the match involving Yeltsin Ignacio Tejeda Valverde and Álvaro José Zamora Mata, but Spain's defensive tracking, including key blocks by Daniel Olmo Carvajal, held firm until full-time.
+
+---
+
+### Key Moments
+* **8'46 – 9'09:** Spain controls deep possession, mounting a long sequence of short and high passes between Rodrigo Hernández Cascante, Daniel Olmo Carvajal, Pedro González López, Marco Asensio Willemsen, and Jordi Alba Ramos.
+* **23'22 – 23'41:** Following clearances from Celso Borges Mora and Joel Nathaniel Campbell Samuels, Marco Asensio Willemsen recovers the ball high for Spain, but his follow-up attempt is blocked by Óscar Esau Duarte Gaitán.
+* **36'20 – 36'31:** Costa Rica mounts a rare aerial dynamic as Carlos Manuel Martínez Castro and Anthony Daniel Contreras Enríquez contest high balls against Aymeric Laporte and Jordi Alba Ramos before Celso Borges Mora sets up Jewison Bennette.
+* **79'09 – 79'34:** Spain plays out from goalkeeper Unai Simón Mendibil through Alejandro Balde Martínez to Nicholas Williams Arthuer, who completes a dribble past Francisco Javier Calvo Quesada before Keysher Fuller Spence clears his cross away from Álvaro Borja Morata Martín.
+* **94'02 – 94'06:** Costa Rica attempts a late combination play via Yeltsin Ignacio Tejeda Valverde, Álvaro José Zamora Mata, and Keysher Fuller Spence, but the final pass is blocked by Daniel Olmo Carvajal.
+
+---
+
+### Key Tactical Insights
+* **Deep Possession & Goal-to-Front Build-Up:** Spain systematically constructed play from the back line, utilizing goalkeeper Unai Simón Mendibil alongside central figures Aymeric Laporte, Rodrigo Hernández Cascante, and Sergio Busquets i Burgos to stretch Costa Rica’s block via ground-pass combinations.
+* **Flank Overloads & Isolated Dribbling:** Spain frequently targeted the flanks using wide combinations between Jordi Alba Ramos, Alejandro Balde Martínez, and Daniel Olmo Carvajal, leveraging 1v1 dribble attempts from dynamic wingers like Nicholas Williams Arthuer to break into the penalty box.
+* **Low-Block Clearance & High Press Interceptions:** Costa Rica relied on central packing and emergency clearances from Celso Borges Mora, Keysher Fuller Spence, and Óscar Esau Duarte Gaitán to defend inside their box, while Spain immediately counter-pressed upon losing possession through ball recoveries from Olmo, Carlos Soler Barragán, and Laporte.",0.0,0.0,0.0,0.0,0.1457627118644067,0.0748299319727891,0.0847457627118644,2.8267310575505564,0.80796879529953
+3857291,Summarize the match and provide key tactical insights.,agentic,"Spain beat Costa Rica 7-0 in the Group Stage (2022-11-23). Goal-scorers: Daniel Olmo Carvajal (10'52), Marco Asensio Willemsen (20'32), Ferrán Torres García (30'09), Ferrán Torres García (53'41), Pablo Martín Páez Gavira (73'59), Carlos Soler Barragán (89'11), Álvaro Borja Morata Martín (91'57). Cards shown: Francisco Javier Calvo Quesada (Costa Rica, Yellow Card), Joel Nathaniel Campbell Samuels (Costa Rica, Yellow Card).","### Match Summary
+
+Spain put on a dominant offensive display against Costa Rica, capitalizing on their chances with remarkable clinical finishing. The scoring began in the 11th minute when Daniel Olmo lifted a right-footed lob into the net. Spain continued to exert relentless pressure, doubling their advantage ten minutes later through Marco Asensio's left-footed half-volley. Ferrán Torres further extended the lead past the half-hour mark by converting a penalty.
+
+In the second half, Spain maintained their commanding grip on the match. Ferrán Torres scored his second goal in the 54th minute with a left-footed strike, and Pablo Martín Páez Gavira added a fifth goal in the 74th minute with a right-footed volley. Throughout the contest, Spain's defensive structure proved highly effective, backed by key tackles from Alejandro Balde and Aymeric Laporte. Spain consistently disrupted Costa Rica's attempts to build out from deep, applying aggressive forward pressure while executing swift, vertical central transitions directly following defensive recoveries to keep Costa Rica pinned back.
+
+---
+
+### Key Moments
+
+- **10'52** – **Goal (Spain)**: Daniel Olmo Carvajal scores with a right-footed lob (xG 0.49).
+- **20'32** – **Goal (Spain)**: Marco Asensio Willemsen scores with a left-footed half-volley (xG 0.09).
+- **30'09** – **Goal (Spain)**: Ferrán Torres García converts a penalty with a right-footed shot (xG 0.78).
+- **53'41** – **Goal (Spain)**: Ferrán Torres García scores with a left-footed shot (xG 0.10).
+- **73'59** – **Goal (Spain)**: Pablo Martín Páez Gavira scores with a right-footed volley (xG 0.06).
+
+---
+
+### Key Tactical Insights
+
+- **Clinical Finishing Across Scenarios**: Spain exhibited extraordinary efficiency, scoring five goals from diverse situations including open-play shots, volleys, a lob, and a penalty—often converting low-xG opportunities.
+- **High Pressing & Defensive Disruption**: Spain successfully disrupted Costa Rica’s build-up play from the back using aggressive forward pressing and defensive interventions high up the pitch, evidenced by tackles from Aymeric Laporte and Alejandro Balde, and high blocks from Daniel Olmo.
+- **Rapid Vertical Transitions**: Upon forcing turnovers (such as Carlos Soler recovering the ball following an Aymeric Laporte tackle), Spain immediately launched direct, vertical forward combinations through central areas to exploit open space.",1.0,0.4166666666666667,0.5,0.4166666666666667,0.2133333333333333,0.125,0.1333333333333333,2.62822611820814,0.7991932034492493
+3857291,How many goals did each team score in this match?,naive,Spain scored 7 goal(s) and Costa Rica scored 0 goal(s).,Not enough information.,0.4,0.16666666666666666,0.2,0.16666666666666666,0.0,0.0,0.0,0.6193628179172647,0.8527078628540039
+3857291,How many goals did each team score in this match?,agentic,Spain scored 7 goal(s) and Costa Rica scored 0 goal(s).,"7 matching event(s) found.
+
+By team: Spain: 7
+By player: Ferrán Torres García: 2, Daniel Olmo Carvajal: 1, Marco Asensio Willemsen: 1, Pablo Martín Páez Gavira: 1, Carlos Soler Barragán: 1, Álvaro Borja Morata Martín: 1
+
+Details:
+  10'52 Spain - Daniel Olmo Carvajal [Shot] Lob, Right Foot; xG 0.49; Goal
+  20'32 Spain - Marco Asensio Willemsen [Shot] Half Volley, Left Foot; xG 0.09; Goal
+  30'09 Spain - Ferrán Torres García [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  53'41 Spain - Ferrán Torres García [Shot] Normal, Left Foot; xG 0.10; Goal
+  73'59 Spain - Pablo Martín Páez Gavira [Shot] Volley, Right Foot; xG 0.06; Goal
+  89'11 Spain - Carlos Soler Barragán [Shot] Normal, Right Foot; xG 0.33; Goal
+  91'57 Spain - Álvaro Borja Morata Martín [Shot] Normal, Left Foot; xG 0.16; Goal",N/A,N/A,N/A,N/A,0.072289156626506,0.0,0.0602409638554216,0.8437266890086363,0.7991434335708618
+3857291,How many yellow or red cards were shown in the match?,naive,2 card(s) were shown: 2 for Costa Rica.,"Based on the provided evidence, a total of **2 cards** (both yellow cards, 0 red cards) were shown in the match:
+
+1. **Yellow Card:** Francisco Javier Calvo Quesada (Costa Rica) at 67'18
+2. **Yellow Card:** Joel Nathaniel Campbell Samuels (Costa Rica) at 96'07",0.8,0.8,0.4,0.8,0.2592592592592592,0.1153846153846153,0.2592592592592592,2.959801342730592,0.8383982181549072
+3857291,How many yellow or red cards were shown in the match?,agentic,2 card(s) were shown: 2 for Costa Rica.,"22 matching event(s) found.
+
+By team: Costa Rica: 14, Spain: 8
+By player: Francisco Javier Calvo Quesada: 3, Óscar Esau Duarte Gaitán: 3, Aymeric Laporte: 2, Joel Nathaniel Campbell Samuels: 2, César Azpilicueta Tanco: 2, Brandon Aguilera Zamora: 2, Marco Asensio Willemsen: 1, Jordi Alba Ramos: 1, Daniel Olmo Carvajal: 1, Carlos Manuel Martínez Castro: 1, Bryan Oviedo: 1, Celso Borges Mora: 1, Pablo Martín Páez Gavira: 1, Kendall Jamaal Waston Manley: 1
+
+Details:
+  3'22 Spain - Aymeric Laporte [Foul Committed]
+  14'23 Costa Rica - Francisco Javier Calvo Quesada [Foul Committed]
+  15'21 Spain - Marco Asensio Willemsen [Foul Committed]
+  17'17 Spain - Jordi Alba Ramos [Foul Committed]
+  28'51 Costa Rica - Óscar Esau Duarte Gaitán [Foul Committed]
+  32'08 Spain - Daniel Olmo Carvajal [Foul Committed]
+  37'55 Costa Rica - Carlos Manuel Martínez Castro [Foul Committed]
+  38'38 Costa Rica - Óscar Esau Duarte Gaitán [Foul Committed]
+  43'37 Costa Rica - Bryan Oviedo [Foul Committed]
+  45'32 Costa Rica - Joel Nathaniel Campbell Samuels [Foul Committed]
+  55'34 Costa Rica - Celso Borges Mora [Foul Committed]
+  60'28 Costa Rica - Francisco Javier Calvo Quesada [Foul Committed]
+  67'18 Costa Rica - Francisco Javier Calvo Quesada [Foul Committed] Yellow Card
+  77'29 Spain - Pablo Martín Páez Gavira [Foul Committed]
+  77'58 Costa Rica - Kendall Jamaal Waston Manley [Foul Committed]
+  81'23 Spain - César Azpilicueta Tanco [Foul Committed]
+  85'01 Costa Rica - Brandon Aguilera Zamora [Foul Committed]
+  86'06 Spain - Aymeric Laporte [Foul Committed]
+  90'21 Spain - César Azpilicueta Tanco [Foul Committed]
+  91'28 Costa Rica - Óscar Esau Duarte Gaitán [Foul Committed]
+  ... and 2 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0418118466898954,0.0070175438596491,0.0278745644599303,0.597903625915937,0.7750208973884583
+3857291,Describe Ferrán Torres García's goals in the match.,naive,"Ferrán Torres García scored 2 goals for Spain: a goal in the 30'09 minute, a goal in the 53'41 minute.","Ferrán Torres García scored two goals for Spain during the match:
+
+1. **First Goal (30'09):** A penalty shot taken with his right foot from location (108.1, 40.1), which had an expected goals (xG) value of 0.78.
+2. **Second Goal (53'41):** A normal shot taken with his left foot from location (114.7, 49.4), which had an expected goals (xG) value of 0.10.",0.6,0.75,0.3,0.75,0.3999999999999999,0.1935483870967742,0.3368421052631579,4.206679157605443,0.8809406161308289
+3857291,Describe Ferrán Torres García's goals in the match.,agentic,"Ferrán Torres García scored 2 goals for Spain: a goal in the 30'09 minute, a goal in the 53'41 minute.","Ferrán Torres García scored two goals for Spain during the match:
+
+1. **First Goal (30'09""):** Scored from a penalty kick using his right foot from coordinates (108.1, 40.1), registering an xG of 0.78.
+2. **Second Goal (53'41""):** Scored during open play with a left-footed shot from inside the penalty box at coordinates (114.7, 49.4), registering an xG of 0.10.",1.0,0.5,1.0,0.5,0.4255319148936169,0.1956521739130435,0.3404255319148936,4.620140892351119,0.8803638219833374

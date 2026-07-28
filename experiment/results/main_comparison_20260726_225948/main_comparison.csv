@@ -1,0 +1,175 @@
+match_id,query,system,reference_summary,response_text,precision_at_5,recall_at_5,precision_at_10,recall_at_10,rouge1,rouge2,rougeL,bleu,bertscore_f1
+3869685,Summarize the match and provide key tactical insights.,naive,"Argentina drew with France 3-3 in the Final (2022-12-18), with the match going to a penalty shootout. Goal-scorers: Lionel Andrés Messi Cuccittini (22'24), Ángel Fabián Di María Hernández (35'22), Kylian Mbappé Lottin (79'24), Kylian Mbappé Lottin (80'59), Lionel Andrés Messi Cuccittini (107'58), Kylian Mbappé Lottin (117'05). Cards shown: Enzo Fernandez (Argentina, Yellow Card), Adrien Rabiot (France, Yellow Card), Marcus Thuram (France, Yellow Card), Olivier Giroud (France, Yellow Card), Marcos Javier Acuña (Argentina, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Damián Emiliano Martínez (Argentina, Yellow Card).","### Match Summary
+
+This highly contested football match between Argentina and France featured intense physical duels, structured possession, and key defensive interventions from both sides. France repeatedly looked to transition through vertical play, utilizing long aerial passes from Hugo Lloris and Theo Bernard François Hernández targeting Olivier Giroud to initiate attacks. France's midfield, led by Adrien Rabiot and Aurélien Djani Tchouaméni, sustained possession and distributed the ball across the backline to stretch Argentina's defense.
+
+Argentina responded with organized defensive play, highlighted by recoveries and clearances from Cristian Gabriel Romero, Nicolás Hernán Otamendi, and Nicolás Alejandro Tagliafico. In the first half, Argentina disrupted France’s build-up play, while looking to transition quickly. As the match progressed, Argentina created dangerous offensive sequences, such as a fluid team move in the 71st minute involving Alexis Mac Allister and Lionel Andrés Messi Cuccittini that resulted in an Enzo Fernandez shot saved by France. The later stages of the match saw France increasing pressure, utilizing substitutes like Marcus Thuram, Randal Kolo Muani, and Eduardo Camavinga, but Argentina's defensive line remained resilient, blocking crosses and clearing loose balls to hold off late French attacks.
+
+---
+
+### Key Moments with Timestamps
+
+* **11'04 – 11'17**: France attempts a fast-paced attacking sequence starting with Hugo Lloris's high pass to Olivier Giroud. After quick aerial combinations involving Adrien Rabiot and Antoine Griezmann, Cristian Gabriel Romero makes a crucial block for Argentina.
+* **30'25 – 30'31**: Theo Bernard François Hernández and Aurélien Djani Tchouaméni repeatedly find Olivier Giroud in the air, though Giroud's low lay-offs to Kylian Mbappé are ultimately cut out.
+* **70'58 – 71'31**: Following a successful tackle by Nicolás Alejandro Tagliafico, Argentina launches a fluid, multi-pass counter-attack. Alexis Mac Allister, Marcos Javier Acuña, and Lionel Andrés Messi Cuccittini combine to set up Enzo Fernandez, whose shot is saved.
+* **83'34 – 83'40**: Randal Kolo Muani wins a vital tackle, allowing Adrien Rabiot and Marcus Thuram to quickly recover possession and pressure Argentina deep in their half.
+* **89'40 – 90'10**: France mounts a sustained late-game attack with quick ground distributions involving Eduardo Camavinga, Adrien Rabiot, Kylian Mbappé, Kingsley Coman, and Jules Koundé.
+
+---
+
+### Key Tactical Insights
+
+* **Target-Man Aerial Outlets**: France consistently relied on high passes to Olivier Giroud (fed by Lloris, Hernández, and Tchouaméni) to bypass Argentina’s initial line of pressure and attempt quick lay-offs to Kylian Mbappé.
+* **Argentina's Rapid Transition Channels**: When defending deeper, Argentina utilized direct vertical transitions. They immediately looked to pass through Alexis Mac Allister, who acted as a progressive ball carrier (such as his dribble and pass sequence in the 71st minute) to connect with Lionel Messi and Enzo Fernandez.
+* **Possession Recycling**: France utilized central midfielders Adrien Rabiot and Aurélien Djani Tchouaméni alongside center-backs Dayotchanculle Upamecano and Raphaël Varane to patiently recycle play from left to right, seeking to open up passing lanes to wide outlets like Jules Koundé and Kingsley Coman.",0.0,0.0,0.0,0.0,0.1639871382636656,0.0677419354838709,0.1093247588424437,2.452808437769535,0.8047376275062561
+3869685,Summarize the match and provide key tactical insights.,agentic,"Argentina drew with France 3-3 in the Final (2022-12-18), with the match going to a penalty shootout. Goal-scorers: Lionel Andrés Messi Cuccittini (22'24), Ángel Fabián Di María Hernández (35'22), Kylian Mbappé Lottin (79'24), Kylian Mbappé Lottin (80'59), Lionel Andrés Messi Cuccittini (107'58), Kylian Mbappé Lottin (117'05). Cards shown: Enzo Fernandez (Argentina, Yellow Card), Adrien Rabiot (France, Yellow Card), Marcus Thuram (France, Yellow Card), Olivier Giroud (France, Yellow Card), Marcos Javier Acuña (Argentina, Yellow Card), Leandro Daniel Paredes (Argentina, Yellow Card), Gonzalo Ariel Montiel (Argentina, Yellow Card), Damián Emiliano Martínez (Argentina, Yellow Card).","### Match Summary
+
+Argentina established an early lead through structured build-up play and clinical execution. Lionel Messi opened the scoring with a penalty in the 23rd minute, followed by Ángel Di María converting a clinical shot in the 36th minute after cohesive passing. Throughout much of the game, Argentina maintained strong defensive stability in mid-to-low blocks, quickly recovering possession to disrupt France's attacking transitions. 
+
+However, France adjusted their tactics in the second half and extra time, executing high-tempo circulation through their backline and leveraging physical duels by substitutes. This tactical shift bore fruit late in the second half when Kylian Mbappé sparked a rapid comeback. Mbappé scored a penalty in the 80th minute and followed it up just over a minute later with a brilliant, low-probability technical volley to level the score. In extra time, the drama continued as Messi proved decisive once again, scoring from close range in the 108th minute with a half-volley to put Argentina back ahead.
+
+---
+
+### Key Moments
+
+*   **22'24""** – **Goal (Argentina):** Lionel Messi scores a penalty with his left foot (xG 0.78).
+*   **35'22""** – **Goal (Argentina):** Ángel Di María scores with a left-footed shot (xG 0.30) following a structured team build-up.
+*   **79'24""** – **Goal (France):** Kylian Mbappé converts a penalty with his right foot (xG 0.78).
+*   **80'59""** – **Goal (France):** Kylian Mbappé scores a rapid equalizer with a right-footed volley (xG 0.10).
+*   **107'58""** – **Goal (Argentina):** Lionel Messi scores a critical close-range half-volley in extra time (xG 0.49).
+
+---
+
+### Tactical Insights
+
+*   **Structured Possession and Block Defense:** Argentina's initial dominance was fueled by fluid passing sequences (involving Molina, Mac Allister, Fernandez, Álvarez, and De Paul) combined with defensive resilience. Argentina stayed compact in mid-to-low blocks, securing quick ball recoveries (such as Tagliafico and Mac Allister recovering possession) to stifle France's transitions.
+*   **France's Build-up and Physical Adjustments:** France altered their approach in the second half and extra time. They initiated high-tempo passing sequences through their backline (utilizing Varane, Upamecano, and Tchouaméni) and relied on substitute players like Randal Kolo Muani and Marcus Thuram winning physical duels to sustain offensive pressure in Argentina's half.
+*   **Clinical Individual Execution:** Despite tactical structures, individual brilliance defined the scoreline. Mbappé capitalized on a low-probability technical volley (0.10 xG) to rapidly level the match, while Messi's positioning allowed him to net a decisive, close-range half-volley in extra time.",1.0,0.19230769230769232,0.5,0.19230769230769232,0.1901140684410646,0.0534351145038168,0.1140684410646387,0.6825676005758118,0.7873388528823853
+3869685,How many goals did each team score in this match?,naive,Argentina scored 3 goal(s) and France scored 3 goal(s).,Not enough information.,0.4,0.07692307692307693,0.4,0.15384615384615385,0.0,0.0,0.0,0.7952776003571096,0.8484996557235718
+3869685,How many goals did each team score in this match?,agentic,Argentina scored 3 goal(s) and France scored 3 goal(s).,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal",N/A,N/A,N/A,N/A,0.1134751773049645,0.0,0.0851063829787234,1.0478714246717302,0.8081015944480896
+3869685,How many yellow or red cards were shown in the match?,naive,"8 card(s) were shown: 5 for Argentina, 3 for France.","Based on the provided evidence, there were **8 cards** shown in the match (all of which were yellow cards). 
+
+Here is the breakdown of the cards shown:
+1. **Enzo Fernandez** (Argentina) - 51'21 (Yellow Card)
+2. **Adrien Rabiot** (France) - 54'12 (Yellow Card)
+3. **Marcus Thuram** (France) - 86'24 (Yellow Card)
+4. **Olivier Giroud** (France) - 94'35 (Yellow Card)
+5. **Marcos Javier Acuña** (Argentina) - 97'33 (Yellow Card)
+6. **Leandro Daniel Paredes** (Argentina) - 113'27 (Yellow Card)
+7. **Gonzalo Ariel Montiel** (Argentina) - 115'39 (Yellow Card)
+8. **Damián Emiliano Martínez** (Argentina) - 124'57 (Yellow Card)",1.0,0.2777777777777778,1.0,0.5555555555555556,0.146788990825688,0.0186915887850467,0.128440366972477,0.6342146909213475,0.8079290390014648
+3869685,How many yellow or red cards were shown in the match?,agentic,"8 card(s) were shown: 5 for Argentina, 3 for France.","50 matching event(s) found.
+
+By team: Argentina: 30, France: 20
+By player: Julián Álvarez: 8, Enzo Fernandez: 4, Adrien Rabiot: 3, Cristian Gabriel Romero: 3, Randal Kolo Muani: 3, Nicolás Alejandro Tagliafico: 3, Aurélien Djani Tchouaméni: 2, Rodrigo Javier De Paul: 2, Lionel Andrés Messi Cuccittini: 2, Olivier Giroud: 2, Theo Bernard François Hernández: 2, Jules Koundé: 2, Nicolás Hernán Otamendi: 2, Marcus Thuram: 2, Marcos Javier Acuña: 2, Gonzalo Ariel Montiel: 2, Dayotchanculle Upamecano: 1, Ousmane Dembélé: 1, Kylian Mbappé Lottin: 1, Eduardo Camavinga: 1, Leandro Daniel Paredes: 1, Damián Emiliano Martínez: 1
+
+Details:
+  0'19 France - Adrien Rabiot [Foul Committed]
+  0'49 France - Aurélien Djani Tchouaméni [Foul Committed]
+  1'36 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  3'13 France - Dayotchanculle Upamecano [Foul Committed]
+  5'44 Argentina - Lionel Andrés Messi Cuccittini [Foul Committed]
+  6'42 Argentina - Julián Álvarez [Foul Committed]
+  8'41 Argentina - Cristian Gabriel Romero [Foul Committed]
+  12'05 Argentina - Julián Álvarez [Foul Committed]
+  18'11 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  19'03 France - Olivier Giroud [Foul Committed]
+  20'53 France - Ousmane Dembélé [Foul Committed]
+  25'32 Argentina - Cristian Gabriel Romero [Foul Committed]
+  26'52 France - Theo Bernard François Hernández [Foul Committed]
+  37'09 Argentina - Julián Álvarez [Foul Committed]
+  37'51 France - Jules Koundé [Foul Committed]
+  40'11 France - Jules Koundé [Foul Committed]
+  41'12 France - Randal Kolo Muani [Foul Committed]
+  41'39 France - Randal Kolo Muani [Foul Committed]
+  44'08 Argentina - Julián Álvarez [Foul Committed]
+  46'34 France - Theo Bernard François Hernández [Foul Committed]
+  ... and 30 more (already included in the count above)",N/A,N/A,N/A,N/A,0.0405405405405405,0.0,0.0337837837837837,0.5002217171371279,0.7754021883010864
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,naive,"Kylian Mbappé Lottin scored 3 goals for France: a goal in the 79'24 minute, a goal in the 80'59 minute, a goal in the 117'05 minute.","Based on the provided evidence, Kylian Mbappé Lottin scored two goals during the match:
+
+1. **First Goal (79'24):** A penalty shot taken with his right foot from coordinates (108.0, 40.0). The shot had an expected goals (xG) rating of 0.78.
+2. **Second Goal (117'05):** Another penalty shot taken with his right foot from coordinates (108.0, 40.0), also with an expected goals (xG) rating of 0.78.",0.8,0.4444444444444444,0.4,0.4444444444444444,0.3137254901960784,0.1,0.2549019607843137,3.112074923496609,0.85841304063797
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,agentic,"Kylian Mbappé Lottin scored 3 goals for France: a goal in the 79'24 minute, a goal in the 80'59 minute, a goal in the 117'05 minute.","Based on the provided evidence, Kylian Mbappé Lottin scored three goals in the match (including one during the penalty shootout), all with his right foot:
+
+*   **First Goal (79'24):** A penalty kick taken from coordinates (108.0, 40.0) with an expected goals (xG) value of 0.78.
+*   **Second Goal (80'59):** A volley from coordinates (104.8, 30.1) with an expected goals (xG) value of 0.10.
+*   **Third Goal (120'13 - Penalty Shootout):** A penalty kick taken from coordinates (108.1, 40.1) with an expected goals (xG) value of 0.78.",0.8,0.4444444444444444,0.5714285714285714,0.4444444444444444,0.3089430894308942,0.1157024793388429,0.2439024390243902,2.575779148747207,0.8481490612030029
+3869519,Summarize the match and provide key tactical insights.,naive,"Argentina beat Croatia 3-0 in the Semi-finals (2022-12-13). Goal-scorers: Lionel Andrés Messi Cuccittini (33'27), Julián Álvarez (38'26), Julián Álvarez (68'46). Cards shown: Dominik Livaković (Croatia, Yellow Card), Mateo Kovačić (Croatia, Yellow Card), Cristian Gabriel Romero (Argentina, Yellow Card), Nicolás Hernán Otamendi (Argentina, Yellow Card).","### Match Summary
+The match featured structured possession phases and intense midfield battles between Argentina and Croatia. Croatia relied on patient, short passing sequences through Luka Modrić, Marcelo Brozović, and Josip Juranović to transition the ball into the attacking third. However, they struggled to create high-quality chances against a disciplined Argentine defense. Argentina focused on tactical build-ups from the back, utilizing players like Nicolás Otamendi, Enzo Fernandez, and Alexis Mac Allister. 
+
+The definitive breakthrough came in the 38th minute when Julián Álvarez intercepted the ball, capitalized on a defensive error by Croatia's Borna Sosa, and volleyed home the opening goal. Argentina continued to control key phases in the second half, relying on quick recoveries and high-pressing sequences from substitutes like Paulo Dybala. Croatia pushed forward late in stoppage time, shifting to a more direct attacking style. Although they managed to orchestrate a shooting opportunity for defender Dejan Lovren in the 94th minute, his effort went off-target, leaving Croatia unable to break down Argentina's defensive block.
+
+---
+
+### Key Moments
+*   **25'02"" – 25'29""**: Croatia's Joško Gvardiol loses a duel, but Mateo Kovačić recovers to launch an attack. Argentina quickly counters with an extensive ground-passing sequence involving Otamendi, Paredes, Mac Allister, De Paul, and Molina, which is eventually intercepted by Gvardiol.
+*   **38'15"" – 38'26"" [GOAL]**: Following a pass from Otamendi, Julián Álvarez recovers the ball. Croatian defender Borna Sosa commits a clearance error, allowing Álvarez to reclaim possession and score with a right-footed volley (xG 0.36).
+*   **40'00"" – 40'17""**: Luka Modrić wins a tackle and orchestrates a rapid 7-pass sequence with Juranović, Lovren, Brozović, Pašalić, and Kramarić before Rodrigo De Paul recovers the ball for Argentina.
+*   **62'07"" – 62'35""**: Argentina showcases physical and tactical dominance, starting with an Enzo Fernandez tackle and transitioning into a long 10-pass retention sequence to exhaust the Croatian defense.
+*   **75'42"" – 75'56""**: Substitute Paulo Dybala actively disrupts Croatia's defense, contesting multiple aerial duels, recording a successful tackle, and combining with Messi and Palacios.
+*   **94'28"" – 94'53""**: Ivan Perišić wins a late tackle, sparking Croatia's final attack. After a swift sequence of ground passes involving Gvardiol, Oršić, Majer, and Petković, Dejan Lovren takes a left-footed shot that goes off-target (xG 0.02).
+
+---
+
+### Tactical Insights
+*   **Exploiting Defensive Transitions:** Argentina’s opening goal was a direct result of aggressive pressing and capitalizing on defensive mistakes. Julián Álvarez’s high work rate allowed him to recover the ball twice in the final third, punishing Borna Sosa's failed clearance.
+*   **Midfield Possession vs. Directness:** Croatia's tactical setup heavily favored horizontal and backward passing to maintain possession in deep areas, frequently using Modrić and Brozović to recycle play. However, this often lacked the penetration needed to break Argentina's lines.
+*   **Defensive Resilience and Spatial Control:** Argentina excelled at limiting high-quality chances. When Croatia did get shots off—such as Dejan Lovren's late attempt in stoppage time—they were forced into extremely low-probability areas (evidenced by Lovren's 0.02 xG).
+*   **Impact of Defensive Disruption:** Argentina used tactical fouls, aerial duels, and targeted tackles (notably from Enzo Fernandez and Paulo Dybala) to break up Croatia's rhythm in transition, preventing them from sustaining pressure in the final third.",0.2,0.16666666666666666,0.1,0.16666666666666666,0.0912052117263843,0.0294117647058823,0.0618892508143322,0.5361445620048969,0.7935063242912292
+3869519,Summarize the match and provide key tactical insights.,agentic,"Argentina beat Croatia 3-0 in the Semi-finals (2022-12-13). Goal-scorers: Lionel Andrés Messi Cuccittini (33'27), Julián Álvarez (38'26), Julián Álvarez (68'46). Cards shown: Dominik Livaković (Croatia, Yellow Card), Mateo Kovačić (Croatia, Yellow Card), Cristian Gabriel Romero (Argentina, Yellow Card), Nicolás Hernán Otamendi (Argentina, Yellow Card).","### Match Summary
+
+Argentina secured a commanding victory against Croatia, establishing a crucial first-half lead within a rapid five-minute window. The breakthrough came in the 33rd minute when Lionel Messi converted a penalty following a foul by Croatia's goalkeeper, Dominik Livaković. This momentum was quickly capitalized on in the 38th minute when Julián Álvarez scored with a clinical right-footed volley. Throughout the match, Argentina employed a patient, structured deep build-up play involving central defenders and deep midfielders to safely progress the ball and bypass Croatia’s initial defensive pressure. During the second half, Argentina focused their progression on left-flank combinations, using sequential ground passes between Lisandro Martínez, Alexis Mac Allister, and Nicolás Tagliafico to transition the ball to the forward line. Late in the game, Argentina's defensive resilience shone as active duel-winning and crucial interventions by Lisandro Martínez, Enzo Fernandez, and Paulo Dybala neutralized Croatian attacks, allowing the team to quickly transition into offensive opportunities for Lionel Messi and Exequiel Palacios.
+
+### Key Moments
+
+*   **31'10** – Dominik Livaković (Croatia) commits a foul in the box, resulting in a yellow card.
+*   **31'31** – Mateo Kovačić (Croatia) is booked with a yellow card for bad behavior.
+*   **33'27** – **Goal!** Lionel Messi (Argentina) converts the penalty with a left-footed shot to make it 1-0.
+*   **38'26** – **Goal!** Julián Álvarez (Argentina) scores with a right-footed volley to make it 2-0.
+
+### Key Tactical Insights
+
+*   **Structured Deep Build-Up:** Argentina utilized patient, structured deep build-up play involving their central defenders (such as Nicolás Otamendi and Cristian Romero) and deep midfielders (including Leandro Paredes, Rodrigo De Paul, and Alexis Mac Allister) to safely progress the ball and bypass Croatia's initial defensive actions.
+*   **Left-Flank Combinations:** During the second half, Argentina heavily relied on left-flank combinations, executing sequential ground passes between Lisandro Martínez, Alexis Mac Allister, and Nicolás Tagliafico to transition the ball to the forward line.
+*   **Late-Game Defensive Interventions and Transition:** Late-game defensive interventions and active duel-winning by players like Lisandro Martínez, Enzo Fernandez, and Paulo Dybala allowed Argentina to quickly disrupt Croatian attacks and transition into offensive opportunities for Lionel Messi and Exequiel Palacios.",0.6,0.5,0.3,0.5,0.1712962962962963,0.0697674418604651,0.1203703703703703,2.064774479229946,0.8124774694442749
+3869519,How many goals did each team score in this match?,naive,Argentina scored 3 goal(s) and Croatia scored 0 goal(s).,"Based on the provided evidence, there is not enough information to determine the total number of goals scored by each team in the match, as the provided event logs are incomplete.",0.0,0.0,0.2,0.3333333333333333,0.0952380952380952,0.0,0.0952380952380952,1.2944532586971995,0.8493229150772095
+3869519,How many goals did each team score in this match?,agentic,Argentina scored 3 goal(s) and Croatia scored 0 goal(s).,"3 matching event(s) found.
+
+By team: Argentina: 3
+By player: Julián Álvarez: 2, Lionel Andrés Messi Cuccittini: 1
+
+Details:
+  33'27 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  38'26 Argentina - Julián Álvarez [Shot] Volley, Right Foot; xG 0.36; Goal
+  68'46 Argentina - Julián Álvarez [Shot] Normal, Right Foot; xG 0.33; Goal",N/A,N/A,N/A,N/A,0.1794871794871795,0.0,0.1282051282051282,1.8745208417490915,0.8194518685340881
+3869519,How many yellow or red cards were shown in the match?,naive,"4 card(s) were shown: 2 for Croatia, 2 for Argentina.","Based on the provided evidence, there were **4 yellow cards** and **0 red cards** shown in the match:
+
+1. **Dominik Livaković** (Croatia) – Yellow Card at 31'10
+2. **Mateo Kovačić** (Croatia) – Yellow Card at 31'31
+3. **Cristian Gabriel Romero** (Argentina) – Yellow Card at 67'31
+4. **Nicolás Hernán Otamendi** (Argentina) – Yellow Card at 70'56",1.0,0.625,0.5,0.625,0.2285714285714286,0.0,0.1714285714285714,0.6961345235234849,0.8191012740135193
+3869519,How many yellow or red cards were shown in the match?,agentic,"4 card(s) were shown: 2 for Croatia, 2 for Argentina.","4 matching event(s) found.
+
+By team: Argentina: 2, Croatia: 2
+By player: Dominik Livaković: 1, Mateo Kovačić: 1, Cristian Gabriel Romero: 1, Nicolás Hernán Otamendi: 1
+
+Details:
+  31'10 Croatia - Dominik Livaković [Foul Committed] Yellow Card
+  31'31 Croatia - Mateo Kovačić [Bad Behaviour] Yellow Card
+  67'31 Argentina - Cristian Gabriel Romero [Foul Committed] Yellow Card
+  70'56 Argentina - Nicolás Hernán Otamendi [Bad Behaviour] Yellow Card",N/A,N/A,N/A,N/A,0.1686746987951807,0.0246913580246913,0.144578313253012,2.277520925228524,0.8346501588821411
+3869519,Describe Julián Álvarez's goals in the match.,naive,"Julián Álvarez scored 2 goals for Argentina: a goal in the 38'26 minute, a goal in the 68'46 minute.","Based on the provided evidence, Julián Álvarez scored two goals in the match:
+
+*   **First Goal (38:26):** He scored using his right foot with a volley from coordinates (112.7, 37.4). The shot had an expected goals (xG) value of 0.36.
+*   **Second Goal (68:46):** He scored with a normal right-footed shot from coordinates (113.3, 45.4). The shot had an expected goals (xG) value of 0.33.",0.2,0.25,0.2,0.5,0.3368421052631579,0.1505376344086021,0.2736842105263158,2.1127205998634366,0.860808789730072

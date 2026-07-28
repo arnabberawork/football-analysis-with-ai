@@ -1,0 +1,553 @@
+match_id,query,config,precision_at_5,rougeL,response_text
+3869685,Summarize the match and provide key tactical insights.,full,1.0,0.15267175572519084,"### Match Summary
+
+Argentina established early dominance in the match through fluid midfield combinations involving Lionel Andrés Messi, Alexis Mac Allister, Enzo Fernández, and Rodrigo De Paul. This control paid off in the 23rd minute when Messi converted a penalty to put Argentina ahead. Argentina doubled their lead in the 36th minute through a left-footed shot from Ángel Di María. In the second half, France turned to an intense physical press, relying on second-ball recoveries and high duels from Randal Kolo Muani, Adrien Rabiot, and Marcus Thuram to disrupt Argentina's build-up play. France's direct attack proved decisive late in regulation when Kylian Mbappé scored a rapid double, first converting a penalty in the 80th minute and then adding a right-footed volley in the 81st minute to bring France back into the match. France continued to build late structural possession sequences through Eduardo Camavinga, Rabiot, Kingsley Coman, and Jules Koundé. In extra time, Lionel Messi restored Argentina's goalscoring leverage in the 108th minute by finding the net with a right-footed half-volley following opportunistic central box presence.
+
+---
+
+### Key Moments
+
+* **22'24""** – **Goal (Argentina):** Lionel Andrés Messi Cuccittini converts a penalty with his left foot (xG 0.78).
+* **35'22""** – **Goal (Argentina):** Ángel Fabián Di María Hernández scores with a left-footed shot (xG 0.30).
+* **79'24""** – **Goal (France):** Kylian Mbappé Lottin converts a penalty with his right foot (xG 0.78).
+* **80'59""** – **Goal (France):** Kylian Mbappé Lottin scores with a right-footed volley (xG 0.10).
+* **107'58""** – **Goal (Argentina):** Lionel Andrés Messi Cuccittini scores with a right-footed half-volley (xG 0.49).
+
+---
+
+### Key Tactical Insights
+
+* **Argentina's Midfield Fluidity:** Argentina established early control and sustained build-up play through central passing combinations involving Messi, Mac Allister, Fernández, and De Paul, creating the framework for their first two goals.
+* **France's Second-Half High Press:** France adjusted in the second half by applying physical pressure, utilizing Kolo Muani, Rabiot, and Thuram to win aerial duels, complete tackles, and claim second balls to disrupt Argentina's possession.
+* **Mbappé's Direct Attack & Late Possession:** Mbappé provided a highly clinical transition threat, scoring twice in quick succession while France maintained late structural possession sequences through Camavinga, Rabiot, Coman, and Koundé.
+* **Messi's Central Box Impact:** Messi provided crucial positioning inside the penalty box during extra time, using opportunistic central presence to convert a half-volley and regain the lead."
+3869685,Summarize the match and provide key tactical insights.,no_hybrid,1.0,0.12170385395537525,"### Match Summary
+
+Argentina established early dominance in the match through high finishing efficiency, converting key opportunities to build a first-half lead. Lionel Messi opened the scoring with a 23rd-minute penalty, followed by an Ángel Di María strike in the 36th minute. Argentina maintained structural control throughout much of the contest by utilizing defensive duel victories and midfield ball recoveries—frequently through Enzo Fernández—to construct patient, multi-pass build-up sequences across the pitch.
+
+France launched a dramatic late response in the second half led by Kylian Mbappé. Mbappé converted a penalty in the 80th minute and struck a right-footed volley just over a minute later in the 81st minute to bring France level at 2-2.
+
+The match proceeded into extra time, where Argentina sustained their high defensive duel intensity in central areas. Winning tackles in midfield allowed Argentina to launch direct forward transitions, culminating in Lionel Messi scoring his second goal of the match with a right-footed half-volley in the 108th minute.
+
+---
+
+### Key Moments
+
+* **22'24** – **Goal (Argentina):** Lionel Messi converts a left-footed penalty (xG 0.78).
+* **35'22** – **Goal (Argentina):** Ángel Di María scores with a left-footed shot (xG 0.30).
+* **79'24** – **Goal (France):** Kylian Mbappé converts a right-footed penalty (xG 0.78).
+* **80'59** – **Goal (France):** Kylian Mbappé scores with a right-footed volley (xG 0.10).
+* **107'58** – **Goal (Argentina):** Lionel Messi scores with a right-footed half-volley in extra time (xG 0.49).
+
+---
+
+### Key Tactical Insights
+
+* **Early Control via Finishing Efficiency:** Argentina established early dominance by capitalizing on high-value chances, capitalizing on Messi's penalty and Di María's open-play strike.
+* **Midfield Regains into Multi-Pass Build-Up:** Argentina repeatedly used defensive duel victories and ball recoveries in midfield—particularly from Enzo Fernández—to initiate controlled, multi-pass positional sequences.
+* **France's Rapid Late Surge:** France changed the dynamic late in the second half with two quick goals from Kylian Mbappé in under two minutes, turning a penalty win into immediate momentum for an open-play volley.
+* **Central Tackle Wins Driving Extra-Time Transitions:** In extra time, Argentina maintained high duel intensity in central areas, leveraging tackle wins to trigger direct forward transitions that ultimately produced Messi's second goal."
+3869685,Summarize the match and provide key tactical insights.,no_reranker,1.0,0.15550755939524838,"### Match Narrative
+
+Argentina established control early in the match by securing a two-goal advantage during the first half. Lionel Messi initiated the scoring by converting a penalty in the 23rd minute, after which Ángel Di María doubled the lead in the 36th minute with a left-footed strike. Argentina held command of the contest until late into the second half, when France mounted a rapid comeback driven by Kylian Mbappé. Mbappé struck twice within a two-minute window to level the match at 2-2, first scoring from the penalty spot in the 80th minute and immediately following up with a right-footed volley in the 81st minute. As the game extended into extra time, Argentina re-established their lead. In the 108th minute, Lionel Messi scored his second goal of the match via a right-footed half-volley, putting Argentina ahead 3-2 to conclude a high-scoring encounter defined by dramatic shifts in momentum.
+
+---
+
+### Key Moments
+
+* **22'24"" — Goal (Argentina):** Lionel Messi converts a penalty with his left foot (1–0).
+* **35'22"" — Goal (Argentina):** Ángel Di María scores with a left-footed shot (2–0).
+* **79'24"" — Goal (France):** Kylian Mbappé converts a penalty with his right foot (2–1).
+* **80'59"" — Goal (France):** Kylian Mbappé scores with a right-footed volley (2–2).
+* **107'58"" — Goal (Argentina):** Lionel Messi scores a right-footed half-volley during extra time (3–2).
+
+---
+
+### Key Tactical Insights
+
+* **France’s Direct Aerial Route:** France regularly bypassed Argentina's midfield pressing by playing direct high passes to Olivier Giroud, using him as an aerial target man to connect with attacking runners such as Kylian Mbappé and Antoine Griezmann.
+* **Rapid Second-Half Comeback:** France turned the match around late in regulation by rapidly exploiting momentum, with Mbappé scoring twice within two minutes (a penalty and a volley) to erase Argentina's two-goal cushion.
+* **Argentina's Control and Extra-Time Response:** Argentina built their initial advantage through controlled possession and key finishes from Messi and Di María, later demonstrating the resilience to regain control in extra time through Messi's second goal."
+3869685,Summarize the match and provide key tactical insights.,no_reasoning,1.0,0.13865546218487396,"### Match Summary
+
+Argentina established early control against France when Lionel Messi converted a penalty in the 23rd minute (22'24), followed by an Ángel Di María goal in the 36th minute (35'22) following an intricate team build-up. Argentina dominated much of the early action through quick ground-pass combinations through Alexis Mac Allister, Enzo Fernández, and Rodrigo De Paul, while consistently recovering possession in defensive areas. 
+
+France mounted a response late in the second half, relying on high physical duels from Randal Kolo Muani and patient build-up play involving central defenders Dayotchanculle Upamecano and Raphaël Varane. France dramatically drew level late in regulation behind two quick goals from Kylian Mbappé—a penalty at 79'24 followed by a right-footed volley at 80'59. France pushed late momentum through wide involvements from Kingsley Coman and Eduardo Camavinga, but Argentina responded in extra time when Lionel Messi struck a half-volley with his right foot at 107'58 to regain the lead.
+
+---
+
+### Key Moments
+
+* **22'24** – **Goal (Argentina):** Lionel Messi scores a penalty with his left foot (xG 0.78).
+* **35'22** – **Goal (Argentina):** Ángel Di María scores a left-footed shot (xG 0.30).
+* **79'24** – **Goal (France):** Kylian Mbappé converts a penalty with his right foot (xG 0.78).
+* **80'59** – **Goal (France):** Kylian Mbappé scores a right-footed volley (xG 0.10).
+* **107'58** – **Goal (Argentina):** Lionel Messi scores a right-footed half-volley (xG 0.49).
+
+---
+
+### Key Tactical Insights
+
+* **Argentina’s Central Build-Up Triangles:** Argentina constructed effective low-to-mid build-up phases utilizing short, ground-pass sequences between Molina, Messi, Mac Allister, Enzo Fernández, Álvarez, and De Paul to break lines before shifting play out wide.
+* **French Pressing and Duel Engagement:** France created transition opportunities in the second half by employing Randal Kolo Muani to contest high-tackle duels and aerial challenges in Argentina's half, leading to immediate ball recoveries by Adrien Rabiot and Marcus Thuram.
+* **France's Late Positional Width:** In the closing stages of regulation, France recycled possession heavily across backline defenders (Upamecano, Varane) into wide outlets (Camavinga, Coman, Koundé) to destabilize Argentina’s block and route supply to Mbappé."
+3869685,Summarize the match and provide key tactical insights.,no_evaluator,1.0,0.1286031042128603,"### Match Summary
+
+Argentina established early dominance in the match, building a two-goal lead in the first half. Lionel Messi opened the scoring from the penalty spot, and Ángel Di María doubled the advantage shortly after following a strong spell of possession. Argentina controlled the early phases through quick central combinations, keeping France from creating meaningful chances.
+
+France mounted a dramatic second-half comeback led by Kylian Mbappé, who scored two goals in under two minutes—first converting a penalty and then equalizing with a volley. France's resurgence was fueled by a tactical shift to a high press that disrupted Argentina’s deep build-up, alongside swift side-to-side ball circulation to stretch Argentina's defensive shape. The match extended into extra time, where Messi struck again with a half-volley to regain the lead for Argentina.
+
+---
+
+### Key Moments
+
+- **22'24""** – **Goal (Argentina):** Lionel Messi converts a penalty with a left-footed shot to give Argentina a 1–0 lead.
+- **35'22""** – **Goal (Argentina):** Ángel Di María finishes with his left foot to extend Argentina's lead to 2–0.
+- **79'24""** – **Goal (France):** Kylian Mbappé scores a penalty to pull France back to 2–1.
+- **80'59""** – **Goal (France):** Kylian Mbappé equalizes at 2–2 with a right-footed volley.
+- **107'58""** – **Goal (Argentina):** Lionel Messi scores a right-footed half-volley in extra time to make it 3–2.
+
+---
+
+### Key Tactical Insights
+
+- **Argentina's Central Progression:** During the first half, Argentina successfully bypassed France's midfield using rapid, short-passing sequences through central areas involving Enzo Fernández, Alexis Mac Allister, Rodrigo De Paul, and Lionel Messi.
+- **France's High-Pressing Adjustment:** In the second half, France increased their defensive intensity by using forward Randal Kolo Muani to contest high-field duels, effectively disturbing Argentina's deep build-up play.
+- **France's Late Ball Circulation:** In the late possession phases, France unbalancing Argentina's defensive block by moving the ball rapidly side-to-side through Dayot Upamecano, Raphaël Varane, Eduardo Camavinga, and Kingsley Coman."
+3869685,How many goals did each team score in this match?,full,0.0,0.0851063829787234,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal"
+3869685,How many goals did each team score in this match?,no_hybrid,0.0,0.0851063829787234,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal"
+3869685,How many goals did each team score in this match?,no_reranker,0.0,0.0851063829787234,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal"
+3869685,How many goals did each team score in this match?,no_reasoning,0.0,0.0851063829787234,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal"
+3869685,How many goals did each team score in this match?,no_evaluator,0.0,0.0851063829787234,"6 matching event(s) found.
+
+By team: Argentina: 3, France: 3
+By player: Kylian Mbappé Lottin: 3, Lionel Andrés Messi Cuccittini: 2, Ángel Fabián Di María Hernández: 1
+
+Details:
+  22'24 Argentina - Lionel Andrés Messi Cuccittini [Shot] Penalty, Normal, Left Foot; xG 0.78; Goal
+  35'22 Argentina - Ángel Fabián Di María Hernández [Shot] Normal, Left Foot; xG 0.30; Goal
+  79'24 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal
+  80'59 France - Kylian Mbappé Lottin [Shot] Volley, Right Foot; xG 0.10; Goal
+  107'58 Argentina - Lionel Andrés Messi Cuccittini [Shot] Half Volley, Right Foot; xG 0.49; Goal
+  117'05 France - Kylian Mbappé Lottin [Shot] Penalty, Normal, Right Foot; xG 0.78; Goal"
+3869685,How many yellow or red cards were shown in the match?,full,0.0,0.033783783783783786,"50 matching event(s) found.
+
+By team: Argentina: 30, France: 20
+By player: Julián Álvarez: 8, Enzo Fernandez: 4, Adrien Rabiot: 3, Cristian Gabriel Romero: 3, Randal Kolo Muani: 3, Nicolás Alejandro Tagliafico: 3, Aurélien Djani Tchouaméni: 2, Rodrigo Javier De Paul: 2, Lionel Andrés Messi Cuccittini: 2, Olivier Giroud: 2, Theo Bernard François Hernández: 2, Jules Koundé: 2, Nicolás Hernán Otamendi: 2, Marcus Thuram: 2, Marcos Javier Acuña: 2, Gonzalo Ariel Montiel: 2, Dayotchanculle Upamecano: 1, Ousmane Dembélé: 1, Kylian Mbappé Lottin: 1, Eduardo Camavinga: 1, Leandro Daniel Paredes: 1, Damián Emiliano Martínez: 1
+
+Details:
+  0'19 France - Adrien Rabiot [Foul Committed]
+  0'49 France - Aurélien Djani Tchouaméni [Foul Committed]
+  1'36 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  3'13 France - Dayotchanculle Upamecano [Foul Committed]
+  5'44 Argentina - Lionel Andrés Messi Cuccittini [Foul Committed]
+  6'42 Argentina - Julián Álvarez [Foul Committed]
+  8'41 Argentina - Cristian Gabriel Romero [Foul Committed]
+  12'05 Argentina - Julián Álvarez [Foul Committed]
+  18'11 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  19'03 France - Olivier Giroud [Foul Committed]
+  20'53 France - Ousmane Dembélé [Foul Committed]
+  25'32 Argentina - Cristian Gabriel Romero [Foul Committed]
+  26'52 France - Theo Bernard François Hernández [Foul Committed]
+  37'09 Argentina - Julián Álvarez [Foul Committed]
+  37'51 France - Jules Koundé [Foul Committed]
+  40'11 France - Jules Koundé [Foul Committed]
+  41'12 France - Randal Kolo Muani [Foul Committed]
+  41'39 France - Randal Kolo Muani [Foul Committed]
+  44'08 Argentina - Julián Álvarez [Foul Committed]
+  46'34 France - Theo Bernard François Hernández [Foul Committed]
+  ... and 30 more (already included in the count above)"
+3869685,How many yellow or red cards were shown in the match?,no_hybrid,0.0,0.033783783783783786,"50 matching event(s) found.
+
+By team: Argentina: 30, France: 20
+By player: Julián Álvarez: 8, Enzo Fernandez: 4, Adrien Rabiot: 3, Cristian Gabriel Romero: 3, Randal Kolo Muani: 3, Nicolás Alejandro Tagliafico: 3, Aurélien Djani Tchouaméni: 2, Rodrigo Javier De Paul: 2, Lionel Andrés Messi Cuccittini: 2, Olivier Giroud: 2, Theo Bernard François Hernández: 2, Jules Koundé: 2, Nicolás Hernán Otamendi: 2, Marcus Thuram: 2, Marcos Javier Acuña: 2, Gonzalo Ariel Montiel: 2, Dayotchanculle Upamecano: 1, Ousmane Dembélé: 1, Kylian Mbappé Lottin: 1, Eduardo Camavinga: 1, Leandro Daniel Paredes: 1, Damián Emiliano Martínez: 1
+
+Details:
+  0'19 France - Adrien Rabiot [Foul Committed]
+  0'49 France - Aurélien Djani Tchouaméni [Foul Committed]
+  1'36 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  3'13 France - Dayotchanculle Upamecano [Foul Committed]
+  5'44 Argentina - Lionel Andrés Messi Cuccittini [Foul Committed]
+  6'42 Argentina - Julián Álvarez [Foul Committed]
+  8'41 Argentina - Cristian Gabriel Romero [Foul Committed]
+  12'05 Argentina - Julián Álvarez [Foul Committed]
+  18'11 Argentina - Rodrigo Javier De Paul [Foul Committed]
+  19'03 France - Olivier Giroud [Foul Committed]
+  20'53 France - Ousmane Dembélé [Foul Committed]
+  25'32 Argentina - Cristian Gabriel Romero [Foul Committed]
+  26'52 France - Theo Bernard François Hernández [Foul Committed]
+  37'09 Argentina - Julián Álvarez [Foul Committed]
+  37'51 France - Jules Koundé [Foul Committed]
+  40'11 France - Jules Koundé [Foul Committed]
+  41'12 France - Randal Kolo Muani [Foul Committed]
+  41'39 France - Randal Kolo Muani [Foul Committed]
+  44'08 Argentina - Julián Álvarez [Foul Committed]
+  46'34 France - Theo Bernard François Hernández [Foul Committed]
+  ... and 30 more (already included in the count above)"
+3869685,How many yellow or red cards were shown in the match?,no_reranker,0.0,0.07407407407407407,"8 matching event(s) found.
+
+By team: Argentina: 5, France: 3
+By player: Enzo Fernandez: 1, Adrien Rabiot: 1, Marcus Thuram: 1, Olivier Giroud: 1, Marcos Javier Acuña: 1, Leandro Daniel Paredes: 1, Gonzalo Ariel Montiel: 1, Damián Emiliano Martínez: 1
+
+Details:
+  51'21 Argentina - Enzo Fernandez [Foul Committed] Yellow Card
+  54'12 France - Adrien Rabiot [Foul Committed] Yellow Card
+  86'24 France - Marcus Thuram [Foul Committed] Yellow Card
+  94'35 France - Olivier Giroud [Bad Behaviour] Yellow Card
+  97'33 Argentina - Marcos Javier Acuña [Foul Committed] Yellow Card
+  113'27 Argentina - Leandro Daniel Paredes [Foul Committed] Yellow Card
+  115'39 Argentina - Gonzalo Ariel Montiel [Foul Committed] Yellow Card
+  124'57 Argentina - Damián Emiliano Martínez [Bad Behaviour] Yellow Card"
+3869685,How many yellow or red cards were shown in the match?,no_reasoning,0.0,0.07407407407407407,"8 matching event(s) found.
+
+By team: Argentina: 5, France: 3
+By player: Enzo Fernandez: 1, Adrien Rabiot: 1, Marcus Thuram: 1, Olivier Giroud: 1, Marcos Javier Acuña: 1, Leandro Daniel Paredes: 1, Gonzalo Ariel Montiel: 1, Damián Emiliano Martínez: 1
+
+Details:
+  51'21 Argentina - Enzo Fernandez [Foul Committed] Yellow Card
+  54'12 France - Adrien Rabiot [Foul Committed] Yellow Card
+  86'24 France - Marcus Thuram [Foul Committed] Yellow Card
+  94'35 France - Olivier Giroud [Bad Behaviour] Yellow Card
+  97'33 Argentina - Marcos Javier Acuña [Foul Committed] Yellow Card
+  113'27 Argentina - Leandro Daniel Paredes [Foul Committed] Yellow Card
+  115'39 Argentina - Gonzalo Ariel Montiel [Foul Committed] Yellow Card
+  124'57 Argentina - Damián Emiliano Martínez [Bad Behaviour] Yellow Card"
+3869685,How many yellow or red cards were shown in the match?,no_evaluator,0.0,0.07407407407407407,"8 matching event(s) found.
+
+By team: Argentina: 5, France: 3
+By player: Enzo Fernandez: 1, Adrien Rabiot: 1, Marcus Thuram: 1, Olivier Giroud: 1, Marcos Javier Acuña: 1, Leandro Daniel Paredes: 1, Gonzalo Ariel Montiel: 1, Damián Emiliano Martínez: 1
+
+Details:
+  51'21 Argentina - Enzo Fernandez [Foul Committed] Yellow Card
+  54'12 France - Adrien Rabiot [Foul Committed] Yellow Card
+  86'24 France - Marcus Thuram [Foul Committed] Yellow Card
+  94'35 France - Olivier Giroud [Bad Behaviour] Yellow Card
+  97'33 Argentina - Marcos Javier Acuña [Foul Committed] Yellow Card
+  113'27 Argentina - Leandro Daniel Paredes [Foul Committed] Yellow Card
+  115'39 Argentina - Gonzalo Ariel Montiel [Foul Committed] Yellow Card
+  124'57 Argentina - Damián Emiliano Martínez [Bad Behaviour] Yellow Card"
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,full,0.8,0.2362204724409449,"Based on the provided evidence, Kylian Mbappé Lottin scored three goals (all with his right foot) during the match and penalty shootout:
+
+1. **Penalty Goal (79'24):** Scored a right-footed penalty shot from coordinates (108.0, 40.0) with an xG value of 0.78.
+2. **Volley Goal (80'59):** Scored a right-footed volley from coordinates (104.8, 30.1) with an xG value of 0.10.
+3. **Penalty Shootout Goal (120'13):** Converted a right-footed penalty shot during the penalty shootout from coordinates (108.1, 40.1) with an xG value of 0.78."
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,no_hybrid,0.8,0.24193548387096775,"Based on the provided evidence, Kylian Mbappé Lottin scored three goals during the match (including the penalty shootout), all using his right foot:
+
+1. **First Goal (79'24):** Converted a penalty kick from coordinates (108.0, 40.0) with an expected goals (xG) value of 0.78.
+2. **Second Goal (80'59):** Scored with a volley from coordinates (104.8, 30.1) with an xG value of 0.10.
+3. **Penalty Shootout Goal (120'13):** Converted a penalty shot during the shootout from coordinates (108.1, 40.1) with an xG value of 0.78."
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,no_reranker,0.8,0.21666666666666665,"Based on the provided evidence, Kylian Mbappé Lottin scored three goals during the match (including the post-match penalty shootout), all using his right foot:
+
+* **80'59:** A right-footed volley from position (104.8, 30.1) with an expected goals (xG) value of 0.10.
+* **117'05:** A right-footed penalty kick from position (108.0, 40.0) with an xG value of 0.78.
+* **120'13 (Penalty Shootout):** A right-footed penalty kick during the shootout from position (108.1, 40.1) with an xG value of 0.78."
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,no_reasoning,0.8,0.24137931034482757,"Based on the provided evidence, Kylian Mbappé Lottin scored three goals during the match:
+
+1. **79'24 (Penalty Goal):** Scored a right-footed penalty shot from coordinates (108.0, 40.0) with an xG of 0.78.
+2. **80'59 (Open Play Volley):** Scored a right-footed volley from coordinates (104.8, 30.1) with an xG of 0.10.
+3. **120'13 (Penalty Shootout Goal):** Scored a right-footed penalty during the penalty shootout from coordinates (108.1, 40.1) with an xG of 0.78."
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,no_evaluator,0.8,0.2439024390243902,"Kylian Mbappé Lottin scored three goals (including one in the penalty shootout) during the match, with all of them executed using his right foot:
+
+* **79'24 (Penalty Kick):** Scored a penalty goal from location (108.0, 40.0) with an xG of 0.78.
+* **80'59 (Open Play Volley):** Scored an open-play goal with a right-footed volley from location (104.8, 30.1) with an xG of 0.10.
+* **120'13 (Penalty Shootout):** Converted a penalty kick during the shootout from location (108.1, 40.1) with an xG of 0.78."
+3869420,Summarize the match and provide key tactical insights.,full,1.0,0.12602739726027398,"### Match Summary
+
+In a tightly contested match, Brazil and Croatia remained goalless through regulation before breaking the stalemate during extra time. Late in the first period of extra time, Brazil opened the scoring when Neymar executed rapid central wall-passes with Rodrygo and Lucas Paquetá, dribbled past goalkeeper Dominik Livaković, and finished into the net in the 106th minute (105'35). Croatia responded in the second half of extra time, finding a 117th-minute (116'02) equalizer when Bruno Petković struck with his left foot to level the match at 1–1 and force a penalty shootout. Croatia then established an early edge in the shootout as Nikola Vlašić and Lovro Majer successfully converted their opening attempts, while Casemiro converted his penalty for Brazil.
+
+---
+
+### Key Moments
+
+* **105'35** – **Goal (Brazil):** Neymar scores with a right-footed shot following combination play with Rodrygo and Lucas Paquetá (xG 0.47).
+* **116'02** – **Goal (Croatia):** Bruno Petković equalizes with a left-footed shot (xG 0.10).
+* **120'03** – **Penalty Goal (Croatia):** Nikola Vlašić converts in the penalty shootout.
+* **121'38** – **Penalty Goal (Croatia):** Lovro Majer converts in the penalty shootout.
+* **122'17** – **Penalty Goal (Brazil):** Carlos Henrique Casimiro converts in the penalty shootout.
+
+---
+
+### Key Tactical Insights
+
+* **Croatia's Midfield Control & Build-Up:** Croatia relied heavily on structured build-up play involving their central midfield trio of Marcelo Brozović, Luka Modrić, and Mateo Kovačić to manage possession and transition play toward the flanks.
+* **Brazil's Central Unlocking Sequence:** Brazil unlocked Croatia's defensive line in extra time using quick central wall-passes and tight combinations between Neymar, Rodrygo, and Lucas Paquetá.
+* **Croatia's Late Match Resiliency:** After conceding late in extra time, Croatia pushed forward to equalize through Bruno Petković and built early momentum in the resulting penalty shootout."
+3869420,Summarize the match and provide key tactical insights.,no_hybrid,1.0,0.12556053811659193,"### Match Summary
+
+In an intense encounter between Croatia and Brazil, Croatia controlled periods of the match through patient build-up play, using their midfield trio of Marcelo Brozović, Mateo Kovačić, and Luka Modrić to bypass Brazil's initial pressing and work the ball into wide areas. While Croatia generated occasional chances, such as an early attempt from Andrej Kramarić that was blocked by Brazil’s defense, they struggled with direct vertical progression when attempting long aerial passes from deep toward Nikola Vlašić.
+
+After a goalless regulation time, Brazil broke the deadlock late in the first period of extra time when Neymar da Silva Santos Junior scored a high-probability goal in the 106th minute (105'35). Croatia fought back dramatically late in extra time, as Bruno Petković slotted home a low-probability equalizer in the 117th minute (116'02) to force a penalty shootout. In the shootout, Nikola Vlašić and Lovro Majer successfully converted their penalty kicks for Croatia, while Carlos Henrique Casimiro scored for Brazil.
+
+---
+
+### Key Moments
+
+* **18'26""** – Andrej Kramarić's right-footed shot inside the box is blocked by Lucas Tolentino Coelho de Lima.
+* **105'35""** – **Goal (Brazil)**: Neymar da Silva Santos Junior scores with a right-footed shot from close range (xG 0.47).
+* **116'02""** – **Goal (Croatia)**: Bruno Petković equalizes with a left-footed shot (xG 0.10).
+* **120'03""** – **Penalty Shootout Goal (Croatia)**: Nikola Vlašić converts his penalty (xG 0.78).
+* **121'38""** – **Penalty Shootout Goal (Croatia)**: Lovro Majer converts his penalty (xG 0.78).
+* **122'17""** – **Penalty Shootout Goal (Brazil)**: Carlos Henrique Casimiro converts his penalty (xG 0.78).
+
+---
+
+### Key Tactical Insights
+
+* **Midfield Circulation Against High Press**: Croatia effectively bypassed Brazil's initial pressure by utilizing fluid, short-passing combinations through their midfield trio of Marcelo Brozović, Mateo Kovačić, and Luka Modrić to shift play into wide areas.
+* **Ineffectiveness of Direct Long Balls**: Croatia struggled when attempting direct vertical progression via high long passes from deep positions toward Nikola Vlašić, regularly losing aerial duels and possession to the Brazilian defense.
+* **Extra-Time Efficiency & Resiliency**: Brazil capitalized on a high-probability opportunity through Neymar to break the deadlocked extra-time period, but Croatia countered with a crucial, low-probability late equalizer from Bruno Petković to force penalties."
+3869420,Summarize the match and provide key tactical insights.,no_reranker,1.0,0.12385321100917429,"### Match Summary
+
+In a tightly contested knockout clash, Croatia and Brazil battled through a goalless regular time before explosive drama unfolded in extra time. Brazil repeatedly attempted to break down Croatia's organized defensive setup, taking key shots such as Éder Militão's blocked effort in the 66th minute. However, Croatia maintained disciplined low-block positioning, consistently executing blocks and clearances in their own penalty box. In addition, Croatia relied on their central midfield trio of Luka Modrić, Mateo Kovačić, and Marcelo Brozović to retain possession and build out from deep areas to relieve pressure.
+
+The deadlock was finally broken at 105'35 when Neymar capitalized on a high-xG chance to put Brazil ahead with a right-footed finish. Croatia responded with late resilience in the 116th minute, as Bruno Petković struck a left-footed goal to equalize and force a penalty shootout. In the shootout, Croatia took control with successful penalty conversions from Nikola Vlašić and Lovro Majer, while Carlos Henrique Casimiro converted for Brazil.
+
+---
+
+### Key Moments
+
+- **105'35**: **Goal** – Neymar da Silva Santos Junior scores a right-footed goal (xG 0.47) to put Brazil ahead 1–0 in extra time.
+- **116'02**: **Goal** – Bruno Petković equalizes for Croatia with a left-footed finish (xG 0.10) to force a penalty shootout.
+- **120'03**: **Penalty Goal** – Nikola Vlašić converts his penalty for Croatia in the shootout.
+- **121'38**: **Penalty Goal** – Lovro Majer converts his penalty for Croatia in the shootout.
+- **122'17**: **Penalty Goal** – Carlos Henrique Casimiro converts his penalty for Brazil in the shootout.
+
+---
+
+### Key Tactical Insights
+
+- **Croatia's Low-Block Defensive Resilience**: Croatia continually thwarted Brazil's attack by blocking shots early (Josip Juranović at 0'08, Marcelo Brozović at 0'52) and making crucial clearances under pressure. In the 66th minute, a sequence featuring clearances by Kovačić, Pašalić, and Juranović culminated in Joško Gvardiol blocking a dangerous shot inside the box from Éder Militão.
+- **Midfield Control and Relief**: Croatia counted on the central midfield unit of Luka Modrić, Mateo Kovačić, and Marcelo Brozović to dictate tempo, retain possession deep in their own half, and make clean ground passes to safely transition out of pressure."
+3869420,Summarize the match and provide key tactical insights.,no_reasoning,1.0,0.09016393442622951,"### Match Summary
+
+In an intense fixture between Croatia and Brazil, the match remained closely contested through regulation time before exploding in extra time and leading to a penalty shootout. During regulation, Croatia established patient, structured build-up play involving core midfielders Marcelo Brozović, Mateo Kovačić, and Luka Modrić, maintaining possession through backline combinations with Joško Gvardiol, Dejan Lovren, and Josip Juranović. Brazil defended compactly, blocking key efforts like Andrej Kramarić's 18th-minute attempt.
+
+The deadlock was finally broken late in the first half of extra time at 105'35 when Brazil executed a swift passing sequence through Thiago Silva, Marquinhos, Rodrygo, and Lucas Paquetá, culminating in Neymar dribbling past Croatian keeper Dominik Livaković to score. However, Croatia responded in the second half of extra time, leveling the score at 116'02 when Bruno Petković found the net with a left-footed strike. With the match tied at the end of extra time, the game proceeded to a penalty shootout where Croatia gained an advantage through successful conversions from Nikola Vlašić and Lovro Majer, alongside a successful strike from Brazil's Casemiro.
+
+---
+
+### Key Moments
+
+* **18'26**: Andrej Kramarić takes a right-footed shot inside the box, which is blocked by Brazil's Lucas Paquetá.
+* **105'35**: **Goal (Brazil)** – Neymar dribbles past goalkeeper Dominik Livaković following quick ground-pass combinations with Rodrygo and Lucas Paquetá to put Brazil ahead (0–1).
+* **116'02**: **Goal (Croatia)** – Bruno Petković strikes with his left foot to score the equalizer for Croatia (1–1).
+* **120'03**: **Penalty Shootout Goal (Croatia)** – Nikola Vlašić converts a right-footed penalty.
+* **121'38**: **Penalty Shootout Goal (Croatia)** – Lovro Majer converts a left-footed penalty.
+* **122'17**: **Penalty Shootout Goal (Brazil)** – Casemiro converts a right-footed penalty.
+
+---
+
+### Key Tactical Insights
+
+* **Croatia's Deep Build-Up & Midfield Circuit**: Croatia consistently utilized short ground passes between Brozović, Modrić, and Kovačić to recycle possession deep in their own half. They frequently integrated goalkeeper Dominik Livaković and center-backs Joško Gvardiol and Dejan Lovren to bypass Brazil's initial pressure.
+* **Brazil's Central Combination Play**: Brazil broke through Croatia's defensive block in extra time through rapid, one-touch ground passes through the central axis (Marquinhos to Neymar, to Rodrygo, to Lucas Paquetá, back to Neymar) to penetrate the penalty area directly.
+* **Ineffectiveness of Long High Passes**: Long aerial distributions from deep positions—such as Livaković targeting Nikola Vlašić or Lovren targeting Ante Budimir—frequently resulted in lost aerial duels or incomplete passes, turning possession over to Brazil."
+3869420,Summarize the match and provide key tactical insights.,no_evaluator,1.0,0.11842105263157895,"### Match Summary
+The match between Brazil and Croatia was a tense, hard-fought contest defined by dramatic late scoring transitions in extra time before ultimately proceeding into a penalty shootout. For much of the match, Croatia controlled their possession phases through deep build-up structures, while Brazil sought ways through Croatia's defensive shape. 
+
+Brazil finally broke the deadlock late in the first period of extra time at 105'35 through a moment of rapid central combination play. Neymar exchanged short passes with Rodrygo and Lucas Paquetá, dribbled past Croatian goalkeeper Dominik Livaković, and scored to put Brazil ahead. 
+
+Croatia responded with late drama in the second period of extra time, equalizing at 116'02 when Bruno Petković converted a left-footed shot. With the score level at the end of extra time, the tie moved to a penalty shootout. Croatia established early momentum in the shootout as Nikola Vlašić and Lovro Majer both converted their spot-kicks, while Casimiro converted his penalty for Brazil.
+
+---
+
+### Key Moments
+* **105'35** – **Goal (Brazil):** Neymar da Silva Santos Junior scores a right-footed goal (xG 0.47) after a series of quick central passes with Rodrygo and Lucas Paquetá, dribbling past keeper Dominik Livaković.
+* **116'02** – **Goal (Croatia):** Bruno Petković scores the equalizer with a left-footed shot (xG 0.10).
+* **120'03** – **Penalty Goal (Croatia):** Nikola Vlašić converts his penalty (xG 0.78) in the shootout.
+* **121'38** – **Penalty Goal (Croatia):** Lovro Majer converts his penalty (xG 0.78) in the shootout.
+* **122'17** – **Penalty Goal (Brazil):** Carlos Henrique Casimiro converts his penalty (xG 0.78) in the shootout.
+
+---
+
+### Key Tactical Insights
+* **Croatia’s Deep Build-Up Play:** Croatia consistently deployed deep build-up structures involving their central midfield core (Luka Modrić, Marcelo Brozović, Mateo Kovačić), central defenders, and fullbacks (such as Josip Juranović and Borna Sosa) to bypass high pressing and safely maintain ball progression.
+* **Brazil’s Central Breakdown of Compact Defense:** Brazil unlocked Croatia's compact defensive shape in extra time through quick, central short-pass sequences between Neymar, Rodrygo, and Lucas Paquetá, culminating in Neymar beating the goalkeeper in tight central space.
+* **Late Game Transitions:** The match outcome was dictated by dramatic late scoring transitions during extra time—from Brazil's combination goal to Croatia's equalizer—leading directly into a high-stakes penalty shootout."
+3869420,How many goals did each team score in this match?,full,0.0,0.126984126984127,"2 matching event(s) found.
+
+By team: Brazil: 1, Croatia: 1
+By player: Neymar da Silva Santos Junior: 1, Bruno Petković: 1
+
+Details:
+  105'35 Brazil - Neymar da Silva Santos Junior [Shot] Normal, Right Foot; xG 0.47; Goal
+  116'02 Croatia - Bruno Petković [Shot] Normal, Left Foot; xG 0.10; Goal"
+3869420,How many goals did each team score in this match?,no_hybrid,0.0,0.126984126984127,"2 matching event(s) found.
+
+By team: Brazil: 1, Croatia: 1
+By player: Neymar da Silva Santos Junior: 1, Bruno Petković: 1
+
+Details:
+  105'35 Brazil - Neymar da Silva Santos Junior [Shot] Normal, Right Foot; xG 0.47; Goal
+  116'02 Croatia - Bruno Petković [Shot] Normal, Left Foot; xG 0.10; Goal"
+3869420,How many goals did each team score in this match?,no_reranker,0.0,0.126984126984127,"2 matching event(s) found.
+
+By team: Brazil: 1, Croatia: 1
+By player: Neymar da Silva Santos Junior: 1, Bruno Petković: 1
+
+Details:
+  105'35 Brazil - Neymar da Silva Santos Junior [Shot] Normal, Right Foot; xG 0.47; Goal
+  116'02 Croatia - Bruno Petković [Shot] Normal, Left Foot; xG 0.10; Goal"
+3869420,How many goals did each team score in this match?,no_reasoning,0.0,0.126984126984127,"2 matching event(s) found.
+
+By team: Brazil: 1, Croatia: 1
+By player: Neymar da Silva Santos Junior: 1, Bruno Petković: 1
+
+Details:
+  105'35 Brazil - Neymar da Silva Santos Junior [Shot] Normal, Right Foot; xG 0.47; Goal
+  116'02 Croatia - Bruno Petković [Shot] Normal, Left Foot; xG 0.10; Goal"
+3869420,How many goals did each team score in this match?,no_evaluator,0.0,0.126984126984127,"2 matching event(s) found.
+
+By team: Brazil: 1, Croatia: 1
+By player: Neymar da Silva Santos Junior: 1, Bruno Petković: 1
+
+Details:
+  105'35 Brazil - Neymar da Silva Santos Junior [Shot] Normal, Right Foot; xG 0.47; Goal
+  116'02 Croatia - Bruno Petković [Shot] Normal, Left Foot; xG 0.10; Goal"
+3869420,How many yellow or red cards were shown in the match?,full,0.0,0.02666666666666667,"49 matching event(s) found.
+
+By team: Brazil: 25, Croatia: 24
+By player: Marcelo Brozović: 4, Nikola Vlašić: 4, Carlos Henrique Casimiro: 3, Luka Modrić: 3, Ivan Perišić: 3, Lucas Tolentino Coelho de Lima: 3, Neymar da Silva Santos Junior: 3, Rodrygo Silva de Goes: 3, Borna Sosa: 2, Mateo Kovačić: 2, Danilo Luiz da Silva: 2, Éder Gabriel Militão: 2, Richarlison de Andrade: 2, Antony Matheus dos Santos: 2, Pedro Guilherme Abreu dos Santos: 2, Bruno Petković: 2, Joško Gvardiol: 1, Mario Pašalić: 1, Andrej Kramarić: 1, Marcos Aoás Corrêa: 1, Ante Budimir: 1, Alex Sandro Lobo Silva: 1, Frederico Rodrigues Santos: 1
+
+Details:
+  2'07 Brazil - Carlos Henrique Casimiro [Foul Committed]
+  3'02 Croatia - Luka Modrić [Foul Committed]
+  6'50 Croatia - Ivan Perišić [Foul Committed]
+  7'14 Croatia - Borna Sosa [Foul Committed]
+  8'02 Croatia - Mateo Kovačić [Foul Committed]
+  23'13 Brazil - Lucas Tolentino Coelho de Lima [Foul Committed]
+  24'06 Brazil - Danilo Luiz da Silva [Foul Committed] Yellow Card
+  25'25 Croatia - Marcelo Brozović [Foul Committed]
+  27'40 Croatia - Joško Gvardiol [Foul Committed]
+  30'14 Croatia - Marcelo Brozović [Foul Committed] Yellow Card
+  31'24 Brazil - Éder Gabriel Militão [Foul Committed]
+  35'45 Brazil - Lucas Tolentino Coelho de Lima [Foul Committed]
+  40'21 Croatia - Marcelo Brozović [Foul Committed]
+  44'54 Brazil - Richarlison de Andrade [Foul Committed]
+  45'07 Croatia - Luka Modrić [Foul Committed]
+  46'08 Croatia - Mario Pašalić [Foul Committed]
+  50'57 Brazil - Éder Gabriel Militão [Foul Committed]
+  64'29 Croatia - Marcelo Brozović [Foul Committed]
+  67'21 Brazil - Carlos Henrique Casimiro [Foul Committed] Yellow Card
+  69'58 Brazil - Antony Matheus dos Santos [Foul Committed]
+  ... and 29 more (already included in the count above)"
+3869420,How many yellow or red cards were shown in the match?,no_hybrid,0.0,0.02666666666666667,"49 matching event(s) found.
+
+By team: Brazil: 25, Croatia: 24
+By player: Marcelo Brozović: 4, Nikola Vlašić: 4, Carlos Henrique Casimiro: 3, Luka Modrić: 3, Ivan Perišić: 3, Lucas Tolentino Coelho de Lima: 3, Neymar da Silva Santos Junior: 3, Rodrygo Silva de Goes: 3, Borna Sosa: 2, Mateo Kovačić: 2, Danilo Luiz da Silva: 2, Éder Gabriel Militão: 2, Richarlison de Andrade: 2, Antony Matheus dos Santos: 2, Pedro Guilherme Abreu dos Santos: 2, Bruno Petković: 2, Joško Gvardiol: 1, Mario Pašalić: 1, Andrej Kramarić: 1, Marcos Aoás Corrêa: 1, Ante Budimir: 1, Alex Sandro Lobo Silva: 1, Frederico Rodrigues Santos: 1
+
+Details:
+  2'07 Brazil - Carlos Henrique Casimiro [Foul Committed]
+  3'02 Croatia - Luka Modrić [Foul Committed]
+  6'50 Croatia - Ivan Perišić [Foul Committed]
+  7'14 Croatia - Borna Sosa [Foul Committed]
+  8'02 Croatia - Mateo Kovačić [Foul Committed]
+  23'13 Brazil - Lucas Tolentino Coelho de Lima [Foul Committed]
+  24'06 Brazil - Danilo Luiz da Silva [Foul Committed] Yellow Card
+  25'25 Croatia - Marcelo Brozović [Foul Committed]
+  27'40 Croatia - Joško Gvardiol [Foul Committed]
+  30'14 Croatia - Marcelo Brozović [Foul Committed] Yellow Card
+  31'24 Brazil - Éder Gabriel Militão [Foul Committed]
+  35'45 Brazil - Lucas Tolentino Coelho de Lima [Foul Committed]
+  40'21 Croatia - Marcelo Brozović [Foul Committed]
+  44'54 Brazil - Richarlison de Andrade [Foul Committed]
+  45'07 Croatia - Luka Modrić [Foul Committed]
+  46'08 Croatia - Mario Pašalić [Foul Committed]
+  50'57 Brazil - Éder Gabriel Militão [Foul Committed]
+  64'29 Croatia - Marcelo Brozović [Foul Committed]
+  67'21 Brazil - Carlos Henrique Casimiro [Foul Committed] Yellow Card
+  69'58 Brazil - Antony Matheus dos Santos [Foul Committed]
+  ... and 29 more (already included in the count above)"
+3869420,How many yellow or red cards were shown in the match?,no_reranker,0.0,0.02666666666666667,"49 matching event(s) found.
+
+By team: Brazil: 25, Croatia: 24
+By player: Marcelo Brozović: 4, Nikola Vlašić: 4, Carlos Henrique Casimiro: 3, Luka Modrić: 3, Ivan Perišić: 3, Lucas Tolentino Coelho de Lima: 3, Neymar da Silva Santos Junior: 3, Rodrygo Silva de Goes: 3, Borna Sosa: 2, Mateo Kovačić: 2, Danilo Luiz da Silva: 2, Éder Gabriel Militão: 2, Richarlison de Andrade: 2, Antony Matheus dos Santos: 2, Pedro Guilherme Abreu dos Santos: 2, Bruno Petković: 2, Joško Gvardiol: 1, Mario Pašalić: 1, Andrej Kramarić: 1, Marcos Aoás Corrêa: 1, Ante Budimir: 1, Alex Sandro Lobo Silva: 1, Frederico Rodrigues Santos: 1
+
+Details:
+  2'07 Brazil - Carlos Henrique Casimiro [Foul Committed]
+  3'02 Croatia - Luka Modrić [Foul Committed]
+  6'50 Croatia - Ivan Perišić [Foul Committed]
+  7'14 Croatia - Borna Sosa [Foul Committed]
+  8'02 Croatia - Mateo Kovačić [Foul Committed]
+  23'13 Brazil - Lucas Tolentino Coelho de Lima [Foul Committed]
+  24'06 Brazil - Danilo Luiz da Silva [Foul Committed] Yellow Card
+  25'25 Croatia - Marcelo Brozović [Foul Committed]
+  27'40 Croatia - Joško Gvardiol [Foul Committed]
+  30'14 Croatia - Marcelo Brozović [Foul Committed] Yellow Card
+  31'24 Brazil - Éder Gabriel Militão [Foul Committed]
+  35'45 Brazil - Lucas Tolentino Coelho de Lima [Foul Committed]
+  40'21 Croatia - Marcelo Brozović [Foul Committed]
+  44'54 Brazil - Richarlison de Andrade [Foul Committed]
+  45'07 Croatia - Luka Modrić [Foul Committed]
+  46'08 Croatia - Mario Pašalić [Foul Committed]
+  50'57 Brazil - Éder Gabriel Militão [Foul Committed]
+  64'29 Croatia - Marcelo Brozović [Foul Committed]
+  67'21 Brazil - Carlos Henrique Casimiro [Foul Committed] Yellow Card
+  69'58 Brazil - Antony Matheus dos Santos [Foul Committed]
+  ... and 29 more (already included in the count above)"
+3869420,How many yellow or red cards were shown in the match?,no_reasoning,0.0,0.10309278350515462,"5 matching event(s) found.
+
+By team: Brazil: 3, Croatia: 2
+By player: Danilo Luiz da Silva: 1, Marcelo Brozović: 1, Carlos Henrique Casimiro: 1, Marcos Aoás Corrêa: 1, Bruno Petković: 1
+
+Details:
+  24'06 Brazil - Danilo Luiz da Silva [Foul Committed] Yellow Card
+  30'14 Croatia - Marcelo Brozović [Foul Committed] Yellow Card
+  67'21 Brazil - Carlos Henrique Casimiro [Foul Committed] Yellow Card
+  76'16 Brazil - Marcos Aoás Corrêa [Foul Committed] Yellow Card
+  116'19 Croatia - Bruno Petković [Bad Behaviour] Yellow Card"
+3869420,How many yellow or red cards were shown in the match?,no_evaluator,0.0,0.10309278350515462,"5 matching event(s) found.
+
+By team: Brazil: 3, Croatia: 2
+By player: Danilo Luiz da Silva: 1, Marcelo Brozović: 1, Carlos Henrique Casimiro: 1, Marcos Aoás Corrêa: 1, Bruno Petković: 1
+
+Details:
+  24'06 Brazil - Danilo Luiz da Silva [Foul Committed] Yellow Card
+  30'14 Croatia - Marcelo Brozović [Foul Committed] Yellow Card
+  67'21 Brazil - Carlos Henrique Casimiro [Foul Committed] Yellow Card
+  76'16 Brazil - Marcos Aoás Corrêa [Foul Committed] Yellow Card
+  116'19 Croatia - Bruno Petković [Bad Behaviour] Yellow Card"

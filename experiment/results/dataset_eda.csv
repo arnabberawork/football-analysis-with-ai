@@ -1,0 +1,19 @@
+match_id,stage,home_team,away_team,home_score,away_score,date,went_to_penalties,raw_event_count,parsed_event_count,chunks_event,chunks_time_window,chunks_sequence,chunks_lineup,chunks_total
+3869685,Final,Argentina,France,3,3,2022-12-18,True,4407,1842,1842,32,251,2,2127
+3869519,Semi-finals,Argentina,Croatia,3,0,2022-12-13,False,3806,1469,1469,20,180,2,1671
+3869552,Semi-finals,France,Morocco,2,0,2022-12-14,False,3551,1398,1398,21,147,2,1568
+3869684,3rd Place Final,Croatia,Morocco,2,1,2022-12-17,False,3560,1400,1400,21,172,2,1595
+3869321,Quarter-finals,Netherlands,Argentina,2,2,2022-12-09,True,4708,1861,1861,33,223,2,2119
+3869486,Quarter-finals,Morocco,Portugal,1,0,2022-12-10,False,3381,1356,1356,21,175,2,1554
+3869354,Quarter-finals,England,France,1,2,2022-12-10,False,3239,1295,1295,22,172,2,1491
+3869420,Quarter-finals,Croatia,Brazil,1,1,2022-12-09,True,5145,2021,2021,30,258,2,2311
+3869117,Round of 16,Netherlands,United States,3,1,2022-12-03,False,3582,1477,1477,21,160,2,1660
+3869118,Round of 16,England,Senegal,3,0,2022-12-04,False,3505,1382,1382,20,149,2,1553
+3869151,Round of 16,Argentina,Australia,2,1,2022-12-03,False,4150,1597,1597,21,152,2,1772
+3869152,Round of 16,France,Poland,3,1,2022-12-04,False,3618,1437,1437,21,151,2,1611
+3869219,Round of 16,Japan,Croatia,1,1,2022-12-05,True,4559,1926,1926,29,228,2,2185
+3869220,Round of 16,Morocco,Spain,0,0,2022-12-06,True,4750,1891,1891,31,225,2,2149
+3869253,Round of 16,Brazil,South Korea,4,1,2022-12-05,False,4046,1563,1563,20,159,2,1744
+3869254,Round of 16,Portugal,Switzerland,6,1,2022-12-06,False,3422,1327,1327,20,162,2,1511
+3857271,Group Stage,England,Iran,6,2,2022-11-21,False,3649,1458,1458,23,147,2,1630
+3857291,Group Stage,Spain,Costa Rica,7,0,2022-11-23,False,4351,1667,1667,21,141,2,1831

@@ -1,0 +1,286 @@
+match_id,event_type,count
+3869685,Pass,1263
+3869685,Foul Committed,48
+3869685,Foul Won,44
+3869685,Ball Recovery,115
+3869685,Block,50
+3869685,Clearance,45
+3869685,Duel,98
+3869685,Interception,28
+3869685,Dribble,54
+3869685,Shot,38
+3869685,Dribbled Past,31
+3869685,Injury Stoppage,9
+3869685,Player Off,1
+3869685,Player On,1
+3869685,Offside,1
+3869685,Substitution,13
+3869685,Shield,1
+3869685,Bad Behaviour,2
+3869519,Pass,1080
+3869519,Block,35
+3869519,Interception,20
+3869519,Dribble,35
+3869519,Duel,63
+3869519,Ball Recovery,90
+3869519,Foul Committed,30
+3869519,Foul Won,30
+3869519,Dribbled Past,21
+3869519,Clearance,26
+3869519,Shot,21
+3869519,Bad Behaviour,2
+3869519,Error,1
+3869519,Substitution,10
+3869519,Injury Stoppage,3
+3869519,Shield,2
+3869552,Pass,1002
+3869552,Ball Recovery,95
+3869552,Block,31
+3869552,Interception,24
+3869552,Duel,71
+3869552,Dribble,30
+3869552,Shot,27
+3869552,Dribbled Past,18
+3869552,Foul Committed,28
+3869552,Foul Won,27
+3869552,Clearance,31
+3869552,Substitution,7
+3869552,Offside,1
+3869552,Injury Stoppage,2
+3869552,Player Off,1
+3869552,Player On,1
+3869552,Shield,2
+3869684,Pass,1040
+3869684,Duel,51
+3869684,Clearance,35
+3869684,Block,28
+3869684,Ball Recovery,84
+3869684,Foul Committed,29
+3869684,Foul Won,29
+3869684,Shot,21
+3869684,Interception,24
+3869684,Dribble,23
+3869684,Dribbled Past,15
+3869684,Injury Stoppage,4
+3869684,Substitution,9
+3869684,Shield,2
+3869684,Player Off,2
+3869684,Player On,2
+3869684,Bad Behaviour,2
+3869321,Pass,1331
+3869321,Duel,76
+3869321,Ball Recovery,97
+3869321,Foul Committed,59
+3869321,Foul Won,57
+3869321,Interception,34
+3869321,Clearance,54
+3869321,Injury Stoppage,8
+3869321,Block,28
+3869321,Shot,31
+3869321,Dribbled Past,22
+3869321,Dribble,39
+3869321,Player Off,1
+3869321,Player On,1
+3869321,Bad Behaviour,12
+3869321,Substitution,11
+3869486,Pass,980
+3869486,Ball Recovery,95
+3869486,Clearance,38
+3869486,Block,33
+3869486,Duel,54
+3869486,Dribbled Past,14
+3869486,Dribble,28
+3869486,Foul Committed,27
+3869486,Foul Won,26
+3869486,Shot,21
+3869486,Interception,19
+3869486,Shield,2
+3869486,Error,1
+3869486,Substitution,10
+3869486,Injury Stoppage,4
+3869486,Player Off,2
+3869486,Player On,2
+3869354,Pass,966
+3869354,Interception,16
+3869354,Ball Recovery,76
+3869354,Duel,74
+3869354,Clearance,28
+3869354,Block,22
+3869354,Shot,24
+3869354,Dribble,17
+3869354,Foul Committed,25
+3869354,Foul Won,25
+3869354,Dribbled Past,9
+3869354,Injury Stoppage,6
+3869354,Shield,2
+3869354,Substitution,5
+3869420,Pass,1484
+3869420,Block,51
+3869420,Shield,1
+3869420,Ball Recovery,105
+3869420,Interception,22
+3869420,Dribble,44
+3869420,Duel,84
+3869420,Foul Committed,48
+3869420,Foul Won,46
+3869420,Clearance,47
+3869420,Shot,37
+3869420,Dribbled Past,27
+3869420,Injury Stoppage,13
+3869420,Offside,1
+3869420,Substitution,10
+3869420,Bad Behaviour,1
+3869117,Pass,1057
+3869117,Dribbled Past,16
+3869117,Dribble,33
+3869117,Clearance,46
+3869117,Block,51
+3869117,Ball Recovery,103
+3869117,Duel,70
+3869117,Shot,29
+3869117,Shield,3
+3869117,Interception,22
+3869117,Foul Committed,16
+3869117,Foul Won,15
+3869117,Offside,1
+3869117,Error,3
+3869117,Substitution,10
+3869117,Injury Stoppage,2
+3869118,Pass,1034
+3869118,Dribbled Past,11
+3869118,Dribble,20
+3869118,Duel,61
+3869118,Interception,24
+3869118,Ball Recovery,73
+3869118,Block,36
+3869118,Shield,4
+3869118,Foul Committed,29
+3869118,Foul Won,29
+3869118,Clearance,32
+3869118,Injury Stoppage,1
+3869118,Shot,18
+3869118,Substitution,10
+3869151,Pass,1206
+3869151,Duel,63
+3869151,Clearance,36
+3869151,Ball Recovery,89
+3869151,Interception,25
+3869151,Block,36
+3869151,Foul Committed,27
+3869151,Foul Won,24
+3869151,Dribble,36
+3869151,Shot,19
+3869151,Dribbled Past,19
+3869151,Injury Stoppage,5
+3869151,Substitution,10
+3869151,Own Goal Against,1
+3869151,Own Goal For,1
+3869152,Pass,1081
+3869152,Duel,59
+3869152,Clearance,34
+3869152,Foul Committed,21
+3869152,Foul Won,20
+3869152,Block,34
+3869152,Ball Recovery,83
+3869152,Dribbled Past,19
+3869152,Dribble,24
+3869152,Shot,28
+3869152,Interception,23
+3869152,Substitution,9
+3869152,Shield,1
+3869152,Offside,1
+3869219,Pass,1378
+3869219,Duel,92
+3869219,Clearance,77
+3869219,Block,65
+3869219,Ball Recovery,132
+3869219,Foul Committed,29
+3869219,Foul Won,28
+3869219,Shot,38
+3869219,Interception,31
+3869219,Dribbled Past,13
+3869219,Dribble,19
+3869219,Error,1
+3869219,Injury Stoppage,9
+3869219,Substitution,11
+3869219,Shield,1
+3869219,Player Off,1
+3869219,Player On,1
+3869220,Pass,1433
+3869220,Foul Committed,33
+3869220,Foul Won,32
+3869220,Interception,27
+3869220,Ball Recovery,101
+3869220,Clearance,45
+3869220,Dribbled Past,23
+3869220,Dribble,37
+3869220,Duel,70
+3869220,Shot,25
+3869220,Block,38
+3869220,Injury Stoppage,7
+3869220,Shield,4
+3869220,Substitution,12
+3869220,Player Off,2
+3869220,Player On,2
+3869253,Pass,1196
+3869253,Duel,59
+3869253,Ball Recovery,80
+3869253,Interception,30
+3869253,Foul Committed,20
+3869253,Foul Won,19
+3869253,Clearance,25
+3869253,Dribbled Past,17
+3869253,Dribble,34
+3869253,Shot,26
+3869253,Block,37
+3869253,Injury Stoppage,5
+3869253,Substitution,10
+3869253,Error,3
+3869253,Shield,1
+3869253,Offside,1
+3869254,Pass,1016
+3869254,Duel,48
+3869254,Clearance,31
+3869254,Shield,2
+3869254,Ball Recovery,62
+3869254,Dribble,15
+3869254,Block,31
+3869254,Shot,25
+3869254,Foul Committed,29
+3869254,Foul Won,29
+3869254,Interception,19
+3869254,Dribbled Past,8
+3869254,Player Off,1
+3869254,Player On,1
+3869254,Substitution,10
+3857271,Pass,1093
+3857271,Duel,55
+3857271,Ball Recovery,84
+3857271,Clearance,28
+3857271,Block,30
+3857271,Shield,4
+3857271,Dribbled Past,12
+3857271,Dribble,25
+3857271,Foul Committed,30
+3857271,Foul Won,26
+3857271,Shot,21
+3857271,Injury Stoppage,8
+3857271,Substitution,11
+3857271,Interception,27
+3857271,Player Off,2
+3857271,Player On,2
+3857291,Pass,1340
+3857291,Duel,67
+3857291,Interception,16
+3857291,Clearance,26
+3857291,Block,34
+3857291,Ball Recovery,74
+3857291,Dribbled Past,13
+3857291,Dribble,25
+3857291,Foul Committed,22
+3857291,Foul Won,20
+3857291,Shot,17
+3857291,Shield,1
+3857291,Offside,1
+3857291,Injury Stoppage,1
+3857291,Substitution,10

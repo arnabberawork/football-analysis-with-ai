@@ -25,10 +25,13 @@ class BM25IndexTests(unittest.TestCase):
 
     def test_stemming_matches_plural_query_to_singular_text(self):
         # Confirmed in CLAUDE.md/TESTING.md: without stemming, "penalties"
-        # would completely miss a chunk that only contains "Penalty".
+        # would completely miss a chunk that only contains "Penalty". Uses
+        # 3 chunks (not 2) since BM25Okapi's IDF term degenerates to 0 for
+        # a word present in exactly half of a 2-document corpus.
         chunks = [
             _chunk("1", "Messi converted the Penalty."),
             _chunk("2", "Nothing relevant happened here."),
+            _chunk("3", "France won a corner kick."),
         ]
         index = BM25Index(chunks)
         results = index.query("penalties")

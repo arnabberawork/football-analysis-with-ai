@@ -1,0 +1,5 @@
+dimension,krippendorff_alpha,n_raters,n_items
+relevance,0.9229764287302646,3,40
+coherence,0.21978883714913988,3,40
+factual_consistency,0.863690358562238,3,40
+fluency,0.4604935240604867,3,40

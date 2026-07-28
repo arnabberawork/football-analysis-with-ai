@@ -1,0 +1,7 @@
+system,rater,relevance,coherence,factual_consistency,fluency
+agentic,rater1,4.3,4.4,4.05,4.4
+naive,rater1,2.7,4.05,2.65,4.55
+agentic,rater2,4.3,4.6,4.1,4.75
+naive,rater2,2.5,4.05,3.2,4.45
+agentic,rater3,4.6,4.9,4.45,4.45
+naive,rater3,2.65,4.8,2.45,4.95
