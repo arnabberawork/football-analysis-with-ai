@@ -1,14 +1,12 @@
 # Experiments log
 
 This is a status/findings log for the actual research-scale experimental
-campaign (the `experiment/` directory), kept separate from
-`experiment/README.md` (which documents the directory's files and how to
-run them) and `TESTING.md` (which documents manual test procedures for the
-codebase itself). This file answers "what has actually been run, what did
-it find, and what's still outstanding" — update it as each experiment
-progresses rather than only at the very end, since results and known
-issues discovered along the way are exactly the kind of thing that's easy
-to lose track of otherwise.
+campaign (the `experiment/` directory), kept separate from `TESTING.md`
+(which documents manual test procedures for the codebase itself). This
+file answers "what has actually been run, what did it find, and what's
+still outstanding" — update it as each experiment progresses rather than
+only at the very end, since results and known issues discovered along the
+way are exactly the kind of thing that's easy to lose track of otherwise.
 
 ## Status at a glance
 
@@ -31,19 +29,40 @@ representative subset, 15 queries.
 
 | Embedder | P@5 | R@5 | P@10 | R@10 |
 |---|---|---|---|---|
-| MiniLM (`all-MiniLM-L6-v2`) | 0.467 | 0.294 | 0.320 | 0.351 |
-| E5 (`e5-small-v2`) | 0.440 | 0.273 | 0.293 | 0.329 |
+| MiniLM (`all-MiniLM-L6-v2`) | 0.440 | 0.283 | 0.307 | **0.339** |
+| E5 (`e5-small-v2`) | 0.440 | 0.273 | 0.287 | 0.316 |
 
-**Reading:** MiniLM edges out E5 on every metric here, though the gap is
-small — not a decisive win either way. Both models are affected equally by
-whatever retrieval-design choices are held constant (BM25, reranker), so
-this isolates the embedding model's own contribution as intended.
+**Reading:** effectively tied, not decisively separated — Precision@5 is
+identical to three decimal places; MiniLM edges ahead on every other
+metric, but by margins (0.01–0.02) well within what 15 queries can
+distinguish reliably. Both models are affected equally by whatever
+retrieval-design choices are held constant (BM25, reranker), so this
+isolates the embedding model's own contribution as intended. Full
+discussion: `docs/8.2_embedding_model_comparison.md`.
 
 **Caveat:** scoped to a 4-match subset, not the full 18-match corpus —
 embedding the full ~32,000-chunk corpus twice (once per model) was measured
 to take multiple hours on CPU-only hardware, so this is a deliberate,
 documented scope reduction (see the script's own module docstring), not a
 silent one.
+
+**Run-to-run variance found while updating this section — not a
+methodological bug, but worth being upfront about.** Re-running
+`compare_embeddings.py` with no code or dataset change produced slightly
+different numbers across attempts (e.g. MiniLM P@5 read 0.467 in an
+earlier run, 0.440 in the final one now reported above; `query_dataset.py`
+was unchanged across these runs, ruling out a ground-truth-relevance
+explanation). Root cause: `ChunkVectorStore` uses Chroma's default HNSW
+index, which is an *approximate* nearest-neighbor search, not exact
+brute-force cosine ranking — combined with `store.ingest(..., skip_existing=True)`
+building the collection incrementally across separate process runs, the
+graph's approximate top-K result near the similarity-score boundary can
+shift slightly run to run even though the embeddings themselves are
+deterministic. The table above is the most recent run and matches the
+committed `experiment/results/embedding_comparison.csv` /
+`thesis_tables.md` exactly; treat single-run P@K/R@K numbers from an HNSW
+index as accurate to roughly ±0.02-0.03, not exact, when citing this
+comparison.
 
 ## 2. Naive vs Agentic comparison (the headline result)
 

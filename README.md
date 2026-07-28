@@ -116,9 +116,8 @@ uv run python scripts/run_ablation.py     # 5 configs, each with one component d
 
 The `experiment/` directory holds the full research-scale version of this
 harness — 18 matches, ~120 queries, resumable multi-day sweeps to stay
-inside Gemini's free-tier daily quota. See `experiment/README.md` for how
-to run it and `experiments.md` for what's actually been found so far,
-including headline numbers such as:
+inside Gemini's free-tier daily quota. See `experiments.md` for what's
+actually been found so far, including headline numbers such as:
 
 | Comparison | Result |
 |---|---|
