@@ -48,6 +48,14 @@ def _salience_priority(chunk: Chunk) -> int | None:
     neither hierarchical chunking nor re-ranking alone closes that gap.
     Restricted to event-level chunks, which map 1:1 to a single event
     unambiguously (time-window/sequence chunks mix many events together).
+
+    Card outcome is checked by substring across both `Foul Committed` and
+    `Bad Behaviour` event types (StatsBomb records a card as the outcome of
+    either), not gated by event_type first - confirmed live that a
+    second-booking dismissal is recorded with outcome "Second Yellow", not
+    "Red Card", so a straight-red-only text check silently excluded it from
+    salience entirely (a real sending-off dropped from evidence, not merely
+    outranked) - see TESTING.md.
     """
     if chunk.metadata.chunk_level != "event":
         return None
@@ -58,10 +66,11 @@ def _salience_priority(chunk: Chunk) -> int | None:
         return 0
     if event_type in ("Own Goal Against", "Own Goal For"):
         return 0
-    if event_type == "Foul Committed" and "Red Card" in chunk.text:
-        return 1
-    if event_type == "Bad Behaviour" or (event_type == "Foul Committed" and "Yellow Card" in chunk.text):
-        return 2
+    if event_type in ("Foul Committed", "Bad Behaviour"):
+        if "Red Card" in chunk.text or "Second Yellow" in chunk.text:
+            return 1
+        if "Yellow Card" in chunk.text:
+            return 2
     if event_type == "Substitution":
         return 3
     return None

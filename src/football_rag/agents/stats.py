@@ -61,7 +61,16 @@ def _matches(event: Event, structured: StructuredQuery, exclude_shootout: bool) 
     if structured.event_types and event.event_type not in structured.event_types:
         return False
     if structured.outcome:
-        if event.outcome is None or structured.outcome.lower() not in event.outcome.lower():
+        wanted = structured.outcome.lower()
+        actual = (event.outcome or "").lower()
+        # "how many red cards" should also count second-booking dismissals -
+        # StatsBomb records those with outcome "Second Yellow", which
+        # contains neither "red card" nor "yellow card" as a substring, so a
+        # plain substring match silently excludes a real sending-off from
+        # the count (confirmed live - see TESTING.md).
+        is_red_card_query = wanted == "red card"
+        is_second_yellow_dismissal = is_red_card_query and actual == "second yellow"
+        if not (wanted in actual or is_second_yellow_dismissal):
             return False
     if structured.minute_min is not None and event.minute < structured.minute_min:
         return False

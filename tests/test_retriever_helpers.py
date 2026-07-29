@@ -56,6 +56,24 @@ class SaliencePriorityTests(unittest.TestCase):
         chunk = _chunk("1", "60' [Foul Committed] outcome: Yellow Card.", event_type="Foul Committed")
         self.assertEqual(_salience_priority(chunk), 2)
 
+    def test_second_yellow_dismissal_is_priority_one(self):
+        # Regression test: a second-booking sending-off is recorded with
+        # outcome "Second Yellow", not "Red Card" - confirmed live (2003
+        # Arsenal vs Everton, Tie Li 86') that this outcome string matched
+        # neither the "Red Card" nor "Yellow Card" substring check, so the
+        # dismissal was excluded from salience entirely (priority None) and
+        # never reached the generated summary's key moments.
+        chunk = _chunk("1", "86' [Foul Committed] outcome: Second Yellow.", event_type="Foul Committed")
+        self.assertEqual(_salience_priority(chunk), 1)
+
+    def test_red_card_via_bad_behaviour_is_priority_one(self):
+        # Bad Behaviour was previously hardcoded to priority 2 regardless of
+        # its actual card outcome - a straight red recorded as Bad
+        # Behaviour (rather than Foul Committed) was misranked alongside
+        # yellow cards instead of outranking them.
+        chunk = _chunk("1", "60' [Bad Behaviour] outcome: Red Card.", event_type="Bad Behaviour")
+        self.assertEqual(_salience_priority(chunk), 1)
+
     def test_substitution_is_priority_three(self):
         chunk = _chunk("1", "70' [Substitution] Player off.", event_type="Substitution")
         self.assertEqual(_salience_priority(chunk), 3)

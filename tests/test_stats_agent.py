@@ -86,6 +86,34 @@ class StatsAgentTests(unittest.TestCase):
         result = self.agent.answer("how many shots were taken?", _query(event_types=["Shot"]), events)
         self.assertIn("1 matching event(s) found.", result)
 
+    def test_red_card_count_includes_second_yellow_dismissals(self):
+        # Regression test: StatsBomb records a second-booking sending-off
+        # with outcome "Second Yellow", not "Red Card" - confirmed live
+        # (2003 Arsenal vs Everton, Tie Li 86') that a plain substring match
+        # ("red card" in "second yellow") silently undercounted "how many
+        # red cards" queries by excluding real dismissals of this kind.
+        events = [
+            _event(player_name="Sol Campbell", event_type="Foul Committed", outcome="Red Card"),
+            _event(player_name="Tie Li", event_type="Foul Committed", outcome="Second Yellow"),
+            _event(player_name="Someone Else", event_type="Foul Committed", outcome="Yellow Card"),
+        ]
+        result = self.agent.answer("how many red cards?", _query(outcome="Red Card"), events)
+        self.assertIn("2 matching event(s) found.", result)
+        self.assertIn("Sol Campbell", result)
+        self.assertIn("Tie Li", result)
+
+    def test_yellow_card_count_excludes_second_yellow_dismissals(self):
+        # The Second Yellow special-case is scoped to "red card" queries
+        # only - a plain "how many yellow cards" query must not double-count
+        # a second-booking dismissal as an ordinary yellow.
+        events = [
+            _event(player_name="Someone Else", event_type="Foul Committed", outcome="Yellow Card"),
+            _event(player_name="Tie Li", event_type="Foul Committed", outcome="Second Yellow"),
+        ]
+        result = self.agent.answer("how many yellow cards?", _query(outcome="Yellow Card"), events)
+        self.assertIn("1 matching event(s) found.", result)
+        self.assertNotIn("Tie Li", result)
+
     def test_minute_range_filter(self):
         events = [_event(minute=10), _event(minute=50), _event(minute=90)]
         result = self.agent.answer(

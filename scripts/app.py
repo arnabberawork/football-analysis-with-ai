@@ -193,7 +193,14 @@ def run_pipeline_with_live_status(
                     stage_status["generator"] = "running"
 
                 diagram_slot.mermaid_chart(_build_pipeline_diagram(stage_status), width="stretch")
-                status.update(label=f"Running: {event['label']}...")
+                # event["label"] is the stage that just finished (now green) - the
+                # status line should name whichever stage is now running (now blue),
+                # i.e. next_stage, not the one that just completed.
+                if next_stage and stage_status.get(next_stage) == "running":
+                    next_label = PIPELINE_NODES.get(next_stage, (None, next_stage))[1]
+                    status.update(label=f"Running: {next_label}...")
+                else:
+                    status.update(label="Finishing up...")
                 st.write(f":material/check_circle: **{event['label']}** — {event['detail']}")
         except (RuntimeError, ConnectionError) as e:
             for key, value in stage_status.items():
