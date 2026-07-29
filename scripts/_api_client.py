@@ -5,7 +5,9 @@ imports pipeline code directly, only this module.
 
 from __future__ import annotations
 
+import json
 import os
+from collections.abc import Iterator
 
 import requests
 
@@ -60,3 +62,37 @@ def run_pipeline(
     )
     _raise_for_status(response)
     return response.json()
+
+
+def stream_pipeline(
+    match_id: int,
+    query: str,
+    enable_evaluator: bool = True,
+    max_retries: int = 1,
+) -> Iterator[dict]:
+    """Generator over `/pipeline/run/stream`'s newline-delimited JSON events,
+    one per completed agent stage, so a caller (`scripts/app.py`) can update
+    a live progress display instead of blocking on a single `run_pipeline()`
+    call. Raises `RuntimeError` immediately if the pipeline itself reports a
+    mid-stream error (the HTTP status is already 200 by the time streaming
+    starts, so that can't be signalled via the status code the way
+    `_raise_for_status` normally does)."""
+    with requests.post(
+        f"{API_BASE_URL}/pipeline/run/stream",
+        json={
+            "match_id": match_id,
+            "query": query,
+            "enable_evaluator": enable_evaluator,
+            "max_retries": max_retries,
+        },
+        timeout=RUN_PIPELINE_TIMEOUT,
+        stream=True,
+    ) as response:
+        _raise_for_status(response)
+        for line in response.iter_lines(decode_unicode=True):
+            if not line:
+                continue
+            payload = json.loads(line)
+            if payload.get("event") == "error":
+                raise RuntimeError(payload.get("detail", "Pipeline run failed"))
+            yield payload

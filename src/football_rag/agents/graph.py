@@ -226,3 +226,45 @@ def run_agentic_pipeline(
     )
     initial_state: AgentState = {"match_id": match_id, "raw_query": query, "events": events, "retry_count": 0}
     return app.invoke(initial_state)
+
+
+def stream_agentic_pipeline(
+    match_id: str,
+    query: str,
+    vector_store: ChunkVectorStore,
+    chunks: list[Chunk],
+    events: list[Event],
+    enable_evaluator: bool = True,
+    enable_reasoning: bool = True,
+    enable_hybrid: bool = True,
+    enable_reranker: bool = True,
+    max_retries: int = 1,
+    top_n: int = DEFAULT_TOP_N,
+):
+    """Same pipeline as `run_agentic_pipeline()`, but yields `(node_name,
+    state)` after each agent completes instead of blocking until the whole
+    run finishes - `state` is the full accumulated state so far (same shape
+    `run_agentic_pipeline()` returns at the end). Powers `api/main.py`'s
+    streaming endpoint so a UI can show live, agent-by-agent progress
+    (`scripts/app.py`) instead of a single opaque wait. `run_agentic_pipeline()`
+    itself is left untouched - the CLI script, evaluation harness, and
+    ablation study all call it directly and don't need streaming.
+    """
+    logger.info("Streaming agentic pipeline: match=%s query=%r", match_id, query)
+    app = build_agentic_graph(
+        vector_store,
+        chunks,
+        events,
+        enable_evaluator=enable_evaluator,
+        enable_reasoning=enable_reasoning,
+        enable_hybrid=enable_hybrid,
+        enable_reranker=enable_reranker,
+        max_retries=max_retries,
+        top_n=top_n,
+    )
+    initial_state: AgentState = {"match_id": match_id, "raw_query": query, "events": events, "retry_count": 0}
+    state: dict = dict(initial_state)
+    for update in app.stream(initial_state, stream_mode="updates"):
+        for node_name, node_output in update.items():
+            state.update(node_output or {})
+            yield node_name, dict(state)

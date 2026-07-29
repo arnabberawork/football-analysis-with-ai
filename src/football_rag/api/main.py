@@ -9,14 +9,16 @@ Run via `uv run python scripts/run_api.py`.
 
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from google.genai import errors as genai_errors
 
-from football_rag.agents.formatting import format_pipeline_result
-from football_rag.agents.graph import run_agentic_pipeline
+from football_rag.agents.formatting import NODE_LABELS, format_pipeline_result, next_stage_hint, summarize_stage
+from football_rag.agents.graph import run_agentic_pipeline, stream_agentic_pipeline
 from football_rag.api.schemas import PipelineRunRequest, PipelineRunResponse
 from football_rag.chunking import build_hierarchical_chunks
 from football_rag.ingestion.statsbomb import fetch_competitions, fetch_matches, fetch_raw_events, parse_events
@@ -116,3 +118,74 @@ def run_pipeline(request: PipelineRunRequest) -> PipelineRunResponse:
     logger.info("Pipeline run complete: match=%s output_file=%s", request.match_id, output_path)
 
     return PipelineRunResponse(**result, output_file=str(output_path))
+
+
+@app.post("/pipeline/run/stream")
+def run_pipeline_stream(request: PipelineRunRequest) -> StreamingResponse:
+    """Same pipeline as `/pipeline/run`, but streams one JSON line per agent
+    stage as it completes (newline-delimited JSON) instead of blocking until
+    the whole run finishes - lets a UI (`scripts/app.py`) show live,
+    agent-by-agent progress. Each line is one of:
+      {"event": "stage", "stage": <node name>, "label": <human label>, "detail": <one-line summary>, "next": <node name or null>}
+      {"event": "error", "detail": <message>}
+      {"event": "done", "result": <same shape as /pipeline/run's response body>}
+    `next` is the node expected to run immediately after this one (or
+    `null` if the graph ends here) - see `next_stage_hint()` - so a client
+    can highlight which branch (retrieval vs. StatsAgent) or retry loop is
+    coming next without parsing `detail`'s free text.
+    """
+    logger.info("POST /pipeline/run/stream match=%s query=%r", request.match_id, request.query)
+
+    def event_stream():
+        try:
+            if request.match_id not in _chunks_cache:
+                yield json.dumps(
+                    {
+                        "event": "stage",
+                        "stage": "ingest",
+                        "label": NODE_LABELS["ingest"],
+                        "detail": "first run for this match - fetching events and embedding chunks (may take ~1 min)",
+                        "next": "query_understanding",
+                    }
+                ) + "\n"
+            chunks, events = get_or_ingest_chunks(request.match_id)
+
+            final_state: dict = {}
+            for node_name, state in stream_agentic_pipeline(
+                str(request.match_id),
+                request.query,
+                get_vector_store(),
+                chunks,
+                events,
+                enable_evaluator=request.enable_evaluator,
+                max_retries=request.max_retries,
+                top_n=request.top_n,
+            ):
+                final_state = state
+                yield json.dumps(
+                    {
+                        "event": "stage",
+                        "stage": node_name,
+                        "label": NODE_LABELS.get(node_name, node_name),
+                        "detail": summarize_stage(node_name, state),
+                        "next": next_stage_hint(node_name, state, enable_evaluator=request.enable_evaluator),
+                    }
+                ) + "\n"
+        except RuntimeError as e:
+            logger.exception("Pipeline stream failed (RuntimeError): match=%s query=%r", request.match_id, request.query)
+            yield json.dumps({"event": "error", "detail": str(e)}) + "\n"
+            return
+        except genai_errors.APIError as e:
+            logger.warning(
+                "Gemini API error (code=%s) for match=%s query=%r: %s", e.code, request.match_id, request.query, e.message
+            )
+            yield json.dumps({"event": "error", "detail": e.message}) + "\n"
+            return
+
+        output_text = format_pipeline_result(str(request.match_id), request.query, final_state)
+        output_path = write_output(f"api_pipeline_run_{request.match_id}", output_text)
+        logger.info("Pipeline run complete: match=%s output_file=%s", request.match_id, output_path)
+        response = PipelineRunResponse(**final_state, output_file=str(output_path))
+        yield json.dumps({"event": "done", "result": response.model_dump(mode="json")}) + "\n"
+
+    return StreamingResponse(event_stream(), media_type="application/x-ndjson")

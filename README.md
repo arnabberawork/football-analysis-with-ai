@@ -50,7 +50,7 @@ src/football_rag/
   api/             FastAPI service exposing the agentic pipeline over HTTP
 scripts/           CLI entry points + the Streamlit UI
 experiment/        research-scale evaluation sweep (18 matches, ~120 queries)
-tests/             import/smoke tests
+tests/             unit tests for pure-logic modules (schema, metrics, StatsAgent, BM25, context dedup)
 ```
 
 ## Setup
@@ -64,42 +64,57 @@ uv sync
 Copy `.env.example` to `.env` and add a free Gemini API key
 (https://aistudio.google.com/apikey):
 
+```bash
+copy .env.example .env
 ```
+
+Then edit `.env` and set:
+
+```bash
 GEMINI_API_KEY="your-key-here"
 ```
 
 `.env` is gitignored — never put a real key in `.env.example`, that file
-*is* committed. `.env.example` also documents `GEMINI_MODEL` /
-`GEMINI_MODEL_LITE` (optional overrides for which Gemini tier each agent
-uses) and `HF_API_KEY` (optional — only needed if you hit anonymous
-Hugging Face rate limits downloading the local embedding/re-ranker
-models).
+*is* committed. `.env.example` also documents optional overrides for
+`GEMINI_MODEL` / `GEMINI_MODEL_LITE` and an optional `HF_API_KEY` if you
+hit anonymous Hugging Face rate limits while downloading the local
+embedding and re-ranker models.
+
+> The first run may take a while while the embedding model and local cache are initialized.
 
 ## Running it
 
-**Naive baseline** (single Gemini call):
+### 1) Naive baseline
 
 ```bash
 uv run python scripts/run_vertical_slice.py [match_id] ["query"]
 ```
 
-**Full 6-agent pipeline** (CLI, prints every agent's intermediate output):
+This runs the single-pass baseline pipeline and is useful as a comparison
+point for the agentic version.
+
+### 2) Full 6-agent pipeline
 
 ```bash
 uv run python scripts/run_agentic_pipeline.py [match_id] ["query"]
 ```
 
-**Browser UI** for the agentic pipeline — a competition/season/match picker
-plus a stage-by-stage view of all six agents. Two processes: a FastAPI
-backend, then Streamlit as a pure HTTP client of it.
+This runs the full agentic workflow and prints the intermediate outputs from
+each stage.
+
+### 3) Browser UI
+
+The UI is a Streamlit frontend that talks to a FastAPI backend. Start them in
+separate terminals:
 
 ```bash
 uv run python scripts/run_api.py        # terminal 1 — backend, http://localhost:8000
 uv run streamlit run scripts/app.py     # terminal 2 — UI, http://localhost:8501
 ```
 
-Both default to `match_id` 3869685 (2022 FIFA World Cup Final, Argentina vs
-France) and a "summarize the match" query if you don't pass your own.
+Both CLI entry points and the API default to `match_id` 3869685 (the 2022
+FIFA World Cup Final, Argentina vs France) and a broad "summarize the
+match" query if you do not pass your own.
 
 Every run (CLI or API) saves its generated summary/evidence to
 `outputs/<prefix>_<match_id>_<timestamp>.txt` and its execution log to
@@ -128,7 +143,10 @@ actually been found so far, including headline numbers such as:
 
 ## Testing
 
-There's a small import/smoke test suite:
+A 57-test unit suite covers the pure-logic modules — schema validation,
+retrieval/generation metrics, `StatsAgent`, BM25 indexing, context dedup,
+and the retriever's `where`-filter/salience/forced-goal logic — with no
+network or Gemini calls:
 
 ```bash
 uv run python -m unittest discover -s tests

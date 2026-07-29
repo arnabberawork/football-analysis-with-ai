@@ -51,9 +51,9 @@ but as a real `unittest` suite under `tests/` instead of a one-off snippet:
 uv run python -m unittest discover -s tests
 ```
 
-Expect: `OK` and a passing count (35 tests as of this writing; ~60-120s,
-almost all of it one-time import cost for `rouge_score`/`sacrebleu`/
-`sentence-transformers`, not the tests themselves). Covers, by file:
+Expect: `OK` and a passing count (57 tests as of this writing; a few
+seconds once `rouge_score`/`sacrebleu`/`sentence-transformers` are already
+import-cached, up to ~60-120s cold). Covers, by file:
 
 | File | What it covers |
 |---|---|
@@ -64,15 +64,17 @@ almost all of it one-time import cost for `rouge_score`/`sacrebleu`/
 | `test_context_aggregator.py` | near-duplicate chunk dedup, including the `similarity_threshold` boundary |
 | `test_stats_agent.py` | `StatsAgent` counting/filtering logic, including the penalty-shootout (period 5) exclusion for goal-counting queries and its "count stays exact, detail list is capped" behavior |
 | `test_bm25_index.py` | empty-corpus handling (no `ZeroDivisionError`), stemming (plural query matches singular chunk text), `top_n` truncation |
+| `test_retriever_helpers.py` | `_salience_priority` (goal/card/sub tiers, penalty-shootout period 5 excluded), `_matches_where` (equality/`$and`/`$gte`/`$lte`, accent-/case-insensitive fuzzy name matching), `_normalize`, and `RetrieverAgent._force_salient` (every real goal forced in uncapped, cards/subs stay budget-limited, no duplicates against the already-ranked pool) - built via a `vector_store=None, enable_reranker=False` `RetrieverAgent` instance so no model download is needed to exercise this pure logic |
 
 Not yet covered by this suite (still manual, via the sections below):
 `ChunkVectorStore`/`Embedder`/`Reranker` (each loads a real model or opens a
 real Chroma collection), the chunking tier builders themselves
 (`chunk_events`/`chunk_time_windows`/`chunk_sequences`/`chunk_lineups`),
-`RetrieverAgent`'s hybrid fusion/`ensure_salient` logic, `query_understanding.py`'s
-`to_where_filter`, `output_writer.write_output`, and every Gemini-backed
-agent (`QueryUnderstandingAgent`, `ReasoningAgent`, `GeneratorAgent`,
-`EvaluatorAgent`, `NaiveRAGGenerator`) plus the FastAPI/Streamlit layers.
+`RetrieverAgent`'s hybrid dense+BM25 fusion and reranking end-to-end,
+`query_understanding.py`'s `to_where_filter`, `output_writer.write_output`,
+and every Gemini-backed agent (`QueryUnderstandingAgent`, `ReasoningAgent`,
+`GeneratorAgent`, `EvaluatorAgent`, `NaiveRAGGenerator`) plus the
+FastAPI/Streamlit layers.
 
 ## 2. Naive baseline (single Gemini call)
 
@@ -249,6 +251,39 @@ where Streamlit runs — they can be different terminals/environments); `429`
 with a `RESOURCE_EXHAUSTED`/quota-exceeded detail (see Troubleshooting —
 this is a clean, expected error response now, not a bug).
 
+**Streaming variant** (`POST /pipeline/run/stream`) — same pipeline, but
+returns newline-delimited JSON, one line per agent stage as it completes,
+so a client can show live progress instead of waiting for one big response
+(this is what `scripts/app.py`'s live status display in §8 actually calls):
+
+```bash
+curl -N -X POST http://localhost:8000/pipeline/run/stream \
+  -H "Content-Type: application/json" \
+  -d '{"match_id": 3869685, "query": "How many yellow cards were shown in the match?"}'
+```
+
+**Expect** (`-N` disables curl's output buffering so lines print as they
+arrive, not all at once at the end) one `{"event": "stage", "stage": ...,
+"label": ..., "detail": ...}` line per completed agent — for this
+statistic-intent query specifically: `ingest` (only on the first call for
+this match_id), `query_understanding` (`detail` should read `intent:
+statistic`), then `stats_node` — followed by exactly one final
+`{"event": "done", "result": {...}}` line whose `result` has the same shape
+as `/pipeline/run`'s response body. Try the default broad
+"Summarize the match and provide key tactical insights." query too to see
+all six stages (`query_understanding`, `retriever`, `context_aggregator`,
+`reasoning`, `generator`, `evaluator`) stream through in order — and note
+that a `generator`/`evaluator` pair can repeat if the Evaluator's first
+verdict fails and a retry fires (§5).
+
+**Fail signs:** a line with `{"event": "error", ...}` followed by the
+stream ending — this is the pipeline's own error path (Gemini quota, bad
+API key, etc.), not a transport bug, and its `detail` is the same message
+`/pipeline/run` would have returned as an HTTP error body; the only
+difference is it can't be signalled via HTTP status once streaming has
+already started (headers are already sent), so `scripts/_api_client.py::stream_pipeline()`
+raises `RuntimeError(detail)` on this event instead.
+
 ## 8. Streamlit UI
 
 Same agentic pipeline as §3-§5, now consumed purely over HTTP from the
@@ -266,11 +301,28 @@ session (not just "the server started"):
    to FIFA World Cup / 2022 / "2022-12-18: Argentina 3-3 France" (the Final,
    match_id 3869685) — confirms `_api_client.get_competitions()`/
    `get_matches()` are reaching the API correctly.
-2. Click **Run pipeline** with the default query. First click ingests +
-   embeds the match server-side (~1 min) before the pipeline runs. **Expect**
-   the same six numbered stages as the CLI script, rendered as expandable
-   panels, a sortable table (Retriever), and metric cards (Evaluator)
-   instead of print statements.
+2. Click **Run pipeline** with the default query. **Expect** an
+   `st.status()` block that stays open and updates live, one line per
+   agent, as each one finishes (via `/pipeline/run/stream`, §7's streaming
+   variant) — `:material/check_circle: **Query Understanding** — intent:
+   match_summary`, then `Retriever`, `Context Aggregator`, `Reasoning`,
+   `Generator`, `Evaluator` in order, ending with the status block
+   collapsing to "Pipeline complete". First click also shows an
+   `Ingesting match data` line before any agent runs (~1 min server-side
+   ingest+embed); confirms someone unfamiliar with the pipeline's internals
+   can watch it work stage by stage instead of staring at one opaque
+   spinner for up to a minute. After the status block finishes, **expect**
+   two tabs: **Response** (selected by default — just the generated
+   summary, plus a pass/fail badge and relevance/coherence/factual-
+   consistency metrics if the Evaluator ran) and **Audit trail** (the
+   structured query JSON, the retriever's scored hit table, the aggregator's
+   dedup count, and the reasoning insights — everything the old single-page
+   view showed at once, now one tab over). For a counting query (e.g. "How
+   many yellow cards were shown?"), **expect** the live status to show only
+   `Query Understanding` → `StatsAgent` (no Retriever/Aggregator/Reasoning/
+   Generator/Evaluator lines), and the Audit trail tab to show a caption
+   explaining the StatsAgent bypass instead of an empty/misleading retriever
+   table.
 3. Change only the query text (same match) and click **Run pipeline** again.
    **Expect** it to skip straight to the pipeline run with no multi-second
    ingestion delay — confirms the *API's* server-side ingestion cache is
@@ -287,10 +339,11 @@ session (not just "the server started"):
    CLI test (with properly-rendered accented characters in the browser,
    unlike the mojibake seen in a Windows terminal — see Troubleshooting).
 6. Stop the API process (Ctrl+C on `run_api.py`) and click **Run pipeline**
-   again without restarting it. **Expect** a friendly `st.error` naming the
-   API URL it couldn't reach, not an unhandled exception/blank page —
-   confirms `scripts/app.py`'s `except (RuntimeError, ConnectionError)`
-   handling around every `_api_client` call.
+   again without restarting it. **Expect** the live status block to switch
+   to its error state (red) and a friendly `st.error` naming the API URL it
+   couldn't reach, not an unhandled exception/blank page — confirms
+   `run_pipeline_with_live_status()`'s `except (RuntimeError, ConnectionError)`
+   around the `stream_pipeline()` loop.
 
 **Fail signs:** blank page after load (check the terminal running
 `streamlit run` for a traceback); dropdowns stuck showing a loading
