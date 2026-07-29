@@ -112,16 +112,18 @@ def build_agentic_graph(
         }
 
     def retriever_node(state: AgentState) -> dict:
-        structured = state["structured_query"]
         llm_where = state.get("where_filter")
-        # ensure_salient is keyed off the LLM-derived filter only (not the
-        # mandatory match filter below) - it means "the query itself is
-        # broad and unscoped", which is still true even though every query
-        # is now always match-scoped underneath.
-        ensure_salient = structured.intent == "match_summary" and not llm_where
         where = _with_match_filter(llm_where, state["match_id"])
-        logger.debug("[retriever] where=%s ensure_salient=%s", where, ensure_salient)
-        hits = retriever_agent.retrieve(state["raw_query"], where=where, top_n=top_n, ensure_salient=ensure_salient)
+        # Always on: RetrieverAgent._force_salient() now scopes forced
+        # goal/card/sub candidates to this same `where`, so it's a no-op
+        # for a query already narrowed to something salience can't match
+        # (e.g. event_type="Pass") and correctly still fires for a
+        # player/team-scoped query - confirmed live that gating this to
+        # intent=="match_summary" only left player-focused queries (e.g.
+        # "How was Neymar's performance?") with no guarantee his own goals
+        # would be retrieved at all.
+        logger.debug("[retriever] where=%s ensure_salient=True", where)
+        hits = retriever_agent.retrieve(state["raw_query"], where=where, top_n=top_n, ensure_salient=True)
         logger.debug("[retriever] %d chunks retrieved", len(hits))
         return {"retrieved_chunks": hits}
 

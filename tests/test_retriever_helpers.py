@@ -177,6 +177,32 @@ class ForceSalientTests(unittest.TestCase):
         result = agent._force_salient(ranked=ranked, top_n=3)
         self.assertEqual([h["chunk_id"] for h in result], ["g1", "r1", "r2"])
 
+    def test_where_scopes_forced_candidates_to_the_active_filter(self):
+        # Regression test: a player-focused query ("How was Neymar's
+        # performance?") retrieves under a player_name=Neymar filter, but
+        # salience-forcing used to be gated off entirely for anything but a
+        # bare "match_summary" query with no filter - so a player's own
+        # goal had no guarantee of surfacing in evidence at all. Now that
+        # forced candidates are scoped through the same `where`, forcing
+        # can stay on unconditionally: an unrelated player's goal must
+        # never leak in under this filter.
+        neymar_goal = _chunk("g1", "10' [Shot] outcome: Goal.", event_type="Shot", player_name="Neymar")
+        other_goal = _chunk("g2", "20' [Shot] outcome: Goal.", event_type="Shot", player_name="Mbappe")
+        agent = _agent([neymar_goal, other_goal])
+        result = agent._force_salient(ranked=[], top_n=10, where={"player_name": "Neymar"})
+        forced_ids = {h["chunk_id"] for h in result}
+        self.assertEqual(forced_ids, {"g1"})
+
+    def test_where_that_matches_no_salient_event_type_forces_nothing(self):
+        # A query already narrowed to a non-salient event_type (e.g. "show
+        # me passes") must not have goals forced in just because they exist
+        # in the match - the where scoping makes this a safe no-op.
+        goal = _chunk("g1", "10' [Shot] outcome: Goal.", event_type="Shot")
+        agent = _agent([goal])
+        ranked = [_hit("r1")]
+        result = agent._force_salient(ranked=ranked, top_n=10, where={"event_type": "Pass"})
+        self.assertEqual([h["chunk_id"] for h in result], ["r1"])
+
     def test_forced_goals_exceeding_top_n_leave_no_room_for_ranked_pool(self):
         goals = [_chunk(f"g{i}", f"{i}' [Shot] outcome: Goal.", event_type="Shot") for i in range(4)]
         agent = _agent(goals)

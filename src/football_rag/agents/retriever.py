@@ -139,9 +139,9 @@ class RetrieverAgent:
 
         if not ensure_salient:
             return ranked
-        return self._force_salient(ranked, top_n)
+        return self._force_salient(ranked, top_n, where)
 
-    def _force_salient(self, ranked: list[dict], top_n: int) -> list[dict]:
+    def _force_salient(self, ranked: list[dict], top_n: int, where: dict | None = None) -> list[dict]:
         """Force every real goal (priority 0) into the context, uncapped,
         then reserve up to half of `top_n` more for the next-highest-priority
         card/substitution chunks not already present, filling the rest from
@@ -156,11 +156,26 @@ class RetrieverAgent:
         (lower narrative stakes, and unbounded in principle - a scrappy
         match can have many more fouls/subs than goals) stay budget-limited
         to protect `top_n` headroom for the similarity-ranked pool.
+
+        Candidates are restricted to whatever `where` the caller retrieved
+        under (same `_matches_where()` used for the BM25 arm) - confirmed
+        live that a player-focused query ("How was Neymar's performance?")
+        surfaced zero goal evidence for a player who scored, because
+        salience-forcing was previously gated to unfiltered "summarize the
+        match" queries only. Scoping forced candidates to the active filter
+        makes it safe to force-include for *any* query: an unrelated
+        player's goal can never leak in under a player_name filter, and a
+        query already scoped to a specific event_type naturally forces
+        nothing extra (no goal chunk matches an event_type="Pass" filter).
         """
         seen_ids = {h["chunk_id"] for h in ranked}
 
         candidates = sorted(
-            (c for c in self._chunks if _salience_priority(c) is not None),
+            (
+                c
+                for c in self._chunks
+                if _salience_priority(c) is not None and (where is None or _matches_where(c.metadata, where))
+            ),
             key=_salience_priority,
         )
         goal_candidates = [c for c in candidates if _salience_priority(c) == 0]
