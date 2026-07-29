@@ -8,4 +8,3 @@ logs/
 .ruff_cache/
 *.egg-info/
 docs/
-CLAUDE.md
