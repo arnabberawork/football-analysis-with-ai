@@ -1,0 +1,5 @@
+dimension,naive_mean,agentic_mean,agentic_wins,naive_wins,ties,sign_test_p,krippendorff_alpha
+tactical_relevance,3.23,3.44,16,9,14,0.7744,0.55
+tactical_correctness,2.26,3.85,36,0,3,0.0002,0.78
+evidence_support,3.28,3.59,16,5,18,0.0654,0.07
+depth,2.56,2.95,19,6,14,0.3877,0.45

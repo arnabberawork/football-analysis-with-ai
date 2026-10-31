@@ -1,0 +1,2 @@
+metric,n,naive,agentic,mean_diff,ci95_low,ci95_high,nonzero_pairs,p_wilcoxon,r_rank_biserial
+goal_recall_per_answer,24,0.2222,0.8539,0.6317,0.4732,0.7778,19,0.0001085208066725844,1.0

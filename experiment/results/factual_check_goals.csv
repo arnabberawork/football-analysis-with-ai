@@ -1,0 +1,76 @@
+match_id,query,system,claims,correct,unsupported,unattributed,goals_in_scope,goals_stated,precision,recall
+3869685,Summarize the match and provide key tactical insights.,naive,0,0,0,0,6,0,,0.0
+3869685,Summarize the match and provide key tactical insights.,agentic,7,7,0,0,6,5,1.0,0.8333333333333334
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,naive,2,2,0,0,3,2,1.0,0.6666666666666666
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,agentic,2,2,0,0,3,2,1.0,0.6666666666666666
+3869519,Summarize the match and provide key tactical insights.,naive,2,2,0,0,3,1,1.0,0.3333333333333333
+3869519,Summarize the match and provide key tactical insights.,agentic,3,3,0,0,3,2,1.0,0.6666666666666666
+3869519,Describe Julián Álvarez's goals in the match.,naive,0,0,0,0,2,0,,0.0
+3869519,Describe Julián Álvarez's goals in the match.,agentic,1,1,0,0,2,1,1.0,0.5
+3869552,Summarize the match and provide key tactical insights.,naive,0,0,0,0,2,0,,0.0
+3869552,Summarize the match and provide key tactical insights.,agentic,2,2,0,0,2,2,1.0,1.0
+3869684,Summarize the match and provide key tactical insights.,naive,0,0,0,0,3,0,,0.0
+3869684,Summarize the match and provide key tactical insights.,agentic,3,3,0,0,3,3,1.0,1.0
+3869321,Summarize the match and provide key tactical insights.,naive,0,0,0,0,4,0,,0.0
+3869321,Summarize the match and provide key tactical insights.,agentic,4,4,0,0,4,4,1.0,1.0
+3869321,Describe Wout Weghorst's goals in the match.,naive,2,2,0,0,2,2,1.0,1.0
+3869321,Describe Wout Weghorst's goals in the match.,agentic,2,2,0,0,2,2,1.0,1.0
+3869486,Summarize the match and provide key tactical insights.,naive,0,0,0,0,1,0,,0.0
+3869486,Summarize the match and provide key tactical insights.,agentic,2,1,1,0,1,1,0.5,1.0
+3869354,Summarize the match and provide key tactical insights.,naive,0,0,0,0,3,0,,0.0
+3869354,Summarize the match and provide key tactical insights.,agentic,3,3,0,0,3,3,1.0,1.0
+3869420,Summarize the match and provide key tactical insights.,naive,1,1,0,0,2,1,1.0,0.5
+3869420,Summarize the match and provide key tactical insights.,agentic,2,2,0,0,2,2,1.0,1.0
+3869117,Summarize the match and provide key tactical insights.,naive,0,0,0,0,4,0,,0.0
+3869117,Summarize the match and provide key tactical insights.,agentic,4,4,0,0,4,4,1.0,1.0
+3869118,Summarize the match and provide key tactical insights.,naive,1,1,0,0,3,1,1.0,0.3333333333333333
+3869118,Summarize the match and provide key tactical insights.,agentic,3,3,0,0,3,3,1.0,1.0
+3869151,Summarize the match and provide key tactical insights.,naive,0,0,0,0,3,0,,0.0
+3869151,Summarize the match and provide key tactical insights.,agentic,3,3,0,0,3,3,1.0,1.0
+3869152,Summarize the match and provide key tactical insights.,naive,0,0,0,0,4,0,,0.0
+3869152,Summarize the match and provide key tactical insights.,agentic,3,3,0,0,4,3,1.0,0.75
+3869152,Describe Kylian Mbappé Lottin's goals in the match.,naive,1,1,0,0,2,1,1.0,0.5
+3869152,Describe Kylian Mbappé Lottin's goals in the match.,agentic,1,1,0,0,2,1,1.0,0.5
+3869219,Summarize the match and provide key tactical insights.,naive,0,0,0,0,2,0,,0.0
+3869219,Summarize the match and provide key tactical insights.,agentic,2,2,0,0,2,2,1.0,1.0
+3869220,Summarize the match and provide key tactical insights.,naive,0,0,0,0,0,0,,
+3869220,Summarize the match and provide key tactical insights.,agentic,0,0,0,0,0,0,,
+3869253,Summarize the match and provide key tactical insights.,naive,0,0,0,0,5,0,,0.0
+3869253,Summarize the match and provide key tactical insights.,agentic,7,7,0,0,5,5,1.0,1.0
+3869254,Summarize the match and provide key tactical insights.,naive,0,0,0,0,7,0,,0.0
+3869254,Summarize the match and provide key tactical insights.,agentic,6,6,0,0,7,4,1.0,0.5714285714285714
+3869254,Describe Gonçalo Matias Ramos's goals in the match.,naive,0,0,0,0,3,0,,0.0
+3869254,Describe Gonçalo Matias Ramos's goals in the match.,agentic,2,2,0,0,3,2,1.0,0.6666666666666666
+3857271,Summarize the match and provide key tactical insights.,naive,0,0,0,0,8,0,,0.0
+3857271,Summarize the match and provide key tactical insights.,agentic,7,7,0,0,8,5,1.0,0.625
+3857271,Describe Bukayo Saka's goals in the match.,naive,2,2,0,0,2,2,1.0,1.0
+3857271,Describe Bukayo Saka's goals in the match.,agentic,2,2,0,0,2,2,1.0,1.0
+3857291,Summarize the match and provide key tactical insights.,naive,0,0,0,0,7,0,,0.0
+3857291,Summarize the match and provide key tactical insights.,agentic,7,7,0,0,7,5,1.0,0.7142857142857143
+3857291,Describe Ferrán Torres García's goals in the match.,naive,2,2,0,0,2,2,1.0,1.0
+3857291,Describe Ferrán Torres García's goals in the match.,agentic,2,2,0,0,2,2,1.0,1.0
+3869685,Summarize the match and provide key tactical insights.,hybrid_naive,6,6,0,0,6,6,1.0,1.0
+3869685,Describe Kylian Mbappé Lottin's goals in the match.,hybrid_naive,2,2,0,0,3,2,1.0,0.6666666666666666
+3869519,Summarize the match and provide key tactical insights.,hybrid_naive,3,3,0,0,3,3,1.0,1.0
+3869519,Describe Julián Álvarez's goals in the match.,hybrid_naive,2,2,0,0,2,2,1.0,1.0
+3869552,Summarize the match and provide key tactical insights.,hybrid_naive,2,2,0,0,2,2,1.0,1.0
+3869684,Summarize the match and provide key tactical insights.,hybrid_naive,5,3,2,0,3,3,0.6,1.0
+3869321,Summarize the match and provide key tactical insights.,hybrid_naive,4,4,0,0,4,4,1.0,1.0
+3869321,Describe Wout Weghorst's goals in the match.,hybrid_naive,2,2,0,0,2,2,1.0,1.0
+3869486,Summarize the match and provide key tactical insights.,hybrid_naive,1,1,0,0,1,1,1.0,1.0
+3869354,Summarize the match and provide key tactical insights.,hybrid_naive,3,3,0,0,3,3,1.0,1.0
+3869420,Summarize the match and provide key tactical insights.,hybrid_naive,2,2,0,0,2,2,1.0,1.0
+3869117,Summarize the match and provide key tactical insights.,hybrid_naive,4,4,0,0,4,4,1.0,1.0
+3869118,Summarize the match and provide key tactical insights.,hybrid_naive,4,4,0,0,3,3,1.0,1.0
+3869151,Summarize the match and provide key tactical insights.,hybrid_naive,3,3,0,0,3,3,1.0,1.0
+3869152,Summarize the match and provide key tactical insights.,hybrid_naive,4,4,0,0,4,4,1.0,1.0
+3869152,Describe Kylian Mbappé Lottin's goals in the match.,hybrid_naive,2,2,0,0,2,2,1.0,1.0
+3869219,Summarize the match and provide key tactical insights.,hybrid_naive,2,2,0,0,2,2,1.0,1.0
+3869220,Summarize the match and provide key tactical insights.,hybrid_naive,0,0,0,0,0,0,,
+3869253,Summarize the match and provide key tactical insights.,hybrid_naive,7,7,0,0,5,5,1.0,1.0
+3869254,Summarize the match and provide key tactical insights.,hybrid_naive,8,8,0,0,7,7,1.0,1.0
+3869254,Describe Gonçalo Matias Ramos's goals in the match.,hybrid_naive,3,3,0,0,3,3,1.0,1.0
+3857271,Summarize the match and provide key tactical insights.,hybrid_naive,11,11,0,0,8,8,1.0,1.0
+3857271,Describe Bukayo Saka's goals in the match.,hybrid_naive,0,0,0,0,2,0,,0.0
+3857291,Summarize the match and provide key tactical insights.,hybrid_naive,10,10,0,0,7,7,1.0,1.0
+3857291,Describe Ferrán Torres García's goals in the match.,hybrid_naive,2,2,0,0,2,2,1.0,1.0

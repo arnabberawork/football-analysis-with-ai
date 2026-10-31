@@ -1,0 +1,14 @@
+pair_id,match_id,a_system,b_system
+0,3857291,agentic,naive
+1,3869118,naive,agentic
+2,3869151,agentic,naive
+3,3869219,naive,agentic
+4,3869220,naive,agentic
+5,3869253,naive,agentic
+6,3869254,agentic,naive
+7,3869321,agentic,naive
+8,3869420,naive,agentic
+9,3869486,naive,agentic
+10,3869519,naive,agentic
+11,3869684,agentic,naive
+12,3869685,agentic,naive
